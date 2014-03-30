@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+killall "Sublime Text"
+
+DIR="$HOME/Library/Application Support/Sublime Text 3"
+PACKAGES_DIR="${DIR}/Packages"
+USER_PACKAGES_DIR="${PACKAGES_DIR}/User"
+INSTALLED_PACKAGES_DIR="${DIR}/Installed Packages"
+
+# Install Package Control
+mkdir -p "$INSTALLED_PACKAGES_DIR"
+PACKAGE_CONTROL_FILENAME="Package Control.sublime-package"
+PACKAGE_CONTROL_URL="https://sublime.wbond.net/$PACKAGE_CONTROL_FILENAME"
+PACKAGE_CONTROL_FILE="$INSTALLED_PACKAGES_DIR/$PACKAGE_CONTROL_FILENAME"
+[ -e "$PACKAGE_CONTROL_FILE" ] && rm "$PACKAGE_CONTROL_FILE"
+curl -o "$PACKAGE_CONTROL_FILE" "$PACKAGE_CONTROL_URL"
+
+# Copy Installed Packages Settings
+mkdir -p "$USER_PACKAGES_DIR"
+SETTINGS_FILE="$USER_PACKAGES_DIR/Package Control.sublime-settings"
+[ -e "$SETTINGS_FILE" ] && rm "$SETTINGS_FILE"
+cp "./sublime-text3/Package Control.sublime-settings" "$SETTINGS_FILE"
+
+# Copy User Preferences
+SETTINGS_FILE="$USER_PACKAGES_DIR/Preferences.sublime-settings"
+[ -e "$SETTINGS_FILE" ] && rm "$SETTINGS_FILE"
+cp "./sublime-text3/Wait Preferences.sublime-settings" "$SETTINGS_FILE"
+
+subl "./sublime-text3/wait.md" -w
+
+# Copy User Preferences
+SETTINGS_FILE="$USER_PACKAGES_DIR/Preferences.sublime-settings"
+[ -e "$SETTINGS_FILE" ] && rm "$SETTINGS_FILE"
+cp "./sublime-text3/Preferences.sublime-settings" "$SETTINGS_FILE"
+
+killall "Sublime Text"
+subl .
+
+
