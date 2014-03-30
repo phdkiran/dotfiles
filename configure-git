@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Copy .gitconfig
+[ -e "$HOME/.gitconfig" ] && rm "$HOME/.gitconfig"
+cp "./git/.gitconfig" "$HOME/.gitconfig"
+
+# Copy .gitignore
+[ -e "$HOME/.gitignore" ] && rm "$HOME/.gitignore"
+cp "./git/.gitignore" "$HOME/.gitignore"
