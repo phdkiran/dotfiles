@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+read -p \
+  'Copying bash files. This may overwrite files in ~. Are you sure? (y/N) ' -n 1
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  cd ./bash && \
+  rsync --exclude '.DS_Store' --exclude '.private' -av --no-perms . $HOME && \
+  source $HOME/.profile
+
+  if [ -e "$HOME/.private" ]; then
+    echo 'Your ~/.private kept unchanged.'
+  else
+    cp -i '.private' $HOME && \
+    echo 'Do not forget to fill ~/.private with your data.'
+  fi
+fi

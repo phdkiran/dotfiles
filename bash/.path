@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Link Homebrew casks in `/Applications` rather than `~/Applications`
+export HOMEBREW_CASK_OPTS='--appdir=/Applications'
+
+# Path for Python
+export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages"
+
+# Path for Ruby
+export PATH="$(brew --prefix)/opt/ruby/bin:$PATH"
+
+# Path for Homebrew
+export PATH="$(brew --prefix)/bin:$PATH"
