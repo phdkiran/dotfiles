@@ -6,8 +6,8 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   cd ./bash && \
   rsync --exclude '.DS_Store' --exclude '.private' -av --no-perms . $HOME && \
-  source $HOME/.profile
-
+  source $HOME/.profile && \
+  cd ..
   if [ -e "$HOME/.private" ]; then
     echo 'Your ~/.private kept unchanged.'
   else
