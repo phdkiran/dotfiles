@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-# git pull
-source update
+cd "$(dirname "${BASH_SOURCE}")"
+
+git pull origin master
 
 # Install apps and packages
 
@@ -41,7 +42,7 @@ brew cleanup
 
 # Configure
 source configure-bash
-# source configure-osx
-# source configure-sublime-text3
+source configure-osx
+source configure-sublime-text3
 
 echo 'Do not forget to edit and then run configure-private'
