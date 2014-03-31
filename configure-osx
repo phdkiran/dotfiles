@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd "$(dirname "${BASH_SOURCE}")"
+
 # Ask for the administrator password upfront
 sudo -v
 
