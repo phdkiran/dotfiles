@@ -176,6 +176,12 @@ defaults write com.apple.finder EmptyTrashSecurely -bool false
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
 
+# Possible values "start", "middle", or "end"
+defaults write com.apple.dock pinning -string "middle"
+
+# Possible values "left", "bottom", "top", or "right"
+defaults write com.apple.dock orientation -string "right"
+
 # Set the icon size of Dock items to 36 pixels
 defaults write com.apple.dock tilesize -int 72
 

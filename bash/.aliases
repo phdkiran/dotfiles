@@ -1,5 +1,20 @@
 #!/usr/bin/env bash
 
+# Editor
+alias e="$EDITOR ."
+
+# Disk space
+alias df='df -h | grep /dev/disk1'
+alias du='du -h -d 1'
+
+
+# Run application specific scripts
+alias o='./open'
+alias c='./compass'
+alias r='./run'
+alias d='./deploy'
+alias t='./test'
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
@@ -9,10 +24,9 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
+alias d="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias p="cd ~/projects"
 alias g="git"
 alias h="history"
 alias j="jobs"

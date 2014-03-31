@@ -34,7 +34,8 @@ brew tap caskroom/versions
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # Apps for every day
-brew cask install alfred arq balsamiq-mockups dash divvy dropbox fluid flux github google-chrome google-hangouts harvest imageoptim licecap multibit onepassword sublime-text3 virtualbox appcleaner carbon-copy-cloner transmission vlc # the-unarchiver daisydisk fluid gpgtools imagealpha kindle send-to-kindle marked sketch skype subtitles teamviewer torbrowserbundle
+brew cask install alfred arq balsamiq-mockups dropbox flux github google-chrome google-hangouts harvest imageoptim licecap multibit onepassword sublime-text3 virtualbox appcleaner carbon-copy-cloner transmission vlc
+# the-unarchiver daisydisk fluid gpgtools imagealpha fluid kindle send-to-kindle marked sketch skype subtitles teamviewer torbrowserbundle
 
 # Cleanup
 brew cask cleanup
