@@ -1,11 +1,27 @@
 #!/usr/bin/env bash
 
+cd "$(dirname "${BASH_SOURCE}")"
+
 # Set computer name
-COMPUTER_NAME=""
+echo 'Setting your computer name. How would you like to name it? '
+read COMPUTER_NAME
 
-#sudo scutil --set ComputerName "$COMPUTER_NAME"
-#sudo scutil --set HostName "$COMPUTER_NAME"
-#sudo scutil --set LocalHostName "$COMPUTER_NAME"
-#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+sudo scutil --set ComputerName "$COMPUTER_NAME"
+sudo scutil --set HostName "$COMPUTER_NAME"
+sudo scutil --set LocalHostName "$COMPUTER_NAME"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 
-# Licences
+if [ -e "$HOME/.private" ]; then
+  echo 'Your ~/.private kept unchanged. You may edit it directly.'
+else
+  echo 'Configuring git.'
+  echo 'Your full name: '
+  read NAME
+  echo 'Your email address: '
+  read EMAIL
+  echo " \
+#Git credentials \
+git config --global user.name '${NAME}'" \
+git config --global user.email '${EMAIL}'" \
+echo 'Your ~/.private has been updated.'
+fi
