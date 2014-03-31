@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd "$(dirname "${BASH_SOURCE}")"
+
 killall "Sublime Text"
 
 DIR="$HOME/Library/Application Support/Sublime Text 3"
