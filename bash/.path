@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 
-# Link Homebrew casks in `/Applications` rather than `~/Applications`
-export HOMEBREW_CASK_OPTS='--appdir=/Applications'
-
-# Path for Python
-export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages"
-
-# Path for Ruby
-export PATH="$(brew --prefix)/opt/ruby/bin:$PATH"
-
 # Path for Homebrew
-export PATH="$(brew --prefix)/bin:$PATH"
+if [ -x "$(brew --prefix)/bin/brew" ]; then
+
+  # Link Homebrew casks in `/Applications` rather than `~/Applications`
+  export HOMEBREW_CASK_OPTS='--appdir=/Applications'
+
+  # Path for Python
+  export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages"
+
+  # Path for Ruby
+  export PATH="$(brew --prefix)/opt/ruby/bin:$PATH"
+
+  # Move $(brew --prefix)/bin to the beginning of path
+  # Thanks to @ntkme via http://ntk.me/2013/05/04/path-environment-variable/
+  export PATH=$(brew --prefix)/bin:`echo ":$PATH:" | sed -e "s:\:$(brew --prefix)/bin\::\::g" -e "s/^://" -e "s/:$//"`
+
+fi
