@@ -11,39 +11,10 @@ ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 brew doctor
 
 # Homebrew packages
-brew install phinze/cask/brew-cask bash git ruby python mongodb node bash-completion
-
-# Start MongoDB
-brew services start mongodb
-
-# Node.js packages
-npm install -g coffee-script meteorite coffeelint laika phantomjs istanbul ibrik
-
-# Ruby packages
-gem update
-gem install bundler jekyll compass
-
-# Python packages
-pip install pygments
-
-# Install Meteor
-curl https://install.meteor.com/ | sh
-
-# Install Cask applications
-brew tap caskroom/versions
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
-# Apps for every day
-brew cask install alfred arq balsamiq-mockups dropbox flux github google-chrome google-hangouts harvest imageoptim licecap multibit onepassword sublime-text3 virtualbox appcleaner carbon-copy-cloner transmission vlc
-# the-unarchiver daisydisk fluid gpgtools imagealpha fluid kindle send-to-kindle marked sketch skype subtitles teamviewer torbrowserbundle
+brew install bash git bash-completion
 
 # Cleanup
-brew cask cleanup
 brew cleanup
 
-# Configure
-source configure-bash
-source configure-osx
-source configure-sublime-text3
-
-echo 'Do not forget to edit and then run configure-private'
+# Hide /opt from Finder
+chflags hidden /opt

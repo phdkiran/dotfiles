@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Install Cask applications
+brew doctor
+brew install phinze/cask/brew-cask
+brew tap caskroom/versions
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# Apps for every day
+brew cask install alfred arq balsamiq-mockups dropbox flux github \
+  google-chrome google-hangouts harvest imageoptim licecap multibit \
+  onepassword sublime-text3 virtualbox appcleaner carbon-copy-cloner \
+  transmission vlc
+
+# the-unarchiver daisydisk fluid gpgtools imagealpha fluid kindle \
+# send-to-kindle marked sketch skype subtitles teamviewer torbrowserbundle
+
+# Cleanup
+brew cask cleanup
+brew cleanup

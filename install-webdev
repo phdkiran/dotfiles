@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Install Jekyll Meteor and Node.js
+brew doctor
+brew install ruby python mongodb node
+
+# Start MongoDB
+brew services start mongodb
+
+# Node.js packages
+npm install -g coffee-script meteorite coffeelint laika phantomjs istanbul ibrik
+
+# Ruby packages
+gem update
+gem install bundler jekyll compass
+
+# Python packages
+pip install pygments
+
+# Install Meteor
+curl https://install.meteor.com/ | sh
+
+# Cleanup
+brew cleanup
