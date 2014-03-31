@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd "$(dirname "${BASH_SOURCE}")"
+
 # Copy .gitconfig
 [ -e "$HOME/.gitconfig" ] && rm "$HOME/.gitconfig"
 cp "./git/.gitconfig" "$HOME/.gitconfig"
