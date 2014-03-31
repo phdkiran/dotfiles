@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 
-# Editor
-alias e="$EDITOR ."
-
 # Disk space
 alias df='df -h | grep /dev/disk1'
 alias du='du -h -d 1'
-
 
 # Run application specific scripts
 alias o='./open'

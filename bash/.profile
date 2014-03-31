@@ -8,6 +8,7 @@ source "$HOME/.completions"
 
 # Make Sublime Text the default editor
 export EDITOR='subl'
+alias e="$EDITOR ."
 
 # Always enable colored `grep` output
 export GREP_OPTIONS='--color=auto'
