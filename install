@@ -15,6 +15,3 @@ brew install bash git bash-completion
 
 # Cleanup
 brew cleanup
-
-# Hide /opt from Finder
-chflags hidden /opt
