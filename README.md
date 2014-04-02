@@ -78,5 +78,5 @@ Your better [fork this repo](https://github.com/romanzolotarev/dotfiles/fork).
 
 Please open an issue or a pull request to suggest changes or additions.
 
-[MIT licensed](http://tools.romanzolotarev.com/LICENSE.md).
+[MIT licensed](https://github.com/romanzolotarev/dotfiles/blob/master/LICENSE.md).
 Copyright 2014 [Roman Zolotarev](http://romanzolotarev.com).
