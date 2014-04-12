@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+BREW_PATH='/usr/local/bin'
+
+# Move $(brew --prefix)/bin to the beginning of path
+# Thanks to @ntkme via http://ntk.me/2013/05/04/path-environment-variable/
+export PATH=${BREW_PATH}:`echo ":$PATH:" | \
+  sed -e "s:\:${BREW_PATH}\::\::g" -e "s/^://" -e "s/:$//"`
+
 # Path for Homebrew
 if [ -x "$(brew --prefix)/bin/brew" ]; then
 
@@ -11,9 +18,5 @@ if [ -x "$(brew --prefix)/bin/brew" ]; then
 
   # Path for Ruby
   export PATH="$(brew --prefix)/opt/ruby/bin:$PATH"
-
-  # Move $(brew --prefix)/bin to the beginning of path
-  # Thanks to @ntkme via http://ntk.me/2013/05/04/path-environment-variable/
-  export PATH=$(brew --prefix)/bin:`echo ":$PATH:" | sed -e "s:\:$(brew --prefix)/bin\::\::g" -e "s/^://" -e "s/:$//"`
 
 fi
