@@ -34,7 +34,7 @@ Copy `.aliases`, `.completions`, `.path`, `.prompt` to your home directory.
 source configure-bash
 ```
 
-## Cask applications
+## Cask Applications
 
 Install cask applications like `alfred`, `dropbox`, `flux`, `github`,
 `google-chrome`, `google-hangouts`, `imageoptim`, `licecap`, `sublime-text3`,
@@ -52,7 +52,7 @@ Copy `Preferences.sublime-text` and the package list to Sublime Text directory.
 source configure-sublime-text3
 ```
 
-## Web development environment
+## Web Development Environment
 
 Install Meteor, Node.js, MongoDB, Ruby, and Python.
 
@@ -69,7 +69,7 @@ source configure-private
 Your better [fork this repo](https://github.com/romanzolotarev/dotfiles/fork).
 :)
 
-## Thanks to…
+## Thanks To…
 
 * [Mathias Bynens](https://github.com/mathiasbynens/dotfiles)
 * [Edward Shaw](https://github.com/ntkme)
