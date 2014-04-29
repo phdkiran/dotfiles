@@ -37,5 +37,3 @@ cp "./sublime-text3/Preferences.sublime-settings" "$SETTINGS_FILE"
 
 killall "Sublime Text"
 subl .
-
-
