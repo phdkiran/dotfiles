@@ -7,16 +7,33 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Install Cask applications
-brew doctor
-brew install phinze/cask/brew-cask
-brew tap caskroom/versions
+#brew doctor
+#brew install phinze/cask/brew-cask
+#brew tap caskroom/versions
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # Apps for every day
-brew cask install alfred arq balsamiq-mockups dropbox flux github \
-  google-chrome google-hangouts harvest imageoptim licecap multibit \
-  onepassword sublime-text3 virtualbox appcleaner carbon-copy-cloner \
-  transmission vlc
+brew cask install divvy 
+brew cask install alfred 
+brew cask install arq 
+brew cask install balsamiq-mockups 
+brew cask install dropbox 
+brew cask install flux 
+brew cask install github
+brew cask install google-chrome
+brew cask install google-hangouts
+brew cask install harvest
+brew cask install imageoptim
+brew cask install licecap
+brew cask install multibit
+brew cask install onepassword
+brew cask install sublime-text3
+brew cask install virtualbox
+brew cask install appcleaner
+brew cask install carbon-copy-cloner
+brew cask install transmission 
+brew cask install vlc
+brew cask install skype
 
 # the-unarchiver daisydisk fluid gpgtools imagealpha fluid kindle \
 # send-to-kindle marked sketch skype subtitles teamviewer torbrowserbundle
