@@ -4,11 +4,13 @@ cd "$(dirname "${BASH_SOURCE}")"
 git pull
 git submodule init
 git submodule update
+git submodule foreach git pull origin master
 
 cd vim
 DIR="$HOME/.vim"
-mkdir -p "$(DIR)"
+rm -rf "$DIR"
+mkdir -p "$DIR"
 
-cp -r autoload "$(DIR)/"
-cp -r bundle "$(DIR)/"
+cp -r autoload "$DIR/"
+cp -r bundle "$DIR/"
 cp .vimrc "$HOME/"
