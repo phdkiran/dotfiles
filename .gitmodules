@@ -67,3 +67,6 @@
 [submodule "vim/bundle/vim-spacebars"]
 	path = vim/bundle/vim-spacebars
 	url = https://github.com/Slava/vim-spacebars.git
+[submodule "vim/bundle/YouCompleteMe"]
+	path = vim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
