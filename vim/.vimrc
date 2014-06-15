@@ -55,6 +55,7 @@ nnoremap <leader>D :Unite -start-insert directory<CR>
 nnoremap <leader>p :Unite -start-insert history/yank<CR>
 nnoremap <leader>g :Unite -silent -start-insert menu:git<CR>
 nnoremap <leader>j :Unite -silent -start-insert menu:all menu:git<CR>
+
 set shell=/bin/bash
 
 " autocmd FileType coffee,html,css,scss,sass,js,litcoffee,jade
@@ -162,12 +163,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Disable arrow keys. That's not Emacs, that's why.
-" map <up> <nop>
-" map <down> <nop>
 map <left> <nop>
 map <right> <nop>
-" imap <up> <nop>
-" imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
