@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+WORK_DIRECTORY=${PWD##*/}
+tmux start-server
+
+tmux has-session -t "${WORK_DIRECTORY}" 2>/dev/null
+
+if [ $? != 0 ]; then
+  tmux new-session -d -s ${WORK_DIRECTORY} -n "edit"
+
+  tmux new-window -d -t ${WORK_DIRECTORY}:1 -n "edit"
+  tmux new-window -d -t ${WORK_DIRECTORY}:2 -n "test"
+  tmux new-window -d -t ${WORK_DIRECTORY}:3 -n "run"
+  tmux new-window -d -t ${WORK_DIRECTORY}:4 -n "git and deploy"
+
+  tmux send-keys -t ${WORK_DIRECTORY}:1 'clear; ${EDITOR} .' C-m
+  tmux send-keys -t ${WORK_DIRECTORY}:2 'clear; ./test' C-m
+  tmux send-keys -t ${WORK_DIRECTORY}:3 'clear; ./run' C-m
+  tmux send-keys -t ${WORK_DIRECTORY}:4 'clear; git status' C-m
+fi
+
+tmux select-window -t ${WORK_DIRECTORY}:1
+tmux attach-session -d -t ${WORK_DIRECTORY}
+
