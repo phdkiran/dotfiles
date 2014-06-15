@@ -19,9 +19,6 @@
 [submodule "vim/bundle/gist-vim"]
 	path = vim/bundle/gist-vim
 	url = https://github.com/mattn/gist-vim.git
-[submodule "vim/bundle/vim-mustache-handlebars"]
-	path = vim/bundle/vim-mustache-handlebars
-	url = https://github.com/mustache/vim-mustache-handlebars.git
 [submodule "vim/bundle/html5-syntax.vim"]
 	path = vim/bundle/html5-syntax.vim
 	url = https://github.com/othree/html5-syntax.vim.git
@@ -67,3 +64,6 @@
 [submodule "vim/bundle/vim-json"]
 	path = vim/bundle/vim-json
 	url = https://github.com/elzr/vim-json.git
+[submodule "vim/bundle/vim-spacebars"]
+	path = vim/bundle/vim-spacebars
+	url = https://github.com/Slava/vim-spacebars.git
