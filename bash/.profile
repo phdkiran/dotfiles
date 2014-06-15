@@ -6,8 +6,8 @@ source "$HOME/.completions"
 # PLEASE FILL `.private` WITH YOUR DATA
 [ -e "$HOME/.private" ] && source "$HOME/.private"
 
-# Make Sublime Text the default editor
-export EDITOR='subl'
+# Make Vim the default editor
+export EDITOR='vim'
 alias e="$EDITOR ."
 
 # Always enable colored `grep` output
