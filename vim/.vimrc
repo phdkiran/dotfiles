@@ -125,7 +125,7 @@ set nofoldenable
 set nowrap
 set number
 set ruler
-set scrolloff=2
+set scrolloff=5
 set shiftwidth=2
 set showmatch
 set smartcase
