@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "${BASH_SOURCE}")"
+
+brew update
+brew install vim
+
 git pull
 git submodule init
 git submodule update
