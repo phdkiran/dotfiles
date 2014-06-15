@@ -35,7 +35,9 @@ nnoremap <leader>g :Unite -silent -start-insert menu:git<CR>
 nnoremap <leader>j :Unite -silent -start-insert menu:all menu:git<CR>
 set shell=/bin/bash
 
-autocmd! bufwritepost .vimrc source %
+" autocmd FileType coffee,html,css,scss,sass,js,litcoffee,jade 
+autocmd BufWritePre * :%s/\s\+$//e
+autocmd! BufWritePost .vimrc source %
 
 " let base16colorspace=256
 " colorscheme base16-eighties
