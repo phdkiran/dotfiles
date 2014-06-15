@@ -6,7 +6,7 @@ alias du='du -h -d 1'
 
 # Run application specific scripts
 alias o='./open'
-alias c='./compass'
+alias s='./style'
 alias r='./run'
 alias d='./deploy'
 alias t='./test'
