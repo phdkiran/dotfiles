@@ -2,8 +2,8 @@
 
 ## Install
 
-Clone the repository (e.g. to `~/Projects/romanzolotarev/dotfiles`)
-and run `install` script (installs `brew`, then upgrades `bash` and `git`).
+Clone the repository (e.g. to `~/Projects/romanzolotarev/dotfiles`) and run
+`install` script (installs `brew`, then upgrades `bash` and `git`).
 
 ```bash
 git clone https://github.com/romanzolotarev/dotfiles.git && dotfiles/install
@@ -73,6 +73,8 @@ Your better [fork this repo](https://github.com/romanzolotarev/dotfiles/fork).
 
 * [Mathias Bynens](https://github.com/mathiasbynens/dotfiles)
 * [Edward Shaw](https://github.com/ntkme)
+* [Chris Hunt](https://github.com/chrishunt/dot-files)
+* [Slava Kim](https://github.com/slava/vimrc)
 
 ## Contribute
 
