@@ -7,6 +7,24 @@ call pathogen#helptags()
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
+set viminfo='10,\"100,:20,%,n~/.viminfo
+
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
+
 if has('persistent_undo')
   silent !mkdir ~/.vim/undo > /dev/null 2>&1
   set undofile                  " Save undo's after file closes
@@ -35,7 +53,7 @@ nnoremap <leader>g :Unite -silent -start-insert menu:git<CR>
 nnoremap <leader>j :Unite -silent -start-insert menu:all menu:git<CR>
 set shell=/bin/bash
 
-" autocmd FileType coffee,html,css,scss,sass,js,litcoffee,jade 
+" autocmd FileType coffee,html,css,scss,sass,js,litcoffee,jade
 autocmd BufWritePre * :%s/\s\+$//e
 autocmd! BufWritePost .vimrc source %
 
@@ -246,3 +264,4 @@ let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
