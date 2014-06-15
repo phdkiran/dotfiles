@@ -119,6 +119,7 @@ let g:unite_source_menu_menus.git.command_candidates = [
         \'Gcd'],
     \]
 
+set clipboard=unnamed
 set cursorline
 set expandtab
 set incsearch
