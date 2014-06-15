@@ -26,7 +26,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-nnoremap <silent> <leader>s :set spell!<CR>
 nnoremap <leader>m :tabn<CR>
 nnoremap <leader>n :tabp<CR>
 nnoremap <leader>w :w<CR>
@@ -138,12 +137,12 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Disable arrow keys. That's not Emacs, that's why.
-map <up> <nop>
-map <down> <nop>
+" map <up> <nop>
+" map <down> <nop>
 map <left> <nop>
 map <right> <nop>
-imap <up> <nop>
-imap <down> <nop>
+" imap <up> <nop>
+" imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
@@ -167,3 +166,5 @@ let g:unite_source_history_yank_enable = 1
 let g:unite_split_rule = "botright"
 
 set encoding=utf-8
+
+
