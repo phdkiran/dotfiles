@@ -18,5 +18,6 @@ if [ -x "$(brew --prefix)/bin/brew" ]; then
 
   # Path for Ruby
   export PATH="$(brew --prefix)/opt/ruby/bin:$PATH"
-
 fi
+
+export PATH="${PATH}:~/bin/"
