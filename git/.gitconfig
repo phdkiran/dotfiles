@@ -23,6 +23,8 @@
   autosquash = true
 [merge]
   summary = true
+	tool = vimdiff
+	conflictstyle = diff3
 [color]
   diff        = auto
   status      = auto
