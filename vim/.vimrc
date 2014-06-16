@@ -9,6 +9,7 @@ autocmd vimenter * if !argc() | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+nmap <c-\> :Gbrowse<CR>
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
 set viminfo='10,\"100,:20,%,n~/.viminfo
@@ -40,8 +41,6 @@ endif
 silent !mkdir ~/.vim/swap > /dev/null 2>&1
 set backupdir=~/.vim/swap/
 set directory=~/.vim/swap/
-set splitbelow
-set splitright
 
 imap jk <ESC>
 map <C-h> <C-w>h
