@@ -95,30 +95,6 @@ match ExtraWhitespace /\s\+$/
 
 syntax on
 filetype plugin indent on
-" Fugitive menu in Unite (depends on both Fugitive and Unite.vim) {{{
-let g:unite_source_menu_menus = {}
-let g:unite_source_menu_menus.git = {}
-let g:unite_source_menu_menus.git.description = 'git (Fugitive)'
-let g:unite_source_menu_menus.git.command_candidates = [
-    \['▷ git blame        (Fugitive)',
-        \'Gblame'],
-    \['▷ git stage        (Fugitive)',
-        \'Gwrite'],
-    \['▷ git checkout     (Fugitive)',
-        \'Gread'],
-    \['▷ git rm           (Fugitive)',
-        \'Gremove'],
-    \['▷ git mv           (Fugitive)',
-        \'exe "Gmove " input("destino: ")'],
-    \['▷ git push         (Fugitive, output buffer)',
-        \'Git! push'],
-    \['▷ git pull         (Fugitive, output buffer)',
-        \'Git! pull'],
-    \['▷ git prompt       (Fugitive, output buffer)',
-        \'exe "Git! " input("comando git: ")'],
-    \['▷ git cd           (Fugitive)',
-        \'Gcd'],
-    \]
 
 set clipboard=unnamed
 set cursorline
