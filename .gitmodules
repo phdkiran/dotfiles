@@ -4,9 +4,6 @@
 [submodule "vim/bundle/vim-gitgutter"]
 	path = vim/bundle/vim-gitgutter
 	url = git@github.com:airblade/vim-gitgutter.git
-[submodule "vim/bundle/xterm-color-table.vim"]
-	path = vim/bundle/xterm-color-table.vim
-	url = https://github.com/chrishunt/xterm-color-table.vim.git
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
