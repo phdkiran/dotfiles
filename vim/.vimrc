@@ -7,7 +7,7 @@ call pathogen#helptags()
 
 autocmd vimenter * if !argc() | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
@@ -96,7 +96,6 @@ match ExtraWhitespace /\s\+$/
 syntax on
 filetype plugin indent on
 
-" set clipboard=unnamed
 set cursorline
 set expandtab
 set incsearch
@@ -142,7 +141,7 @@ vnoremap > >gv
 map <left> <nop>
 map <right> <nop>
 nmap <up> <nop>
-
+nmap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
