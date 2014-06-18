@@ -49,8 +49,7 @@
   a = add -u
   aa = add --all :/
   ap = add -u -p
-  b = browse
-  branches = branch -a
+  b = branch -a
   c = clone --recursive
   ca = !"git add -A && git commit -av"
   co = checkout
