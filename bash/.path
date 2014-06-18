@@ -20,4 +20,4 @@ if [ -x "$(brew --prefix)/bin/brew" ]; then
   export PATH="$(brew --prefix)/opt/ruby/bin:$PATH"
 fi
 
-export PATH="${PATH}:~/bin/"
+export PATH="${PATH}:~/bin"
