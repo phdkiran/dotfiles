@@ -56,7 +56,7 @@
   d = difftool
   ds = diff --staged
   dw = diff --color-words
-  l = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date = short --graph -n 20 --abbrev-commit
+  l = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short --graph -n 20 --abbrev-commit
   p = !"git pull; git submodule foreach git pull origin master"
   po = push origin head
   pr = "!f() { git fetch origin refs/pull/$1/head:pr/$1 && git co pr/$1; } ; f"
