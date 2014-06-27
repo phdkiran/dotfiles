@@ -10,5 +10,8 @@ source "$HOME/.completions"
 export EDITOR='vim'
 alias e="$EDITOR ."
 
+# Use Vi to edit command line
+set -o vi
+
 # Always enable colored `grep` output
 export GREP_OPTIONS='--color=auto'
