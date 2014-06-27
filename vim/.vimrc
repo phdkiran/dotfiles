@@ -5,6 +5,8 @@
 call pathogen#infect()
 call pathogen#helptags()
 
+colorscheme desert
+
 autocmd vimenter * if !argc() | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
