@@ -3,7 +3,7 @@
 	url = https://github.com/bling/vim-airline
 [submodule "vim/bundle/vim-gitgutter"]
 	path = vim/bundle/vim-gitgutter
-	url = git@github.com:airblade/vim-gitgutter.git
+	url = https://github.com/airblade/vim-gitgutter.git
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
@@ -82,9 +82,6 @@
 [submodule "vim/bundle/vim-coffee-script"]
 	path = vim/bundle/vim-coffee-script
 	url = https://github.com/kchmck/vim-coffee-script
-[submodule "vim/bundle/vim-js2coffee"]
-	path = vim/bundle/vim-js2coffee
-	url = https://github.com/JarrodCTaylor/vim-js2coffee
 [submodule "vim/bundle/coffee.vim"]
 	path = vim/bundle/coffee.vim
 	url = https://github.com/vim-scripts/coffee.vim
