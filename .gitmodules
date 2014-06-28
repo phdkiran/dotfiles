@@ -73,3 +73,21 @@
 [submodule "vim/bundle/vim-easymotion"]
 	path = vim/bundle/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
+[submodule "vim/bundle/vim-tomorrow-theme"]
+	path = vim/bundle/vim-tomorrow-theme
+	url = https://github.com/chriskempson/vim-tomorrow-theme
+[submodule "vim/bundle/vim-literate-coffeescript"]
+	path = vim/bundle/vim-literate-coffeescript
+	url = https://github.com/mintplant/vim-literate-coffeescript
+[submodule "vim/bundle/vim-coffee-script"]
+	path = vim/bundle/vim-coffee-script
+	url = https://github.com/kchmck/vim-coffee-script
+[submodule "vim/bundle/vim-js2coffee"]
+	path = vim/bundle/vim-js2coffee
+	url = https://github.com/JarrodCTaylor/vim-js2coffee
+[submodule "vim/bundle/coffee.vim"]
+	path = vim/bundle/coffee.vim
+	url = https://github.com/vim-scripts/coffee.vim
+[submodule "vim/bundle/vim-coffee-clean"]
+	path = vim/bundle/vim-coffee-clean
+	url = https://github.com/tnwinc/vim-coffee-clean
