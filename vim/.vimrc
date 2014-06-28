@@ -122,10 +122,10 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Disable arrow keys. That's not Emacs, that's why.
-nnoremap<left> <nop>
-nnoremap<right> <nop>
-nnoremap<up> <nop>
-nnoremap<down> <nop>
+" nnoremap<left> <nop>
+" nnoremap<right> <nop>
+" nnoremap<up> <nop>
+" nnoremap<down> <nop>
 
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
