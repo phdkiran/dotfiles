@@ -4,14 +4,15 @@
 " Load up pathogen and all bundles
 call pathogen#infect()
 call pathogen#helptags()
+autocmd FileType litcoffee runtime ftplugin/coffee.vim
 
-colorscheme desert
+set clipboard=unnamed
 
 autocmd vimenter * if !argc() | NERDTree | endif
-map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+noremap<C-n> :NERDTreeToggle<CR>
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-nmap <c-\> :Gbrowse<CR>
+nnoremap<c-\> :Gbrowse<CR>
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
 set viminfo='10,\"100,:20,%,n~/.viminfo
@@ -44,11 +45,11 @@ silent !mkdir ~/.vim/swap > /dev/null 2>&1
 set backupdir=~/.vim/swap/
 set directory=~/.vim/swap/
 
-imap jk <ESC>
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+inoremap jk <ESC>
+noremap<C-h> <C-w>h
+noremap<C-j> <C-w>j
+noremap<C-k> <C-w>k
+noremap<C-l> <C-w>l
 nnoremap <leader>m :tabn<CR>
 nnoremap <leader>n :tabp<CR>
 nnoremap <leader>w :w<CR>
@@ -63,32 +64,14 @@ set shell=/bin/bash
 autocmd BufWritePre * :%s/\s\+$//e
 autocmd! BufWritePost .vimrc source %
 
-" let base16colorspace=256
-" colorscheme base16-eighties
 set background=dark
 let g:airline_powerline_fonts = 1
 
-" Set up some custom colors
-highlight clear SignColumn
-highlight ColorColumn  ctermbg=237
-highlight CursorLine   ctermbg=236
-highlight CursorLineNr ctermbg=236 ctermfg=240
-highlight IncSearch    ctermbg=3   ctermfg=1
-highlight LineNr       ctermbg=236 ctermfg=240
-highlight Pmenu        ctermbg=240 ctermfg=12
-highlight PmenuSel     ctermbg=3   ctermfg=1
-highlight Search       ctermbg=1   ctermfg=3
-highlight SpellBad     ctermbg=0   ctermfg=1
-highlight StatusLine   ctermbg=240 ctermfg=12
-highlight StatusLineNC ctermbg=238 ctermfg=0
-highlight VertSplit    ctermbg=236
-highlight Visual       ctermbg=3   ctermfg=0
-
 " Highlight the status bar when in insert mode
-if version >= 700
-  au InsertEnter * hi StatusLine ctermfg=235 ctermbg=2
-  au InsertLeave * hi StatusLine ctermbg=240 ctermfg=12
-endif
+"if version >= 700
+"  au InsertEnter * hi StatusLine ctermfg=235 ctermbg=2
+"  au InsertLeave * hi StatusLine ctermbg=240 ctermfg=12
+"endif
 
 " Highlight trailing spaces in annoying red
 highlight ExtraWhitespace ctermbg=1 guibg=red
@@ -122,15 +105,15 @@ set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 set colorcolumn=79
 
 let mapleader = ","
-map <leader>. :vsp ~/.vimrc<CR>:vertical res 79<CR>
-map <leader>l :set list!<CR>
-map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
-map <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
-map <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
-map <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
-map <C>n :vsp.
-map <F5> :setlocal spell! spelllang=en_us<cr>
-imap <F5> <ESC>:setlocal spell! spelllang=en_us<cr>
+noremap<leader>. :vsp ~/.vimrc<CR>:vertical res 79<CR>
+noremap<leader>l :set list!<CR>
+noremap<leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
+noremap<leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
+noremap<leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
+noremap<leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
+noremap<C>n :vsp.
+noremap<F5> :setlocal spell! spelllang=en_us<cr>
+inoremap<F5> <ESC>:setlocal spell! spelllang=en_us<cr>
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
@@ -139,12 +122,10 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Disable arrow keys. That's not Emacs, that's why.
-map <left> <nop>
-map <right> <nop>
-nmap <up> <nop>
-nmap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
+nnoremap<left> <nop>
+nnoremap<right> <nop>
+nnoremap<up> <nop>
+nnoremap<down> <nop>
 
 function! s:align()
   let p = '^\s*|\s.*\s|\s*$'
@@ -222,3 +203,4 @@ let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 " https://github.com/c9s/perlomni.vim
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
+colorscheme Tomorrow-Night
