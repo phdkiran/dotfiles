@@ -67,12 +67,6 @@ autocmd! BufWritePost .vimrc source %
 set background=dark
 let g:airline_powerline_fonts = 1
 
-" Highlight the status bar when in insert mode
-"if version >= 700
-"  au InsertEnter * hi StatusLine ctermfg=235 ctermbg=2
-"  au InsertLeave * hi StatusLine ctermbg=240 ctermfg=12
-"endif
-
 " Highlight trailing spaces in annoying red
 highlight ExtraWhitespace ctermbg=1 guibg=red
 match ExtraWhitespace /\s\+$/
