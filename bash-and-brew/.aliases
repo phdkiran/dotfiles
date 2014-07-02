@@ -21,6 +21,7 @@ alias d='./deploy'
 alias t='./test'
 alias gh='github .'
 alias tm='tmux-session'
+alias cm='compare-with-master-on-github'
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
