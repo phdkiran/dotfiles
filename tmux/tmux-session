@@ -14,7 +14,7 @@ if [ $? != 0 ]; then
   tmux new-window -d -t ${WORK_DIRECTORY}:4 -n "mongo"
   tmux new-window -d -t ${WORK_DIRECTORY}:5 -n "git and deploy"
 
-  tmux send-keys -t ${WORK_DIRECTORY}:1 'clear; ${EDITOR} .' C-m
+  tmux send-keys -t ${WORK_DIRECTORY}:1 'clear; ${EDITOR}' C-m
   tmux send-keys -t ${WORK_DIRECTORY}:2 'clear; ./test' C-m
   tmux send-keys -t ${WORK_DIRECTORY}:3 'clear; ./run' C-m
   tmux send-keys -t ${WORK_DIRECTORY}:4 'clear; ./mongo' C-m

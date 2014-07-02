@@ -2,7 +2,7 @@
 
 # Make Vim the default editor
 export EDITOR='vim'
-alias e="${EDITOR} ."
+alias e="${EDITOR}"
 # Use Vi to edit command line
 set -o vi
 
