@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "${BASH_SOURCE}")"
+
+cat README.md
+
+echo "You're about to install everything. Are you sure?"
+read
+echo "Well, hold on."
+
+osx/install
+terminal/install
+brew/install
+bash/install
+git/install

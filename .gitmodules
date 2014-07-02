@@ -85,6 +85,3 @@
 [submodule "vim/bundle/coffee.vim"]
 	path = vim/bundle/coffee.vim
 	url = https://github.com/vim-scripts/coffee.vim
-[submodule "vim/bundle/vim-coffee-clean"]
-	path = vim/bundle/vim-coffee-clean
-	url = https://github.com/tnwinc/vim-coffee-clean

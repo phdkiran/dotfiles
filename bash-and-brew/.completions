@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/usr/bin/env bash
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
@@ -15,11 +15,5 @@ complete -W "NSGlobalDomain" defaults
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
 
-# Homebrew: bash-competion
+# Homebrew: bash-competion' >> ~/.completions
 source $(brew --prefix)/etc/bash_completion
-
-# Homebrew:: npm completion
-source $(brew --prefix)/etc/bash_completion.d/npm
-
-# Homebrew: git completion and prompt
-source $(brew --prefix)/etc/bash_completion.d/git-completion.bash

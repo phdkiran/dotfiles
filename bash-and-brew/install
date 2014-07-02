@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "${BASH_SOURCE}")"
+
+WD=`pwd`
+
+rm -f ~/.aliases && ln -s ${WD}/.aliases ~/.aliases && echo 'Replace ~/.aliases' && source ~/.aliases
+rm -f ~/.bash_profile && ln -s ${WD}/.bash_profile ~/.bash_profile && echo 'Replace ~/.bash_profile' && source ~/.bash_profile
+rm -f ~/.completions && ln -s ${WD}/.completions ~/.completions && echo 'Replace ~/.completions' && source ~/.completions
+rm -f ~/.path && ln -s ${WD}/.path ~/.path && echo 'Replace ~/.path' && source ~/.path
+rm -f ~/.prompt && ln -s ${WD}/.prompt ~/.prompt && echo 'Replace ~/.prompt' && source ~/.prompt
+
+rm -f ~/.inputrc && ln -s ${WD}/.inputrc ~/.inputrc && echo 'Replace ~/.inputrc'
+
+if brew --version &> /dev/null; then
+  echo 'Homebrew has been installed. Running brew doctor...'
+  brew doctor && brew upgrade && brew cleanup
+else
+  echo 'Installing Homebrew...'
+  ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+  echo 'Installing bash...'
+  brew install bash bash-completion
+fi

@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# Make Vim the default editor
+export EDITOR='vim'
+alias e="${EDITOR} ."
+# Use Vi to edit command line
+set -o vi
+
+# Always enable colored `grep` output
+export GREP_OPTIONS='--color=auto'
+
 # Disk space
 alias df='df -h | grep /dev/disk1'
 alias du='du -h -d 1'
@@ -105,9 +114,6 @@ unset jscbin
 # Trim new lines and copy to clipboard
 alias pbc="tr -d '\n' | pbcopy"
 
-# Recursively delete `.DS_Store` files
-alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
-
 # ROT13-encode text. Works for decoding, too! ;)
 alias rot13='tr a-zA-Z n-za-mN-ZA-M'
 
@@ -120,7 +126,7 @@ alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && kill
 alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
 # Remove all .DS_Store files
-alias deleteds='sudo find / -name ".DS_Store" -depth -exec rm {} \;'
+alias deleteds='sudo find ./ -name ".DS_Store" -depth -exec rm {} \;'
 
 # Hide/show all desktop icons (useful when presenting)
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"

@@ -1,4 +1,4 @@
-fun! promptline#presets#clear#get()
+fun! promptline#presets#roman#get()
   return {
         \'a'    : [ promptline#slices#cwd() ],
         \'c'    : [ promptline#slices#vcs_branch() ],
