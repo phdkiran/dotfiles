@@ -22,6 +22,7 @@ alias t='./test'
 alias gh='github .'
 alias tm='tmux-session'
 alias cm='compare-with-master-on-github'
+alias press='screenninja-compress'
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
