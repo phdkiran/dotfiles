@@ -6,7 +6,7 @@ call pathogen#infect()
 call pathogen#helptags()
 autocmd FileType litcoffee runtime ftplugin/coffee.vim
 
-set clipboard=unnamed
+" set clipboard=unnamed
 
 autocmd vimenter * if !argc() | NERDTree | endif
 noremap<C-n> :NERDTreeToggle<CR>
