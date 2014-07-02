@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+if brew --version &> /dev/null; then
+  echo 'Running brew doctor...'
+  brew doctor && brew update && brew install tmux && brew cleanup
+  cd "$(dirname "${BASH_SOURCE}")"
+  WD=`pwd`
+  rm -f ~/.tmux.conf && ln -s ${WD}/.tmux.conf ~/.tmux.conf && echo 'Replace ~/.tmux.conf'
+  rm -f /usr/local/bin/tmux-battery && ln -s ${WD}/tmux-battery /usr/local/bin/tmux-battery && echo 'Replace /usr/local/bin/tmux-battery'
+  rm -f /usr/local/bin/tmux-session && ln -s ${WD}/tmux-session /usr/local/bin/tmux-session && echo 'Replace /usr/local/bin/tmux-session'
+else
+  echo 'Please install brew first.'
+fi
