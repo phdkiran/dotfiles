@@ -20,7 +20,7 @@ alias r='./run'
 alias d='./deploy'
 alias t='./test'
 alias gh='github .'
-alias tm='tmux.session'
+alias tm='tmux-session'
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
