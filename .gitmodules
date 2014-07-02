@@ -85,3 +85,6 @@
 [submodule "vim/bundle/coffee.vim"]
 	path = vim/bundle/coffee.vim
 	url = https://github.com/vim-scripts/coffee.vim
+[submodule "osx/powerline-fonts"]
+	path = osx/powerline-fonts
+	url = https://github.com/Lokaltog/powerline-fonts.git

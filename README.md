@@ -6,17 +6,17 @@ You better [fork this repo](https://github.com/romanzolotarev/dotfiles/fork).
 ## What's Inside
 
 My configurations for tools I use every day as a web developer:
-OS X, OS X Terminal, Bash, Vim, Git, Tmux, Brew, Cask, Alfred, ScreenNinja.
+OS X, OS X Terminal, Brew, Bash, Vim, Git, Tmux, Cask.
 
 ## How to Use It?
 
 Each tool has its own directory with configuration files
-and `install` and `uninstall` scripts. Customize it and run.
+and `install` script. Customize it and run.
 
-For example to install `bash` run:
+For example to install `vim` run:
 
 ```
-bash/install
+vim/install
 ```
 
 ## Thanks To…

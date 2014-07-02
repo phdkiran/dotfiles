@@ -2,14 +2,18 @@
 
 cd "$(dirname "${BASH_SOURCE}")"
 
-cat README.md
-
-echo "You're about to install everything. Are you sure?"
+echo "You're about to run all install scripts. Are you sure?"
 read
 echo "Well, hold on."
 
+# First stage
 osx/install
-terminal/install
-brew/install
-bash/install
+bash-and-brew/install
+
+# Second stage
 git/install
+vim/install
+tmux/install
+
+# Third stage
+brew-cask/install

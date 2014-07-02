@@ -1,20 +1,18 @@
 #!/usr/bin/env bash
-
-cd "$(dirname "${BASH_SOURCE}")"
-
-brew update
-brew install vim
-
-git pull
-git submodule init
-git submodule update
-# git submodule foreach git pull origin master
-
-cd vim
-DIR="$HOME/.vim"
-rm -rf "$DIR"
-mkdir -p "$DIR"
-
-cp -r autoload "$DIR/"
-cp -r bundle "$DIR/"
-cp .vimrc "$HOME/"
+if brew --version &> /dev/null; then
+  echo 'Running brew doctor...'
+  brew doctor && brew update && brew install vim && brew cleanup
+  cd "$(dirname "${BASH_SOURCE}")"
+  WD=`pwd`
+  git pull
+  git submodule init
+  git submodule update
+  git submodule foreach git pull origin master
+  rm -f ~/.vimrc && ln -s ${WD}/.vimrc ~/.vimrc && echo 'Replace ~/.vimrc'
+  rm -rf ~/.vim && mkdir -p ~/.vim && echo 'Replace ~/.vim'
+  ln -s ${WD}/autoload ~/.vim/autoload && echo 'Link ~/.vim/autoload'
+  ln -s ${WD}/bundle ~/.vim/bundle && echo 'Link ~/.vim/bundle'
+  rm -f /usr/local/bin/colorscheme && ln -s ${WD}/colorscheme /usr/local/bin/colorscheme && echo 'Replace /usr/local/bin/colorscheme'
+else
+  echo 'Please install brew first.'
+fi
