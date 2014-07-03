@@ -8,9 +8,12 @@ autocmd FileType litcoffee runtime ftplugin/coffee.vim
 
 " set clipboard=unnamed
 
+"" NERDTree
+" Open NERDTree on startup
 autocmd vimenter * if !argc() | NERDTree | endif
+" Close vim if NERDTree is the last window
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 noremap<C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 nnoremap<c-\> :Gbrowse<CR>
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
