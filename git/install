@@ -24,7 +24,7 @@ if brew --version &> /dev/null; then
     git config --global user.email "${EMAIL}"
   fi
 
-  if [[ ! -z "${EMAIL}" ]]; then
+  if [[ ! -z "${GITHUB_USER}" ]]; then
     echo "Add GitHub username (${GITHUB_USER}) to .gitconfig"
     git config --global github.user "${GITHUB_USER}"
   fi
