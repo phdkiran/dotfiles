@@ -22,7 +22,7 @@ alias t='./test'
 alias gh='github .'
 alias tm='tmux-session'
 alias cm='compare-with-master-on-github'
-alias press='find *.mp4 -exec bash -c "screenninja-compress {}" \;'
+alias press='cd ~/Movies/ && find *.mp4 -exec bash -c "screenninja-compress {}" \;'
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
