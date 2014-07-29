@@ -85,6 +85,3 @@
 [submodule "osx/powerline-fonts"]
 	path = osx/powerline-fonts
 	url = https://github.com/Lokaltog/powerline-fonts.git
-[submodule "vim/bundle/vim-easyclip"]
-	path = vim/bundle/vim-easyclip
-	url = https://github.com/svermeulen/vim-easyclip.git
