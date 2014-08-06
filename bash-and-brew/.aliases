@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Make Vim the default editor
+alias vim='reattach-to-user-namespace vim'
 export EDITOR='vim'
 alias e="${EDITOR}"
 # Use Vi to edit command line
