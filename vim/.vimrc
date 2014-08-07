@@ -4,13 +4,15 @@
 " Load up pathogen and all bundles
 call pathogen#infect()
 call pathogen#helptags()
-autocmd FileType litcoffee runtime ftplugin/coffee.vim
 
-" set clipboard=unnamed
+"" LANGUAGES
+"
+" Load coffee.vi for Litcoffee files
+autocmd FileType litcoffee runtime ftplugin/coffee.vim
 
 "" NERDTree
 " Open NERDTree on startup
-autocmd vimenter * if !argc() | NERDTree | endif
+" autocmd vimenter * if !argc() | NERDTree | endif
 " Close vim if NERDTree is the last window
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 noremap<C-n> :NERDTreeToggle<CR>
@@ -79,6 +81,7 @@ filetype plugin indent on
 set clipboard=unnamed
 set cursorline
 set expandtab
+set ignorecase
 set incsearch
 set laststatus=2
 set listchars=tab:»·,trail:·,eol:¬
@@ -118,11 +121,15 @@ inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 vnoremap < <gv
 vnoremap > >gv
 
+" Swap : ;
+nnoremap ; :
+nnoremap : ;
+
 " Disable arrow keys. That's not Emacs, that's why.
-" nnoremap<left> <nop>
-" nnoremap<right> <nop>
-" nnoremap<up> <nop>
-" nnoremap<down> <nop>
+nnoremap<left> <nop>
+nnoremap<right> <nop>
+nnoremap<up> <nop>
+nnoremap<down> <nop>
 
 let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
