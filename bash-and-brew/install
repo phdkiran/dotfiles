@@ -14,7 +14,7 @@ rm -f ~/.inputrc && ln -s ${WD}/.inputrc ~/.inputrc && echo 'Replace ~/.inputrc'
 
 if brew --version &> /dev/null; then
   echo 'Homebrew has been installed. Running brew doctor...'
-  brew doctor && brew upgrade && brew cleanup
+  brew update && brew doctor && brew cleanup
 else
   echo 'Installing Homebrew...'
   ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
