@@ -2,7 +2,7 @@
 if brew --version &> /dev/null; then
   echo 'Running brew doctor...'
   brew doctor && brew update
-  brew install tmux (or brew update tmux)
+  brew install tmux
   brew install reattach-to-user-namespace (or brew update reattach-to-user-namespace)
   brew cleanup
   cd "$(dirname "${BASH_SOURCE}")"
