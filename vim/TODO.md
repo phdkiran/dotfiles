@@ -1,8 +1,6 @@
 # TODO
-- Check keybindings
 - Check autocomplete
 - Check search and replace in project
-- Check plugins
 
 ## Plugins
 https://github.com/lokaltog/vim-easymotion
