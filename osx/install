@@ -337,7 +337,7 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 # 'Transmission'
 
 for app in \
- 	'cfprefsd' \
+  'cfprefsd' \
   'Dock' \
   'Finder' \
   'SystemUIServer'; do

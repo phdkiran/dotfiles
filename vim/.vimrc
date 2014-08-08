@@ -1,60 +1,102 @@
 " .vimrc by Roman Zolotarev
 " http://tools.romanzolotarev.com/vim
 
+"" Global
+set nocompatible
 " Load up pathogen and all bundles
 call pathogen#infect()
 call pathogen#helptags()
+set shell=/bin/bash
+let mapleader = ","
 
-"" LANGUAGES
-"
-" Load coffee.vi for Litcoffee files
-autocmd FileType litcoffee runtime ftplugin/coffee.vim
+"" Commands
+set wildmenu " Use menu for command completion
+set wildmode=list:longest,full
 
-"" NERDTree
-" Open NERDTree on startup
-" autocmd vimenter * if !argc() | NERDTree | endif
-" Close vim if NERDTree is the last window
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-noremap<C-n> :NERDTreeToggle<CR>
+"" Search
+set ignorecase " Ignore case
+set smartcase " Override ignore case when upper case chars are used
+set incsearch " Highlight search results
+set hlsearch " Highligth search
 
-nnoremap<c-\> :Gbrowse<CR>
+"" Edit
+inoremap jk <ESC>
+set clipboard=unnamed " Use system clipboard
+set pastetoggle=<F2>
+set expandtab " Expand tabs to spaces
+set shiftwidth=2
+set ts=2
+set backspace=indent,eol,start " Backspacing over everything
+" You don't have to change keyboard layout to execute Normal mode commands
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
+"" Syntax
+syntax on " Turn syntax highlight
+
+"" Ruler, cursor, scroll, windows
+set cursorline " Highlight current line
+set laststatus=2 " Always show status line
+set noshowmode " Hide mode, because status line have it already
+set ruler " Show column and row number
+set scrolloff=5 " Minimum number of lines above and below the cursor
+" Switch windows
+noremap<C-h> <C-w>h
+noremap<C-j> <C-w>j
+noremap<C-k> <C-w>k
+noremap<C-l> <C-w>l
+
+"" Lines, numbers, wrap
+set number
+set nowrap
+set listchars=tab:»·,trail:·,eol:¬
+
+"" Movements
+" Disable arrow keys
+nnoremap<left> <nop>
+nnoremap<right> <nop>
+nnoremap<up> <nop>
+nnoremap<down> <nop>
+
+"" Plugins
+filetype plugin indent on " Load plugins and indents for file types
+autocmd FileType litcoffee runtime ftplugin/coffee.vim " Litcoffee
+autocmd vimenter * if !argc() | NERDTree | endif " Open NERDTree on startup
+noremap<c-n> :NERDTreeToggle<CR>
+
+"" Git
+nnoremap<c-\> :Gbrowse<CR>
+
+"" States
 set viminfo='10,\"100,:20,%,n~/.viminfo
-
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
-set showmode
-
-function! ResCur()
+"  '10  :  marks will be remembered for up to 10 previously edited files
+"  "100 :  will save up to 100 lines for each register
+"  :20  :  up to 20 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+" Restore cursor position
+function! RestoreCursorPositon()
   if line("'\"") <= line("$")
     normal! g`"
     return 1
   endif
 endfunction
-
-augroup resCur
+augroup restoreCursor
   autocmd!
-  autocmd BufWinEnter * call ResCur()
+  autocmd BufWinEnter * call RestoreCursorPositon()
 augroup END
-
+" Restore undo history
 if has('persistent_undo')
   silent !mkdir ~/.vim/undo > /dev/null 2>&1
-  set undofile                  " Save undo's after file closes
+  set undofile " Save undo's after file closes
   set undodir=~/.vim/undo/
-  set undolevels=100            " How many undos
-  set undoreload=3000           " Number of lines to save for undo
+  set undolevels=100 " How many undos
+  set undoreload=3000 " Number of lines to save for undo
 endif
-
+" Set swap directory
 silent !mkdir ~/.vim/swap > /dev/null 2>&1
 set backupdir=~/.vim/swap/
 set directory=~/.vim/swap/
 
-inoremap jk <ESC>
-noremap<C-h> <C-w>h
-noremap<C-j> <C-w>j
-noremap<C-k> <C-w>k
-noremap<C-l> <C-w>l
 nnoremap <leader>m :tabn<CR>
 nnoremap <leader>n :tabp<CR>
 nnoremap <leader>w :w<CR>
@@ -63,7 +105,6 @@ nnoremap <leader>p :Unite -start-insert history/yank<CR>
 nnoremap <leader>g :Unite -silent -start-insert menu:git<CR>
 nnoremap <leader>j :Unite -silent -start-insert menu:all menu:git<CR>
 
-set shell=/bin/bash
 
 " autocmd FileType coffee,html,css,scss,sass,js,litcoffee,jade
 autocmd BufWritePre * :%s/\s\+$//e
@@ -76,60 +117,19 @@ let g:airline_powerline_fonts = 1
 highlight ExtraWhitespace ctermbg=1 guibg=red
 match ExtraWhitespace /\s\+$/
 
-syntax on
-filetype plugin indent on
-set clipboard=unnamed
-set cursorline
-set expandtab
-set ignorecase
-set incsearch
-set laststatus=2
-set listchars=tab:»·,trail:·,eol:¬
-set nocompatible
-set nofoldenable
-set nowrap
-set number
-set ruler
-set scrolloff=5
-set shiftwidth=2
-set showmatch
-set smartcase
-set ts=2
-set wildmenu
-set wildmode=list:longest,full
-
 command! -nargs=* Wrap set wrap linebreak nolist
 command! -nargs=* Nowrap set nowrap
 
 set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 set colorcolumn=79
 
-let mapleader = ","
-noremap<leader>. :vsp ~/.vimrc<CR>:vertical res 79<CR>
-noremap<leader>l :set list!<CR>
-noremap<leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
-noremap<leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
-noremap<leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
-noremap<leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
-noremap<C>n :vsp.
-noremap<F5> :setlocal spell! spelllang=en_us<cr>
-inoremap<F5> <ESC>:setlocal spell! spelllang=en_us<cr>
+noremap<leader>. :sp ~/.vimrc<CR>
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
 " Reselect visual block after indent/outdent
 vnoremap < <gv
 vnoremap > >gv
-
-" Swap : ;
-nnoremap ; :
-nnoremap : ;
-
-" Disable arrow keys. That's not Emacs, that's why.
-nnoremap<left> <nop>
-nnoremap<right> <nop>
-nnoremap<up> <nop>
-nnoremap<down> <nop>
 
 let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
