@@ -84,8 +84,12 @@ set laststatus=2
 set ruler
 set showmode
 set noshowcmd
+if exists(":Gstatus")
+  set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
+else
+  set statusline=%F%m%r%h%w\ [%l,%c]\ [%L,%p%%]
+endif
 let g:airline_powerline_fonts = 1
-set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 
 " Search
 set ignorecase smartcase
@@ -108,7 +112,9 @@ vnoremap > >gv
 " Colors
 syntax on
 set background=dark
-colorscheme Tomorrow-Night
+if filereadable( expand("$HOME/.vim/bundle/vim-tomorrow-theme/colors/Tomorrow-Night.vim") )
+  colorscheme Tomorrow-Night
+endif
 highlight ExtraWhitespace ctermbg=1 guibg=red
 match ExtraWhitespace /\s\+$/
 
