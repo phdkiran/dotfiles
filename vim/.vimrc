@@ -36,6 +36,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -101,15 +102,12 @@ set incsearch nohlsearch
 
 " Edit
 set autoindent
-set clipboard=unnamed
-set pastetoggle=<F2>
-set tabstop=2
-set shiftwidth=2
 set backspace=indent,eol,start " Backspacing over everything
 set clipboard=unnamed
-set backspace=indent,eol,start " Backspacing over everything
 set expandtab
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+set pastetoggle=<F2>
+set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 vnoremap < <gv
@@ -129,6 +127,11 @@ nnoremap ]c :GitGutterNextHunk<cr>
 nnoremap [c :GitGutterPrevHunk<cr>
 nnoremap <Leader>hs :GitGutterStageHunk<cr>
 nnoremap <Leader>hr :GitGutterRevertHunk<cr>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gc :Gcommit<cr>
+nnoremap <leader>ga :Gwrite<cr>
+nnoremap <leader>gl :Glog<cr>
+nnoremap <leader>gd :Gdiff<cr>
 
 " Open and reload .vimrc
 noremap<leader>. :tabnew ~/.vimrc<cr>
@@ -167,4 +170,3 @@ function! RestoreCursorPositon()
     return 1
   endif
 endfunction
-
