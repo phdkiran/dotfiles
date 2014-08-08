@@ -127,11 +127,7 @@ nnoremap ]c :GitGutterNextHunk<cr>
 nnoremap [c :GitGutterPrevHunk<cr>
 nnoremap <Leader>hs :GitGutterStageHunk<cr>
 nnoremap <Leader>hr :GitGutterRevertHunk<cr>
-nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>gc :Gcommit<cr>
-nnoremap <leader>ga :Gwrite<cr>
-nnoremap <leader>gl :Glog<cr>
-nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>g :Gstatus<cr>
 
 " Open and reload .vimrc
 noremap<leader>. :tabnew ~/.vimrc<cr>
