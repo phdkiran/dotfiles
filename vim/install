@@ -1,20 +1,23 @@
 #!/usr/bin/env bash
 if brew --version &> /dev/null; then
   echo 'Running brew doctor...'
-  brew doctor && brew update
-  brew install vim (or brew update vim)
-  brew cleanup
-  cd "$(dirname "${BASH_SOURCE}")"
-  WD=`pwd`
-  git pull
-  git submodule init
-  git submodule update
-  git submodule foreach git pull origin master
-  rm -f ~/.vimrc && ln -s ${WD}/.vimrc ~/.vimrc && echo 'Replace ~/.vimrc'
-  rm -rf ~/.vim && mkdir -p ~/.vim && echo 'Replace ~/.vim'
-  ln -s ${WD}/autoload ~/.vim/autoload && echo 'Link ~/.vim/autoload'
-  ln -s ${WD}/bundle ~/.vim/bundle && echo 'Link ~/.vim/bundle'
-  rm -f /usr/local/bin/colorscheme && ln -s ${WD}/colorscheme /usr/local/bin/colorscheme && echo 'Replace /usr/local/bin/colorscheme'
+  brew update && brew doctor && brew install vim && brew cleanup
+  if [ $? -eq 0 ]; then
+    cd "$(dirname "${BASH_SOURCE}")"
+    WD=`pwd`
+    git pull
+    git submodule init
+    git submodule update
+    git submodule foreach git pull origin master
+    rm -f ~/.vimrc && ln -s ${WD}/.vimrc ~/.vimrc && echo 'Replace ~/.vimrc'
+    rm -rf ~/.vim && mkdir -p ~/.vim && echo 'Replace ~/.vim'
+    rm -rf ~/.vim/bundle && mkdir ~/.vim/bundle && echo 'Replace ~/.vim/bundle'
+    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    rm -f /usr/local/bin/colorscheme && ln -s ${WD}/colorscheme /usr/local/bin/colorscheme && echo 'Replace /usr/local/bin/colorscheme'
+    vim +PluginUpdate +qa
+  else
+    echo 'Can not install vim. Check brew first.'
+  fi
 else
   echo 'Please install brew first.'
 fi
