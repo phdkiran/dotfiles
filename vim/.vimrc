@@ -27,6 +27,7 @@ Plugin 'gmarik/Vundle.vim'
 " Plugin 'tpope/vim-repeat.git'
 " Plugin 'vim-scripts/coffee.vim'
 
+Plugin 'terryma/vim-multiple-cursors'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'chriskempson/vim-tomorrow-theme'
@@ -80,8 +81,8 @@ noremap<down> <nop>
 set cursorline
 set colorcolumn=79
 set scrolloff=5
-set nobackup
-set noswapfile
+set sidescrolloff=15
+set sidescroll=1
 
 " Status line
 set laststatus=2
@@ -113,6 +114,14 @@ set tabstop=2
 vnoremap < <gv
 vnoremap > >gv
 
+" Unimpaired
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
 " Colors
 syntax on
 set background=dark
@@ -132,6 +141,10 @@ nnoremap <leader>g :Gstatus<cr>
 " Open and reload .vimrc
 noremap<leader>. :tabnew ~/.vimrc<cr>
 autocmd! BufWritePost .vimrc source % | AirlineRefresh
+
+" Turn backup and swap off
+set nobackup
+set noswapfile
 
 " Restore undo history
 silent !mkdir ~/.vim/undo > /dev/null 2>&1
