@@ -6,6 +6,9 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+" My plugins
+
 " Plugin 'Lokaltog/vim-easymotion.git'
 " Plugin 'Shougo/neocomplcache.vim.git'
 " Plugin 'Slava/vim-spacebars.git'
@@ -23,10 +26,10 @@ call vundle#begin()
 " Plugin 'tpope/vim-markdown.git'
 " Plugin 'tpope/vim-repeat.git'
 " Plugin 'vim-scripts/coffee.vim'
+
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'gmarik/Vundle.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'shougo/unite.vim'
 Plugin 'tpope/vim-commentary'
@@ -92,9 +95,9 @@ endif
 let g:airline_powerline_fonts = 1
 
 " Search
-set ignorecase smartcase
-set incsearch hlsearch
 set gdefault
+set ignorecase smartcase
+set incsearch nohlsearch
 
 " Edit
 set autoindent
@@ -102,10 +105,13 @@ set clipboard=unnamed
 set pastetoggle=<F2>
 set tabstop=2
 set shiftwidth=2
-set softtabstop=2
-set expandtab
 set backspace=indent,eol,start " Backspacing over everything
+set clipboard=unnamed
+set backspace=indent,eol,start " Backspacing over everything
+set expandtab
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+set softtabstop=2
+set tabstop=2
 vnoremap < <gv
 vnoremap > >gv
 
@@ -118,11 +124,15 @@ endif
 highlight ExtraWhitespace ctermbg=1 guibg=red
 match ExtraWhitespace /\s\+$/
 
+" Git
+nnoremap ]c :GitGutterNextHunk<cr>
+nnoremap [c :GitGutterPrevHunk<cr>
+nnoremap <Leader>hs :GitGutterStageHunk<cr>
+nnoremap <Leader>hr :GitGutterRevertHunk<cr>
+
 " Open and reload .vimrc
 noremap<leader>. :tabnew ~/.vimrc<cr>
 autocmd! BufWritePost .vimrc source % | AirlineRefresh
-
-"" States
 
 " Restore undo history
 silent !mkdir ~/.vim/undo > /dev/null 2>&1
