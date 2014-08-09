@@ -9,32 +9,32 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 " My plugins
 
-" Plugin 'Lokaltog/vim-easymotion.git'
-" Plugin 'Shougo/neocomplcache.vim.git'
-" Plugin 'Slava/vim-spacebars.git'
-" Plugin 'digitaltoad/vim-jade.git'
+" Plugin 'Lokaltog/vim-easymotion'
 " Plugin 'edkolev/promptline.vim'
-" Plugin 'elzr/vim-json.git'
-" Plugin 'jelera/vim-javascript-syntax.git'
-" Plugin 'mattn/gist-vim.git'
-" Plugin 'mintplant/vim-literate-coffeescript'
-" Plugin 'othree/html5-syntax.vim.git'
-" Plugin 'rizzatti/dash.vim.git'
-" Plugin 'rizzatti/funcoo.vim.git'
-" Plugin 'tpope/vim-abolish.git'
-" Plugin 'tpope/vim-liquid.git'
-" Plugin 'tpope/vim-markdown.git'
-" Plugin 'tpope/vim-repeat.git'
-" Plugin 'vim-scripts/coffee.vim'
-
-Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'rizzatti/dash.vim'
+" Plugin 'rizzatti/funcoo.vim'
+" Plugin 'tpope/vim-abolish'
+" Plugin 'tpope/vim-liquid'
+Plugin 'Shougo/neocomplete'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'Shougo/vimproc'
+Plugin 'Slava/vim-spacebars'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'elzr/vim-json'
+Plugin 'gregsexton/gitv'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'rking/ag.vim'
 Plugin 'shougo/unite.vim'
+Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 
@@ -57,6 +57,8 @@ noremap<c-h> <c-w>h
 noremap<c-j> <c-w>j
 noremap<c-k> <c-w>k
 noremap<c-l> <c-w>l
+nnoremap <silent> ,z :bp<cr>
+nnoremap <silent> ,x :bn<cr>
 
 " Lines, numbers, wrap
 set number
@@ -66,12 +68,12 @@ autocmd BufWrite .vimrc :call DeleteTrailingWS()
 autocmd BufWrite *.jade :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
-" Movements
+" Motions
 nnoremap j gj
 nnoremap k gk
 inoremap jk <ESC>
-inoremap kkk <ESC>
-inoremap jjj <ESC>
+inoremap kk <ESC>
+inoremap jj <ESC>
 noremap<left> <nop>
 noremap<right> <nop>
 noremap<up> <nop>
@@ -113,14 +115,15 @@ set softtabstop=2
 set tabstop=2
 vnoremap < <gv
 vnoremap > >gv
-
-" Unimpaired
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
+vnoremap p "_dP
+nnoremap ,ow "_diwhp
+" ,# Surround a word with #{interpolation}
+vnoremap ,# c#{<c-R>"}<ESC>
+" ,' Surround a word with single quotes
+noremap ,' ysiw'
+vnoremap ,' c'<c-R>"'<ESC>
+noremap <leader>c :Commentary<cr>
+inoremap <leader>c <Esc>:Commentary<cr>i
 
 " Colors
 syntax on
@@ -130,6 +133,11 @@ if filereadable( expand("$HOME/.vim/bundle/vim-tomorrow-theme/colors/Tomorrow-Ni
 endif
 highlight ExtraWhitespace ctermbg=1 guibg=red
 match ExtraWhitespace /\s\+$/
+let g:vim_json_syntax_conceal = 0
+augroup markdown
+  autocmd!
+  autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup end
 
 " Git
 nnoremap ]c :GitGutterNextHunk<cr>
@@ -138,11 +146,81 @@ nnoremap <Leader>hs :GitGutterStageHunk<cr>
 nnoremap <Leader>hr :GitGutterRevertHunk<cr>
 nnoremap <leader>g :Gstatus<cr>
 
+" Unite
+let g:unite_source_history_yank_enable = 1
+let g:unite_data_directory='~/.vim/.cache/unite'
+let g:unite_source_rec_max_cache_files=5000
+let g:unite_enable_start_insert = 1
+let g:unite_split_rule = "botright"
+let g:unite_force_overwrite_statusline = 0
+let g:unite_winheight = 10
+call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+      \ 'ignore_pattern', join([
+      \ '\.git/', '\.build/', '\.meteor/', 'node_modules/',
+      \ '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css'
+      \ ], '\|'))
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+nnoremap <space>/ :Unite grep:.<cr>
+nnoremap <space>y :Unite history/yank<cr>
+nnoremap <c-p> :Unite file_rec/async buffer file_rec<cr>
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  inoremap <buffer> <C-j> <Plug>(unite_select_next_line)
+  inoremap <buffer> <C-k> <Plug>(unite_select_previous_line)
+  inoremap <silent><buffer><expr> <C-x> unite#do_action('split')
+  inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+  inoremap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+  nnoremap <buffer> <ESC> <Plug>(unite_exit)
+endfunction
+
+" Neocomplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#sources#dictionary#dictionaries = {
+  \ 'default' : '',
+  \ 'vimshell' : $HOME.'/.vimshell_hist',
+  \ 'scheme' : $HOME.'/.gosh_completions'
+  \ }
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+inoremap <silent> <cr> <c-r>=<SID>my_cr_function()<cr>
+function! s:my_cr_function()
+  return pumvisible() ? neocomplete#close_popup() : "\<cr>"
+endfunction
+inoremap <expr><tab>  pumvisible() ? "\<c-n>" : "\<tab>"
+autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
+autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+" Neosnippet
+inoremap <c-k> <Plug>(neosnippet_expand_or_jump)
+snoremap <c-k> <Plug>(neosnippet_expand_or_jump)
+xnoremap <c-k> <Plug>(neosnippet_expand_target)
+inoremap <expr><tab> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)"
+  \: pumvisible() ? "\<c-n>" : "\<tab>"
+snoremap <expr><tab> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)"
+  \: "\<tab>"
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
 " Open and reload .vimrc
 noremap<leader>. :tabnew ~/.vimrc<cr>
 autocmd! BufWritePost .vimrc source % | AirlineRefresh
 
 " Turn backup and swap off
+set autoread
 set nobackup
 set noswapfile
 
@@ -163,7 +241,7 @@ set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
 augroup restoreCursor
   autocmd!
   autocmd BufWinEnter * call RestoreCursorPositon()
-augroup END
+augroup end
 
 " Helpers
 
@@ -179,3 +257,4 @@ function! RestoreCursorPositon()
     return 1
   endif
 endfunction
+
