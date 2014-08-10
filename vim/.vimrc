@@ -212,7 +212,7 @@ inoremap <silent> <CR> <C-r>=<SID>MyCrFunction()<CR>
 function! s:MyCrFunction()
   return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
-inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
 autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -251,11 +251,11 @@ set undodir=~/.vim/undo/
 set undolevels=100 " How many undos
 set undoreload=3000 " Number of lines to save
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
-"  '10  :  10 previously edited files
-"  "100 :  100 lines for each register
-"  :20  :  20 lines of command-line history
-"  %    :  Saves and restores the buffer list
-"  n... :  Where to save the viminfo files
+" '10  previously edited files
+" "100 lines for each register
+" :20  lines of command-line history
+" %    saves and restores the buffer list
+" n... where to save the viminfo files
 
 " Restore cursor position
 augroup restoreCursor
