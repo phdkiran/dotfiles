@@ -15,7 +15,6 @@
 "   - Meteor specific directories
 " - Find and replace in project
 " - Switch tabs by numbers
-" - Commit by hunk
 " - Check search and replace in project
 
 " Initialize NeoBundle and plugins
@@ -113,10 +112,10 @@ nnoremap k gk
 inoremap jk <Esc>
 inoremap kk <Esc>
 inoremap jj <Esc>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-noremap <Up> <Nop>
-noremap <Down> <Nop>
+" noremap <Left> <Nop>
+" noremap <Right> <Nop>
+" noremap <Up> <Nop>
+" noremap <Down> <Nop>
 
 " Cursor, scroll, windows
 set cursorline
@@ -168,6 +167,8 @@ vnoremap <C-\> :Commentary<CR>
 nnoremap <C-\> :Commentary<CR>
 inoremap <C-\> <Esc>:Commentary<CR>i
 nnoremap crl guiw
+nmap <C-j> ]e
+nmap <C-k> [e
 
 " Colors
 syntax on
@@ -195,12 +196,7 @@ nmap <Leader>r :GitGutterRevertHunk<CR>
 
 " Unite
 let g:unite_source_history_yank_enable = 1
-let g:unite_data_directory='~/.vim/.cache/unite'
-let g:unite_source_rec_max_cache_files=5000
-let g:unite_enable_start_insert = 1
-let g:unite_split_rule = "botright"
-let g:unite_force_overwrite_statusline = 0
-let g:unite_winheight = 10
+" let g:unite_force_overwrite_statusline = 0
 call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
   \ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/',
@@ -208,11 +204,12 @@ call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
   \ ], '\|'))
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-nnoremap <space>/ :Unite grep:.<CR>
-nnoremap <space>y :Unite history/yank<CR>
-nnoremap <C-p> :Unite -no-split file_rec/async buffer<CR>
-autocmd FileType unite call s:unite_settings()
-function! s:unite_settings()
+nnoremap <space>/ :Unite -no-split grep:.<CR>
+nnoremap <space>y :Unite -no-split history/yank<CR>
+nnoremap <C-t> :Unite -no-split buffer<CR>
+nnoremap <C-p> :Unite -no-split -start-insert file_rec/async<CR>
+autocmd FileType unite call s:UniteSettings()
+function! s:UniteSettings()
   highlight ExtraWhitespace ctermbg=8
   imap <buffer> <C-j> <Plug>(unite_select_next_line)
   imap <buffer> <C-k> <Plug>(unite_select_previous_line)
@@ -220,6 +217,7 @@ function! s:unite_settings()
   imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
   map <silent><buffer><expr> <CR> unite#do_action('tabopen')
   nmap <buffer> <Esc> <Plug>(unite_exit)
+  imap <buffer> <Esc> <Plug>(unite_exit)
 endfunction
 
 " Neocomplete
@@ -283,6 +281,12 @@ augroup restoreCursor
   autocmd!
   autocmd BufWinEnter * call RestoreCursorPositon()
 augroup end
+
+" Caches
+silent !mkdir ~/.vim/cache > /dev/null 2>&1
+let g:neocomplete#data_directory = '~/.vim/cache/neocomplete'
+let g:unite_data_directory = '~/.vim/cache/unite'
+let g:neosnippet#data_directory = '~/.vim/cache/neosnippet'
 
 " Helpers
 
