@@ -3,6 +3,7 @@
 
 " TODO
 " - Neocomplete
+" - Macros vs Snippets
 " - Dash snippets
 "   - Devtools console
 " - Neosnippet
@@ -169,6 +170,7 @@ inoremap <C-\> <Esc>:Commentary<CR>i
 nnoremap crl guiw
 nmap <C-j> ]e
 nmap <C-k> [e
+nnoremap K i<CR><Esc>
 
 " Colors
 syntax on
