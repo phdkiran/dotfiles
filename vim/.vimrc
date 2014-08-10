@@ -1,65 +1,86 @@
 " .vimrc by Roman Zolotarev
 " http://tools.romanzolotarev.com/vim
 
-" Initialize Vundle and plugins
-set nocompatible
+" TODO
+" - Check autocomplete
+" - List frequent opeations
+" - List long operations
+" - Colorschemes
+" - Jump to file by filename
+" - Check search and replace in project
+
+" Initialize NeoBundle and plugins
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
+set nocompatible
+set runtimepath+=~/.vim/bundle/neobundle.vim
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
 " My plugins
 
-" Plugin 'Lokaltog/vim-easymotion'
-" Plugin 'edkolev/promptline.vim'
-" Plugin 'rizzatti/dash.vim'
-" Plugin 'rizzatti/funcoo.vim'
-" Plugin 'tpope/vim-abolish'
-" Plugin 'tpope/vim-liquid'
-Plugin 'Shougo/neocomplete'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'Shougo/vimproc'
-Plugin 'Slava/vim-spacebars'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'elzr/vim-json'
-Plugin 'gregsexton/gitv'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'jtratner/vim-flavored-markdown'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'rking/ag.vim'
-Plugin 'shougo/unite.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-cucumber'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
+"" Maybe, someday
+" NeoBundle 'Lokaltog/vim-easymotion'
+" NeoBundle 'ap/vim-css-color'
+" NeoBundle 'benmills/vimux'
+" NeoBundle 'edkolev/promptline.vim'
+" NeoBundle 'hail2u/vim-css3-syntax'
+" NeoBundle 'pangloss/vim-javascript'
+" NeoBundle 'rizzatti/dash.vim'
+" NeoBundle 'rizzatti/funcoo.vim'
+" NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'tpope/vim-cucumber'
+" NeoBundle 'wavded/vim-stylus'
 
-call vundle#end()
+"" Learning
+NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Slava/vim-spacebars'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'elzr/vim-json'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'jtratner/vim-flavored-markdown'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'shougo/unite.vim'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'tpope/vim-abolish'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-cucumber'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-repeat'
+
+"" Must have
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'chriskempson/vim-tomorrow-theme'
+
+call neobundle#end()
 filetype plugin indent on
+NeoBundleCheck
 
 let mapleader = ","
 set encoding=utf-8
 set ttyfast
 
 " Commands
-nnoremap <leader>w :call DeleteTrailingWS()<cr> :w<cr>
+nnoremap <Leader>w :call DeleteTrailingWS()<CR> :w<CR>
+nnoremap <Leader>q :q<CR>
 set wildmenu
 set wildmode=list:longest,full
 
 " Switch tabs and windows
-nnoremap <leader>m :tabn<cr>
-nnoremap <leader>n :tabp<cr>
-noremap<c-h> <c-w>h
-noremap<c-j> <c-w>j
-noremap<c-k> <c-w>k
-noremap<c-l> <c-w>l
-nnoremap <silent> ,z :bp<cr>
-nnoremap <silent> ,x :bn<cr>
+nnoremap <Leader>m :tabn<CR>
+nnoremap <Leader>n :tabp<CR>
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+nnoremap <silent> ,z :bp<CR>
+nnoremap <silent> ,x :bn<CR>
 
 " Lines, numbers, wrap
 set number
@@ -72,13 +93,13 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 " Motions
 nnoremap j gj
 nnoremap k gk
-inoremap jk <ESC>
-inoremap kk <ESC>
-inoremap jj <ESC>
-noremap<left> <nop>
-noremap<right> <nop>
-noremap<up> <nop>
-noremap<down> <nop>
+inoremap jk <Esc>
+inoremap kk <Esc>
+inoremap jj <Esc>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+noremap <Up> <Nop>
+noremap <Down> <Nop>
 
 " Cursor, scroll, windows
 set cursorline
@@ -117,14 +138,17 @@ set tabstop=2
 vnoremap < <gv
 vnoremap > >gv
 vnoremap p "_dP
-nnoremap ,ow "_diwhp
-" ,# Surround a word with #{interpolation}
-vnoremap ,# c#{<c-R>"}<ESC>
-" ,' Surround a word with single quotes
-noremap ,' ysiw'
-vnoremap ,' c'<c-R>"'<ESC>
-noremap <leader>c :Commentary<cr>
-inoremap <leader>c <Esc>:Commentary<cr>i
+nnoremap <Leader>ow "_diwhp
+" Surround selected with #{interpolation}
+vnoremap <Leader># c#{<C-r>"}<Esc>
+" Surround a word with single quotes
+nmap <Leader>' ysiw'
+" Surround selected with single quotes
+vmap <Leader>' c'<C-r>"'<Esc>
+" Comment
+nnoremap <C-\> :Commentary<CR>
+inoremap <C-\> <Esc>:Commentary<CR>i
+nnoremap crl guiw
 
 " Colors
 syntax on
@@ -141,11 +165,11 @@ augroup markdown
 augroup end
 
 " Git
-nnoremap ]c :GitGutterNextHunk<cr>
-nnoremap [c :GitGutterPrevHunk<cr>
-nnoremap <Leader>hs :GitGutterStageHunk<cr>
-nnoremap <Leader>hr :GitGutterRevertHunk<cr>
-nnoremap <leader>g :Gstatus<cr>
+nnoremap ]c :GitGutterNextHunk<CR>
+nnoremap [c :GitGutterPrevHunk<CR>
+nnoremap <Leader>hs :GitGutterStageHunk<CR>
+nnoremap <Leader>hr :GitGutterRevertHunk<CR>
+nnoremap <Leader>g :Gstatus<CR>
 
 " Unite
 let g:unite_source_history_yank_enable = 1
@@ -156,44 +180,37 @@ let g:unite_split_rule = "botright"
 let g:unite_force_overwrite_statusline = 0
 let g:unite_winheight = 10
 call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-      \ 'ignore_pattern', join([
-      \ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/',
-      \ '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css'
-      \ ], '\|'))
+  \ 'ignore_pattern', join([
+  \ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/',
+  \ '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css'
+  \ ], '\|'))
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-nnoremap <space>/ :Unite grep:.<cr>
-nnoremap <space>y :Unite history/yank<cr>
-nnoremap <c-p> :Unite file_rec/async buffer file_rec<cr>
+nnoremap <space>/ :Unite grep:.<CR>
+nnoremap <space>y :Unite history/yank<CR>
+nnoremap <C-p> :Unite file_rec/async buffer file_rec<CR>
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
-  inoremap <buffer> <C-j> <Plug>(unite_select_next_line)
-  inoremap <buffer> <C-k> <Plug>(unite_select_previous_line)
-  inoremap <silent><buffer><expr> <C-x> unite#do_action('split')
-  inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
-  inoremap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
-  nnoremap <buffer> <ESC> <Plug>(unite_exit)
+  imap <buffer> <C-j> <Plug>(unite_select_next_line)
+  imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+  imap <silent><buffer><expr> <C-x> unite#do_action('split')
+  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+  imap <silent><buffer><expr> <CR> unite#do_action('tabopen')
+  nmap <buffer> <Esc> <Plug>(unite_exit)
 endfunction
 
 " Neocomplete
 let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#sources#dictionary#dictionaries = {
   \ 'default' : '',
   \ 'vimshell' : $HOME.'/.vimshell_hist',
   \ 'scheme' : $HOME.'/.gosh_completions'
   \ }
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-inoremap <silent> <cr> <c-r>=<SID>my_cr_function()<cr>
-function! s:my_cr_function()
-  return pumvisible() ? neocomplete#close_popup() : "\<cr>"
+inoremap <silent> <CR> <C-r>=<SID>MyCrFunction()<CR>
+function! s:MyCrFunction()
+  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
-inoremap <expr><tab>  pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
 autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
 autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -203,21 +220,21 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 
 " Neosnippet
-inoremap <c-k> <Plug>(neosnippet_expand_or_jump)
-snoremap <c-k> <Plug>(neosnippet_expand_or_jump)
-xnoremap <c-k> <Plug>(neosnippet_expand_target)
-inoremap <expr><tab> neosnippet#expandable_or_jumpable() ?
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+imap <expr><Tab> neosnippet#expandable_or_jumpable() ?
   \ "\<Plug>(neosnippet_expand_or_jump)"
-  \: pumvisible() ? "\<c-n>" : "\<tab>"
-snoremap <expr><tab> neosnippet#expandable_or_jumpable() ?
+  \: pumvisible() ? "\<C-n>" : "\<Tab>"
+smap <expr><Tab> neosnippet#expandable_or_jumpable() ?
   \ "\<Plug>(neosnippet_expand_or_jump)"
-  \: "\<tab>"
+  \: "\<Tab>"
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
 " Open and reload .vimrc
-noremap<leader>. :tabnew ~/.vimrc<cr>
+noremap <LEADER>. :tabnew ~/.vimrc<CR>
 autocmd! BufWritePost .vimrc source % | AirlineRefresh
 
 " Turn backup and swap off

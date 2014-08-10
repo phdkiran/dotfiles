@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 if brew --version &> /dev/null; then
   echo 'Running brew doctor...'
-  brew update && brew doctor && brew install vim --with-lua && brew cleanup
+  # brew update && brew doctor && brew install vim --with-lua && brew cleanup
   if [ $? -eq 0 ]; then
     cd "$(dirname "${BASH_SOURCE}")"
     WD=`pwd`
@@ -12,10 +12,11 @@ if brew --version &> /dev/null; then
     rm -f ~/.vimrc && ln -s ${WD}/.vimrc ~/.vimrc && echo 'Replace ~/.vimrc'
     rm -rf ~/.vim && mkdir -p ~/.vim && echo 'Replace ~/.vim'
     rm -rf ~/.vim/bundle && mkdir ~/.vim/bundle && echo 'Replace ~/.vim/bundle'
-    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+    git clone https://github.com/Shougo/vimproc ~/.vim/bundle/vimproc
     rm -f /usr/local/bin/colorscheme && ln -s ${WD}/colorscheme /usr/local/bin/colorscheme && echo 'Replace /usr/local/bin/colorscheme'
-    vim +PluginUpdate +qa
-    cd ~/.vim/bundle/vimproc && make
+    cd ~/.vim/bundle/vimproc && make && cd -
+    echo 'Done.'
   else
     echo 'Can not install vim. Check brew first.'
   fi
