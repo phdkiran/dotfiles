@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 if brew --version &> /dev/null; then
-  echo 'Running brew doctor...'
-  brew doctor && brew update && brew install git && brew cleanup
+  echo 'Running brew...'
+  brew update && brew doctor && brew install git && brew cleanup
   cd "$(dirname "${BASH_SOURCE}")"
   WD=`pwd`
   rm -f ~/.gitconfig && ln -s ${WD}/.gitconfig ~/.gitconfig && echo 'Replace ~/.gitconfig'
