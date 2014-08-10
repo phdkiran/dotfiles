@@ -1,23 +1,6 @@
 " .vimrc by Roman Zolotarev
 " http://tools.romanzolotarev.com/vim
 
-" TODO
-" - Neocomplete
-" - Macros vs Snippets
-" - Dash snippets
-"   - Devtools console
-" - Neosnippet
-"   - Meteor specific
-"   - CoffeeScript
-"   - Jade
-" - Unite
-"   - buffers by name
-"   - file by name
-"   - Meteor specific directories
-" - Find and replace in project
-" - Switch tabs by numbers
-" - Check search and replace in project
-
 " Initialize NeoBundle and plugins
 set nocompatible
 set runtimepath+=~/.vim/bundle/neobundle.vim
@@ -39,6 +22,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " NeoBundle 'wavded/vim-stylus'
 
 "" Learning
+NeoBundle 'Keithbsmiley/tmux.vim'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -75,6 +59,7 @@ set encoding=utf-8
 set ttyfast
 
 " Commands
+vnoremap <Leader>w :call DeleteTrailingWS()<CR> :w<CR>
 nnoremap <Leader>w :call DeleteTrailingWS()<CR> :w<CR>
 nnoremap <Leader>q :q<CR>
 set wildmenu
@@ -168,9 +153,12 @@ vnoremap <C-\> :Commentary<CR>
 nnoremap <C-\> :Commentary<CR>
 inoremap <C-\> <Esc>:Commentary<CR>i
 nnoremap crl guiw
+nnoremap K i<CR><Esc>
+nnoremap <F5> vip:sort<CR>
 nmap <C-j> ]e
 nmap <C-k> [e
-nnoremap K i<CR><Esc>
+vmap <C-j> ]egv
+vmap <C-k> [egv
 
 " Colors
 syntax on
@@ -305,3 +293,19 @@ function! RestoreCursorPositon()
   endif
 endfunction
 
+" TODO
+" - Neocomplete
+" - Macros vs Snippets
+" - Dash snippets
+"   - Devtools console
+" - Neosnippet
+"   - Meteor specific
+"   - CoffeeScript
+"   - Jade
+" - Unite
+"   - buffers by name
+"   - file by name
+"   - Meteor specific directories
+" - Find and replace in project
+" - Switch tabs by numbers
+" - Check search and replace in project
