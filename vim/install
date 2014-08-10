@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 if brew --version &> /dev/null; then
-  echo 'Running brew doctor...'
-  # brew update && brew doctor && brew install vim --with-lua && brew cleanup
+  echo 'Running brew...'
+  brew update && brew doctor && brew install vim --with-lua && brew cleanup
   if [ $? -eq 0 ]; then
     cd "$(dirname "${BASH_SOURCE}")"
     WD=`pwd`
