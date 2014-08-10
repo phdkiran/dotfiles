@@ -153,21 +153,19 @@ nnoremap crl guiw
 syntax on
 set background=dark
 if filereadable( expand("$HOME/.vim/bundle/vim-tomorrow-theme/colors/Tomorrow-Night.vim") )
-colorscheme Tomorrow-Night
+  colorscheme Tomorrow-Night
 endif
 highlight ExtraWhitespace ctermbg=1 guibg=red
 match ExtraWhitespace /\s\+$/
 let g:vim_json_syntax_conceal = 0
 augroup markdown
-autocmd!
-autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+  autocmd!
+  autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup end
 
 " Git
 let g:gitgutter_enabled = 1
 let g:gitgutter_map_keys = 1
-nmap ]h :GitGutterNextHunk<CR>
-nmap [h :GitGutterPrevHunk<CR>
 nmap ]h :GitGutterNextHunk<CR>
 nmap [h :GitGutterPrevHunk<CR>
 nmap <Leader>g :Gstatus<CR>
@@ -183,10 +181,10 @@ let g:unite_split_rule = "botright"
 let g:unite_force_overwrite_statusline = 0
 let g:unite_winheight = 10
 call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-\ 'ignore_pattern', join([
-\ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/',
-\ '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css'
-\ ], '\|'))
+  \ 'ignore_pattern', join([
+  \ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/',
+  \ '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css'
+  \ ], '\|'))
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 nnoremap <space>/ :Unite grep:.<CR>
@@ -194,25 +192,25 @@ nnoremap <space>y :Unite history/yank<CR>
 nnoremap <C-p> :Unite -no-split file_rec/async buffer file_rec<CR>
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
-highlight ExtraWhitespace ctermbg=0
-imap <buffer> <C-j> <Plug>(unite_select_next_line)
-imap <buffer> <C-k> <Plug>(unite_select_previous_line)
-imap <silent><buffer><expr> <C-x> unite#do_action('split')
-imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
-map <silent><buffer><expr> <CR> unite#do_action('tabopen')
-nmap <buffer> <Esc> <Plug>(unite_exit)
+  highlight ExtraWhitespace ctermbg=0
+  imap <buffer> <C-j> <Plug>(unite_select_next_line)
+  imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+  imap <silent><buffer><expr> <C-x> unite#do_action('split')
+  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+  map <silent><buffer><expr> <CR> unite#do_action('tabopen')
+  nmap <buffer> <Esc> <Plug>(unite_exit)
 endfunction
 
 " Neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#sources#dictionary#dictionaries = {
-\ 'default' : '',
-\ 'vimshell' : $HOME.'/.vimshell_hist',
-\ 'scheme' : $HOME.'/.gosh_completions'
-\ }
+  \ 'default' : '',
+  \ 'vimshell' : $HOME.'/.vimshell_hist',
+  \ 'scheme' : $HOME.'/.gosh_completions'
+  \ }
 inoremap <silent> <CR> <C-r>=<SID>MyCrFunction()<CR>
 function! s:MyCrFunction()
-return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
 autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
@@ -220,7 +218,7 @@ autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 if !exists('g:neocomplete#sources#omni#input_patterns')
-let g:neocomplete#sources#omni#input_patterns = {}
+  let g:neocomplete#sources#omni#input_patterns = {}
 endif
 
 " Neosnippet
@@ -228,17 +226,17 @@ imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 imap <expr><Tab> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<Tab>"
+  \ "\<Plug>(neosnippet_expand_or_jump)"
+  \: pumvisible() ? "\<C-n>" : "\<Tab>"
 smap <expr><Tab> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<Tab>"
+  \ "\<Plug>(neosnippet_expand_or_jump)"
+  \: "\<Tab>"
 if has('conceal')
-set conceallevel=2 concealcursor=i
+  set conceallevel=2 concealcursor=i
 endif
 
 " Open and reload .vimrc
-noremap <LEADER>. :tabnew ~/.vimrc<CR>
+noremap <Leader>. :tabnew ~/.vimrc<CR>
 autocmd! BufWritePost .vimrc source % | AirlineRefresh
 
 " Turn backup and swap off
