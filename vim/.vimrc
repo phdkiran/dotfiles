@@ -2,10 +2,20 @@
 " http://tools.romanzolotarev.com/vim
 
 " TODO
-" - Check autocomplete
-" - List frequent opeations
-" - List long operations
-" - Jump to file by filename
+" - Neocomplete
+" - Dash snippets
+"   - Devtools console
+" - Neosnippet
+"   - Meteor specific
+"   - CoffeeScript
+"   - Jade
+" - Unite
+"   - buffers by name
+"   - file by name
+"   - Meteor specific directories
+" - Find and replace in project
+" - Switch tabs by numbers
+" - Commit by hunk
 " - Check search and replace in project
 
 " Initialize NeoBundle and plugins
@@ -77,6 +87,15 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+nnoremap <Leader>1 1gt
+nnoremap <Leader>2 2gt
+nnoremap <Leader>3 3gt
+nnoremap <Leader>4 4gt
+nnoremap <Leader>5 5gt
+nnoremap <Leader>6 6gt
+nnoremap <Leader>7 7gt
+nnoremap <Leader>8 8gt
+nnoremap <Leader>9 9gt
 nnoremap <silent> ,z :bp<CR>
 nnoremap <silent> ,x :bn<CR>
 
@@ -128,7 +147,8 @@ set autoindent
 set backspace=indent,eol,start " Backspacing over everything
 set clipboard=unnamed
 set expandtab
-set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;
+  \`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 set pastetoggle=<F2>
 set shiftwidth=2
 set softtabstop=2
@@ -152,10 +172,11 @@ nnoremap crl guiw
 " Colors
 syntax on
 set background=dark
-if filereadable( expand("$HOME/.vim/bundle/vim-tomorrow-theme/colors/Tomorrow-Night.vim") )
+if filereadable(
+  \ expand("~/.vim/bundle/vim-tomorrow-theme/colors/Tomorrow-Night.vim") )
   colorscheme Tomorrow-Night
 endif
-highlight ExtraWhitespace ctermbg=1 guibg=red
+highlight ExtraWhitespace ctermbg=7
 match ExtraWhitespace /\s\+$/
 let g:vim_json_syntax_conceal = 0
 augroup markdown
@@ -165,12 +186,12 @@ augroup end
 
 " Git
 let g:gitgutter_enabled = 1
-let g:gitgutter_map_keys = 1
+let g:gitgutter_map_keys = 0
 nmap ]h :GitGutterNextHunk<CR>
 nmap [h :GitGutterPrevHunk<CR>
 nmap <Leader>g :Gstatus<CR>
-nmap <Leader>hs :GitGutterStageHunk<CR>
-nmap <Leader>hr :GitGutterRevertHunk<CR>
+nmap <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
+nmap <Leader>r :GitGutterRevertHunk<CR>
 
 " Unite
 let g:unite_source_history_yank_enable = 1
@@ -180,7 +201,7 @@ let g:unite_enable_start_insert = 1
 let g:unite_split_rule = "botright"
 let g:unite_force_overwrite_statusline = 0
 let g:unite_winheight = 10
-call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
   \ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/',
   \ '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css'
@@ -189,10 +210,10 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 nnoremap <space>/ :Unite grep:.<CR>
 nnoremap <space>y :Unite history/yank<CR>
-nnoremap <C-p> :Unite -no-split file_rec/async buffer file_rec<CR>
+nnoremap <C-p> :Unite -no-split file_rec/async buffer<CR>
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
-  highlight ExtraWhitespace ctermbg=0
+  highlight ExtraWhitespace ctermbg=8
   imap <buffer> <C-j> <Plug>(unite_select_next_line)
   imap <buffer> <C-k> <Plug>(unite_select_previous_line)
   imap <silent><buffer><expr> <C-x> unite#do_action('split')
