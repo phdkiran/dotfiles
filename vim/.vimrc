@@ -33,6 +33,7 @@ Plugin 'rking/ag.vim'
 Plugin 'shougo/unite.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
@@ -156,7 +157,7 @@ let g:unite_force_overwrite_statusline = 0
 let g:unite_winheight = 10
 call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
       \ 'ignore_pattern', join([
-      \ '\.git/', '\.build/', '\.meteor/', 'node_modules/',
+      \ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/',
       \ '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css'
       \ ], '\|'))
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
