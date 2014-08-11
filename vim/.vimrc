@@ -6,49 +6,43 @@ set nocompatible
 set runtimepath+=~/.vim/bundle/neobundle.vim
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-" My plugins
 
-"" Maybe, someday
-" NeoBundle 'Lokaltog/vim-easymotion'
 " NeoBundle 'ap/vim-css-color'
 " NeoBundle 'benmills/vimux'
 " NeoBundle 'edkolev/promptline.vim'
 " NeoBundle 'hail2u/vim-css3-syntax'
-" NeoBundle 'pangloss/vim-javascript'
+" NeoBundle 'lokaltog/vim-easymotion'
 " NeoBundle 'rizzatti/dash.vim'
 " NeoBundle 'rizzatti/funcoo.vim'
 " NeoBundle 'scrooloose/syntastic'
-" NeoBundle 'tpope/vim-cucumber'
 " NeoBundle 'wavded/vim-stylus'
-
-"" Learning
-NeoBundle 'Keithbsmiley/tmux.vim'
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'Slava/vim-spacebars'
 NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'othree/javascript-libraries-syntax.vim'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'shougo/unite.vim'
+NeoBundle 'slava/vim-spacebars'
+NeoBundle 'tpope/vim-cucumber'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-repeat'
+
 NeoBundle 'bling/vim-airline'
+NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'shougo/unite.vim'
+NeoBundle 'keithbsmiley/tmux.vim'
+NeoBundle 'shougo/neocomplete'
+NeoBundle 'shougo/neosnippet'
+NeoBundle 'shougo/neosnippet-snippets'
+NeoBundle 'shougo/vimproc'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-cucumber'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-repeat'
-
-"" Must have
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'chriskempson/vim-tomorrow-theme'
 
 call neobundle#end()
 filetype plugin indent on
@@ -98,10 +92,12 @@ nnoremap k gk
 inoremap jk <Esc>
 inoremap kk <Esc>
 inoremap jj <Esc>
-" noremap <Left> <Nop>
-" noremap <Right> <Nop>
-" noremap <Up> <Nop>
-" noremap <Down> <Nop>
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+noremap <Up> <Nop>
+noremap <Down> <Nop>
 
 " Cursor, scroll, windows
 set cursorline
@@ -154,11 +150,16 @@ nnoremap <C-\> :Commentary<CR>
 inoremap <C-\> <Esc>:Commentary<CR>i
 nnoremap crl guiw
 nnoremap K i<CR><Esc>
-nnoremap <F5> vip:sort<CR>
 nmap <C-j> ]e
 nmap <C-k> [e
 vmap <C-j> ]egv
 vmap <C-k> [egv
+noremap <Leader>a <Esc>ggVG
+
+" Sort and format
+set textwidth=78
+nnoremap <F6> gqip
+nnoremap <F5> vip:sort<CR>
 
 " Colors
 syntax on
@@ -212,6 +213,7 @@ endfunction
 
 " Neocomplete
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_auto_select = 1
 let g:neocomplete#sources#dictionary#dictionaries = {
   \ 'default' : '',
   \ 'vimshell' : $HOME.'/.vimshell_hist',
@@ -231,6 +233,7 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 
 " Neosnippet
+let g:neosnippet#disable_select_mode_mappings = 1
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
@@ -263,8 +266,8 @@ set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
 " '10  previously edited files
 " "100 lines for each register
 " :20  lines of command-line history
-" %    saves and restores the buffer list
-" n... where to save the viminfo files
+" %    Saves and restores the buffer list
+" n... Where to save the viminfo files
 
 " Restore cursor position
 augroup restoreCursor
@@ -295,7 +298,7 @@ endfunction
 
 " TODO
 " - Neocomplete
-" - Macros vs Snippets
+" - Macros vs Snippets vs Abbr
 " - Dash snippets
 "   - Devtools console
 " - Neosnippet
@@ -307,5 +310,5 @@ endfunction
 "   - file by name
 "   - Meteor specific directories
 " - Find and replace in project
-" - Switch tabs by numbers
+" - Git commits files/lines
 " - Check search and replace in project
