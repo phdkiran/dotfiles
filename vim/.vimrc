@@ -187,7 +187,12 @@ nmap <Leader>r :GitGutterRevertHunk<CR>
 
 " Unite
 let g:unite_source_history_yank_enable = 1
-" let g:unite_force_overwrite_statusline = 0
+let g:unite_force_overwrite_statusline = 0
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '-i --line-numbers --nogroup'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
   \ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/',
@@ -195,10 +200,10 @@ call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
   \ ], '\|'))
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-nnoremap <space>/ :Unite -no-split grep:.<CR>
-nnoremap <space>y :Unite -no-split history/yank<CR>
-nnoremap <C-t> :Unite -no-split buffer<CR>
-nnoremap <C-p> :Unite -no-split -start-insert file_rec/async<CR>
+nnoremap <space>/ :Unite grep:.<CR>
+nnoremap <space>y :Unite history/yank<CR>
+nnoremap <C-t> :Unite -auto-preview buffer<CR>
+nnoremap <C-p> :Unite -auto-preview -start-insert file_rec/async<CR>
 autocmd FileType unite call s:UniteSettings()
 function! s:UniteSettings()
   highlight ExtraWhitespace ctermbg=8
