@@ -53,8 +53,8 @@ set encoding=utf-8
 set ttyfast
 
 " Commands
-vnoremap <Leader>w :call DeleteTrailingWS()<CR> :w<CR>
-nnoremap <Leader>w :call DeleteTrailingWS()<CR> :w<CR>
+vnoremap <Leader>w :w<CR>
+nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 set wildmenu
 set wildmode=list:longest,full
