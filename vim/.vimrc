@@ -53,6 +53,7 @@ set encoding=utf-8
 set ttyfast
 
 " Commands
+inoremap <Leader>w <Esc>:w<CR>i
 vnoremap <Leader>w :w<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
@@ -82,9 +83,7 @@ nnoremap <silent> ,x :bn<CR>
 set number
 set nowrap
 set listchars=tab:»·,trail:·,eol:¬
-autocmd BufWrite .vimrc :call DeleteTrailingWS()
-autocmd BufWrite *.jade :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
+autocmd BufWrite *.coffee,*.md,.vimrc,*.jade :call DeleteTrailingWS()
 
 " Motions
 nnoremap j gj
