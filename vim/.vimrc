@@ -78,6 +78,13 @@ nnoremap <Leader>8 8gt
 nnoremap <Leader>9 9gt
 nnoremap <silent> ,z :bp<CR>
 nnoremap <silent> ,x :bn<CR>
+noremap <Left> :tabp<CR>
+noremap <Right> :tabn<CR>
+noremap <Up> <C-w>k
+noremap <Down> <C-w>j
+
+" Directory Listing
+let g:netrw_liststyle=3
 
 " Lines, numbers, wrap
 set number
@@ -93,10 +100,6 @@ inoremap kk <Esc>
 inoremap jj <Esc>
 inoremap <C-k> <Up>
 inoremap <C-j> <Down>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-noremap <Up> <Nop>
-noremap <Down> <Nop>
 
 " Cursor, scroll, windows
 set cursorline
@@ -251,8 +254,10 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
+" Open frequiently used files
+noremap <Leader>.n :tabnew ~/Dropbox/Notes<CR>
 " Open and reload .vimrc
-noremap <Leader>. :tabnew ~/.vimrc<CR>
+noremap <Leader>.v :tabnew ~/.vimrc<CR>
 autocmd! BufWritePost .vimrc source % | AirlineRefresh
 
 " Turn backup and swap off
