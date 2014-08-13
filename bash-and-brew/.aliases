@@ -37,6 +37,7 @@ alias db="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias g="git"
+alias gc="git-cal --ascii"
 alias h="history"
 alias j="jobs"
 
