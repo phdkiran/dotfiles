@@ -147,7 +147,7 @@ nmap <Leader>' ysiw'
 " Surround selected with single quotes
 vmap <Leader>' c'<C-r>"'<Esc>
 " Comment
-vnoremap <C-\> :Commentary<CR>
+vnoremap <C-\> :Commentary<CR>gv
 nnoremap <C-\> :Commentary<CR>
 inoremap <C-\> <Esc>:Commentary<CR>i
 nnoremap crl guiw
@@ -202,20 +202,25 @@ call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
   \ ], '\|'))
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-nnoremap <space>/ :Unite grep:.<CR>
-nnoremap <space>y :Unite history/yank<CR>
-nnoremap <C-t> :Unite -auto-preview buffer<CR>
-nnoremap <C-p> :Unite -auto-preview -start-insert file_rec/async<CR>
+nnoremap <space>/ :Unite -no-split grep:.<CR>
+nnoremap <space>y :Unite -no-split history/yank<CR>
+nnoremap <space>b :Unite -no-split buffer<CR>
+nnoremap <C-p> :Unite -no-split -start-insert file_rec/async<CR>
 autocmd FileType unite call s:UniteSettings()
 function! s:UniteSettings()
-  highlight ExtraWhitespace ctermbg=8
-  imap <buffer> <C-j> <Plug>(unite_select_next_line)
-  imap <buffer> <C-k> <Plug>(unite_select_previous_line)
-  imap <silent><buffer><expr> <C-x> unite#do_action('split')
-  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
-  map <silent><buffer><expr> <CR> unite#do_action('tabopen')
-  nmap <buffer> <Esc> <Plug>(unite_exit)
-  imap <buffer> <Esc> <Plug>(unite_exit)
+  map <Leader> <Nop>
+  map <Right> <Nop>
+  map <Up> <Nop>
+  map <Down> <Nop>
+"   highlight ExtraWhitespace ctermbg=8
+"   imap <buffer> <C-j> <Plug>(unite_select_next_line)
+"   imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+"   imap <silent><buffer><expr> <C-x> unite#do_action('split')
+"   imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+"   nmap <silent><buffer><expr> <CR> unite#do_action('tabopen')
+"   imap <silent><buffer><expr> <CR> unite#do_action('tabopen')
+"   nmap <buffer> <Esc> <Plug>(unite_exit)
+"   imap <buffer> <Esc> <Plug>(unite_exit)
 endfunction
 
 " Neocomplete
