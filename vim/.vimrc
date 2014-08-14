@@ -7,6 +7,7 @@ set runtimepath+=~/.vim/bundle/neobundle.vim
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+" NeoBundle 'ap/vim-css-color'
 " NeoBundle 'benmills/vimux'
 " NeoBundle 'edkolev/promptline.vim'
 " NeoBundle 'hail2u/vim-css3-syntax'
@@ -15,7 +16,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " NeoBundle 'rizzatti/funcoo.vim'
 " NeoBundle 'scrooloose/syntastic'
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'ap/vim-css-color'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'shougo/unite.vim'
