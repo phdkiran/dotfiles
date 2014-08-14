@@ -184,7 +184,7 @@
 	<data>
 	YnBsaXN0MDDUAQIDBAUGGBlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
 	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QVk5TU2l6ZVhOU2ZGbGFnc1ZOU05hbWVWJGNs
-	YXNzI0A0AAAAAAAAEBCAAoADXxAZRHJvaWRTYW5zTW9ub0ZvclBvd2VybGluZdITFBUW
+	YXNzI0AyAAAAAAAAEBCAAoADXxAZRHJvaWRTYW5zTW9ub0ZvclBvd2VybGluZdITFBUW
 	WiRjbGFzc25hbWVYJGNsYXNzZXNWTlNGb250ohUXWE5TT2JqZWN0XxAPTlNLZXllZEFy
 	Y2hpdmVy0RobVHJvb3SAAQgRGiMtMjc8QktSW2JpcnR2eJSZpK20t8DS1doAAAAAAAAB
 	AQAAAAAAAAAcAAAAAAAAAAAAAAAAAAAA3A==
@@ -192,9 +192,9 @@
 	<key>FontAntialias</key>
 	<true/>
 	<key>FontHeightSpacing</key>
-	<real>0.90000000000000002</real>
+	<real>0.93999999999999995</real>
 	<key>FontWidthSpacing</key>
-	<real>0.99596774193548387</real>
+	<integer>1</integer>
 	<key>Linewrap</key>
 	<true/>
 	<key>ProfileCurrentVersion</key>
@@ -211,7 +211,7 @@
 	AAAAAAAAAAAA0A==
 	</data>
 	<key>ShouldLimitScrollback</key>
-	<integer>1</integer>
+	<integer>0</integer>
 	<key>ShowActiveProcessInTitle</key>
 	<true/>
 	<key>ShowCommandKeyInTitle</key>

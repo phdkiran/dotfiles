@@ -5,25 +5,40 @@
 set nocompatible
 set runtimepath+=~/.vim/bundle/neobundle.vim
 call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundleFetch 'shougo/neobundle.vim'
+NeoBundle 'shougo/vimproc', {
+  \ 'build' : {
+  \     'mac' : 'make -f make_mac.mak',
+  \     'unix' : 'make -f make_unix.mak',
+  \    },
+  \ }
 
 " NeoBundle 'ap/vim-css-color'
 " NeoBundle 'benmills/vimux'
+" NeoBundle 'cmather/vim-meteor-snippets'
 " NeoBundle 'edkolev/promptline.vim'
+" NeoBundle 'flazz/vim-colorschemes'
+" NeoBundle 'groenewege/vim-less'
 " NeoBundle 'hail2u/vim-css3-syntax'
+" NeoBundle 'lokaltog/vim-distinguished'
 " NeoBundle 'lokaltog/vim-easymotion'
+" NeoBundle 'marcWeber/vim-addon-mw-utils'
+" NeoBundle 'nono/vim-handlebars'
+" NeoBundle 'pangloss/vim-javascript'
 " NeoBundle 'rizzatti/dash.vim'
 " NeoBundle 'rizzatti/funcoo.vim'
 " NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'slava/vim-spacebars'
+" NeoBundle 'tomtom/tlib_vim'
+" NeoBundle 'tpope/vim-cucumber'
+" NeoBundle 'tpope/vim-git'
+" NeoBundle 'wavded/vim-stylus'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'shougo/unite.vim'
-NeoBundle 'slava/vim-spacebars'
-NeoBundle 'tpope/vim-cucumber'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
-NeoBundle 'wavded/vim-stylus'
 
 NeoBundle 'bling/vim-airline'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
@@ -37,7 +52,6 @@ NeoBundle 'keithbsmiley/tmux.vim'
 NeoBundle 'shougo/neocomplete'
 NeoBundle 'shougo/neosnippet'
 NeoBundle 'shougo/neosnippet-snippets'
-NeoBundle 'shougo/vimproc'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'

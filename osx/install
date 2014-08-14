@@ -53,7 +53,8 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 defaults write com.apple.terminal StringEncodings -array 4
 
 # Use a modified theme by default in Terminal.app
-cp ${WD}/powerline-fonts/DroidSansMono/Droid\ Sans\ Mono\ for\ Powerline.otf ~/Library/Fonts
+cp ${WD}/../vim/powerline-fonts/InconsolataDz/Inconsolata-dz\ for\ Powerline.otf ~/Library/Fonts
+cp ${WD}/../vim/powerline-fonts/DroidSansMono/Droid\ Sans\ Mono\ for\ Powerline.otf ~/Library/Fonts
 open ${WD}/roman.terminal
 sleep 1 # Wait a bit to make sure the theme is loaded
 defaults write com.apple.terminal "Default Window Settings" -string "roman"
