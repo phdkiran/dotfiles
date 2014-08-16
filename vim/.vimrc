@@ -33,6 +33,12 @@ NeoBundle 'shougo/vimproc', {
 " NeoBundle 'tpope/vim-cucumber'
 " NeoBundle 'tpope/vim-git'
 " NeoBundle 'wavded/vim-stylus'
+
+" NeoBundle 'lukaszkorecki/coffeetags'
+" NeoBundle 'xolox/vim-easytags'
+" NeoBundle 'xolox/vim-misc'
+NeoBundle 'majutsushi/tagbar'
+
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundle 'rking/ag.vim'
@@ -200,6 +206,14 @@ nmap [h :GitGutterPrevHunk<CR>
 nmap <Leader>g :Gstatus<CR>
 nmap <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
 nmap <Leader>r :GitGutterRevertHunk<CR>
+
+" ctags
+" let g:easytags_dynamic_files = 1
+" let g:easytags_events = ['BufWritePost']
+" let g:CoffeeAutoTagDisabled = 0
+" let g:CoffeeAutoTagFile = '.git/tags'
+" let g:CoffeeAutoTagIncludeVars = 1
+" let g:CoffeeAutoTagTagRelative = 0
 
 " Unite
 let g:unite_source_history_yank_enable = 1
