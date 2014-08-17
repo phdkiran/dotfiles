@@ -86,7 +86,7 @@ nnoremap <Leader>n :tabp<CR>
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+" noremap <C-l> <C-w>l
 nnoremap <Leader>1 1gt
 nnoremap <Leader>2 2gt
 nnoremap <Leader>3 3gt
