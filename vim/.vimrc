@@ -37,7 +37,7 @@ NeoBundle 'shougo/vimproc', {
 " NeoBundle 'lukaszkorecki/coffeetags'
 " NeoBundle 'xolox/vim-easytags'
 " NeoBundle 'xolox/vim-misc'
-NeoBundle 'majutsushi/tagbar'
+" NeoBundle 'majutsushi/tagbar'
 
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
