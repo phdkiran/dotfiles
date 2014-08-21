@@ -39,10 +39,10 @@ NeoBundle 'shougo/vimproc', {
 " NeoBundle 'xolox/vim-misc'
 " NeoBundle 'majutsushi/tagbar'
 
-NeoBundle 'romanzolotarev/vim-todo'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'romanzolotarev/vim-todo'
 NeoBundle 'shougo/unite.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
