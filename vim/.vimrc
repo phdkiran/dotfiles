@@ -112,6 +112,7 @@ set number
 set nowrap
 set listchars=tab:»·,trail:·,eol:¬
 autocmd BufWrite *.coffee,*.md,.vimrc,*.jade :call DeleteTrailingWS()
+autocmd BufNewFile,BufReadPost *.coffee,*.jade setl foldmethod=indent nofoldenable
 
 " Motions
 nnoremap j gj
@@ -324,18 +325,10 @@ function! RestoreCursorPositon()
 endfunction
 
 " TODO
-" - Neocomplete
+" - Neocomplete Tab vs Enter
 " - Macros vs Snippets vs Abbr
-" - Dash snippets
-"   - Devtools console
-" - Neosnippet
-"   - Meteor specific
-"   - CoffeeScript
-"   - Jade
-" - Unite
-"   - buffers by name
-"   - file by name
-"   - Meteor specific directories
+" - Neosnippet + Multiple Cursors
+" - Unite + Ag
 " - Find and replace in project
 " - Git commits files/lines
 " - Check search and replace in project
