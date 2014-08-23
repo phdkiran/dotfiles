@@ -14,6 +14,7 @@ NeoBundle 'shougo/vimproc', {
   \ }
 
 " NeoBundle 'ap/vim-css-color'
+" NeoBundle 'skammer/vim-css-color'
 " NeoBundle 'benmills/vimux'
 " NeoBundle 'cmather/vim-meteor-snippets'
 " NeoBundle 'edkolev/promptline.vim'
