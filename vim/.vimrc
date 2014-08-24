@@ -39,7 +39,9 @@ NeoBundle 'shougo/vimproc', {
 " NeoBundle 'xolox/vim-easytags'
 " NeoBundle 'xolox/vim-misc'
 " NeoBundle 'majutsushi/tagbar'
-
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundle 'rking/ag.vim'
@@ -274,6 +276,9 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
+" Dash
+nmap <silent> <leader>d <Plug>DashSearch
+
 " Open frequiently used files
 noremap <Leader>.n :tabnew ~/Dropbox/Notes<CR>
 " Open and reload .vimrc
@@ -287,9 +292,10 @@ set noswapfile
 
 " Restore undo history
 silent !mkdir ~/.vim/undo > /dev/null 2>&1
+nnoremap <Leader>u :GundoToggle<CR>
 set undofile " Save undo tree after file closes
 set undodir=~/.vim/undo/
-set undolevels=100 " How many undos
+set undolevels=1000 " How many undos
 set undoreload=3000 " Number of lines to save
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
 " '10  previously edited files
