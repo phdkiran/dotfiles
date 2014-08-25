@@ -23,8 +23,8 @@ NeoBundle 'shougo/unite.vim'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
-NeoBundle 'xolox/vim-session'
 NeoBundle 'xolox/vim-misc'
+NeoBundle 'xolox/vim-session'
 
 " Must have
 NeoBundle 'bling/vim-airline'
