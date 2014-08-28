@@ -345,6 +345,4 @@ endfunction
 " - Macros vs Snippets vs Abbr
 " - Neosnippet + Multiple Cursors
 " - Unite + Ag
-" - Find and replace in project
-" - Git commits files/lines
 " - Check search and replace in project
