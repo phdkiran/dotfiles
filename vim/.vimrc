@@ -48,7 +48,6 @@ NeoBundle 'tpope/vim-unimpaired'
 
 " Some day
 " NeoBundle 'ap/vim-css-color'
-" NeoBundle 'skammer/vim-css-color'
 " NeoBundle 'benmills/vimux'
 " NeoBundle 'cmather/vim-meteor-snippets'
 " NeoBundle 'edkolev/promptline.vim'
@@ -57,6 +56,7 @@ NeoBundle 'tpope/vim-unimpaired'
 " NeoBundle 'lokaltog/vim-easymotion'
 " NeoBundle 'marcWeber/vim-addon-mw-utils'
 " NeoBundle 'pangloss/vim-javascript'
+" NeoBundle 'skammer/vim-css-color'
 " NeoBundle 'slava/vim-spacebars'
 " NeoBundle 'tomtom/tlib_vim'
 " NeoBundle 'tpope/vim-cucumber'
@@ -341,8 +341,8 @@ function! RestoreCursorPositon()
 endfunction
 
 " TODO
-" - Neocomplete Tab vs Enter
+" - Check search and replace in project
 " - Macros vs Snippets vs Abbr
+" - Neocomplete Tab vs Enter
 " - Neosnippet + Multiple Cursors
 " - Unite + Ag
-" - Check search and replace in project
