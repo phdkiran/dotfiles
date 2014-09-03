@@ -20,4 +20,7 @@ else
   ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
   echo 'Installing bash...'
   brew install bash bash-completion
+  # bash bash-completion brew-cask ctags ffmpeg git git-cal hub imagemagick
+  # mongodb node openssl phantomjs python reattach-to-user-namespace ruby
+  # sqlite the_silver_searcher tmux vim wget
 fi
