@@ -25,6 +25,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-session'
+NeoBundle 'chrisbra/csv.vim'
 
 " Must have
 NeoBundle 'bling/vim-airline'
