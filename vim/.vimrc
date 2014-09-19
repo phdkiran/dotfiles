@@ -58,7 +58,7 @@ NeoBundle 'tpope/vim-unimpaired'
 " NeoBundle 'marcWeber/vim-addon-mw-utils'
 " NeoBundle 'pangloss/vim-javascript'
 " NeoBundle 'skammer/vim-css-color'
-NeoBundle 'slava/vim-spacebars'
+" NeoBundle 'slava/vim-spacebars'
 " NeoBundle 'tomtom/tlib_vim'
 " NeoBundle 'tpope/vim-cucumber'
 " NeoBundle 'tpope/vim-git'
@@ -225,7 +225,7 @@ let g:unite_source_history_yank_enable = 1
 let g:unite_force_overwrite_statusline = 0
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '-i --line-numbers --nogroup'
+  let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
   let g:unite_source_grep_recursive_opt = ''
 endif
 call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
@@ -235,10 +235,10 @@ call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
   \ ], '\|'))
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-nnoremap <Leader>/ :Unite -no-split grep:.<CR>
-nnoremap <Leader>y :Unite -no-split history/yank<CR>
-nnoremap <Leader>b :Unite -no-split buffer<CR>
-nnoremap <C-p> :Unite -no-split -start-insert file_rec/async<CR>
+nnoremap <Leader>/ :Unite grep:.<CR>
+nnoremap <Leader>y :Unite history/yank<CR>
+nnoremap <Leader>b :Unite buffer<CR>
+nnoremap <C-p> :Unite -start-insert file_rec/async<CR>
 
 " Neocomplete
 let g:neocomplete#enable_at_startup = 1

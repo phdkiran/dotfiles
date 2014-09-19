@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+if brew --version &> /dev/null; then
+  echo 'Running brew...'
+  brew update && brew doctor && brew install macvim --with-lua && brew cleanup
+  if [ $? -eq 0 ]; then
+    cd "$(dirname "${BASH_SOURCE}")"
+    ln -nsf "${PWD}/.gvimrc" ~/.gvimrc && echo 'Replacing: ~/.gvimrc'
+    echo 'Done.'
+  else
+    echo 'Can not install macvim. Check brew first.'
+  fi
+else
+  echo 'Please install brew first.'
+fi
