@@ -6,6 +6,10 @@ if brew --version &> /dev/null; then
     cd "$(dirname "${BASH_SOURCE}")"
     ln -nsf "${PWD}/.gvimrc" ~/.gvimrc && echo 'Replacing: ~/.gvimrc'
     echo 'Done.'
+    defaults write org.vim.MacVim MMTextInsetTop '30'
+    defaults write org.vim.MacVim MMTextInsetLeft '30'
+    defaults write org.vim.MacVim MMTextInsetBottom '30'
+    defaults write org.vim.MacVim MMTextInsetRight '30'
   else
     echo 'Can not install macvim. Check brew first.'
   fi
