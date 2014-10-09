@@ -25,6 +25,9 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-session'
+NeoBundle 'skwp/greplace.vim'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+" NeoBundle 'nelstrom/vim-qargs'
 " NeoBundle 'chrisbra/csv.vim'
 
 " Must have
@@ -149,6 +152,8 @@ let g:airline_powerline_fonts = 1
 set gdefault
 set ignorecase smartcase
 set incsearch nohlsearch
+set grepprg=ag
+let g:grep_cmd_opts = '--line-numbers --noheading'
 
 " Edit
 set autoindent
@@ -202,6 +207,9 @@ augroup markdown
   autocmd!
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup end
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd  ctermbg=0
+hi IndentGuidesEven ctermbg=8
 
 " Git
 let g:gitgutter_enabled = 1
