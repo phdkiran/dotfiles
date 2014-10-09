@@ -16,6 +16,6 @@ if [ -x "$(brew --prefix)/bin/brew" ]; then
   # Path for Python
   export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages"
 
-  # Path for Ruby
-  export PATH="$(brew --prefix)/opt/ruby/bin:$PATH"
+  # # Path for Ruby
+  # export PATH="$(brew --prefix)/opt/ruby/bin:$PATH"
 fi
