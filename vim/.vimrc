@@ -75,7 +75,7 @@ call neobundle#end()
 filetype plugin indent on
 NeoBundleCheck
 
-let mapleader = ","
+let mapleader=","
 set encoding=utf-8
 set ttyfast
 
@@ -146,14 +146,14 @@ if exists(":Gstatus")
 else
   set statusline=%F%m%r%h%w\ [%l,%c]\ [%L,%p%%]
 endif
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts=1
 
 " Search
 set gdefault
 set ignorecase smartcase
 set incsearch nohlsearch
 set grepprg=ag
-let g:grep_cmd_opts = '--line-numbers --noheading'
+let g:grep_cmd_opts='--line-numbers --noheading'
 
 " Edit
 set autoindent
@@ -202,39 +202,40 @@ if filereadable(
 endif
 highlight ExtraWhitespace ctermbg=7
 match ExtraWhitespace /\s\+$/
-let g:vim_json_syntax_conceal = 0
+let g:vim_json_syntax_conceal=0
 augroup markdown
   autocmd!
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup end
-let g:indent_guides_auto_colors = 0
-hi IndentGuidesOdd  ctermbg=0
+let g:indent_guides_auto_colors=0
+hi IndentGuidesOdd ctermbg=0
 hi IndentGuidesEven ctermbg=8
 
 " Git
-let g:gitgutter_enabled = 1
-let g:gitgutter_map_keys = 0
+let g:gitgutter_enabled=1
+let g:gitgutter_map_keys=0
 nmap ]h :GitGutterNextHunk<CR>
 nmap [h :GitGutterPrevHunk<CR>
+nmap <Leader>p :Gpush<CR>
 nmap <Leader>g :Gstatus<CR>
 nmap <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
 nmap <Leader>r :GitGutterRevertHunk<CR>
 
 " ctags
-" let g:easytags_dynamic_files = 1
-" let g:easytags_events = ['BufWritePost']
-" let g:CoffeeAutoTagDisabled = 0
-" let g:CoffeeAutoTagFile = '.git/tags'
-" let g:CoffeeAutoTagIncludeVars = 1
-" let g:CoffeeAutoTagTagRelative = 0
+" let g:easytags_dynamic_files=1
+" let g:easytags_events=['BufWritePost']
+" let g:CoffeeAutoTagDisabled=0
+" let g:CoffeeAutoTagFile='.git/tags'
+" let g:CoffeeAutoTagIncludeVars=1
+" let g:CoffeeAutoTagTagRelative=0
 
 " Unite
-let g:unite_source_history_yank_enable = 1
-let g:unite_force_overwrite_statusline = 0
+let g:unite_source_history_yank_enable=1
+let g:unite_force_overwrite_statusline=0
 if executable('ag')
-  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_command='ag'
   let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
-  let g:unite_source_grep_recursive_opt = ''
+  let g:unite_source_grep_recursive_opt=''
 endif
 call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
@@ -249,9 +250,9 @@ nnoremap <Leader>b :Unite buffer<CR>
 nnoremap <C-p> :Unite -start-insert file_rec/async<CR>
 
 " Neocomplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_auto_select = 0
-let g:neocomplete#sources#dictionary#dictionaries = {
+let g:neocomplete#enable_at_startup=1
+let g:neocomplete#enable_auto_select=0
+let g:neocomplete#sources#dictionary#dictionaries={
   \ 'default' : '',
   \ 'vimshell' : $HOME.'/.vimshell_hist',
   \ 'scheme' : $HOME.'/.gosh_completions'
@@ -266,11 +267,11 @@ autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
+  let g:neocomplete#sources#omni#input_patterns={}
 endif
 
 " Neosnippet
-let g:neosnippet#disable_select_mode_mappings = 1
+let g:neosnippet#disable_select_mode_mappings=1
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
@@ -299,10 +300,10 @@ set nobackup
 set noswapfile
 
 " Sessions
-let g:session_directory = "~/.vim/session"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
-let g:session_command_aliases = 1
+let g:session_directory="~/.vim/session"
+let g:session_autoload="no"
+let g:session_autosave="no"
+let g:session_command_aliases=1
 nnoremap <F3> :OpenSession
 nnoremap <F2> :SaveSession
 nnoremap <F8> :DeleteSession<CR>
@@ -330,9 +331,9 @@ augroup end
 
 " Caches
 silent !mkdir ~/.vim/cache > /dev/null 2>&1
-let g:neocomplete#data_directory = '~/.vim/cache/neocomplete'
-let g:unite_data_directory = '~/.vim/cache/unite'
-let g:neosnippet#data_directory = '~/.vim/cache/neosnippet'
+let g:neocomplete#data_directory='~/.vim/cache/neocomplete'
+let g:unite_data_directory='~/.vim/cache/unite'
+let g:neosnippet#data_directory='~/.vim/cache/neosnippet'
 
 " Helpers
 
