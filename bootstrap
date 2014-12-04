@@ -4,17 +4,18 @@ echo "You're about to run all install scripts. Are you sure?"
 read
 echo "Well, hold on."
 
+xcode-select --install && \
 git clone https://github.com/romanzolotarev/dotfiles.git && \
-  cd dotfiles && \
+cd dotfiles && \
 
-  # First stage
-  osx/install && \
-  bash-and-brew/install && \
+# First stage
+osx/install && \
+bash-and-brew/install && \
 
-  # Second stage
-  git/install && \ 
-  vim/install && \
-  tmux/install && \
+# Second stage
+git/install && \ 
+vim/install && \
+tmux/install && \
 
-  # Third stage
-  brew-cask/install
+# Third stage
+brew-cask/install
