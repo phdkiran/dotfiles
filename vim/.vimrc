@@ -27,6 +27,8 @@ NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-session'
 NeoBundle 'skwp/greplace.vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'wavded/vim-stylus'
+NeoBundle 'lilydjwg/colorizer'
 " NeoBundle 'nelstrom/vim-qargs'
 " NeoBundle 'chrisbra/csv.vim'
 
@@ -116,7 +118,10 @@ let g:netrw_liststyle=3
 
 " Lines, numbers, wrap
 set number
-set nowrap
+set wrap
+set textwidth=0 wrapmargin=0
+set linebreak
+set formatoptions+=l
 set listchars=tab:»·,trail:·,eol:¬
 autocmd BufWrite *.coffee,*.md,.vimrc,*.jade :call DeleteTrailingWS()
 autocmd BufNewFile,BufReadPost *.coffee,*.jade setl foldmethod=indent nofoldenable
@@ -190,9 +195,8 @@ vmap <C-k> [egv
 noremap <Leader>a <Esc>ggVG
 
 " Sort and format
-set textwidth=78
-nnoremap <F6> gqip
-nnoremap <F5> vip:sort<CR>
+nnoremap <Leader>= gqip
+nnoremap <Leader>s vip:sort<CR>
 
 " Colors
 syntax on
@@ -204,6 +208,7 @@ endif
 highlight ExtraWhitespace ctermbg=7
 match ExtraWhitespace /\s\+$/
 let g:vim_json_syntax_conceal=0
+hi markdownItalic guifg=#de935f
 augroup markdown
   autocmd!
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
@@ -211,6 +216,12 @@ augroup end
 let g:indent_guides_auto_colors=0
 hi IndentGuidesOdd ctermbg=0
 hi IndentGuidesEven ctermbg=8
+
+" js2coffee
+function! PasteAsCoffee()
+  :read !pbpaste | js2coffee
+endfunction
+:command! PasteAsCoffee :call PasteAsCoffee()
 
 " Git
 let g:gitgutter_enabled=1
@@ -235,7 +246,7 @@ let g:unite_source_history_yank_enable=1
 let g:unite_force_overwrite_statusline=0
 if executable('ag')
   let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
+  let g:unite_source_grep_default_opts='-i --line-numbers --nocolor --nogroup --hidden -S -C4 --ignore ''.git'''
   let g:unite_source_grep_recursive_opt=''
 endif
 call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
@@ -357,3 +368,5 @@ endfunction
 " - Neocomplete Tab vs Enter
 " - Neosnippet + Multiple Cursors
 " - Unite + Ag
+" - Add keyboard shortcuts
+"   - :PasteAsCoffee
