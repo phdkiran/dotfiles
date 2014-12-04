@@ -52,19 +52,6 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
 
-# Use a modified theme by default in Terminal.app
-cp ${WD}/../vim/powerline-fonts/InconsolataDz/Inconsolata-dz\ for\ Powerline.otf ~/Library/Fonts
-cp ${WD}/../vim/powerline-fonts/DroidSansMono/Droid\ Sans\ Mono\ for\ Powerline.otf ~/Library/Fonts
-open ${WD}/roman.terminal
-sleep 1 # Wait a bit to make sure the theme is loaded
-defaults write com.apple.terminal "Default Window Settings" -string "roman"
-defaults write com.apple.terminal "Startup Window Settings" -string "roman"
-
-# Enable “focus follows mouse” for Terminal.app and all X11 apps
-# i.e. hover over a window and start typing in it without clicking first
-# defaults write com.apple.terminal FocusFollowsMouse -bool true
-# defaults write org.x.X11 wm_ffm -bool true
-
 # Disable smart dashes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
