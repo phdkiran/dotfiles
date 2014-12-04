@@ -1,19 +1,20 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE}")"
-
 echo "You're about to run all install scripts. Are you sure?"
 read
 echo "Well, hold on."
 
-# First stage
-osx/install
-bash-and-brew/install
+git clone https://github.com/romanzolotarev/dotfiles.git && \
+  cd dotfiles && \
 
-# Second stage
-git/install
-vim/install
-tmux/install
+  # First stage
+  osx/install && \
+  bash-and-brew/install && \
 
-# Third stage
-brew-cask/install
+  # Second stage
+  git/install && \ 
+  vim/install && \
+  tmux/install && \
+
+  # Third stage
+  brew-cask/install
