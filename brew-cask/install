@@ -2,6 +2,7 @@
 
 # Install Cask applications
 echo 'Running brew doctor...'
+brew update
 if brew doctor; then
   echo 'Installing brew-cask...'
   brew tap caskroom/cask
