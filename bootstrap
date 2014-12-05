@@ -5,6 +5,8 @@ read
 echo "Well, hold on."
 
 xcode-select --install
+mkdir -p ~/Repositories && mkdir -p ~/Repositories/romanzolotarev
+cd ~/Repositories/romanzolotarev
 git clone https://github.com/romanzolotarev/dotfiles.git && \
 cd dotfiles && \
 
