@@ -3,7 +3,7 @@
 set guioptions-=T
 set guioptions-=r
 set guioptions-=e
-set guifont=Droid\ Sans\ Mono\ for\ Powerline:h24
+set guifont=Inconsolata:h30
 set backupcopy=yes
 set nolist
 set nocursorline
