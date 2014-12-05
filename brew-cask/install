@@ -12,10 +12,7 @@ if brew doctor; then
   chflags hidden /opt
   echo 'Installing apps...'
   brew cask install alfred
-  brew cask install appcleaner
-  brew cask install arq
   brew cask install balsamiq-mockups
-  brew cask install carbon-copy-cloner
   brew cask install divvy
   brew cask install dropbox
   brew cask install flux
@@ -24,11 +21,11 @@ if brew doctor; then
   brew cask install google-hangouts
   brew cask install harvest
   brew cask install imageoptim
-  brew cask install licecap
   brew cask install movist
   brew cask install multibit
   brew cask install onepassword
   brew cask install virtualbox
+  # licecap appcleaner arq carbon-copy-cloner
   # paparazzi vagrant slack the-unarchiver daisydisk fluid gpgtools imagealpha
   # transmission fluid kindle send-to-kindle marked sketch skype subtitles
   # teamviewer torbrowserbundle skype
