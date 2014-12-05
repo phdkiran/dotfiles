@@ -1,8 +1,8 @@
 [user]
-  name = Roman Zolotarev
-  email = romanzolotarev@gmail.com
+	name = Roman Zolotarev
+	email = romanzolotarev@gmail.com
 [github]
-  user = romanzolotarev
+	user = romanzolotarev
 [hub]
   protocol = https
 [core]

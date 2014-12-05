@@ -13,7 +13,7 @@ osx/install && \
 bash-and-brew/install && \
 
 # Second stage
-git/install && \ 
+git/install && \
 vim/install && \
 tmux/install && \
 
