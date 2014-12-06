@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Install Node.js
+brew doctor
+brew install node
+
+# Node.js packages
+npm install -g coffee-script coffeelint
+
+# Install Meteor
+curl https://install.meteor.com/ | sh
+
+# Cleanup
+brew cleanup
