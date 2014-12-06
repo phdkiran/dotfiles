@@ -178,8 +178,10 @@ vnoremap p "_dP
 nnoremap <Leader>ow "_diwhp
 " Surround selected with #{interpolation}
 vnoremap <Leader># c#{<C-r>"}<Esc>
-" Surround a word with single quotes
-nmap <Leader>' ysiw'
+" Surround a Word with quotes
+nmap <Leader>' ysiW'
+nmap <Leader>" ysiW"
+nmap <Leader>` ysiW`
 " Surround selected with single quotes
 vmap <Leader>' c'<C-r>"'<Esc>
 " Comment
