@@ -1,23 +1,17 @@
 #!/usr/bin/env bash
 
-echo "You're about to run all install scripts. Are you sure?"
-read
-echo "Well, hold on."
+echo 'You are about to clone romanzolotarev/dotfiles and run it. Sure? [n/Y]'
+read CONFIRMATION
 
-xcode-select --install
-mkdir -p ~/Repositories && mkdir -p ~/Repositories/romanzolotarev
-cd ~/Repositories/romanzolotarev
-git clone https://github.com/romanzolotarev/dotfiles.git && \
-cd dotfiles && \
-
-# First stage
-osx/install && \
-bash-and-brew/install && \
-
-# Second stage
-git/install && \
-vim/install && \
-tmux/install && \
-
-# Third stage
-brew-cask/install
+if [ "$CONFIRMATION" == 'y' ]; then
+  xcode-select --install
+  mkdir -p ~/Repositories && mkdir -p ~/Repositories/romanzolotarev
+  cd ~/Repositories/romanzolotarev
+  git clone https://github.com/romanzolotarev/dotfiles.git && cd dotfiles
+  osx/install
+  bash-and-brew/install
+  git/install
+  vim/install
+  tmux/install
+  brew-cask/install
+fi
