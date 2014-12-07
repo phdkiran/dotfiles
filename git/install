@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
-echo 'Running brew...'
 brew install git && brew cleanup
 cd "$(dirname "${BASH_SOURCE}")"
 WD=`pwd`
-ln -sF ${WD}/.gitconfig ~/.gitconfig && echo 'Link ~/.gitconfig'
-ln -sF ${WD}/.gitignore ~/.gitignore && echo 'Link ~/.gitignore'
-ln -sF ${WD}/compare-with-master-on-github /usr/local/bin/compare-with-master-on-github && echo 'Link /usr/local/bin/compare-with-master-on-github'
+ln -sf ${WD}/.gitconfig ~/.gitconfig && echo 'Link ~/.gitconfig'
+ln -sf ${WD}/.gitignore ~/.gitignore && echo 'Link ~/.gitignore'
 echo 'Configuring git.'
 echo 'Type-in your full name: '
 read NAME
@@ -17,12 +15,10 @@ if [[ ! -z "${NAME}" ]]; then
   echo "Add full name (${NAME}) to .gitconfig"
   git config --global user.name "${NAME}"
 fi
-
 if [[ ! -z "${EMAIL}" ]]; then
   echo "Add email (${EMAIL}) to .gitconfig"
   git config --global user.email "${EMAIL}"
 fi
-
 if [[ ! -z "${GITHUB_USER}" ]]; then
   echo "Add GitHub username (${GITHUB_USER}) to .gitconfig"
   git config --global github.user "${GITHUB_USER}"
