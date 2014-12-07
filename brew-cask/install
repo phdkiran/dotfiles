@@ -1,36 +1,29 @@
 #!/usr/bin/env bash
 
 # Install Cask applications
-echo 'Running brew doctor...'
-brew update
-if brew doctor; then
-  echo 'Installing brew-cask...'
-  brew tap caskroom/cask
-  brew install brew-cask
-  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-  echo 'Hide /opt'
-  chflags hidden /opt
-  echo 'Installing apps...'
-  brew cask install alfred
-  brew cask install balsamiq-mockups
-  brew cask install divvy
-  brew cask install dropbox
-  brew cask install flux
-  brew cask install github
-  brew cask install google-chrome
-  brew cask install google-hangouts
-  brew cask install harvest
-  brew cask install imageoptim
-  brew cask install movist
-  brew cask install multibit
-  brew cask install onepassword
-  brew cask install virtualbox
-  # licecap appcleaner arq carbon-copy-cloner
-  # paparazzi vagrant slack the-unarchiver daisydisk fluid gpgtools imagealpha
-  # transmission fluid kindle send-to-kindle marked sketch skype subtitles
-  # teamviewer torbrowserbundle skype
-  brew linkapps
-  brew cask cleanup
-else
-  echo 'Can not install brew-cask. Please fix brew first.'
-fi
+echo 'Installing brew-cask...'
+brew tap caskroom/cask
+brew install brew-cask
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+chflags hidden /opt && echo 'Hide /opt'
+echo 'Installing apps...'
+brew cask install alfred
+brew cask install balsamiq-mockups
+brew cask install divvy
+brew cask install dropbox
+brew cask install flux
+brew cask install github
+brew cask install google-chrome
+brew cask install google-hangouts
+brew cask install harvest
+brew cask install imageoptim
+brew cask install movist
+brew cask install multibit
+brew cask install onepassword
+brew cask install virtualbox
+# licecap appcleaner arq carbon-copy-cloner
+# paparazzi vagrant slack the-unarchiver daisydisk fluid gpgtools imagealpha
+# transmission fluid kindle send-to-kindle marked sketch skype subtitles
+# teamviewer torbrowserbundle skype
+brew linkapps
+brew cask cleanup
