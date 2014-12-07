@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Install Cask applications
 echo 'Installing brew-cask...'
 brew tap caskroom/cask
