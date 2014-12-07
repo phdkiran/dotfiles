@@ -1,33 +1,29 @@
 #!/usr/bin/env bash
-if brew --version &> /dev/null; then
-  echo 'Running brew...'
-  brew update && brew doctor && brew install git && brew cleanup
-  cd "$(dirname "${BASH_SOURCE}")"
-  WD=`pwd`
-  rm -f ~/.gitconfig && ln -s ${WD}/.gitconfig ~/.gitconfig && echo 'Replace ~/.gitconfig'
-  rm -f ~/.gitignore && ln -s ${WD}/.gitignore ~/.gitignore && echo 'Replace ~/.gitignore'
-  rm -f /usr/local/bin/compare-with-master-on-github && ln -s ${WD}/compare-with-master-on-github /usr/local/bin/compare-with-master-on-github && echo 'Replace /usr/local/bin/compare-with-master-on-github'
-  echo 'Configuring git.'
-  echo 'Type-in your full name: '
-  read NAME
-  echo 'Your email address: '
-  read EMAIL
-  echo 'GitHub user: '
-  read GITHUB_USER
-  if [[ ! -z "${NAME}" ]]; then
-    echo "Add full name (${NAME}) to .gitconfig"
-    git config --global user.name "${NAME}"
-  fi
+echo 'Running brew...'
+brew install git && brew cleanup
+cd "$(dirname "${BASH_SOURCE}")"
+WD=`pwd`
+ln -sF ${WD}/.gitconfig ~/.gitconfig && echo 'Link ~/.gitconfig'
+ln -sF ${WD}/.gitignore ~/.gitignore && echo 'Link ~/.gitignore'
+ln -sF ${WD}/compare-with-master-on-github /usr/local/bin/compare-with-master-on-github && echo 'Link /usr/local/bin/compare-with-master-on-github'
+echo 'Configuring git.'
+echo 'Type-in your full name: '
+read NAME
+echo 'Your email address: '
+read EMAIL
+echo 'GitHub user: '
+read GITHUB_USER
+if [[ ! -z "${NAME}" ]]; then
+  echo "Add full name (${NAME}) to .gitconfig"
+  git config --global user.name "${NAME}"
+fi
 
-  if [[ ! -z "${EMAIL}" ]]; then
-    echo "Add email (${EMAIL}) to .gitconfig"
-    git config --global user.email "${EMAIL}"
-  fi
+if [[ ! -z "${EMAIL}" ]]; then
+  echo "Add email (${EMAIL}) to .gitconfig"
+  git config --global user.email "${EMAIL}"
+fi
 
-  if [[ ! -z "${GITHUB_USER}" ]]; then
-    echo "Add GitHub username (${GITHUB_USER}) to .gitconfig"
-    git config --global github.user "${GITHUB_USER}"
-  fi
-else
-  echo 'Please install brew first.'
+if [[ ! -z "${GITHUB_USER}" ]]; then
+  echo "Add GitHub username (${GITHUB_USER}) to .gitconfig"
+  git config --global github.user "${GITHUB_USER}"
 fi
