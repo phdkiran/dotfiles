@@ -1,16 +1,14 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "${BASH_SOURCE}")"
-
 WD=`pwd`
 
-rm -f ~/.aliases && ln -s ${WD}/.aliases ~/.aliases && echo 'Replace ~/.aliases' && source ~/.aliases
-rm -f ~/.bash_profile && ln -s ${WD}/.bash_profile ~/.bash_profile && echo 'Replace ~/.bash_profile' && source ~/.bash_profile
-rm -f ~/.completions && ln -s ${WD}/.completions ~/.completions && echo 'Replace ~/.completions' && source ~/.completions
-rm -f ~/.path && ln -s ${WD}/.path ~/.path && echo 'Replace ~/.path' && source ~/.path
-rm -f ~/.prompt && ln -s ${WD}/.prompt ~/.prompt && echo 'Replace ~/.prompt' && source ~/.prompt
-
-rm -f ~/.inputrc && ln -s ${WD}/.inputrc ~/.inputrc && echo 'Replace ~/.inputrc'
+ln -sF ${WD}/.aliases ~/.aliases && echo 'Link ~/.aliases' && source ~/.aliases
+ln -sF ${WD}/.completions ~/.completions && echo 'Link ~/.completions' && source ~/.completions
+ln -sF ${WD}/.path ~/.path && echo 'Link ~/.path' && source ~/.path
+ln -sF ${WD}/.prompt ~/.prompt && echo 'Link ~/.prompt' && source ~/.prompt
+ln -sF ${WD}/.bash_profile ~/.bash_profile && echo 'Link ~/.bash_profile' && source ~/.bash_profile
+ln -sF ${WD}/.inputrc ~/.inputrc && echo 'Link ~/.inputrc'
 
 if brew --version &> /dev/null; then
   echo 'Homebrew has been installed. Running brew doctor...'
