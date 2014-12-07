@@ -1,22 +1,17 @@
 #!/usr/bin/env bash
-if brew --version &> /dev/null; then
-  echo 'Running brew...'
-  brew update && brew doctor && brew install vim --with-lua && brew cleanup
-  if [ $? -eq 0 ]; then
-    cd "$(dirname "${BASH_SOURCE}")"
-    ln -nsf "${PWD}/.vimrc" ~/.vimrc && echo 'Replacing: ~/.vimrc'
-    ln -nsf "${PWD}/colorscheme" /usr/local/bin/colorscheme && echo 'Replacing: /usr/local/bin/colorscheme'
-    rm -rf ~/.vim && echo 'Removing: ~/.vim'
-    mkdir ~/.vim && echo 'mkdir ~/.vim'
-    mkdir ~/.vim/bundle && echo 'mkdir ~/.vim/bundle'
-    echo "Cloning neobundle into bundle directory:"
-    git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-    echo "Installing bundles:"
-    ~/.vim/bundle/neobundle.vim/bin/neoinstall
-    echo 'Done.'
-  else
-    echo 'Can not install vim. Check brew first.'
-  fi
+echo 'Running brew...'
+brew install vim --with-lua
+if [ $? -eq 0 ]; then
+  cd "$(dirname "${BASH_SOURCE}")"
+  ln -sf "${PWD}/.vimrc" ~/.vimrc && echo 'Link ~/.vimrc'
+  ln -sf "${PWD}/colorscheme" /usr/local/bin/colorscheme && echo 'Link /usr/local/bin/colorscheme'
+  rm -rf ~/.vim && mkdir ~/.vim && echo 'Replace ~/.vim'
+  echo 'Cloning neobundle into bundle directory:'
+  mkdir ~/.vim/bundle 
+  git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+  echo 'Installing bundles:'
+  ~/.vim/bundle/neobundle.vim/bin/neoinstall
+  echo 'Done.'
 else
-  echo 'Please install brew first.'
+  echo 'Can not install vim. Check brew first.'
 fi
