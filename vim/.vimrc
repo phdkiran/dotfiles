@@ -143,6 +143,7 @@ set sidescrolloff=15
 set sidescroll=1
 
 " Status line
+let g:lightline = {'colorscheme': 'Tomorrow_Night','mode_map':{'c': 'NORMAL'}}
 set laststatus=2
 set ruler
 set showmode
