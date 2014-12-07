@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-echo 'Running brew...'
 brew install vim --with-lua
 if [ $? -eq 0 ]; then
   cd "$(dirname "${BASH_SOURCE}")"

@@ -1,18 +1,13 @@
 #!/usr/bin/env bash
-if brew --version &> /dev/null; then
-  echo 'Running brew...'
-  brew update && brew doctor && brew cask install macvim && brew cask cleanup
-  if [ $? -eq 0 ]; then
-    cd "$(dirname "${BASH_SOURCE}")"
-    ln -nsf "${PWD}/.gvimrc" ~/.gvimrc && echo 'Replacing: ~/.gvimrc'
-    echo 'Done.'
-    defaults write org.vim.MacVim MMTextInsetTop '30'
-    defaults write org.vim.MacVim MMTextInsetLeft '30'
-    defaults write org.vim.MacVim MMTextInsetBottom '30'
-    defaults write org.vim.MacVim MMTextInsetRight '30'
-  else
-    echo 'Can not install macvim. Check brew first.'
-  fi
+brew cask install macvim
+if [ $? -eq 0 ]; then
+  cd "$(dirname "${BASH_SOURCE}")"
+  ln -sf "${PWD}/.gvimrc" ~/.gvimrc && echo 'Link ~/.gvimrc'
+  echo 'Done.'
+  defaults write org.vim.MacVim MMTextInsetTop '30'
+  defaults write org.vim.MacVim MMTextInsetLeft '30'
+  defaults write org.vim.MacVim MMTextInsetBottom '30'
+  defaults write org.vim.MacVim MMTextInsetRight '30'
 else
-  echo 'Please install brew first.'
+  echo 'Can not install macvim. Check brew first.'
 fi
