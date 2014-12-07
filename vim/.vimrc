@@ -33,7 +33,7 @@ NeoBundle 'lilydjwg/colorizer'
 " NeoBundle 'chrisbra/csv.vim'
 
 " Must have
-NeoBundle 'bling/vim-airline'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'elzr/vim-json'
@@ -152,7 +152,6 @@ if exists(":Gstatus")
 else
   set statusline=%F%m%r%h%w\ [%l,%c]\ [%L,%p%%]
 endif
-let g:airline_powerline_fonts=1
 
 " Search
 set gdefault
@@ -306,7 +305,7 @@ nmap <silent> <leader>d <Plug>DashSearch
 noremap <Leader>.n :tabnew ~/Dropbox/Notes<CR>
 " Open and reload .vimrc
 noremap <Leader>.v :tabnew ~/.vimrc<CR>
-autocmd! BufWritePost .vimrc source % | AirlineRefresh
+autocmd! BufWritePost .vimrc source %
 
 " Turn backup and swap off
 set autoread
