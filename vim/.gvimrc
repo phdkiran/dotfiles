@@ -3,7 +3,7 @@
 set guioptions-=T
 set guioptions-=r
 set guioptions-=e
-set guifont=Inconsolata:h30
+set guifont=Menlo:h24
 set backupcopy=yes
 set nolist
 set nocursorline
