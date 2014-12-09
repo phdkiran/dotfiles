@@ -3,7 +3,7 @@
 set guioptions-=T
 set guioptions-=r
 set guioptions-=e
-set guifont=Inconsolata:h30
+set guifont=Menlo:h20
 set backupcopy=yes
 set nolist
 set nocursorline
@@ -17,4 +17,4 @@ set linespace=5
 
 " Open and reload .gvimrc
 noremap <Leader>.g :tabnew ~/.gvimrc<CR>
-autocmd! BufWritePost .gvimrc source % | AirlineRefresh
+autocmd! BufWritePost .gvimrc source %
