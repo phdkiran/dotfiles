@@ -1,17 +1,16 @@
 #!/usr/bin/env bash
-brew install vim --with-lua
-brew install ag
+brew install vim --with-lua && brew install ag
 if [ $? -eq 0 ]; then
   cd "$(dirname "${BASH_SOURCE}")"
+  rm -f ~/.vimrc
   ln -sf "${PWD}/.vimrc" ~/.vimrc && echo 'Link ~/.vimrc'
-  ln -sf "${PWD}/colorscheme" /usr/local/bin/colorscheme && echo 'Link /usr/local/bin/colorscheme'
-  rm -rf ~/.vim && mkdir ~/.vim && echo 'Replace ~/.vim'
-  echo 'Cloning neobundle into bundle directory:'
-  mkdir ~/.vim/bundle 
+  rm -rf ~/.vim && mkdir ~/.vim && echo 'Link ~/.vim'
+  mkdir ~/.vim/bundle
   git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-  echo 'Installing bundles:'
+  git clone https://github.com/Shougo/vimproc.vim ~/.vim/bundle/vimproc.vim
+  cd ~/.vim/bundle/vimproc.vim
+  make
   ~/.vim/bundle/neobundle.vim/bin/neoinstall
-  echo 'Done.'
 else
   echo 'Can not install vim. Check brew first.'
 fi
