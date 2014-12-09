@@ -13,5 +13,4 @@ if [ "$CONFIRMATION" == 'y' ]; then
   git/install
   vim/install
   tmux/install
-  brew-cask/install
 fi
