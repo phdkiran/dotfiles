@@ -30,31 +30,28 @@ cd $ROOT
 if [ ! $? -eq 0 ]; then exit; fi
 echo $PORT > ~/.pow/$NAME
 
-CONFIG="server {
+cat > /usr/local/etc/nginx/sites-enabled/${NAME}.dev <<EOL
+server {
   listen 443 ssl;
   server_name ${NAME}.dev;
 
   root ${ROOT};
   index index.html;
 
-  ### SSL log files ###
-  access_log /usr/local/etc/nginx/logs/${NAME}.access.log;
-  error_log /usr/local/etc/nginx/logs/${NAME}.error.log;
-
   ### SSL cert files ###
   ssl_certificate /usr/local/etc/nginx/ssl/dev.crt;
   ssl_certificate_key /usr/local/etc/nginx/ssl/dev.key;
 
   location / {
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host \$host;
+    proxy_set_header X-Real-IP \$remote_addr;
+    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
     proxy_redirect off;
     proxy_pass http://localhost:20559;
     proxy_next_upstream error timeout invalid_header http_500 http_502 http_503;
     proxy_set_header X-Forwarded-Proto https;
   }
-}"
+}
+EOL
 
-echo $CONFIG > /usr/local/etc/nginx/sites-enabled/${NAME}.dev
 DISABLE_WEBSOCKETS=1 ROOT_URL=${ROOT_URL} meteor ${PORT_ARG} ${SETTINGS_ARG}
