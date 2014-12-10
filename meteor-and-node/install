@@ -28,7 +28,7 @@ openssl x509 -req -days 365 -in dev.csr -signkey dev.key -out dev.crt
 mv dev.* ${NGINX}/ssl
 rm -f ${NGINX}/nginx.conf
 cd $WD
-ln -s nginx.conf ${NGINX}/nginx.conf
+ln -s ${WD}/nginx.conf ${NGINX}/nginx.conf
 
 # Install pow
 # brew install pow
