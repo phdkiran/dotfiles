@@ -146,7 +146,7 @@ set sidescroll=1
 let g:lightline = {'colorscheme': 'Tomorrow_Night','mode_map':{'c': 'NORMAL'}}
 set laststatus=2
 set ruler
-set showmode
+set noshowmode
 set noshowcmd
 if exists(":Gstatus")
   set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
