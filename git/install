@@ -2,8 +2,10 @@
 brew install git && brew cleanup
 cd "$(dirname "${BASH_SOURCE}")"
 WD=`pwd`
-ln -sf ${WD}/.gitconfig ~/.gitconfig && echo 'Link ~/.gitconfig'
-ln -sf ${WD}/.gitignore ~/.gitignore && echo 'Link ~/.gitignore'
+rm -f ~/.gitconfig
+ln -s ${WD}/.gitconfig ~/.gitconfig && echo 'Link ~/.gitconfig'
+rm -f ~/.gitignore
+ln -s ${WD}/.gitignore ~/.gitignore && echo 'Link ~/.gitignore'
 echo 'Configuring git.'
 echo 'Type-in your full name: '
 read NAME

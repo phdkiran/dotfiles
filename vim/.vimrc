@@ -4,81 +4,73 @@
 " Initialize NeoBundle and plugins
 set nocompatible
 set runtimepath+=~/.vim/bundle/neobundle.vim
+set runtimepath+=~/.vim/bundle/vimproc.vim/autorun
+set runtimepath+=~/.vim/bundle/vimproc.vim/plugin
 call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'shougo/neobundle.vim'
-NeoBundle 'shougo/vimproc', {
-  \ 'build' : {
-  \     'mac' : 'make -f make_mac.mak',
-  \     'unix' : 'make -f make_unix.mak',
-  \    },
-  \ }
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc.vim'
 
 " Experimental
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'othree/javascript-libraries-syntax.vim'
-NeoBundle 'rizzatti/dash.vim'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'shougo/unite.vim'
-NeoBundle 'sjl/gundo.vim'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-session'
-NeoBundle 'skwp/greplace.vim'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'wavded/vim-stylus'
-NeoBundle 'lilydjwg/colorizer'
-" NeoBundle 'nelstrom/vim-qargs'
-" NeoBundle 'chrisbra/csv.vim'
-
-" Must have
-NeoBundle 'itchyny/lightline.vim'
+" Stable
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'elzr/vim-json'
-NeoBundle 'gregsexton/gitv'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'keithbsmiley/tmux.vim'
-NeoBundle 'romanzolotarev/vim-todo'
-NeoBundle 'shougo/neocomplete'
-NeoBundle 'shougo/neosnippet'
-NeoBundle 'shougo/neosnippet-snippets'
-NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'lilydjwg/colorizer'
+NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
-
 " Some day
 " NeoBundle 'ap/vim-css-color'
 " NeoBundle 'benmills/vimux'
+" NeoBundle 'chrisbra/csv.vim'
 " NeoBundle 'cmather/vim-meteor-snippets'
 " NeoBundle 'edkolev/promptline.vim'
+" NeoBundle 'gregsexton/gitv'
 " NeoBundle 'groenewege/vim-less'
+" NeoBundle 'keithbsmiley/tmux.vim'
 " NeoBundle 'lokaltog/vim-distinguished'
 " NeoBundle 'lokaltog/vim-easymotion'
+" NeoBundle 'lukaszkorecki/coffeetags'
+" NeoBundle 'majutsushi/tagbar'
 " NeoBundle 'marcWeber/vim-addon-mw-utils'
+" NeoBundle 'nathanaelkane/vim-indent-guides'
+" NeoBundle 'nelstrom/vim-qargs'
+" NeoBundle 'othree/javascript-libraries-syntax.vim'
 " NeoBundle 'pangloss/vim-javascript'
+" NeoBundle 'rizzatti/dash.vim'
+" NeoBundle 'rking/ag.vim'
+" NeoBundle 'romanzolotarev/vim-todo'
+" NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'sjl/gundo.vim'
 " NeoBundle 'skammer/vim-css-color'
+" NeoBundle 'skwp/greplace.vim'
 " NeoBundle 'slava/vim-spacebars'
+" NeoBundle 'terryma/vim-multiple-cursors'
 " NeoBundle 'tomtom/tlib_vim'
 " NeoBundle 'tpope/vim-cucumber'
 " NeoBundle 'tpope/vim-git'
+" NeoBundle 'tpope/vim-repeat'
 " NeoBundle 'wavded/vim-stylus'
-
-" NeoBundle 'lukaszkorecki/coffeetags'
 " NeoBundle 'xolox/vim-easytags'
 " NeoBundle 'xolox/vim-misc'
-" NeoBundle 'majutsushi/tagbar'
+" NeoBundle 'xolox/vim-session'
 call neobundle#end()
 filetype plugin indent on
 NeoBundleCheck
 
 set shortmess=I
-let mapleader=","
+let mapleader=','
 set encoding=utf-8
 set ttyfast
 
@@ -251,17 +243,19 @@ if executable('ag')
   let g:unite_source_grep_default_opts='-i --line-numbers --nocolor --nogroup --hidden -S -C4 --ignore ''.git'''
   let g:unite_source_grep_recursive_opt=''
 endif
-call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
-  \ 'ignore_pattern', join([
-  \ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/',
-  \ '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css'
-  \ ], '\|'))
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-nnoremap <Leader>/ :Unite grep:.<CR>
-nnoremap <Leader>y :Unite history/yank<CR>
-nnoremap <Leader>b :Unite buffer<CR>
-nnoremap <C-p> :Unite -start-insert file_rec/async<CR>
+if executable('unite')
+  call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
+    \ 'ignore_pattern', join([
+    \ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/',
+    \ '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css'
+    \ ], '\|'))
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  call unite#filters#sorter_default#use(['sorter_rank'])
+  nnoremap <Leader>/ :Unite grep:.<CR>
+  nnoremap <Leader>y :Unite history/yank<CR>
+  nnoremap <Leader>b :Unite buffer<CR>
+  nnoremap <C-p> :Unite -start-insert file_rec/async<CR>
+endif
 
 " Neocomplete
 let g:neocomplete#enable_at_startup=1

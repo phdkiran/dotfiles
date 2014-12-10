@@ -10,13 +10,7 @@ OS X, OS X Terminal, Brew, Bash, Vim, Git, Tmux, Cask.
 
 ## How to Use It?
 
-To install everything run:
-
-```
-curl https://raw.githubusercontent.com/romanzolotarev/dotfiles/master/bootstrap | bash
-```
-
-Or git clone, customize, and run scripts for each tool manually.
+Clone it, customize, and run scripts for each tool manually.
 For example to install `vim` run:
 
 ```

@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 brew install ruby 
+brew cleanup
 gem update
