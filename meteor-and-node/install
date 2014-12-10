@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -x
 cd "$(dirname "${BASH_SOURCE}")"
 WD=`pwd`
 
@@ -9,29 +9,42 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `install` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# brew doctor
-
 # Install nginx
-# brew install nginx
+brew install nginx
 NGINX='/usr/local/etc/nginx'
 CERT='/tmp/cert'
 mkdir -p ${NGINX}/sites-enabled
 mkdir -p ${NGINX}/ssl
 mkdir -p ${CERT}
 cd ${CERT}
-openssl genrsa -out dev.key 1024
-openssl req -new -key dev.key -out dev.csr -subj '/C=US/ST=CA/L=Name/O=Organization/OU=Unit/CN=*.dev'
-rm dev.key.bak
-cp dev.key dev.key.bak
-openssl rsa -in dev.key.bak -out dev.key
-openssl x509 -req -days 365 -in dev.csr -signkey dev.key -out dev.crt
-mv dev.* ${NGINX}/ssl
+for domain in \
+  'dev' \
+  'xip.io'; do
+    openssl genrsa -out ${domain}.key 1024
+    openssl req -new -key ${domain}.key -out ${domain}.csr -subj "/C=US/ST=CA/L=Name/O=Organization/OU=Unit/CN=*.${domain}"
+    rm ${domain}.key.bak
+    cp ${domain}.key ${domain}.key.bak
+    openssl rsa -in ${domain}.key.bak -out ${domain}.key
+    openssl x509 -req -days 365 -in ${domain}.csr -signkey ${domain}.key -out ${domain}.crt
+    mv ${domain}.* ${NGINX}/ssl
+done
 rm -f ${NGINX}/nginx.conf
 cd $WD
 ln -s ${WD}/nginx.conf ${NGINX}/nginx.conf
+PLIST='/Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
+sudo rm -f ${PLIST}
+sudo cp ${WD}/homebrew.mxcl.nginx.plist ${PLIST}
+sudo chown root ${PLIST}
+sudo launchctl load -w ${PLIST}
+# Open port 443
+# echo 'pass in proto tcp from any to port 443' | sudo tee /etc/pf.anchors/nginx
+# if [[ -z `sudo grep 'nginx' /etc/pf.conf` ]]; then
+#   echo 'load anchor "nginx" from "/etc/pf.anchors/nginx"' | sudo tee -a /etc/pf.conf
+# fi
+# sudo pfctl -f /etc/pf.conf
 
 # Install pow
-# brew install pow
+brew install pow
 mkdir -p ~/Library/Application\ Support/Pow/Hosts
 rm -f ~/.pow
 ln -s ~/Library/Application\ Support/Pow/Hosts ~/.pow
@@ -41,7 +54,7 @@ sudo launchctl load -w /Library/LaunchDaemons/cx.pow.firewall.plist
 launchctl load -w ~/Library/LaunchAgents/cx.pow.powd.plist
 
 # Install Node.js
-# brew install node
+brew install node
 
 # Node.js packages
 # npm install -g coffee-script coffeelint
@@ -50,13 +63,11 @@ launchctl load -w ~/Library/LaunchAgents/cx.pow.powd.plist
 # curl https://install.meteor.com/ | sh
 
 # Cleanup
-# brew cleanup
-
-IP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'`
+brew cleanup
 
 echo
-echo 'To open your app locally:'
-echo 'open https://APP.dev/'
-echo
-echo 'From another computer in your network:'
-echo "open https://APP.${IP}.xip.io/"
+echo 'Usage: sudo launchctl start homebrew.mxcl.nginx'
+echo '       open https://YOUR-APP-NAME.dev/'
+echo '       # Or from another computer in your network'
+echo '       open https://YOUR-APP-NAME.LOCAL-IP-ADDRESS.xip.io/'
+echo '       sudo launchctl stop homebrew.mxcl.nginx'
