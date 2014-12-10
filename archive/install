@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+cd "$(dirname "${BASH_SOURCE}")"
+
+rm -f /usr/local/bin/archive
+ln -s ${PWD}/archive /usr/local/bin/archive && echo 'Link /usr/local/bin/archive'
+rm -f ${HOME}/.archiveignore
+ln -s ${PWD}/.archiveignore ${HOME}/.archiveignore && echo 'Link ~/.archiveignore'

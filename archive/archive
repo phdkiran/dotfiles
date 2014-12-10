@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "${BASH_SOURCE}")"
+
+if [ -z "${1}" ]; then
+  echo 'Usage: archive host [username]'
+  echo '       archive Mars.local romanzolotarev'
+  exit
+else
+  HOST=${1}
+  IGNORE="${HOME}/.archiveignore"
+fi
+
+if [ ! -z "${2}" ]; then
+  USER=${2}
+fi
+
+ORIGINAL="${HOST}:/Users/${USER}/"
+ARCHIVE='Archive'
+ARCHIVE="${HOME}/Archive"
+ARCHIVE_HOST="${ARCHIVE}/${HOST}"
+ARCHIVE_USER="${ARCHIVE_HOST}/${USER}/"
+OPTIONS="-avhzPu --del --exclude-from=${IGNORE} ${ORIGINAL} ${ARCHIVE_USER}"
+echo -e "You are about to archive files from \e[33m${ORIGINAL}\e[0m"
+echo -e "to \e[31m${ARCHIVE_USER}\e[0m"
+
+mkdir -p ${ARCHIVE} && \
+mkdir -p ${ARCHIVE_HOST} && \
+mkdir -p ${ARCHIVE_USER} && \
+time rsync ${OPTIONS}
