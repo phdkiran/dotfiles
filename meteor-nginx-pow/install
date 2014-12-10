@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -x
+#!/usr/bin/env bash
 cd "$(dirname "${BASH_SOURCE}")"
 WD=`pwd`
 
@@ -57,7 +57,7 @@ launchctl load -w ~/Library/LaunchAgents/cx.pow.powd.plist
 brew install node
 
 # Node.js packages
-# npm install -g coffee-script coffeelint
+npm install -g coffee-script coffeelint
 
 # Install Meteor
 # curl https://install.meteor.com/ | sh
@@ -65,9 +65,20 @@ brew install node
 # Cleanup
 brew cleanup
 
-echo
-echo 'Usage: sudo launchctl start homebrew.mxcl.nginx'
-echo '       open https://YOUR-APP-NAME.dev/'
-echo '       # Or from another computer in your network'
-echo '       open https://YOUR-APP-NAME.LOCAL-IP-ADDRESS.xip.io/'
-echo '       sudo launchctl stop homebrew.mxcl.nginx'
+rm -f /usr/local/bin/meteor-run
+ln -s ${WD}/meteor-run /usr/local/bin/meteor-run && echo 'Link meteor-run'
+
+echo "
+
+Install meteor
+       curl https://install.meteor.com/ | sh
+
+Usage: meteor-run root name port [settings] [ssl]
+       meteor-run ./app leaderboard 3000 ../config/settings.json ssl
+
+       open https://APP-NAME.dev/
+       open https://APP-NAME.LOCAL-IP-ADDRESS.xip.io/
+
+       sudo launchctl start homebrew.mxcl.nginx
+       sudo launchctl stop homebrew.mxcl.nginx
+"

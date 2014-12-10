@@ -4,8 +4,8 @@ if [[ ! -z "$1" ]]; then
   ROOT=$1
   NAME=$2
 else
-  echo 'Usage: run root name port [settings] [ssl]'
-  echo '       run ./app leaderboard 3000 ../config/settings.json ssl'
+  echo 'Usage: meteor-run root name port [settings] [ssl]'
+  echo '       meteor-run ./app leaderboard 3000 ../config/settings.json ssl'
   exit
 fi
 
