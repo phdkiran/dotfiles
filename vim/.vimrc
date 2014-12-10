@@ -243,19 +243,17 @@ if executable('ag')
   let g:unite_source_grep_default_opts='-i --line-numbers --nocolor --nogroup --hidden -S -C4 --ignore ''.git'''
   let g:unite_source_grep_recursive_opt=''
 endif
-if executable('unite')
-  call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
-    \ 'ignore_pattern', join([
-    \ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/',
-    \ '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css'
-    \ ], '\|'))
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  call unite#filters#sorter_default#use(['sorter_rank'])
-  nnoremap <Leader>/ :Unite grep:.<CR>
-  nnoremap <Leader>y :Unite history/yank<CR>
-  nnoremap <Leader>b :Unite buffer<CR>
-  nnoremap <C-p> :Unite -start-insert file_rec/async<CR>
-endif
+call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
+  \ 'ignore_pattern', join([
+  \ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/',
+  \ '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css'
+  \ ], '\|'))
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+nnoremap <Leader>/ :Unite grep:.<CR>
+nnoremap <Leader>y :Unite history/yank<CR>
+nnoremap <Leader>b :Unite buffer<CR>
+nnoremap <C-p> :Unite -start-insert file_rec/async<CR>
 
 " Neocomplete
 let g:neocomplete#enable_at_startup=1
