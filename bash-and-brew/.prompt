@@ -7,4 +7,5 @@ BLACK='\[\e[0;30m\]'
 CYAN='\[\e[0;36m\]'
 RESET='\[\e[0m\]'
 export PS1="${BLACK}\t \u
-${RESET}\h ${CYAN}\w${YELLOW}\$(__git_ps1)${RESET} "
+${RESET}\h ${CYAN}\w${YELLOW}\$(__git_ps1)
+${BLACK}$ ${RESET}"

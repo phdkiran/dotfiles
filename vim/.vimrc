@@ -304,6 +304,7 @@ autocmd! BufWritePost .vimrc source %
 set autoread
 set nobackup
 set noswapfile
+autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Sessions
 let g:session_directory="~/.vim/session"
