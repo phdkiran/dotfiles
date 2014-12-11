@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-brew install tmux && brew install reattach-to-user-namespace 
+brew install tmux && brew install reattach-to-user-namespace
 if [ $? -eq 0 ]; then
   cd "$(dirname "${BASH_SOURCE}")"
   WD=`pwd`
@@ -9,6 +9,8 @@ if [ $? -eq 0 ]; then
   ln -s ${WD}/tmux-battery /usr/local/bin/tmux-battery && echo 'Link /usr/local/bin/tmux-battery'
   rm -f /usr/local/bin/tmux-session
   ln -s ${WD}/tmux-session /usr/local/bin/tmux-session && echo 'Link /usr/local/bin/tmux-session'
+  # Pair programming tools
+  gem install github-auth
 else
   echo 'Can not install tmux. Check brew first.'
 fi
