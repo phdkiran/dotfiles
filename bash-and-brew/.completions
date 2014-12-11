@@ -11,7 +11,6 @@ shopt -s cdspell
 complete -W "NSGlobalDomain" defaults
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
 complete -F _git g
-complete -F _todo t
 
 # Homebrew: bash-competion' >> ~/.completions
 source $(brew --prefix)/etc/bash_completion
