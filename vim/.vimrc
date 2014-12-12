@@ -106,7 +106,7 @@ noremap <Up> <C-w>k
 noremap <Down> <C-w>j
 
 " Directory Listing
-let g:netrw_liststyle=3
+let g:netrw_liststyle=4
 
 " Lines, numbers, wrap
 set number
@@ -135,7 +135,12 @@ set sidescrolloff=15
 set sidescroll=1
 
 " Status line
-let g:lightline = {'colorscheme': 'Tomorrow_Night','mode_map':{'c': 'NORMAL'}}
+let g:lightline = {
+  \ 'colorscheme': 'Tomorrow_Night',
+  \ 'mode_map': {'c': 'NORMAL'},
+  \ 'separator': { 'left': '', 'right': '' },
+  \ 'subseparator': { 'left': '', 'right': '' }
+  \ }
 set laststatus=2
 set ruler
 set noshowmode
@@ -305,6 +310,9 @@ set autoread
 set nobackup
 set noswapfile
 autocmd filetype crontab setlocal nobackup nowritebackup
+
+" Encryption
+set cryptmethod=blowfish2
 
 " Sessions
 let g:session_directory="~/.vim/session"
