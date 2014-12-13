@@ -26,5 +26,5 @@ vim/install
 - [Slava Kim](https://github.com/slava/vimrc)
 - [dotfiles.github.com](http://dotfiles.github.io/)
 
-[MIT](https://github.com/romanzolotarev/dotfiles/blob/master/LICENSE.md).
+[MIT](LICENSE.md).
 Copyright 2014 [Roman Zolotarev](http://romanzolotarev.com).
