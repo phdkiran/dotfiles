@@ -30,7 +30,7 @@ NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
-NeoBundle '~/Repositories/romanzolotarev/vim-journal'
+NeoBundle 'romanzolotarev/vim-journal'
 " Some day
 " NeoBundle 'ap/vim-css-color'
 " NeoBundle 'benmills/vimux'

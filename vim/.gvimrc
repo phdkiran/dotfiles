@@ -1,11 +1,11 @@
 highlight NonText guifg=bg
 set colorcolumn=140
-set guifont=Menlo:h19
+set guifont=Menlo:h24
 set guioptions-=T
 set guioptions-=e
 set guioptions-=r
 set laststatus=0
-set linespace=5
+set linespace=14
 set nocursorline
 set nolist
 set nonumber
