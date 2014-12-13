@@ -3,7 +3,7 @@ brew install vim --with-lua && brew install ag
 if [ $? -eq 0 ]; then
   cd "$(dirname "${BASH_SOURCE}")"
   rm -f ~/.vimrc
-  ln -sf "${PWD}/.vimrc" ~/.vimrc && echo 'Link ~/.vimrc'
+  ln -s "${PWD}/.vimrc" ~/.vimrc && echo 'Link ~/.vimrc'
   rm -rf ~/.vim && mkdir ~/.vim && echo 'Link ~/.vim'
   mkdir ~/.vim/bundle
   git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim

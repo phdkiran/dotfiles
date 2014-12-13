@@ -1,19 +1,18 @@
-" set background=light
-" colorscheme Tomorrow
+highlight NonText guifg=bg
+set colorcolumn=140
+set guifont=Menlo:h19
 set guioptions-=T
-set guioptions-=r
 set guioptions-=e
-set guifont=Menlo:h20
-set backupcopy=yes
-set nolist
+set guioptions-=r
+set laststatus=0
+set linespace=5
 set nocursorline
+set nolist
 set nonumber
 set noruler
-set colorcolumn=0
 set noshowcmd
-set laststatus=0
-hi NonText guifg=bg
-set linespace=5
+set nowrap
+set spell
 
 " Open and reload .gvimrc
 noremap <Leader>.g :tabnew ~/.gvimrc<CR>

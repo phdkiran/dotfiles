@@ -30,6 +30,7 @@ NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
+NeoBundle '~/Repositories/romanzolotarev/vim-journal'
 " Some day
 " NeoBundle 'ap/vim-css-color'
 " NeoBundle 'benmills/vimux'
@@ -50,7 +51,6 @@ NeoBundle 'tpope/vim-unimpaired'
 " NeoBundle 'pangloss/vim-javascript'
 " NeoBundle 'rizzatti/dash.vim'
 " NeoBundle 'rking/ag.vim'
-" NeoBundle 'romanzolotarev/vim-todo'
 " NeoBundle 'scrooloose/syntastic'
 " NeoBundle 'sjl/gundo.vim'
 " NeoBundle 'skammer/vim-css-color'
@@ -299,7 +299,7 @@ endif
 " Dash
 nmap <silent> <leader>d <Plug>DashSearch
 
-" Open frequiently used files
+" Open frequently used files
 noremap <Leader>.n :tabnew ~/Dropbox/Notes<CR>
 " Open and reload .vimrc
 noremap <Leader>.v :tabnew ~/.vimrc<CR>
@@ -309,10 +309,10 @@ autocmd! BufWritePost .vimrc source %
 set autoread
 set nobackup
 set noswapfile
-autocmd filetype crontab setlocal nobackup nowritebackup
+set nowritebackup
 
 " Encryption
-set cryptmethod=blowfish2
+set cryptmethod=blowfish
 
 " Sessions
 let g:session_directory="~/.vim/session"
@@ -365,11 +365,3 @@ function! RestoreCursorPositon()
   endif
 endfunction
 
-" TODO
-" - Check search and replace in project
-" - Macros vs Snippets vs Abbr
-" - Neocomplete Tab vs Enter
-" - Neosnippet + Multiple Cursors
-" - Unite + Ag
-" - Add keyboard shortcuts
-"   - :PasteAsCoffee
