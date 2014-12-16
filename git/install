@@ -6,6 +6,8 @@ rm -f ~/.gitconfig
 ln -s ${WD}/.gitconfig ~/.gitconfig && echo 'Link ~/.gitconfig'
 rm -f ~/.gitignore
 ln -s ${WD}/.gitignore ~/.gitignore && echo 'Link ~/.gitignore'
+rm -f /usr/local/bin/git-statuses
+ln -s ${WD}/git-statuses /usr/local/bin/git-statuses && echo 'Link /usr/local/bin/git-statuses'
 echo 'Configuring git.'
 echo 'Type-in your full name: '
 read NAME
