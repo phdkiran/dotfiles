@@ -15,7 +15,7 @@ set noruler
 set noshowcmd
 set nowrap
 set spell
-set fu
+" set fu
 
 " Open and reload .gvimrc
 noremap <Leader>.g :tabnew ~/.gvimrc<CR>
