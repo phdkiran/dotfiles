@@ -1,9 +1,10 @@
 # Node.js
 node_modules
 
-# Jekyll and SASS
-_site
-*.sass-cache*
+# Ruby, Jekyll, and SASS
+Gemfile.lock
+_site/*
+_styles/cache/*
 
 # Folder view configuration files
 .DS_Store
