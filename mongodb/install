@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+brew install mongo
+if [ $? -eq 0 ]; then
+  cd "$(dirname "${BASH_SOURCE}")"
+  rm -f /usr/local/etc/mongod.conf
+  ln -s "${PWD}/mongod.conf" /usr/local/etc/mongod.conf && echo 'Link mongod.conf'
+else
+  echo 'Can not install mongo. Check brew first.'
+fi

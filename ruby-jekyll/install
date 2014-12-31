@@ -2,3 +2,4 @@
 brew install ruby 
 brew cleanup
 gem update
+gem install bundler
