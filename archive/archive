@@ -4,7 +4,7 @@ cd "$(dirname "${BASH_SOURCE}")"
 
 if [ -z "${1}" ]; then
   echo 'Usage: archive host [username]'
-  echo '       archive Mars.local romanzolotarev'
+  echo '       archive Mars romanzolotarev'
   exit
 else
   HOST=${1}
