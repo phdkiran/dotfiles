@@ -27,4 +27,4 @@ vim/install
 - [dotfiles.github.com](http://dotfiles.github.io/)
 
 [MIT](LICENSE.md).
-Copyright 2014 [Roman Zolotarev](http://romanzolotarev.com).
+Copyright 2014-2015 [Roman Zolotarev](http://romanzolotarev.com).
