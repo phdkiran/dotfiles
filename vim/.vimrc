@@ -11,9 +11,15 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc.vim'
 
 " Experimental
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'tpope/vim-fugitive'
+" NeoBundle '~/Repositories/romanzolotarev/vim-journal'
+NeoBundle 'romanzolotarev/vim-journal'
 " Stable
+NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'elzr/vim-json'
@@ -22,16 +28,11 @@ NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'lilydjwg/colorizer'
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
-" NeoBundle '~/Repositories/romanzolotarev/vim-journal'
-NeoBundle 'romanzolotarev/vim-journal'
 " Some day
 " NeoBundle 'lokaltog/vim-distinguished'
 " NeoBundle 'lokaltog/vim-easymotion'
@@ -225,6 +226,10 @@ nmap <Leader>r :GitGutterRevertHunk<CR>
 " let g:CoffeeAutoTagFile='.git/tags'
 " let g:CoffeeAutoTagIncludeVars=1
 " let g:CoffeeAutoTagTagRelative=0
+
+" VimFiler
+noremap <silent> <Leader>f :VimFiler -buffer-name=explorer -auto-expand -split -simple -winwidth=35 -toggle -no-quit<CR>
+noremap <silent> <Leader>a :VimFilerBufferDir -buffer-name=explorer -auto-expand -split -simple -winwidth=35 -toggle -find<CR>
 
 " Unite
 let g:unite_source_history_yank_enable=1

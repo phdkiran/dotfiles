@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-brew cask install macvim
+brew install macvim --with-lua
 if [ $? -eq 0 ]; then
   cd "$(dirname "${BASH_SOURCE}")"
   ln -sf "${PWD}/.gvimrc" ~/.gvimrc && echo 'Link ~/.gvimrc'
