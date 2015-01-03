@@ -228,6 +228,7 @@ nmap <Leader>r :GitGutterRevertHunk<CR>
 " let g:CoffeeAutoTagTagRelative=0
 
 " VimFiler
+let g:vimfiler_tree_leaf_icon=''
 noremap <silent> <Leader>f :VimFiler -buffer-name=explorer -auto-expand -split -simple -winwidth=35 -toggle -no-quit<CR>
 noremap <silent> <Leader>a :VimFilerBufferDir -buffer-name=explorer -auto-expand -split -simple -winwidth=35 -toggle -find<CR>
 
