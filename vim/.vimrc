@@ -33,6 +33,7 @@ NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'vim-scripts/SyntaxRange'
 " Some day
 " NeoBundle 'lokaltog/vim-distinguished'
 " NeoBundle 'lokaltog/vim-easymotion'
@@ -68,6 +69,11 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 set wildmenu
 set wildmode=list:longest,full
+nnoremap Y y$
+nnoremap q: <Nop>
+nnoremap Q <Nop>
+nnoremap gQ <Nop>
+vnoremap <ESC> o<ESC>
 
 " Switch tabs and windows
 nnoremap <Leader>m :tabn<CR>
@@ -96,7 +102,7 @@ noremap <Down> <C-w>j
 let g:netrw_liststyle=4
 
 " Lines, numbers, wrap
-set number
+set relativenumber
 set wrap
 set textwidth=0 wrapmargin=0
 set linebreak
@@ -124,10 +130,59 @@ set sidescroll=1
 " Status line
 let g:lightline = {
   \ 'colorscheme': 'Tomorrow_Night',
-  \ 'mode_map': {'c': 'NORMAL'},
+  \ 'mode_map': { 'c': 'NORMAL' },
+  \ 'active': {
+  \   'right': [ [ 'line' ], [ 'percent' ], [ 'filetype' ] ],
+  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+  \ },
+  \ 'component_function': {
+  \   'modified': 'MyModified',
+  \   'readonly': 'MyReadOnly',
+  \   'fugitive': 'MyFugitive',
+  \   'filename': 'MyFilename',
+  \   'filetype': 'MyFiletype',
+  \   'mode': 'MyMode',
+  \ },
   \ 'separator': { 'left': '', 'right': '' },
   \ 'subseparator': { 'left': '', 'right': '' }
   \ }
+
+function! MyLineinfo()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &lineinfo
+endfunction
+
+function! MyModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadOnly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'X' : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadOnly() ? MyReadOnly() . ' ' : '') .
+    \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+    \  &ft == 'unite' ? unite#get_status_string() :
+    \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+    \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFugitive()
+  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+    let _ = fugitive#head()
+    return strlen(_) ? 'X '._ : ''
+  endif
+  return ''
+endfunction
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : '') : ''
+endfunction
+
+function! MyMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
 set laststatus=2
 set ruler
 set noshowmode
@@ -228,9 +283,13 @@ nmap <Leader>r :GitGutterRevertHunk<CR>
 " let g:CoffeeAutoTagTagRelative=0
 
 " VimFiler
+" let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_tree_leaf_icon=''
-noremap <silent> <Leader>f :VimFiler -buffer-name=explorer -auto-expand -split -simple -winwidth=35 -toggle -no-quit<CR>
-noremap <silent> <Leader>a :VimFilerBufferDir -buffer-name=explorer -auto-expand -split -simple -winwidth=35 -toggle -find<CR>
+let g:vimfiler_force_overwrite_statusline=0
+noremap <silent> <Leader>f :VimFiler -buffer-name=filer -auto-expand -split -simple -winwidth=35 -toggle -no-quit<CR>
+noremap <silent> <Leader>a :VimFilerBufferDir -buffer-name=filer -auto-expand -split -simple -winwidth=35 -toggle -find<CR>
+
+autocmd BufEnter * if (winnr('$') == 1 && &filetype ==# 'vimfiler') | q | endif
 
 " Unite
 let g:unite_source_history_yank_enable=1
