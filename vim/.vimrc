@@ -347,9 +347,6 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
-" Dash
-nmap <silent> <leader>d <Plug>DashSearch
-
 " Open frequently used files
 noremap <Leader>.n :tabnew ~/Dropbox/Notes<CR>
 " Open and reload .vimrc
