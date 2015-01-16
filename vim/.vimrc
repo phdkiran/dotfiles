@@ -53,6 +53,11 @@ NeoBundle 'wavded/vim-stylus'
 " NeoBundle 'xolox/vim-easytags'
 " NeoBundle 'xolox/vim-misc'
 " NeoBundle 'xolox/vim-session'
+" wincent/Command-T
+" tomtom/tcomment_vim
+" skwp/greplace.vim
+" ervandew/supertab
+
 call neobundle#end()
 filetype plugin indent on
 NeoBundleCheck
@@ -412,4 +417,24 @@ function! RestoreCursorPositon()
     return 1
   endif
 endfunction
+
+" vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+" map <Leader>nt :e! ~/Dropbox/docs/trailmix/todo.md<cr>
+" map <Leader>nn :sp ~/Dropbox/notes/programming_notes.txt<cr>
+" map <Leader>pn :sp ~/Dropbox/work/thoughtbot/notes/project-notes.txt<cr>
+
+" map <Leader>rf :CommandTFlush<CR>:CommandT<CR>
+" map <Leader>ra :%s/
+" map <Leader>l oconsole.log 'Debugging'<ESC>:w<CR>
+" map <Leader>i mmgg=G`m<CR>
+" map <Leader>h :CommandT<CR>
+" map <Leader>fix :cnoremap % %<CR>
+" map <Leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
+" map <Leader>ec :e ~/code/
+" map <Leader>dr :e ~/Dropbox<cr>
+" map <Leader>dj :e ~/Dropbox/notes/debugging_journal.txt<cr>
+" map <Leader>cn :e ~/Dropbox/notes/coding-notes.txt<cr>
+" map <Leader>co ggVG"*y
+" map <Leader>cu :Tabularize /\|<CR>
+" nmap <Leader>bi :source ~/.vimrc<cr>:PluginInstall<cr>
 
