@@ -1,5 +1,5 @@
 " .vimrc by Roman Zolotarev
-" http://tools.romanzolotarev.com/vim
+" https://github.com/romanzolotarev/dotfiles/tree/master/vim
 
 " Initialize NeoBundle and plugins
 set nocompatible
@@ -11,6 +11,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc.vim'
 
 " Experimental
+NeoBundle 'sotte/presenting.vim'
 " NeoBundle '~/Repositories/romanzolotarev/vim-journal'
 NeoBundle 'romanzolotarev/vim-journal'
 " Stable
@@ -18,7 +19,6 @@ NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'digitaltoad/vim-jade'
@@ -33,8 +33,9 @@ NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'vim-scripts/SyntaxRange'
+NeoBundle 'wavded/vim-stylus'
 " Some day
+" NeoBundle 'Shougo/vimfiler.vim'
 " NeoBundle 'lokaltog/vim-distinguished'
 " NeoBundle 'lokaltog/vim-easymotion'
 " NeoBundle 'lukaszkorecki/coffeetags'
@@ -49,7 +50,6 @@ NeoBundle 'vim-scripts/SyntaxRange'
 " NeoBundle 'tpope/vim-cucumber'
 " NeoBundle 'tpope/vim-git'
 " NeoBundle 'tpope/vim-repeat'
-NeoBundle 'wavded/vim-stylus'
 " NeoBundle 'xolox/vim-easytags'
 " NeoBundle 'xolox/vim-misc'
 " NeoBundle 'xolox/vim-session'
@@ -62,7 +62,7 @@ call neobundle#end()
 filetype plugin indent on
 NeoBundleCheck
 
-set shortmess=I
+set shortmess=AITstW
 let mapleader=','
 set encoding=utf-8
 set ttyfast
@@ -83,10 +83,6 @@ vnoremap <ESC> o<ESC>
 " Switch tabs and windows
 nnoremap <Leader>m :tabn<CR>
 nnoremap <Leader>n :tabp<CR>
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-" noremap <C-l> <C-w>l
 nnoremap <Leader>1 1gt
 nnoremap <Leader>2 2gt
 nnoremap <Leader>3 3gt
@@ -286,15 +282,6 @@ nmap <Leader>r :GitGutterRevertHunk<CR>
 " let g:CoffeeAutoTagFile='.git/tags'
 " let g:CoffeeAutoTagIncludeVars=1
 " let g:CoffeeAutoTagTagRelative=0
-
-" VimFiler
-" let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_tree_leaf_icon=''
-let g:vimfiler_force_overwrite_statusline=0
-noremap <silent> <Leader>f :VimFiler -buffer-name=filer -auto-expand -split -simple -winwidth=35 -toggle -no-quit<CR>
-noremap <silent> <Leader>a :VimFilerBufferDir -buffer-name=filer -auto-expand -split -simple -winwidth=35 -toggle -find<CR>
-
-autocmd BufEnter * if (winnr('$') == 1 && &filetype ==# 'vimfiler') | q | endif
 
 " Unite
 let g:unite_source_history_yank_enable=1
