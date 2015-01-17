@@ -106,9 +106,10 @@ nnoremap <Leader>` ysiW`
 nnoremap <Leader>a <Esc>ggVG
 nnoremap <Leader>b :Unite buffer<CR>
 nnoremap <Leader>c :Commentary<CR>
+nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gp :Gpush<CR>
 nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
+nnoremap <Leader>gw :!git add . && git commit -m 'WIP' && git push<CR>
 nnoremap <Leader>ow "_diwhp
 nnoremap <Leader>p :Unite -start-insert file_rec/async<CR>
 nnoremap <Leader>p :call PasteAsCoffee()
@@ -125,11 +126,9 @@ nnoremap [h :GitGutterPrevHunk<CR>
 nnoremap ]h :GitGutterNextHunk<CR>
 nnoremap j gj
 nnoremap k gk
-vnoremap <C-\> :Commentary<CR>gv
 vnoremap <C-k> <Plug>(neosnippet_expand_target)
 vnoremap <Leader># c#{<C-r>"}<Esc>
 vnoremap <Leader>' c'<C-r>"'<Esc>
-vnoremap <Leader>gb :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 vnoremap <Leader>w :w<CR>
 
 function! PasteAsCoffee()
