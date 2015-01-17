@@ -31,6 +31,7 @@ NeoBundle 'elzr/vim-json'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'lilydjwg/colorizer'
 NeoBundle 'wavded/vim-stylus'
 
 call neobundle#end()
