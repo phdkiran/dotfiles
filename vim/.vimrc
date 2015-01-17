@@ -92,9 +92,9 @@ command! Wq wq
 
 imap <silent> <C-k> <Plug>(neosnippet_expand_or_jump)
 imap <silent> <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <silent> jj <Esc>
-inoremap <silent> jk <Esc>
-inoremap <silent> kk <Esc>
+imap <silent> jj <Esc>
+imap <silent> jk <Esc>
+imap <silent> kk <Esc>
 map <silent> <Down> <Nop>
 map <silent> <Left> <Nop>
 map <silent> <Right> <Nop>
@@ -123,14 +123,14 @@ nmap <silent> <Leader>u :Gpush<CR>
 nmap <silent> <Leader>v :tabnew ~/.vimrc<CR>
 nmap <silent> <Leader>w :w<CR>
 nmap <silent> <Leader>y :Unite history/yank<CR>
+nmap <silent> K i<CR><Esc>
 nmap <silent> Q <Nop>
+nmap <silent> Y y$
 nmap <silent> [h :GitGutterPrevHunk<CR>
 nmap <silent> ]h :GitGutterNextHunk<CR>
 nmap <silent> cog :GitGutterLineHighlightsToggle<CR>
-nnoremap <silent> K i<CR><Esc>
-nnoremap <silent> Y y$
-nnoremap <silent> j gj
-nnoremap <silent> k gk
+nmap <silent> j gj
+nmap <silent> k gk
 smap <silent> <C-k> <Plug>(neosnippet_expand_or_jump)
 vmap <silent> <Leader>c :Commentary<CR>
 xmap <silent> <C-k> <Plug>(neosnippet_expand_target)
