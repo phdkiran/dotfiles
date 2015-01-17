@@ -158,13 +158,13 @@ function! UniteSettings()
   imap <buffer> <ESC> <Plug>(unite_exit)
 endfunction
 
-autocmd! BufWrite .vimrc source %
+autocmd! BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 autocmd! BufWinEnter * call RestoreCursorPositon()
 autocmd! BufWrite *.coffee,*.md,.vimrc,*.jade,*.journal :call Trim()
-autocmd! BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
-autocmd! FileType html,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd! FileType coffee,jade setlocal foldmethod=indent nofoldenable
+autocmd! BufWrite .vimrc source %
 autocmd! FileType coffee setlocal omnifunc=coffeecomplete#Complete
+autocmd! FileType coffee,jade setlocal foldmethod=indent nofoldenable
 autocmd! FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
+autocmd! FileType html,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd! FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd! FileType unite call UniteSettings()
