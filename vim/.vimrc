@@ -89,37 +89,54 @@ set wildmenu wildmode=list:longest,full
 let mapleader=','
 
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
-inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+imap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap jj <Esc>
 inoremap jk <Esc>
 inoremap kk <Esc>
-nnoremap <Leader>" ysiW"
-nnoremap <Leader>' ysiW'
-nnoremap <Leader>- vip:sort<CR>
-nnoremap <Leader>.g :tabnew ~/.gvimrc<CR>
-nnoremap <Leader>.v :tabnew ~/.vimrc<CR>
-nnoremap <Leader>/ :Unite grep:.<CR>
-nnoremap <Leader>= gqip
-nnoremap <Leader>` ysiW`
-nnoremap <Leader>b :Unite buffer<CR>
-nnoremap <Leader>c :Commentary<CR>
-nnoremap <Leader>f :Unite -start-insert file_rec/async<CR>
-nnoremap <Leader>g :Gstatus<CR>
-nnoremap <Leader>ow "_diwhp
-nnoremap <Leader>p :call PasteAsCoffee()
-nnoremap <Leader>r :GitGutterRevertHunk<CR>
-nnoremap <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
-nnoremap <Leader>u :Gpush<CR>
-nnoremap <Leader>w :!git add . && git commit -m 'WIP' && git push<CR>
-nnoremap <Leader>y :Unite history/yank<CR>
+map <Down> <Nop>
+map <Left> <Nop>
+map <Right> <Nop>
+map <Up> <Nop>
+nmap <Leader>" ysiW"
+nmap <Leader>' ysiW'
+nmap <Leader>- mmvip:sort<CR>`m
+nmap <Leader>.g :tabnew ~/.gvimrc<CR>
+nmap <Leader>.v :tabnew ~/.vimrc<CR>
+nmap <Leader>/ :Unite grep:.<CR>
+nmap <Leader>; :Commentary<CR>
+nmap <Leader>= gqip
+nmap <Leader>` ysiW`
+nmap <Leader>a <Nop>
+nmap <Leader>b :Unite buffer<CR>
+nmap <Leader>d "_diwhp
+nmap <Leader>f :Unite -start-insert file_rec/async<CR>
+nmap <Leader>g :Gstatus<CR>
+nmap <Leader>h <Nop>
+nmap <Leader>j <Nop>
+nmap <Leader>k <Nop>
+nmap <Leader>l :e <C-r>=expand('%:p:h')<CR><CR>
+nmap <Leader>p :call PasteAsCoffee()
+nmap <Leader>r :GitGutterRevertHunk<CR>
+nmap <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
+nmap <Leader>u :Gpush<CR>
+nmap <Leader>w :!git add . && git commit -m 'WIP' && git push<CR>
+nmap <Leader>y :Unite history/yank<CR>
+nmap Q <Nop>
+nmap [h :GitGutterPrevHunk<CR>
+nmap ]h :GitGutterNextHunk<CR>
+nmap cog :GitGutterLineHighlightsToggle<CR>
 nnoremap K i<CR><Esc>
 nnoremap Y y$
-nnoremap [h :GitGutterPrevHunk<CR>
-nnoremap ]h :GitGutterNextHunk<CR>
 nnoremap j gj
 nnoremap k gk
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
+vmap <Leader>c :Commentary<CR>
 xmap <C-k> <Plug>(neosnippet_expand_target)
+
+command! WQ w
+command! Wq wq
+command! W w
+command! Q q
 
 function! PasteAsCoffee()
   read !pbpaste | js2coffee
@@ -139,6 +156,11 @@ function! RestoreCursorPositon()
   endif
 endfunction
 
+function! UniteSettings()
+  nmap <buffer> <ESC> <Plug>(unite_exit)
+  imap <buffer> <ESC> <Plug>(unite_exit)
+endfunction
+
 augroup Auto
   autocmd!
   autocmd BufWinEnter * call RestoreCursorPositon()
@@ -150,4 +172,5 @@ augroup Auto
   autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
   autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType unite call UniteSettings()
 augroup END
