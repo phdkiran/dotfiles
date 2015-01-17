@@ -88,13 +88,11 @@ set wildmenu wildmode=list:longest,full
 
 let mapleader=','
 
-inoremap <C-k> <Plug>(neosnippet_expand_or_jump)
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap jj <Esc>
 inoremap jk <Esc>
-inoremap kj <Esc>
 inoremap kk <Esc>
-nnoremap <Down> <C-w>j
 nnoremap <Leader>" ysiW"
 nnoremap <Leader>' ysiW'
 nnoremap <Leader>- vip:sort<CR>
@@ -103,33 +101,25 @@ nnoremap <Leader>.v :tabnew ~/.vimrc<CR>
 nnoremap <Leader>/ :Unite grep:.<CR>
 nnoremap <Leader>= gqip
 nnoremap <Leader>` ysiW`
-nnoremap <Leader>a <Esc>ggVG
 nnoremap <Leader>b :Unite buffer<CR>
 nnoremap <Leader>c :Commentary<CR>
-nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gp :Gpush<CR>
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gw :!git add . && git commit -m 'WIP' && git push<CR>
+nnoremap <Leader>f :Unite -start-insert file_rec/async<CR>
+nnoremap <Leader>g :Gstatus<CR>
 nnoremap <Leader>ow "_diwhp
-nnoremap <Leader>p :Unite -start-insert file_rec/async<CR>
 nnoremap <Leader>p :call PasteAsCoffee()
-nnoremap <Leader>q :q<CR>
 nnoremap <Leader>r :GitGutterRevertHunk<CR>
 nnoremap <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
+nnoremap <Leader>u :Gpush<CR>
+nnoremap <Leader>w :!git add . && git commit -m 'WIP' && git push<CR>
 nnoremap <Leader>y :Unite history/yank<CR>
-nnoremap <Left> <silent>:tabp<CR>
-nnoremap <Right> <silent>:tabn<CR>
-nnoremap <Up> <C-w>k
 nnoremap K i<CR><Esc>
 nnoremap Y y$
 nnoremap [h :GitGutterPrevHunk<CR>
 nnoremap ]h :GitGutterNextHunk<CR>
 nnoremap j gj
 nnoremap k gk
-vnoremap <C-k> <Plug>(neosnippet_expand_target)
-vnoremap <Leader># c#{<C-r>"}<Esc>
-vnoremap <Leader>' c'<C-r>"'<Esc>
-vnoremap <Leader>w :w<CR>
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 
 function! PasteAsCoffee()
   read !pbpaste | js2coffee
