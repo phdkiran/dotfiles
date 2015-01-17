@@ -45,6 +45,9 @@ match ExtraWhitespace /\s\+$/
 silent !mkdir -p ~/.vim/cache > /dev/null 2>&1
 silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
 
+call unite#custom_source('file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css'], '\|'))
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
 let g:gitgutter_enabled=1
 let g:gitgutter_map_keys=0
 let g:grep_cmd_opts='--line-numbers --noheading'
@@ -58,11 +61,7 @@ let g:unite_source_grep_default_opts='-i --line-numbers --nocolor --nogroup --hi
 let g:unite_source_grep_recursive_opt=''
 let g:unite_source_history_yank_enable=1
 let g:vim_json_syntax_conceal=0
-
-call unite#custom_source('file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css'], '\|'))
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-
+let mapleader=','
 set autoindent
 set autoread nobackup noswapfile nowritebackup
 set backspace=indent,eol,start
@@ -86,7 +85,10 @@ set undodir=~/.vim/undo/ undofile undolevels=1000 undoreload=3000
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
 set wildmenu wildmode=list:longest,full
 
-let mapleader=','
+command! Q q
+command! W w
+command! WQ w
+command! Wq wq
 
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 imap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -100,26 +102,26 @@ map <Up> <Nop>
 nmap <Leader>" ysiW"
 nmap <Leader>' ysiW'
 nmap <Leader>- mmvip:sort<CR>`m
-nmap <Leader>.g :tabnew ~/.gvimrc<CR>
-nmap <Leader>.v :tabnew ~/.vimrc<CR>
 nmap <Leader>/ :Unite grep:.<CR>
 nmap <Leader>; :Commentary<CR>
 nmap <Leader>= gqip
 nmap <Leader>` ysiW`
 nmap <Leader>a <Nop>
 nmap <Leader>b :Unite buffer<CR>
-nmap <Leader>d "_diwhp
+nmap <Leader>d <Nop>
 nmap <Leader>f :Unite -start-insert file_rec/async<CR>
 nmap <Leader>g :Gstatus<CR>
 nmap <Leader>h <Nop>
 nmap <Leader>j <Nop>
-nmap <Leader>k <Nop>
-nmap <Leader>l :e <C-r>=expand('%:p:h')<CR><CR>
+nmap <Leader>k :!git add . && git commit -m 'WIP' && git push<CR>
+nmap <Leader>l :!git log<CR>
+nmap <Leader>m :tabnew ~/.gvimrc<CR>
 nmap <Leader>p :call PasteAsCoffee()
 nmap <Leader>r :GitGutterRevertHunk<CR>
 nmap <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
 nmap <Leader>u :Gpush<CR>
-nmap <Leader>w :!git add . && git commit -m 'WIP' && git push<CR>
+nmap <Leader>v :tabnew ~/.vimrc<CR>
+nmap <Leader>w :w<CR>
 nmap <Leader>y :Unite history/yank<CR>
 nmap Q <Nop>
 nmap [h :GitGutterPrevHunk<CR>
@@ -132,11 +134,6 @@ nnoremap k gk
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 vmap <Leader>c :Commentary<CR>
 xmap <C-k> <Plug>(neosnippet_expand_target)
-
-command! WQ w
-command! Wq wq
-command! W w
-command! Q q
 
 function! PasteAsCoffee()
   read !pbpaste | js2coffee
@@ -161,16 +158,13 @@ function! UniteSettings()
   imap <buffer> <ESC> <Plug>(unite_exit)
 endfunction
 
-augroup Auto
-  autocmd!
-  autocmd BufWinEnter * call RestoreCursorPositon()
-  autocmd BufWrite *.coffee,*.md,.vimrc,*.jade,*.journal :call Trim()
-  autocmd BufWrite .vimrc source %
-  autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
-  autocmd FileType html,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType coffee,jade setlocal foldmethod=indent nofoldenable
-  autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
-  autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType unite call UniteSettings()
-augroup END
+autocmd! BufWrite .vimrc source %
+autocmd! BufWinEnter * call RestoreCursorPositon()
+autocmd! BufWrite *.coffee,*.md,.vimrc,*.jade,*.journal :call Trim()
+autocmd! BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+autocmd! FileType html,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd! FileType coffee,jade setlocal foldmethod=indent nofoldenable
+autocmd! FileType coffee setlocal omnifunc=coffeecomplete#Complete
+autocmd! FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
+autocmd! FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd! FileType unite call UniteSettings()
