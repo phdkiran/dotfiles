@@ -90,50 +90,50 @@ command! W w
 command! WQ w
 command! Wq wq
 
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-imap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap jj <Esc>
-inoremap jk <Esc>
-inoremap kk <Esc>
-map <Down> <Nop>
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-nmap <Leader>" ysiW"
-nmap <Leader>' ysiW'
-nmap <Leader>- mmvip:sort<CR>`m
-nmap <Leader>/ :Unite grep:.<CR>
-nmap <Leader>; :Commentary<CR>
-nmap <Leader>= gqip
-nmap <Leader>` ysiW`
-nmap <Leader>a <Nop>
-nmap <Leader>b :Unite buffer<CR>
-nmap <Leader>d <Nop>
-nmap <Leader>f :Unite -start-insert file_rec/async<CR>
-nmap <Leader>g :Gstatus<CR>
-nmap <Leader>h <Nop>
-nmap <Leader>j <Nop>
-nmap <Leader>k :!git add . && git commit -m 'WIP' && git push<CR>
-nmap <Leader>l :!git log<CR>
-nmap <Leader>m :tabnew ~/.gvimrc<CR>
-nmap <Leader>p :call PasteAsCoffee()
-nmap <Leader>r :GitGutterRevertHunk<CR>
-nmap <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
-nmap <Leader>u :Gpush<CR>
-nmap <Leader>v :tabnew ~/.vimrc<CR>
-nmap <Leader>w :w<CR>
-nmap <Leader>y :Unite history/yank<CR>
-nmap Q <Nop>
-nmap [h :GitGutterPrevHunk<CR>
-nmap ]h :GitGutterNextHunk<CR>
-nmap cog :GitGutterLineHighlightsToggle<CR>
-nnoremap K i<CR><Esc>
-nnoremap Y y$
-nnoremap j gj
-nnoremap k gk
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-vmap <Leader>c :Commentary<CR>
-xmap <C-k> <Plug>(neosnippet_expand_target)
+imap <silent> <C-k> <Plug>(neosnippet_expand_or_jump)
+imap <silent> <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent> jj <Esc>
+inoremap <silent> jk <Esc>
+inoremap <silent> kk <Esc>
+map <silent> <Down> <Nop>
+map <silent> <Left> <Nop>
+map <silent> <Right> <Nop>
+map <silent> <Up> <Nop>
+nmap <silent> <Leader>" ysiW"
+nmap <silent> <Leader>' ysiW'
+nmap <silent> <Leader>- mmvip:sort<CR>`m
+nmap <silent> <Leader>/ :Unite grep:.<CR>
+nmap <silent> <Leader>; :Commentary<CR>
+nmap <silent> <Leader>= gqip
+nmap <silent> <Leader>` ysiW`
+nmap <silent> <Leader>a <Nop>
+nmap <silent> <Leader>b :Unite buffer<CR>
+nmap <silent> <Leader>d <Nop>
+nmap <silent> <Leader>f :Unite -start-insert file_rec/async<CR>
+nmap <silent> <Leader>g :Gstatus<CR>
+nmap <silent> <Leader>h :tabnext<CR>
+nmap <silent> <Leader>j :tabprevious<CR>
+nmap <silent> <Leader>k !git add . && git commit -m 'WIP' && git push<CR>
+nmap <silent> <Leader>l !git log<CR>
+nmap <silent> <Leader>m :tabnew ~/.gvimrc<CR>
+nmap <silent> <Leader>p :call PasteAsCoffee()
+nmap <silent> <Leader>r :GitGutterRevertHunk<CR>
+nmap <silent> <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
+nmap <silent> <Leader>u :Gpush<CR>
+nmap <silent> <Leader>v :tabnew ~/.vimrc<CR>
+nmap <silent> <Leader>w :w<CR>
+nmap <silent> <Leader>y :Unite history/yank<CR>
+nmap <silent> Q <Nop>
+nmap <silent> [h :GitGutterPrevHunk<CR>
+nmap <silent> ]h :GitGutterNextHunk<CR>
+nmap <silent> cog :GitGutterLineHighlightsToggle<CR>
+nnoremap <silent> K i<CR><Esc>
+nnoremap <silent> Y y$
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+smap <silent> <C-k> <Plug>(neosnippet_expand_or_jump)
+vmap <silent> <Leader>c :Commentary<CR>
+xmap <silent> <C-k> <Plug>(neosnippet_expand_target)
 
 function! PasteAsCoffee()
   read !pbpaste | js2coffee
@@ -158,13 +158,13 @@ function! UniteSettings()
   imap <buffer> <ESC> <Plug>(unite_exit)
 endfunction
 
-autocmd! BufWrite .vimrc source %
+autocmd! BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 autocmd! BufWinEnter * call RestoreCursorPositon()
 autocmd! BufWrite *.coffee,*.md,.vimrc,*.jade,*.journal :call Trim()
-autocmd! BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
-autocmd! FileType html,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd! FileType coffee,jade setlocal foldmethod=indent nofoldenable
+autocmd! BufWrite .vimrc source %
 autocmd! FileType coffee setlocal omnifunc=coffeecomplete#Complete
+autocmd! FileType coffee,jade setlocal foldmethod=indent nofoldenable
 autocmd! FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
+autocmd! FileType html,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd! FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd! FileType unite call UniteSettings()
