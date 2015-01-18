@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+BASE_DIR=${PWD}
+for DIR in `find . -name .git`; do
+  WD=${DIR%/*};
+  echo -e "\n\e[33m${WD##./}\e[0m"
+  cd ${WD}
+  git pull
+  cd ${BASE_DIR}
+done

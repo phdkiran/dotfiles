@@ -106,7 +106,7 @@ nmap <silent> <Leader>` ysiW`
 nmap <silent> <Leader>a <Nop>
 nmap <silent> <Leader>b :Unite buffer<CR>
 nmap <silent> <Leader>c :Gcommit<CR>
-nmap <silent> <Leader>d <Nop>
+nmap <silent> <Leader>d eb4li-<Esc>3li-<Esc>ll
 nmap <silent> <Leader>f :Unite -start-insert file_rec/async<CR>
 nmap <silent> <Leader>g :Gstatus<CR>
 nmap <silent> <Leader>h :tabnext<CR>
@@ -125,14 +125,14 @@ nmap <silent> <Leader>y :Unite history/yank<CR>
 nmap <silent> K i<CR><Esc>
 nmap <silent> Q <Nop>
 nmap <silent> Y y$
-nmap <silent> [pc :call PasteAsCoffee()<CR>
 nmap <silent> [h :GitGutterPrevHunk<CR>
+nmap <silent> [pc :call PasteAsCoffee()<CR>
 nmap <silent> ]h :GitGutterNextHunk<CR>
 nmap <silent> cog :GitGutterLineHighlightsToggle<CR>
 nmap <silent> j gj
 nmap <silent> k gk
 smap <silent> <C-k> <Plug>(neosnippet_expand_or_jump)
-vmap <silent> <Leader>c :Commentary<CR>
+vmap <silent> <Leader>; :Commentary<CR>
 xmap <silent> <C-k> <Plug>(neosnippet_expand_target)
 
 function! PasteAsCoffee()
@@ -154,11 +154,6 @@ function! RestoreCursorPositon()
   endif
 endfunction
 
-function! UniteSettings()
-  nmap <buffer> <ESC> <Plug>(unite_exit)
-  imap <buffer> <ESC> <Plug>(unite_exit)
-endfunction
-
 augroup Auto
   autocmd!
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
@@ -170,5 +165,4 @@ augroup Auto
   autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType html,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType unite call UniteSettings()
 augroup END

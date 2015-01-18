@@ -8,7 +8,9 @@ rm -f ~/.gitignore
 ln -s ${WD}/.gitignore ~/.gitignore && echo 'Link ~/.gitignore'
 rm -f /usr/local/bin/git-statuses
 ln -s ${WD}/git-statuses /usr/local/bin/git-statuses && echo 'Link /usr/local/bin/git-statuses'
-echo 'Configuring git.'
+rm -f /usr/local/bin/git-remote-updates
+ln -s ${WD}/git-pulls /usr/local/bin/git-pulls && echo 'Link /usr/local/bin/git-pulls'
+echo 'Configuring git. Hit enter to skip.'
 echo 'Type-in your full name: '
 read NAME
 echo 'Your email address: '

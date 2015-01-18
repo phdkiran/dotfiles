@@ -39,6 +39,7 @@ alias rr="cd ~/Repositories"
 
 # Git
 alias gss='git-statuses'
+alias gpp='git-pulls'
 alias gpo='g po'
 alias gp='g p'
 alias gs='g s'
