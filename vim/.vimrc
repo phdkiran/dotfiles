@@ -126,7 +126,7 @@ nmap <silent> K i<CR><Esc>
 nmap <silent> Q <Nop>
 nmap <silent> Y y$
 nmap <silent> [h :GitGutterPrevHunk<CR>
-nmap <silent> [pc :call PasteAsCoffee()<CR>
+nmap <silent> ]pc :call PasteAsCoffee()<CR>
 nmap <silent> ]h :GitGutterNextHunk<CR>
 nmap <silent> cog :GitGutterLineHighlightsToggle<CR>
 nmap <silent> j gj

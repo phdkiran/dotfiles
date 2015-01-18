@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 STATUS=''
 for DIR in `find . -name .git`; do
   WD=${DIR%/*};
-  STATUS="$STATUS\n${WD}\n$(git --git-dir=$DIR --work-tree=$WD status -s -b)"
+  STATUS="$STATUS\n\e[33m${WD##./}\e[0m\n$(git --git-dir=$DIR --work-tree=$WD status -s -b)"
 done
 echo -e ${STATUS} | grep -B 1 'behind\|ahead\|^ \|^D\|^U\|^R\|^A\|^C\|\|!\|M\|^?'
