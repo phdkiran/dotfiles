@@ -105,6 +105,7 @@ nmap <silent> <Leader>= gqip
 nmap <silent> <Leader>` ysiW`
 nmap <silent> <Leader>a <Nop>
 nmap <silent> <Leader>b :Unite buffer<CR>
+nmap <silent> <Leader>c :Gcommit<CR>
 nmap <silent> <Leader>d <Nop>
 nmap <silent> <Leader>f :Unite -start-insert file_rec/async<CR>
 nmap <silent> <Leader>g :Gstatus<CR>
@@ -113,16 +114,18 @@ nmap <silent> <Leader>j :tabprevious<CR>
 nmap <silent> <Leader>k !git add . && git commit -m 'WIP' && git push<CR>
 nmap <silent> <Leader>l !git log<CR>
 nmap <silent> <Leader>m :tabnew ~/.gvimrc<CR>
-nmap <silent> <Leader>p :call PasteAsCoffee()
+nmap <silent> <Leader>p :Gpull<CR>
+nmap <silent> <Leader>po :Gpush<CR>
 nmap <silent> <Leader>r :GitGutterRevertHunk<CR>
 nmap <silent> <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
-nmap <silent> <Leader>u :Gpush<CR>
+nmap <silent> <Leader>t :call Trim()<CR>
 nmap <silent> <Leader>v :tabnew ~/.vimrc<CR>
 nmap <silent> <Leader>w :w<CR>
 nmap <silent> <Leader>y :Unite history/yank<CR>
 nmap <silent> K i<CR><Esc>
 nmap <silent> Q <Nop>
 nmap <silent> Y y$
+nmap <silent> [pc :call PasteAsCoffee()<CR>
 nmap <silent> [h :GitGutterPrevHunk<CR>
 nmap <silent> ]h :GitGutterNextHunk<CR>
 nmap <silent> cog :GitGutterLineHighlightsToggle<CR>
