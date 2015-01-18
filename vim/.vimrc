@@ -132,6 +132,8 @@ nmap <silent> cog :GitGutterLineHighlightsToggle<CR>
 nmap <silent> j gj
 nmap <silent> k gk
 smap <silent> <C-k> <Plug>(neosnippet_expand_or_jump)
+vmap <silent> > >gv
+vmap <silent> < <gv
 vmap <silent> <Leader>- mmvip:sort<CR>`m
 vmap <silent> <Leader>; :Commentary<CR>
 xmap <silent> <C-k> <Plug>(neosnippet_expand_target)
