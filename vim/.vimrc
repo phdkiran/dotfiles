@@ -105,7 +105,7 @@ nmap <silent> <Leader>= gqip
 nmap <silent> <Leader>` ysiW`
 nmap <silent> <Leader>a <Nop>
 nmap <silent> <Leader>b :Unite buffer<CR>
-nmap <silent> <Leader>c :Gcommit<CR>
+nmap <silent> <Leader>c :Gcommit<CR>i
 nmap <silent> <Leader>d eb4li-<Esc>3li-<Esc>ll
 nmap <silent> <Leader>f :Unite -start-insert file_rec/async<CR>
 nmap <silent> <Leader>g :Gstatus<CR>
@@ -126,12 +126,13 @@ nmap <silent> K i<CR><Esc>
 nmap <silent> Q <Nop>
 nmap <silent> Y y$
 nmap <silent> [h :GitGutterPrevHunk<CR>
-nmap <silent> ]pc :call PasteAsCoffee()<CR>
 nmap <silent> ]h :GitGutterNextHunk<CR>
+nmap <silent> ]pc :call PasteAsCoffee()<CR>
 nmap <silent> cog :GitGutterLineHighlightsToggle<CR>
 nmap <silent> j gj
 nmap <silent> k gk
 smap <silent> <C-k> <Plug>(neosnippet_expand_or_jump)
+vmap <silent> <Leader>- mmvip:sort<CR>`m
 vmap <silent> <Leader>; :Commentary<CR>
 xmap <silent> <C-k> <Plug>(neosnippet_expand_target)
 
@@ -154,6 +155,10 @@ function! RestoreCursorPositon()
   endif
 endfunction
 
+function! TextDocumentSettings()
+  imap <silent> <Space><Space> .<Space>
+endfunction
+
 augroup Auto
   autocmd!
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
@@ -163,6 +168,7 @@ augroup Auto
   autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
   autocmd FileType coffee,jade setlocal foldmethod=indent nofoldenable
   autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType ghmarkdown,journal call TextDocumentSettings()
+  autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 augroup END
