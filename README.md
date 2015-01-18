@@ -1,16 +1,10 @@
 # Roman’s dotfiles
 
-You better [fork this repo](https://github.com/romanzolotarev/dotfiles/fork).
-:)
-
-## What's Inside
-
-My configurations for tools I use every day as a web developer:
+Configurations for tools I use every day as a web developer:
 OS X, OS X Terminal, Brew, Bash, Vim, Git, Tmux, Cask.
 
-## How to Use It?
-
-Clone it, customize, and run scripts for each tool manually.
+[Fork this repo](https://github.com/romanzolotarev/dotfiles/fork), 
+then clone, customize, and run scripts for each tool manually.
 For example to install `vim` run:
 
 ```
