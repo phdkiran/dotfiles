@@ -111,7 +111,7 @@ nmap <silent> <Leader>f :Unite -start-insert file_rec/async<CR>
 nmap <silent> <Leader>g :Gstatus<CR>
 nmap <silent> <Leader>h :tabnext<CR>
 nmap <silent> <Leader>j :tabprevious<CR>
-nmap <silent> <Leader>k !git add . && git commit -m 'WIP' && git push<CR>
+nmap <silent> <Leader>k <Nop>
 nmap <silent> <Leader>l !git log<CR>
 nmap <silent> <Leader>m :tabnew ~/.gvimrc<CR>
 nmap <silent> <Leader>p :Gpull<CR>
