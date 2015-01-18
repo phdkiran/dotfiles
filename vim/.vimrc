@@ -100,6 +100,7 @@ map <silent> <Down> <Nop>
 map <silent> <Left> <Nop>
 map <silent> <Right> <Nop>
 map <silent> <Up> <Nop>
+nmap <silent> <C-d> :q<CR>
 nmap <silent> <Leader>" ysiW"
 nmap <silent> <Leader>' ysiW'
 nmap <silent> <Leader>- mmvip:sort<CR>`m
