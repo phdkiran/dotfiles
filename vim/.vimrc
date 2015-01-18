@@ -1,5 +1,4 @@
 " .vimrc by Roman Zolotarev
-" https://github.com/romanzolotarev/dotfiles/tree/master/vim
 set nocompatible
 set runtimepath+=~/.vim/bundle/neobundle.vim
 set runtimepath+=~/.vim/bundle/vimproc.vim/autorun
@@ -15,16 +14,7 @@ NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
-
-NeoBundle 'tpope/vim-abolish'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-unimpaired'
-
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'tpope/vim-fugitive'
-
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'elzr/vim-json'
@@ -32,12 +22,18 @@ NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'lilydjwg/colorizer'
+NeoBundle 'tpope/vim-abolish'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'wavded/vim-stylus'
 
 call neobundle#end()
 filetype plugin indent on
-
 syntax on
+
 colorscheme Tomorrow-Night
 highlight ExtraWhitespace ctermbg=7
 highlight markdownItalic ctermfg=4
@@ -51,14 +47,13 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 let g:gitgutter_enabled=1
 let g:gitgutter_map_keys=0
-let g:grep_cmd_opts='--line-numbers --noheading'
 let g:neocomplete#data_directory='~/.vim/cache/neocomplete'
 let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_auto_select=0
 let g:neosnippet#data_directory='~/.vim/cache/neosnippet'
 let g:unite_data_directory='~/.vim/cache/unite'
 let g:unite_source_grep_command='ag'
-let g:unite_source_grep_default_opts='-i --line-numbers --nocolor --nogroup --hidden -S -C4 --ignore ''.git'''
+let g:unite_source_grep_default_opts='--smart-case -i --line-numbers --nocolor --nogroup --hidden -S --ignore ''.git'''
 let g:unite_source_grep_recursive_opt=''
 let g:unite_source_history_yank_enable=1
 let g:vim_json_syntax_conceal=0
@@ -143,6 +138,7 @@ endfunction
 
 function! Trim()
   let savedCursor = getpos('.')
+  retab
   %s/\s\+$//ge
   %s/\($\n\s*\)\+\%$//e
   call setpos('.', savedCursor)
@@ -160,13 +156,16 @@ function! UniteSettings()
   imap <buffer> <ESC> <Plug>(unite_exit)
 endfunction
 
-autocmd! BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
-autocmd! BufWinEnter * call RestoreCursorPositon()
-autocmd! BufWrite *.coffee,*.md,.vimrc,*.jade,*.journal :call Trim()
-autocmd! BufWrite .vimrc source %
-autocmd! FileType coffee setlocal omnifunc=coffeecomplete#Complete
-autocmd! FileType coffee,jade setlocal foldmethod=indent nofoldenable
-autocmd! FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
-autocmd! FileType html,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd! FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd! FileType unite call UniteSettings()
+augroup Auto
+  autocmd!
+  autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+  autocmd BufWinEnter * call RestoreCursorPositon()
+  autocmd BufWrite *.coffee,*.md,.vimrc,*.jade,*.journal call Trim()
+  autocmd BufWrite .vimrc source %
+  autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
+  autocmd FileType coffee,jade setlocal foldmethod=indent nofoldenable
+  autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType unite call UniteSettings()
+augroup END
