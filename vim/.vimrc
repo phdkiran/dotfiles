@@ -114,6 +114,7 @@ nmap <silent> <Leader>j :tabprevious<CR>
 nmap <silent> <Leader>k <Nop>
 nmap <silent> <Leader>l !git log<CR>
 nmap <silent> <Leader>m :tabnew ~/.gvimrc<CR>
+nmap <silent> <Leader>n :tabnew<CR>
 nmap <silent> <Leader>p :Gpull<CR>
 nmap <silent> <Leader>po :Gpush<CR>
 nmap <silent> <Leader>r :GitGutterRevertHunk<CR>
@@ -132,10 +133,11 @@ nmap <silent> cog :GitGutterLineHighlightsToggle<CR>
 nmap <silent> j gj
 nmap <silent> k gk
 smap <silent> <C-k> <Plug>(neosnippet_expand_or_jump)
-vmap <silent> > >gv
 vmap <silent> < <gv
 vmap <silent> <Leader>- mmvip:sort<CR>`m
 vmap <silent> <Leader>; :Commentary<CR>
+vmap <silent> <Leader>n "ny:tabnew<CR>"np:w
+vmap <silent> > >gv
 xmap <silent> <C-k> <Plug>(neosnippet_expand_target)
 
 function! PasteAsCoffee()
@@ -170,7 +172,7 @@ augroup Auto
   autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
   autocmd FileType coffee,jade setlocal foldmethod=indent nofoldenable
   autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType ghmarkdown,journal call TextDocumentSettings()
+  " autocmd FileType ghmarkdown,journal call TextDocumentSettings()
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 augroup END
