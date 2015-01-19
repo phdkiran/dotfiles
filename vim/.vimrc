@@ -129,6 +129,7 @@ nmap <silent> Y y$
 nmap <silent> [h :GitGutterPrevHunk<CR>
 nmap <silent> ]h :GitGutterNextHunk<CR>
 nmap <silent> ]pc :call PasteAsCoffee()<CR>
+nmap <silent> ]pj :call PasteAsJade()<CR>
 nmap <silent> cog :GitGutterLineHighlightsToggle<CR>
 nmap <silent> j gj
 nmap <silent> k gk
@@ -142,6 +143,10 @@ xmap <silent> <C-k> <Plug>(neosnippet_expand_target)
 
 function! PasteAsCoffee()
   read !pbpaste | js2coffee
+endfunction
+
+function! PasteAsJade()
+  read !pbpaste | html2jade
 endfunction
 
 function! Trim()
