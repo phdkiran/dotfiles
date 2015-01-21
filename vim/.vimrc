@@ -75,7 +75,7 @@ set pastetoggle=<F2>
 set relativenumber number
 set scrolloff=3 sidescrolloff=15 sidescroll=1
 set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
-set shortmess=AITstW
+set shortmess=AI
 set ttyfast laststatus=0 ruler showmode noshowcmd
 set undodir=~/.vim/undo/ undofile undolevels=1000 undoreload=3000
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
@@ -106,6 +106,7 @@ nmap <silent> <Leader>a <Nop>
 nmap <silent> <Leader>b :Unite buffer<CR>
 nmap <silent> <Leader>c :Gcommit<CR>i
 nmap <silent> <Leader>d eb4li-<Esc>3li-<Esc>ll
+nmap <silent> <Leader>e :tabnew<CR>:e .<CR>
 nmap <silent> <Leader>f :Unite -start-insert file_rec/async<CR>
 nmap <silent> <Leader>g :Gstatus<CR>
 nmap <silent> <Leader>h :tabnext<CR>
@@ -115,7 +116,7 @@ nmap <silent> <Leader>l !git log<CR>
 nmap <silent> <Leader>m :tabnew ~/.gvimrc<CR>
 nmap <silent> <Leader>n :tabnew<CR>
 nmap <silent> <Leader>p :Gpull<CR>
-nmap <silent> <Leader>po :Gpush<CR>
+nmap <Leader>po :!git push<CR>
 nmap <silent> <Leader>r :GitGutterRevertHunk<CR>
 nmap <silent> <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
 nmap <silent> <Leader>t :call Trim()<CR>
@@ -128,6 +129,7 @@ nmap <silent> Y y$
 nmap <silent> [h :GitGutterPrevHunk<CR>
 nmap <silent> ]h :GitGutterNextHunk<CR>
 nmap <silent> ]pc :call PasteAsCoffee()<CR>
+nmap <silent> ]pj :call PasteAsJade()<CR>
 nmap <silent> cog :GitGutterLineHighlightsToggle<CR>
 nmap <silent> j gj
 nmap <silent> k gk
@@ -135,12 +137,16 @@ smap <silent> <C-k> <Plug>(neosnippet_expand_or_jump)
 vmap <silent> < <gv
 vmap <silent> <Leader>- mmvip:sort<CR>`m
 vmap <silent> <Leader>; :Commentary<CR>
-vmap <silent> <Leader>n "ny:tabnew<CR>"np:w
+vmap <silent> <Leader>n "ny:tabnew<CR>"np
 vmap <silent> > >gv
 xmap <silent> <C-k> <Plug>(neosnippet_expand_target)
 
 function! PasteAsCoffee()
   read !pbpaste | js2coffee
+endfunction
+
+function! PasteAsJade()
+  read !pbpaste | html2jade
 endfunction
 
 function! Trim()

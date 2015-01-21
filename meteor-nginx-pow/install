@@ -57,7 +57,7 @@ launchctl load -w ~/Library/LaunchAgents/cx.pow.powd.plist
 brew install node
 
 # Node.js packages
-npm install -g coffee-script coffeelint js2coffee
+npm install -g coffee-script coffeelint js2coffee html2jade
 
 # Install Meteor
 # curl https://install.meteor.com/ | sh
