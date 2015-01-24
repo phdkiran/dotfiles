@@ -95,6 +95,7 @@ map <silent> <Down> <Nop>
 map <silent> <Left> <Nop>
 map <silent> <Right> <Nop>
 map <silent> <Up> <Nop>
+nmap <Leader>po :!git push<CR>
 nmap <silent> <Leader>" ysiW"
 nmap <silent> <Leader>' ysiW'
 nmap <silent> <Leader>- mmvip:sort<CR>`m
@@ -111,18 +112,19 @@ nmap <silent> <Leader>f :Unite -start-insert file_rec/async<CR>
 nmap <silent> <Leader>g :Gstatus<CR>
 nmap <silent> <Leader>h :tabnext<CR>
 nmap <silent> <Leader>j :tabprevious<CR>
+nmap <silent> <Leader>9 mmF(r f)r `m
 nmap <silent> <Leader>k <Nop>
-nmap <silent> <Leader>l !git log<CR>
+nmap <silent> <Leader>l :!git l<CR>
 nmap <silent> <Leader>m :tabnew ~/.gvimrc<CR>
 nmap <silent> <Leader>n :tabnew<CR>
 nmap <silent> <Leader>p :Gpull<CR>
-nmap <Leader>po :!git push<CR>
 nmap <silent> <Leader>r :GitGutterRevertHunk<CR>
 nmap <silent> <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
 nmap <silent> <Leader>t :call Trim()<CR>
 nmap <silent> <Leader>v :tabnew ~/.vimrc<CR>
 nmap <silent> <Leader>w :w<CR>
 nmap <silent> <Leader>y :Unite history/yank<CR>
+nmap <silent> <Tab>l "lyiWoconsole.log <C-r>l, '<C-r>l'<Esc>mm{j"lyiW`ma, '<C-r>l'<Esc>:w<CR>
 nmap <silent> K i<CR><Esc>
 nmap <silent> Q <Nop>
 nmap <silent> Y y$
@@ -137,7 +139,7 @@ smap <silent> <C-k> <Plug>(neosnippet_expand_or_jump)
 vmap <silent> < <gv
 vmap <silent> <Leader>- mmvip:sort<CR>`m
 vmap <silent> <Leader>; :Commentary<CR>
-vmap <silent> <Leader>n "ny:tabnew<CR>"np
+vmap <silent> <Leader>n "ny:tabnew<CR>"nP
 vmap <silent> > >gv
 xmap <silent> <C-k> <Plug>(neosnippet_expand_target)
 
