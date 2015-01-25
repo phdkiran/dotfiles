@@ -172,6 +172,7 @@ endfunction
 
 augroup Auto
   autocmd!
+  " autocmd FileType ghmarkdown,journal call TextDocumentSettings()
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWinEnter * call RestoreCursorPositon()
   autocmd BufWrite *.coffee,*.md,.vimrc,*.jade,*.journal call Trim()
@@ -179,7 +180,6 @@ augroup Auto
   autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
   autocmd FileType coffee,jade setlocal foldmethod=indent nofoldenable
   autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
-  " autocmd FileType ghmarkdown,journal call TextDocumentSettings()
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 augroup END
