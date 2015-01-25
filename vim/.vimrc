@@ -10,6 +10,9 @@ NeoBundle 'Shougo/vimproc.vim'
 " NeoBundle '~/Repositories/romanzolotarev/vim-journal'
 NeoBundle 'romanzolotarev/vim-journal'
 
+" NeoBundle 't9md/vim-smalls'
+" NeoBundle 'ntpeters/vim-better-whitespace'
+
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -57,7 +60,7 @@ let g:unite_source_grep_default_opts='--smart-case -i --line-numbers --nocolor -
 let g:unite_source_grep_recursive_opt=''
 let g:unite_source_history_yank_enable=1
 let g:vim_json_syntax_conceal=0
-let mapleader=','
+let g:mapleader=','
 set autoindent
 set autoread nobackup noswapfile nowritebackup
 set backspace=indent,eol,start
