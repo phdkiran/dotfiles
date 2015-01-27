@@ -25,6 +25,7 @@ NeoBundle 'lilydjwg/colorizer'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-jdaddy'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
@@ -95,11 +96,12 @@ map <silent> <Down> <Nop>
 map <silent> <Left> <Nop>
 map <silent> <Right> <Nop>
 map <silent> <Up> <Nop>
-nmap <Leader>po :!git push<CR>
+nmap <Leader>po :Gpush<CR>
 nmap <silent> <Leader>" ysiW"
 nmap <silent> <Leader>' ysiW'
 nmap <silent> <Leader>- mmvip:sort<CR>`m
 nmap <silent> <Leader>/ :Unite grep:.<CR>
+nmap <silent> <Leader>9 mmF(r f)r `m
 nmap <silent> <Leader>; :Commentary<CR>
 nmap <silent> <Leader>= gqip
 nmap <silent> <Leader>` ysiW`
@@ -112,7 +114,6 @@ nmap <silent> <Leader>f :Unite -start-insert file_rec/async<CR>
 nmap <silent> <Leader>g :Gstatus<CR>
 nmap <silent> <Leader>h :tabnext<CR>
 nmap <silent> <Leader>j :tabprevious<CR>
-nmap <silent> <Leader>9 mmF(r f)r `m
 nmap <silent> <Leader>k <Nop>
 nmap <silent> <Leader>l :!git l<CR>
 nmap <silent> <Leader>m :tabnew ~/.gvimrc<CR>
