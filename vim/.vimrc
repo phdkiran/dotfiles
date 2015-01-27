@@ -12,7 +12,7 @@ NeoBundle 'romanzolotarev/vim-journal'
 
 " NeoBundle 't9md/vim-smalls'
 " NeoBundle 'ntpeters/vim-better-whitespace'
-" NeoBundle 'jbgutierrez/vim-partial'
+NeoBundle 'jbgutierrez/vim-partial'
 
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
