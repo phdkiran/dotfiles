@@ -10,6 +10,8 @@ NeoBundle 'Shougo/vimproc.vim'
 " NeoBundle '~/Repositories/romanzolotarev/vim-journal'
 NeoBundle 'romanzolotarev/vim-journal'
 
+NeoBundle 'wikitopian/hardmode'
+
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -41,9 +43,9 @@ syntax on
 
 colorscheme Tomorrow-Night
 highlight ExtraWhitespace ctermbg=white guibg=white
-highlight statusline ctermbg=237 guibg=237 ctermfg=white guifg=white cterm=NONE gui=NONE
-highlight statuslinenc ctermbg=235 guibg=235 ctermfg=darkgray guifg=darkgray cterm=NONE gui=NONE
-highlight User1 ctermbg=237 guibg=237 ctermfg=yellow guifg=yellow
+highlight statusline ctermbg=237 guibg=#3a3a3a ctermfg=white guifg=white cterm=NONE gui=NONE
+highlight statuslinenc ctermbg=235 guibg=#262626 ctermfg=darkgray guifg=darkgray cterm=NONE gui=NONE
+highlight User1 ctermbg=237 guibg=#3a3a3a ctermfg=yellow guifg=yellow
 highlight markdownItalic ctermfg=blue guifg=blue
 match ExtraWhitespace /\s\+$/
 
@@ -113,6 +115,7 @@ map <silent> <Up> <Nop>
 nmap <silent> <Leader>" ysiW"
 nmap <silent> <Leader>' ysiW'
 nmap <silent> <Leader>- mmvip:sort<CR>`m
+nmap <silent> <Leader>. <Plug>(smalls)
 nmap <silent> <Leader>/ :Unite -start-insert grep:.<CR>
 nmap <silent> <Leader>9 mmF(r f)r `m
 nmap <silent> <Leader>; :Commentary<CR>
@@ -137,7 +140,6 @@ nmap <silent> <Leader>q :call Quit()<CR>
 nmap <silent> <Leader>r :GitGutterRevertHunk<CR>
 nmap <silent> <Leader>s :call StageOrSave()<CR>
 nmap <silent> <Leader>t :call Trim()<CR>
-nmap <silent> <Leader>u <Plug>(smalls)
 nmap <silent> <Leader>v :edit ~/.vimrc<CR>
 nmap <silent> <Leader>w :w<CR>
 nmap <silent> <Leader>y :Unite history/yank<CR>
@@ -224,6 +226,7 @@ augroup Auto
   autocmd FileType help,gitcommit,netrw setlocal statusline=%1*\ %{toupper(&ft)}
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
   autocmd WinEnter * setlocal cursorline colorcolumn=79 relativenumber
   autocmd WinLeave * setlocal nocursorline colorcolumn=0 norelativenumber
 
