@@ -4,10 +4,10 @@ if [ $? -eq 0 ]; then
   cd "$(dirname "${BASH_SOURCE}")"
   ln -sf "${PWD}/.gvimrc" ~/.gvimrc && echo 'Link ~/.gvimrc'
   echo 'Done.'
-  defaults write org.vim.MacVim MMTextInsetTop '30'
-  defaults write org.vim.MacVim MMTextInsetLeft '30'
-  defaults write org.vim.MacVim MMTextInsetBottom '30'
-  defaults write org.vim.MacVim MMTextInsetRight '30'
+  defaults write org.vim.MacVim MMTextInsetTop '20'
+  defaults write org.vim.MacVim MMTextInsetLeft '20'
+  defaults write org.vim.MacVim MMTextInsetBottom '20'
+  defaults write org.vim.MacVim MMTextInsetRight '20'
 else
   echo 'Can not install macvim. Check brew first.'
 fi
