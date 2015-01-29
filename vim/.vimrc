@@ -23,6 +23,7 @@ NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'lilydjwg/colorizer'
 NeoBundle 't9md/vim-smalls'
+NeoBundle 'tmux-plugins/vim-tmux'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-fugitive'
@@ -39,18 +40,18 @@ filetype plugin indent on
 syntax on
 
 colorscheme Tomorrow-Night
-highlight ExtraWhitespace ctermbg=white
-highlight ExtraWhitespace guibg=white
-highlight StatusLine ctermfg=darkgray ctermbg=black cterm=none
-highlight StatusLine guifg=darkgray guibg=black gui=none
-highlight markdownItalic ctermfg=blue
-highlight markdownItalic guifg=blue
+highlight ExtraWhitespace ctermbg=white guibg=white
+highlight statusline ctermbg=237 guibg=237 ctermfg=white guifg=white cterm=NONE gui=NONE
+highlight statuslinenc ctermbg=235 guibg=235 ctermfg=darkgray guifg=darkgray cterm=NONE gui=NONE
+highlight User1 ctermbg=237 guibg=237 ctermfg=yellow guifg=yellow
+highlight markdownItalic ctermfg=blue guifg=blue
 match ExtraWhitespace /\s\+$/
 
 silent !mkdir -p ~/.vim/cache > /dev/null 2>&1
 silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
 
 call unite#custom_source('file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
+call unite#custom#profile('default', 'context', {'start_insert': 0, 'winheight': 25, 'direction': 'botright', })
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 
@@ -77,7 +78,6 @@ set autoread nobackup noswapfile nowritebackup
 set backspace=indent,eol,start
 set clipboard=unnamed
 set cryptmethod=blowfish
-set cursorline colorcolumn=79
 set encoding=utf-8
 set formatoptions+=l
 set gdefault
@@ -91,7 +91,7 @@ set relativenumber number
 set scrolloff=3 sidescrolloff=15 sidescroll=1
 set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 set shortmess=AI
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y%=%-16(\ %l,%c-%v\ %)%P
+set statusline=%*\ %F\ %1*%H%M%R%W%*%=\ %{&ft}\ %l,%c\ %<%P\ "
 set ttyfast laststatus=2 ruler showmode noshowcmd
 set undodir=~/.vim/undo/ undofile undolevels=1000 undoreload=3000
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
@@ -101,9 +101,8 @@ command! Q q
 command! W w
 command! WQ w
 command! Wq wq
-
-imap <silent> <C-k> <Plug>(neosnippet_expand_or_jump)
-imap <silent> <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+imap <silent> <C-K> <Plug>(neosnippet_expand_or_jump)
+imap <silent> <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 imap <silent> jj <Esc>
 imap <silent> jk <Esc>
 imap <silent> kk <Esc>
@@ -114,8 +113,9 @@ map <silent> <Up> <Nop>
 nmap <silent> <Leader>" ysiW"
 nmap <silent> <Leader>' ysiW'
 nmap <silent> <Leader>- mmvip:sort<CR>`m
-nmap <silent> <Leader>/ :Unite grep:.<CR>
+nmap <silent> <Leader>/ :Unite -start-insert grep:.<CR>
 nmap <silent> <Leader>9 mmF(r f)r `m
+nmap <silent> <Leader>; :Commentary<CR>
 nmap <silent> <Leader>= gqip
 nmap <silent> <Leader>` ysiW`
 nmap <silent> <Leader>a <Nop>
@@ -135,13 +135,13 @@ nmap <silent> <Leader>p :Gpull<CR>
 nmap <silent> <Leader>po :Gpush<CR>
 nmap <silent> <Leader>q :call Quit()<CR>
 nmap <silent> <Leader>r :GitGutterRevertHunk<CR>
+nmap <silent> <Leader>s :call StageOrSave()<CR>
 nmap <silent> <Leader>t :call Trim()<CR>
+nmap <silent> <Leader>u <Plug>(smalls)
 nmap <silent> <Leader>v :edit ~/.vimrc<CR>
-nmap <silent> <Leader>w :call StageOrSave()<CR>
+nmap <silent> <Leader>w :w<CR>
 nmap <silent> <Leader>y :Unite history/yank<CR>
-nmap <silent> <Tab>l "lyiWoconsole.log <C-r>l, '<C-r>l'<Esc>mm{j"lyiW`ma, '<C-r>l'<Esc>:w<CR>
-nmap <silent> <leader>; :Commentary<CR>
-nmap <silent> <leader>s <Plug>(smalls)
+nmap <silent> <Tab>l "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>:w<CR>
 nmap <silent> K i<CR><Esc>
 nmap <silent> Q <Nop>
 nmap <silent> Y y$
@@ -152,15 +152,11 @@ nmap <silent> ]pj :call PasteAsJade()<CR>
 nmap <silent> cog :GitGutterLineHighlightsToggle<CR>
 nmap <silent> j gj
 nmap <silent> k gk
-omap <silent> <leader>s <Plug>(smalls)
-smap <silent> <C-k> <Plug>(neosnippet_expand_or_jump)
 vmap <silent> < <gv
 vmap <silent> <Leader>- mmvip:sort<CR>`m
 vmap <silent> <Leader>; :Commentary<CR>
 vmap <silent> <Leader>n "nd:new<CR>"nP
 vmap <silent> > >gv
-xmap <silent> <C-k> <Plug>(neosnippet_expand_target)
-xmap <silent> <leader>s <Plug>(smalls)
 
 function! Quit()
   let numberOfListedBuffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
@@ -169,7 +165,7 @@ function! Quit()
     bdelete #
   else
     if &modified
-      echo "This buffer has unsaved changes. I don't want to quit."
+      echohl WarningMsg | echo "This buffer has unsaved changes. I don't want to quit." | echohl None
     else
       execute ':q'
     endif
@@ -178,11 +174,15 @@ endfunction
 
 if !exists('*StageOrSave')
   function! StageOrSave()
-    if exists(':Gstatus')
-      GitGutterStageHunk
-      GitGutterNextHunk
+    if &ft == 'gitcommit'
+      echohl WarningMsg | echo "Nothing to save." | echohl None
     else
-      w
+      if exists(':Gstatus')
+        GitGutterStageHunk
+        GitGutterNextHunk
+      else
+        w
+      endif
     endif
   endfunction
 endif
@@ -212,14 +212,19 @@ endfunction
 
 augroup Auto
   autocmd!
+
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWinEnter * call RestoreCursorPositon()
   autocmd BufWrite *.coffee,*.md,.vimrc,*.jade,*.journal call Trim()
-  autocmd BufWrite .vimrc source %
-  autocmd BufWrite .gvimrc source %
+  autocmd BufWritePost .gvimrc source %
+  autocmd BufWritePost .vimrc source %
   autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
   autocmd FileType coffee,jade setlocal foldmethod=indent nofoldenable
   autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType help,gitcommit,netrw setlocal statusline=%1*\ %{toupper(&ft)}
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd WinEnter * setlocal cursorline colorcolumn=79 relativenumber
+  autocmd WinLeave * setlocal nocursorline colorcolumn=0 norelativenumber
+
 augroup END
