@@ -1,14 +1,4 @@
 #!/usr/bin/env bash
 GIT_PS1_SHOWDIRTYSTATE=true
-RESET='\[\e[0m\]'
-BLACK='\[\e[0;30m\]'
-YELLOW='\[\e[0;33m\]'
-BLUE='\[\e[0;34m\]'
 CYAN='\[\e[0;36m\]'
-WHITE='\[\e[0;37m\]'
-if [[ "$USER" -ne 'romanzolotarev' ]]; then
-  U='\u@'
-else
-  U=''
-fi
-export PS1="${WHITE}${U}\h ${YELLOW}\W${CYAN}\$(__git_ps1)${RESET} "
+export PS1="\w${CYAN}\$(__git_ps1)${RESET} "

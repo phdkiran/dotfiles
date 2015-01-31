@@ -21,8 +21,6 @@ alias r='./run'
 alias d='./deploy'
 alias t='./test'
 alias tm='./tmux'
-alias cm='compare-with-master-on-github'
-alias press='cd ~/Movies/ && find *.mp4 -exec bash -c "screenninja-compress {}" \; && cd -'
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
@@ -34,10 +32,13 @@ alias -- -="cd -"
 
 # Jumps
 alias db="cd ~/Dropbox"
+alias n="cd ~/Dropbox/Notes"
 alias dl="cd ~/Downloads"
 alias rr="cd ~/Repositories"
+alias rrr="cd ~/Repositories/romanzolotarev"
 
 # Git
+alias cm='compare-with-master-on-github'
 alias gss='git-statuses'
 alias gpp='git-pulls'
 alias gpo='g po'
