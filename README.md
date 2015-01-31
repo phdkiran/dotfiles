@@ -5,14 +5,10 @@ OS X, OS X Terminal, Brew, Bash, Vim, Git, Tmux, Cask.
 
 [Fork this repo](https://github.com/romanzolotarev/dotfiles/fork),
 then clone, customize, and run scripts for each tool manually.
-For example to install `vim` run:
-
-```
-vim/install
-```
 
 ## Thanks To…
 
+- [Sam Stephenson](http://sstephenson.us/posts/on-configuration)
 - [Yan Pritzker](http://skwp.github.io/dotfiles/)
 - [Mathias Bynens](https://github.com/mathiasbynens/dotfiles)
 - [Edward Shaw](https://github.com/ntkme)
@@ -21,4 +17,4 @@ vim/install
 - [dotfiles.github.com](http://dotfiles.github.io/)
 
 [MIT](LICENSE.md).
-Copyright 2014-2015 [Roman Zolotarev](http://romanzolotarev.com).
+Copyright [Roman Zolotarev](https://www.romanzolotarev.com/).

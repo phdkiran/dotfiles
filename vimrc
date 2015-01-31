@@ -4,18 +4,12 @@ set runtimepath+=~/.vim/bundle/neobundle.vim
 set runtimepath+=~/.vim/bundle/vimproc.vim/autorun
 set runtimepath+=~/.vim/bundle/vimproc.vim/plugin
 call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc.vim'
+NeoBundleFetch 'shougo/neobundle.vim'
+NeoBundle 'shougo/vimproc.vim', {'build' : {'linux' : 'make', 'mac' : 'make -f make_mac.mak' }}
 
 " NeoBundle '~/Repositories/romanzolotarev/vim-journal'
 NeoBundle 'romanzolotarev/vim-journal'
 
-NeoBundle 'wikitopian/hardmode'
-
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/unite.vim'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'digitaltoad/vim-jade'
@@ -24,8 +18,11 @@ NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'lilydjwg/colorizer'
+NeoBundle 'shougo/neocomplete'
+NeoBundle 'shougo/neosnippet'
+NeoBundle 'shougo/neosnippet-snippets'
+NeoBundle 'shougo/unite.vim'
 NeoBundle 't9md/vim-smalls'
-NeoBundle 'tmux-plugins/vim-tmux'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-fugitive'
@@ -35,13 +32,19 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'wavded/vim-stylus'
+NeoBundle 'wikitopian/hardmode'
 
 NeoBundleCheck
 call neobundle#end()
 filetype plugin indent on
 syntax on
 
-colorscheme Tomorrow-Night
+try
+  colorscheme Tomorrow-Night
+catch
+  colorscheme default
+endtry
+
 highlight ExtraWhitespace ctermbg=white guibg=white
 highlight statusline ctermbg=237 guibg=#3a3a3a ctermfg=white guifg=white cterm=NONE gui=NONE
 highlight statuslinenc ctermbg=235 guibg=#262626 ctermfg=darkgray guifg=darkgray cterm=NONE gui=NONE
@@ -52,10 +55,12 @@ match ExtraWhitespace /\s\+$/
 silent !mkdir -p ~/.vim/cache > /dev/null 2>&1
 silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
 
-call unite#custom_source('file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
-call unite#custom#profile('default', 'context', {'start_insert': 0, 'winheight': 25, 'direction': 'botright', })
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
+if exists(':Unite')
+  call unite#custom_source('file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
+  call unite#custom#profile('default', 'context', {'start_insert': 0, 'winheight': 25})
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  call unite#filters#sorter_default#use(['sorter_rank'])
+endif
 
 let g:gitgutter_enabled=1
 let g:gitgutter_map_keys=0
@@ -103,6 +108,7 @@ command! Q q
 command! W w
 command! WQ w
 command! Wq wq
+
 imap <silent> <C-K> <Plug>(neosnippet_expand_or_jump)
 imap <silent> <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 imap <silent> jj <Esc>
@@ -214,7 +220,6 @@ endfunction
 
 augroup Auto
   autocmd!
-
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWinEnter * call RestoreCursorPositon()
   autocmd BufWrite *.coffee,*.md,.vimrc,*.jade,*.journal call Trim()
@@ -226,8 +231,6 @@ augroup Auto
   autocmd FileType help,gitcommit,netrw setlocal statusline=%1*\ %{toupper(&ft)}
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
   autocmd WinEnter * setlocal cursorline colorcolumn=79 relativenumber
   autocmd WinLeave * setlocal nocursorline colorcolumn=0 norelativenumber
-
 augroup END

@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # Compares current git branch with master on GitHub.
 # Used for making pull requests.
 
@@ -16,15 +15,11 @@ repo=$(echo $repo_path | awk 'BEGIN { FS="/" } ; { print $2 }')
 
 url="https://github.com/$user/$repo/compare/$current_branch"
 if [ "$1" == "-h" ]; then
-echo "USAGE: By default compares the current branch with master.\n If you pass a branch name as an argument it will compare\n the current branch versus the specified branch."
+  echo "USAGE: By default compares the current branch with master.\n If you pass a branch name as an argument it will compare\n the current branch versus the specified branch."
 else
-
-cat - <<COPY_TEXT | pbcopy
-BRANCH: *${current_branch}*
-
-$url
-COPY_TEXT
-
-open $url
-
+  cat - <<COPY_TEXT | pbcopy
+  BRANCH: *${current_branch}*
+  $url
+  COPY_TEXT
+  open $url
 fi

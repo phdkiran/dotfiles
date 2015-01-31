@@ -297,6 +297,12 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 # Enable QuickTime Player autoplay
 defaults write com.apple.QuickTimePlayerX MGPlayMovieOnOpen 1
 
+# Add window paddings for MacVim
+defaults write org.vim.MacVim MMTextInsetTop '20'
+defaults write org.vim.MacVim MMTextInsetLeft '20'
+defaults write org.vim.MacVim MMTextInsetBottom '20'
+defaults write org.vim.MacVim MMTextInsetRight '20'
+
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################

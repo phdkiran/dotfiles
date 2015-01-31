@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+echo -e "You're about to replace \e[33m~/.vim\e[0m"
+echo 'Sure?'
+read
+rm -rf ${HOME}/.vim && mkdir ${HOME}/.vim && echo 'Make ~/.vim'
+mkdir ${HOME}/.vim/bundle && echo 'Make ~/.vim/bundle'
+git clone https://github.com/shougo/neobundle.vim ${HOME}/.vim/bundle/neobundle.vim
+${HOME}/.vim/bundle/neobundle.vim/bin/neoinstall
+vim

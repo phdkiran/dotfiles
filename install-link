@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+cd "$(dirname "${BASH_SOURCE}")"
+
+SCRIPT_PATH='/usr/local/bin'
+
+echo -e "Link scripts to \e[33m${SCRIPT_PATH}...\e[0m"
+for source in \
+  'archive' \
+  'git-pulls' \
+  'git-statuses' \
+  'run-meteor' \
+  'tmux-session' \
+  'tmux-battery'; do
+  target="${SCRIPT_PATH}/${source}"
+  ln -Fis "${PWD}/${source}" ${target} && echo "${target}"
+done
+
+echo -e "Linking dotfiles to \e[33m${HOME}...\e[0m"
+for source in \
+  'aliases' \
+  'archiveignore' \
+  'bash_profile' \
+  'completions' \
+  'gitconfig' \
+  'gitignore' \
+  'gvimrc' \
+  'inputrc' \
+  'path' \
+  'prompt' \
+  'tmux.conf' \
+  'vimrc'; do
+  target="${HOME}/.${source}"
+  ln -Fis "${PWD}/${source}" ${target} && echo "${target}"
+done
+
+echo -e "Sourcing dotfiles from \e[33m${HOME}...\e[0m"
+for source in \
+  'aliases' \
+  'bash_profile' \
+  'completions' \
+  'path' \
+  'prompt'; do
+  target="${HOME}/.${source}"
+  source ${target} && echo "${target}"
+done
+

@@ -1,6 +1,5 @@
 #!/usr/bin/env bash -x
 cd "$(dirname "${BASH_SOURCE}")"
-WD=`pwd`
 
 echo 'Installing nginx, pow, npm, coffee-script, coffeelint, meteor...'
 
@@ -30,10 +29,10 @@ for domain in \
 done
 rm -f ${NGINX}/nginx.conf
 cd $WD
-ln -s ${WD}/nginx.conf ${NGINX}/nginx.conf
+ln -s ${PWD}/nginx.conf ${NGINX}/nginx.conf
 PLIST='/Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
 sudo rm -f ${PLIST}
-sudo cp ${WD}/homebrew.mxcl.nginx.plist ${PLIST}
+sudo cp ${PWD}/homebrew.mxcl.nginx.plist ${PLIST}
 sudo chown root ${PLIST}
 sudo launchctl load -w ${PLIST}
 # Open port 443
@@ -60,13 +59,13 @@ brew install node
 npm install -g coffee-script coffeelint js2coffee html2jade
 
 # Install Meteor
-# curl https://install.meteor.com/ | sh
+curl https://install.meteor.com/ | sh
 
 # Cleanup
 brew cleanup
 
 rm -f /usr/local/bin/run-meteor
-ln -s ${WD}/run-meteor /usr/local/bin/run-meteor && echo 'Link run-meteor'
+ln -s ${PWD}/run-meteor /usr/local/bin/run-meteor && echo 'Link run-meteor'
 
 echo "
 

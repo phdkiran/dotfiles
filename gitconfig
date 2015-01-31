@@ -1,0 +1,20 @@
+[user]
+	name = Roman Zolotarev
+	email = romanzolotarev@gmail.com
+[github]
+	user = romanzolotarev
+[hub]
+	protocol = ssh
+[color]
+  ui = true
+[alias]
+  ca = !"git add -A && git commit -av"
+  l = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short --graph -n 20 --abbrev-commit
+  p = !"git pull; git submodule foreach git pull origin master"
+  po = push origin head
+  r = remote -v
+  s = status -s -b
+[filter "media"]
+	clean = git media clean %f
+	smudge = git media smudge %f
+	required = true

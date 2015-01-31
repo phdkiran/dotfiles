@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+cd "$(dirname "${BASH_SOURCE}")"
+
+if brew --version &> /dev/null; then
+  echo 'Homebrew has been installed. Running brew doctor...'
+  brew update && brew doctor && brew cleanup
+else
+  echo 'Installing Homebrew...'
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+echo 'Install formulas...'
+brew install \
+  bash \
+  bash-completion \
+  brew-cask \
+  ctags \
+  ffmpeg \
+  git \
+  git-cal \
+  hub \
+  imagemagick \
+  macvim --with-lua \
+  mongodb \
+  node \
+  openssl \
+  phantomjs \
+  python \
+  reattach-to-user-namespace \
+  ruby \
+  sqlite \
+  the_silver_searcher \
+  tmux \
+  vim \
+  wget
+brew cleanup
+
+gem update
+gem install bundler github-auth github-pages
