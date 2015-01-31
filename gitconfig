@@ -14,7 +14,5 @@
   po = push origin head
   r = remote -v
   s = status -s -b
-[filter "media"]
-	clean = git media clean %f
-	smudge = git media smudge %f
-	required = true
+[push]
+	default = simple
