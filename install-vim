@@ -5,5 +5,5 @@ read
 rm -rf ${HOME}/.vim && mkdir ${HOME}/.vim && echo 'Make ~/.vim'
 mkdir ${HOME}/.vim/bundle && echo 'Make ~/.vim/bundle'
 git clone https://github.com/shougo/neobundle.vim ${HOME}/.vim/bundle/neobundle.vim
-${HOME}/.vim/bundle/neobundle.vim/bin/neoinstall
+# ${HOME}/.vim/bundle/neobundle.vim/bin/neoinstall
 vim
