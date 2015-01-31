@@ -5,9 +5,11 @@ set runtimepath+=~/.vim/bundle/vimproc.vim/autorun
 set runtimepath+=~/.vim/bundle/vimproc.vim/plugin
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'shougo/neobundle.vim'
-NeoBundle 'shougo/vimproc.vim', {'build' : {'linux' : 'make', 'mac' : 'make -f make_mac.mak' }}
+NeoBundle 'shougo/vimproc.vim', {'build': {'linux': 'make', 'mac': 'make -f make_mac.mak'}}
 
 " NeoBundle '~/Repositories/romanzolotarev/vim-journal'
+
+NeoBundle 'romanzolotarev/vim-snippets'
 NeoBundle 'romanzolotarev/vim-journal'
 
 NeoBundle 'airblade/vim-gitgutter'
@@ -69,6 +71,7 @@ let g:neocomplete#data_directory='~/.vim/cache/neocomplete'
 let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_auto_select=0
 let g:neosnippet#data_directory='~/.vim/cache/neosnippet'
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 let g:smalls_auto_jump=1
 let g:smalls_auto_jump_min_input_length=3
 let g:smalls_auto_jump_timeout=0.5
