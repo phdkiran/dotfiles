@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 GIT_PS1_SHOWDIRTYSTATE=true
 CYAN='\[\e[0;36m\]'
+RESET='\[\e[0m\]'
 export PS1="\w${CYAN}\$(__git_ps1)${RESET} "
