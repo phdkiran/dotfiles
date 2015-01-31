@@ -1,83 +1,8 @@
 #!/usr/bin/env bash -x
 cd "$(dirname "${BASH_SOURCE}")"
 
-echo 'Installing nginx, pow, npm, coffee-script, coffeelint, meteor...'
+echo 'Installing npm, coffee-script, coffeelint, meteor...'
 
-# Ask for the administrator password upfront
-sudo -v
-# Keep-alive: update existing `sudo` time stamp until `install` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
-# Install nginx
-brew install nginx
-NGINX='/usr/local/etc/nginx'
-CERT='/tmp/cert'
-mkdir -p ${NGINX}/sites-enabled
-mkdir -p ${NGINX}/ssl
-mkdir -p ${CERT}
-cd ${CERT}
-for domain in \
-  'dev' \
-  'xip.io'; do
-    openssl genrsa -out ${domain}.key 1024
-    openssl req -new -key ${domain}.key -out ${domain}.csr -subj "/C=US/ST=CA/L=Name/O=Organization/OU=Unit/CN=*.${domain}"
-    rm ${domain}.key.bak
-    cp ${domain}.key ${domain}.key.bak
-    openssl rsa -in ${domain}.key.bak -out ${domain}.key
-    openssl x509 -req -days 365 -in ${domain}.csr -signkey ${domain}.key -out ${domain}.crt
-    mv ${domain}.* ${NGINX}/ssl
-done
-rm -f ${NGINX}/nginx.conf
-cd $WD
-ln -s ${PWD}/nginx.conf ${NGINX}/nginx.conf
-PLIST='/Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
-sudo rm -f ${PLIST}
-sudo cp ${PWD}/homebrew.mxcl.nginx.plist ${PLIST}
-sudo chown root ${PLIST}
-sudo launchctl load -w ${PLIST}
-# Open port 443
-# echo 'pass in proto tcp from any to port 443' | sudo tee /etc/pf.anchors/nginx
-# if [[ -z `sudo grep 'nginx' /etc/pf.conf` ]]; then
-#   echo 'load anchor "nginx" from "/etc/pf.anchors/nginx"' | sudo tee -a /etc/pf.conf
-# fi
-# sudo pfctl -f /etc/pf.conf
-
-# Install pow
-brew install pow
-mkdir -p ~/Library/Application\ Support/Pow/Hosts
-rm -f ~/.pow
-ln -s ~/Library/Application\ Support/Pow/Hosts ~/.pow
-sudo pow --install-system
-pow --install-local
-sudo launchctl load -w /Library/LaunchDaemons/cx.pow.firewall.plist
-launchctl load -w ~/Library/LaunchAgents/cx.pow.powd.plist
-
-# Install Node.js
-brew install node
-
-# Node.js packages
+brew update && brew install node && brew cleanup
 npm install -g coffee-script coffeelint js2coffee html2jade
-
-# Install Meteor
 curl https://install.meteor.com/ | sh
-
-# Cleanup
-brew cleanup
-
-rm -f /usr/local/bin/run-meteor
-ln -s ${PWD}/run-meteor /usr/local/bin/run-meteor && echo 'Link run-meteor'
-
-echo "
-
-Install meteor
-       curl https://install.meteor.com/ | sh
-
-Usage: meteor-run root name port [settings] [ssl]
-       meteor-run ./app leaderboard 3000 ../config/settings.json ssl
-
-       open https://APP-NAME.dev/
-       open https://APP-NAME.LOCAL-IP-ADDRESS.xip.io/
-
-       sudo launchctl start homebrew.mxcl.nginx
-       sudo launchctl stop homebrew.mxcl.nginx
-"
