@@ -132,7 +132,7 @@ nmap <silent> <Leader>= gqip
 nmap <silent> <Leader>` ysiW`
 nmap <silent> <Leader>a <Nop>
 nmap <silent> <Leader>b :Unite buffer<CR>
-nmap <silent> <Leader>c :Gcommit<CR>i
+nmap <silent> <Leader>c :let @c=expand('%')<CR>:Gcommit<CR>iUpdate <Esc>"cp
 nmap <silent> <Leader>d eb4li-<Esc>3li-<Esc>ll
 nmap <silent> <Leader>e :edit .<CR>
 nmap <silent> <Leader>f :Unite -start-insert file_rec/async<CR>
