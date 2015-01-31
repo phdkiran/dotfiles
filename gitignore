@@ -1,18 +1,5 @@
-# Node.js
-node_modules
-
-# Ruby, Jekyll, and SASS
+.DS_Store
 Gemfile.lock
 _site/*
 _styles/cache/*
-
-# Folder view configuration files
-.DS_Store
-
-# Thumbnail cache files
-._*
-Thumbs.db
-
-# Files that might appear on external disks
-.Spotlight-V100
-.Trashes
+node_modules
