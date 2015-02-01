@@ -19,7 +19,6 @@ NeoBundle 'elzr/vim-json'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'lilydjwg/colorizer'
 NeoBundle 'shougo/neocomplete'
 NeoBundle 'shougo/neosnippet'
 NeoBundle 'shougo/neosnippet-snippets'
@@ -48,9 +47,10 @@ catch
 endtry
 
 highlight ExtraWhitespace ctermbg=white guibg=white
-highlight statusline ctermbg=237 guibg=#3a3a3a ctermfg=white guifg=white cterm=NONE gui=NONE
-highlight statuslinenc ctermbg=235 guibg=#262626 ctermfg=darkgray guifg=darkgray cterm=NONE gui=NONE
-highlight User1 ctermbg=237 guibg=#3a3a3a ctermfg=yellow guifg=yellow
+highlight StatusLine ctermbg=240 guibg=#3a3a3a ctermfg=white guifg=white cterm=NONE gui=NONE
+highlight StatusLineNC ctermbg=241 guibg=#4e4e4e ctermfg=black guifg=black cterm=NONE gui=NONE
+highlight User1 ctermbg=240 guibg=#3a3a3a ctermfg=yellow guifg=yellow
+highlight VertSplit ctermfg=darkgray ctermbg=black
 highlight markdownItalic ctermfg=blue guifg=blue
 match ExtraWhitespace /\s\+$/
 
@@ -72,6 +72,9 @@ let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_auto_select=0
 let g:neosnippet#data_directory='~/.vim/cache/neosnippet'
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:netrw_liststyle=3
+let g:netrw_menu=0
+let g:netrw_preview=1
 let g:smalls_auto_jump=1
 let g:smalls_auto_jump_min_input_length=3
 let g:smalls_auto_jump_timeout=0.5
@@ -101,7 +104,6 @@ set relativenumber number
 set scrolloff=3 sidescrolloff=15 sidescroll=1
 set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 set shortmess=AI
-set statusline=%*\ %F\ %1*%H%M%R%W%*%=\ %{&ft}\ %l,%c\ %<%P\ "
 set ttyfast laststatus=2 ruler showmode noshowcmd
 set undodir=~/.vim/undo/ undofile undolevels=1000 undoreload=3000
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
@@ -215,25 +217,53 @@ function! Trim()
 endfunction
 
 function! RestoreCursorPositon()
-  if line("'\"") <= line("$")
-    normal! g`"
+  if !IsHelper()
+    if line("'\"") <= line("$")
+      normal! g`"
+      return 1
+    endif
+  endif
+endfunction
+
+function! IsHelper()
+  if &filetype =~ 'help\|gitcommit\|netrw'
     return 1
+  endif
+endfunction
+
+function! SetStatusLine()
+  setlocal statusline=\ %{toupper(&ft)} nocursorline colorcolumn=0 norelativenumber
+endfunction
+
+function! EnterWindow()
+  if !IsHelper()
+    setlocal statusline=%*\ %F\ %1*%H%M%R%W%*%=\ %{&ft}\ %l,%c\ %<%P\ "
+    setlocal cursorline colorcolumn=79 relativenumber
+    call RestoreCursorPositon()
+  endif
+endfunction
+
+function! LeaveWindow()
+  if !IsHelper()
+    setlocal statusline=%*\ %F\ %1*%H%M%R%W%*"
+    setlocal nocursorline colorcolumn=0 norelativenumber
   endif
 endfunction
 
 augroup Auto
   autocmd!
+
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
-  autocmd BufWinEnter * call RestoreCursorPositon()
+  autocmd BufWinEnter * call EnterWindow()
+  autocmd BufWinLeave * call LeaveWindow()
   autocmd BufWrite *.coffee,*.md,.vimrc,*.jade,*.journal call Trim()
-  autocmd BufWritePost .gvimrc source %
-  autocmd BufWritePost .vimrc source %
+  autocmd BufWritePost *gvimrc source %
+  autocmd BufWritePost *vimrc source %
+  autocmd FileType * call SetStatusLine()
   autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
   autocmd FileType coffee,jade setlocal foldmethod=indent nofoldenable
   autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType help,gitcommit,netrw setlocal statusline=%1*\ %{toupper(&ft)}
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd WinEnter * setlocal cursorline colorcolumn=79 relativenumber
-  autocmd WinLeave * setlocal nocursorline colorcolumn=0 norelativenumber
+
 augroup END
