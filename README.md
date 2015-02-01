@@ -1,7 +1,6 @@
 # Roman’s dotfiles
 
-Configurations for tools I use every day as a web developer:
-OS X, OS X Terminal, Brew, Bash, Vim, Git, Tmux, Cask.
+Dotfiles and scripts for tools I use every day as a programmer.
 
 [Fork this repo](https://github.com/romanzolotarev/dotfiles/fork),
 then clone, customize, and run scripts for each tool manually.
