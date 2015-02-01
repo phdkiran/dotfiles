@@ -34,6 +34,3 @@ brew install \
   vim \
   wget
 brew cleanup
-
-gem update
-gem install bundler github-auth github-pages

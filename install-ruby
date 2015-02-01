@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+gem update
+gem install bundler github-auth github-pages
