@@ -47,7 +47,7 @@ if !empty(glob('~/.vim/bundle/vim-tomorrow-theme/colors/Tomorrow-Night.vim'))
   highlight StatusLine ctermbg=darkgray guibg=#3a3a3a ctermfg=white guifg=white cterm=NONE gui=NONE
   highlight StatusLineNC ctermbg=237 guibg=#4e4e4e ctermfg=darkgray guifg=darkgray cterm=NONE gui=NONE
   highlight User1 ctermbg=darkgray guibg=#3a3a3a ctermfg=yellow guifg=yellow
-  highlight VertSplit ctermfg=darkgray ctermbg=black
+  highlight VertSplit ctermfg=darkgray ctermbg=black guifg=darkgray guibg=#202020
   highlight markdownItalic ctermfg=blue guifg=blue
   match ExtraWhitespace /\s\+$/
 else
@@ -86,6 +86,11 @@ let g:unite_source_grep_default_opts='--smart-case -i --line-numbers --nocolor -
 let g:unite_source_grep_recursive_opt=''
 let g:unite_source_history_yank_enable=1
 let g:vim_json_syntax_conceal=0
+
+set winwidth=83
+set winheight=5
+set winminheight=5
+set winheight=999
 
 set autoindent
 set autoread nobackup noswapfile nowritebackup
