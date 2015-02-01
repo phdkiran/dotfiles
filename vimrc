@@ -1,44 +1,39 @@
-" .vimrc by Roman Zolotarev
 set nocompatible
-set runtimepath+=~/.vim/bundle/neobundle.vim
+filetype off
+set runtimepath+=~/.vim/bundle/vundle.vim
 set runtimepath+=~/.vim/bundle/vimproc.vim/autorun
 set runtimepath+=~/.vim/bundle/vimproc.vim/plugin
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'shougo/neobundle.vim'
-NeoBundle 'shougo/vimproc.vim', {'build': {'linux': 'make', 'mac': 'make -f make_mac.mak'}}
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'romanzolotarev/vim-snippets'
+Plugin 'romanzolotarev/vim-journal'
 
-" NeoBundle '~/Repositories/romanzolotarev/vim-journal'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'elzr/vim-json'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'jtratner/vim-flavored-markdown'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'shougo/neocomplete'
+Plugin 'shougo/neosnippet'
+Plugin 'shougo/neosnippet-snippets'
+Plugin 'shougo/unite.vim'
+Plugin 'shougo/vimproc.vim'
+Plugin 't9md/vim-smalls'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-jdaddy'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-vinegar'
+Plugin 'wavded/vim-stylus'
+Plugin 'wikitopian/hardmode'
 
-NeoBundle 'romanzolotarev/vim-snippets'
-NeoBundle 'romanzolotarev/vim-journal'
-
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'chriskempson/vim-tomorrow-theme'
-NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'elzr/vim-json'
-NeoBundle 'jelera/vim-javascript-syntax'
-NeoBundle 'jtratner/vim-flavored-markdown'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'shougo/neocomplete'
-NeoBundle 'shougo/neosnippet'
-NeoBundle 'shougo/neosnippet-snippets'
-NeoBundle 'shougo/unite.vim'
-NeoBundle 't9md/vim-smalls'
-NeoBundle 'tpope/vim-abolish'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-jdaddy'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'tpope/vim-vinegar'
-NeoBundle 'wavded/vim-stylus'
-NeoBundle 'wikitopian/hardmode'
-
-NeoBundleCheck
-call neobundle#end()
+call vundle#end()
 filetype plugin indent on
-syntax on
 
 try
   colorscheme Tomorrow-Night

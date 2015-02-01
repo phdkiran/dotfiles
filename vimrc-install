@@ -1,0 +1,6 @@
+source ~/.vimrc
+highlight VertSplit guifg=black ctermfg=black
+highlight NonText guifg=black ctermfg=black
+set laststatus=0 nonumber norelativenumber 
+PluginInstall
+qall!
