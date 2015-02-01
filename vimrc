@@ -190,6 +190,7 @@ endfunction
 augroup Auto
   autocmd!
 
+  autocmd BufEnter * silent! lcd %:p:h
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWinEnter * call RestoreCursorPositon()
   autocmd BufWrite *vimrc,*.coffee,*.styl,*.jade,*.md,*.journal call Trim()
