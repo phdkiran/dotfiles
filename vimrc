@@ -42,17 +42,17 @@ syntax on
 
 try
   colorscheme Tomorrow-Night
+  syntax on
+  highlight ExtraWhitespace ctermbg=white guibg=white
+  highlight StatusLine ctermbg=darkgray guibg=#3a3a3a ctermfg=white guifg=white cterm=NONE gui=NONE
+  highlight StatusLineNC ctermbg=237 guibg=#4e4e4e ctermfg=darkgray guifg=darkgray cterm=NONE gui=NONE
+  highlight User1 ctermbg=darkgray guibg=#3a3a3a ctermfg=yellow guifg=yellow
+  highlight VertSplit ctermfg=darkgray ctermbg=black
+  highlight markdownItalic ctermfg=blue guifg=blue
+  match ExtraWhitespace /\s\+$/
 catch
-  colorscheme default
+  set syntax=
 endtry
-
-highlight ExtraWhitespace ctermbg=white guibg=white
-highlight StatusLine ctermbg=darkgray guibg=#3a3a3a ctermfg=white guifg=white cterm=NONE gui=NONE
-highlight StatusLineNC ctermbg=237 guibg=#4e4e4e ctermfg=darkgray guifg=darkgray cterm=NONE gui=NONE
-highlight User1 ctermbg=darkgray guibg=#3a3a3a ctermfg=yellow guifg=yellow
-highlight VertSplit ctermfg=darkgray ctermbg=black
-highlight markdownItalic ctermfg=blue guifg=blue
-match ExtraWhitespace /\s\+$/
 
 silent !mkdir -p ~/.vim/cache > /dev/null 2>&1
 silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
