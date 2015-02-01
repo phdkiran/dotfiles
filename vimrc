@@ -57,12 +57,13 @@ match ExtraWhitespace /\s\+$/
 silent !mkdir -p ~/.vim/cache > /dev/null 2>&1
 silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
 
-if exists(':Unite')
-  call unite#custom_source('file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
-  call unite#custom#profile('default', 'context', {'start_insert': 0, 'winheight': 25})
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+try
+  call unite#custom#source('buffer,grep,file_rec/async', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
+  call unite#custom#source('buffer,grep,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy', 'matcher_project_ignore_files'])
   call unite#filters#sorter_default#use(['sorter_rank'])
-endif
+catch
+  " Plugin 'shougo/unite.vim' is inactive
+endtry
 
 let g:gitgutter_enabled=1
 let g:gitgutter_map_keys=0
