@@ -174,17 +174,16 @@ vmap <silent> <Leader>n "nd:new<CR>"nP
 vmap <silent> > >gv
 
 function! Trim()
-  let savedCursor = getpos('.')
+  let pos = getpos('.')
   retab
   %s/\s\+$//ge
   %s/\($\n\s*\)\+\%$//e
-  call setpos('.', savedCursor)
+  call setpos('.', pos)
 endfunction
 
 function! RestoreCursorPositon()
-  if line("'\"") <= line("$")
+  if line("'\"") <= line('$')
     normal! g`"
-    return 1
   endif
 endfunction
 
