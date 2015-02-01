@@ -5,5 +5,8 @@ read
 rm -rf ${HOME}/.vim && mkdir ${HOME}/.vim && echo 'Make ~/.vim'
 mkdir ${HOME}/.vim/bundle && echo 'Make ~/.vim/bundle'
 git clone https://github.com/shougo/neobundle.vim ${HOME}/.vim/bundle/neobundle.vim
-# ${HOME}/.vim/bundle/neobundle.vim/bin/neoinstall
-vim
+git clone https://github.com/shougo/vimproc.vim ${HOME}/.vim/bundle/vimproc.vim
+cd ${HOME}/.vim/bundle/vimproc.vim
+make
+vim -N -u ${HOME}/.vimrc -U NONE -i NONE -V1 -e -s -c "try | NeoBundleUpdate! $* | finally | qall! | endtry"
+echo ''
