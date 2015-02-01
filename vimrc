@@ -47,9 +47,9 @@ catch
 endtry
 
 highlight ExtraWhitespace ctermbg=white guibg=white
-highlight StatusLine ctermbg=240 guibg=#3a3a3a ctermfg=white guifg=white cterm=NONE gui=NONE
-highlight StatusLineNC ctermbg=241 guibg=#4e4e4e ctermfg=black guifg=black cterm=NONE gui=NONE
-highlight User1 ctermbg=240 guibg=#3a3a3a ctermfg=yellow guifg=yellow
+highlight StatusLine ctermbg=darkgray guibg=#3a3a3a ctermfg=white guifg=white cterm=NONE gui=NONE
+highlight StatusLineNC ctermbg=237 guibg=#4e4e4e ctermfg=darkgray guifg=darkgray cterm=NONE gui=NONE
+highlight User1 ctermbg=darkgray guibg=#3a3a3a ctermfg=yellow guifg=yellow
 highlight VertSplit ctermfg=darkgray ctermbg=black
 highlight markdownItalic ctermfg=blue guifg=blue
 match ExtraWhitespace /\s\+$/
@@ -104,6 +104,7 @@ set relativenumber number
 set scrolloff=3 sidescrolloff=15 sidescroll=1
 set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 set shortmess=AI
+set statusline=%*\ %F\ %1*%H%M%R%W%*%=\ %l,%c\ %<%P\ " cursorline colorcolumn=79 relativenumber
 set ttyfast laststatus=2 ruler showmode noshowcmd
 set undodir=~/.vim/undo/ undofile undolevels=1000 undoreload=3000
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
@@ -147,9 +148,9 @@ nmap <silent> <Leader>m :edit ~/.gvimrc<CR>
 nmap <silent> <Leader>n :new<CR>
 nmap <silent> <Leader>p :Gpull<CR>
 nmap <silent> <Leader>po :Gpush<CR>
-nmap <silent> <Leader>q :call Quit()<CR>
+nmap <silent> <Leader>q :q<CR>
 nmap <silent> <Leader>r :GitGutterRevertHunk<CR>
-nmap <silent> <Leader>s :call StageOrSave()<CR>
+nmap <silent> <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
 nmap <silent> <Leader>t :call Trim()<CR>
 nmap <silent> <Leader>v :edit ~/.vimrc<CR>
 nmap <silent> <Leader>w :w<CR>
@@ -160,8 +161,8 @@ nmap <silent> Q <Nop>
 nmap <silent> Y y$
 nmap <silent> [h :GitGutterPrevHunk<CR>
 nmap <silent> ]h :GitGutterNextHunk<CR>
-nmap <silent> ]pc :call PasteAsCoffee()<CR>
-nmap <silent> ]pj :call PasteAsJade()<CR>
+nmap <silent> ]pc :read !pbpaste <BAR> js2coffee<CR>
+nmap <silent> ]pj :read !pbpaste <BAR> html2jade<CR>
 nmap <silent> cog :GitGutterLineHighlightsToggle<CR>
 nmap <silent> j gj
 nmap <silent> k gk
@@ -170,43 +171,6 @@ vmap <silent> <Leader>- mmvip:sort<CR>`m
 vmap <silent> <Leader>; :Commentary<CR>
 vmap <silent> <Leader>n "nd:new<CR>"nP
 vmap <silent> > >gv
-
-function! Quit()
-  let numberOfListedBuffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-  if numberOfListedBuffers > 1
-    bprevious
-    bdelete #
-  else
-    if &modified
-      echohl WarningMsg | echo "This buffer has unsaved changes. I don't want to quit." | echohl None
-    else
-      execute ':q'
-    endif
-  endif
-endfunction
-
-if !exists('*StageOrSave')
-  function! StageOrSave()
-    if &ft == 'gitcommit'
-      echohl WarningMsg | echo "Nothing to save." | echohl None
-    else
-      if exists(':Gstatus')
-        GitGutterStageHunk
-        GitGutterNextHunk
-      else
-        w
-      endif
-    endif
-  endfunction
-endif
-
-function! PasteAsCoffee()
-  read !pbpaste | js2coffee
-endfunction
-
-function! PasteAsJade()
-  read !pbpaste | html2jade
-endfunction
 
 function! Trim()
   let savedCursor = getpos('.')
@@ -217,36 +181,9 @@ function! Trim()
 endfunction
 
 function! RestoreCursorPositon()
-  if !IsHelper()
-    if line("'\"") <= line("$")
-      normal! g`"
-      return 1
-    endif
-  endif
-endfunction
-
-function! IsHelper()
-  if &filetype =~ 'help\|gitcommit\|netrw'
+  if line("'\"") <= line("$")
+    normal! g`"
     return 1
-  endif
-endfunction
-
-function! SetStatusLine()
-  setlocal statusline=\ %{toupper(&ft)} nocursorline colorcolumn=0 norelativenumber
-endfunction
-
-function! EnterWindow()
-  if !IsHelper()
-    setlocal statusline=%*\ %F\ %1*%H%M%R%W%*%=\ %{&ft}\ %l,%c\ %<%P\ "
-    setlocal cursorline colorcolumn=79 relativenumber
-    call RestoreCursorPositon()
-  endif
-endfunction
-
-function! LeaveWindow()
-  if !IsHelper()
-    setlocal statusline=%*\ %F\ %1*%H%M%R%W%*"
-    setlocal nocursorline colorcolumn=0 norelativenumber
   endif
 endfunction
 
@@ -254,16 +191,15 @@ augroup Auto
   autocmd!
 
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
-  autocmd BufWinEnter * call EnterWindow()
-  autocmd BufWinLeave * call LeaveWindow()
-  autocmd BufWrite *.coffee,*.md,.vimrc,*.jade,*.journal call Trim()
+  autocmd BufWinEnter * call RestoreCursorPositon()
+  autocmd BufWrite *vimrc,*.coffee,*.styl,*.jade,*.md,*.journal call Trim()
   autocmd BufWritePost *gvimrc source %
   autocmd BufWritePost *vimrc source %
-  autocmd FileType * call SetStatusLine()
   autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
   autocmd FileType coffee,jade setlocal foldmethod=indent nofoldenable
-  autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline colorcolumn=0 norelativenumber
+  autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
 
 augroup END
