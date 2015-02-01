@@ -40,7 +40,7 @@ call neobundle#end()
 filetype plugin indent on
 syntax on
 
-try
+if !empty(glob('~/.vim/bundle/vim-tomorrow-theme/colors/Tomorrow-Night.vim'))
   colorscheme Tomorrow-Night
   syntax on
   highlight ExtraWhitespace ctermbg=white guibg=white
@@ -50,20 +50,20 @@ try
   highlight VertSplit ctermfg=darkgray ctermbg=black
   highlight markdownItalic ctermfg=blue guifg=blue
   match ExtraWhitespace /\s\+$/
-catch
+else
   set syntax=
-endtry
+endif
 
 silent !mkdir -p ~/.vim/cache > /dev/null 2>&1
 silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
 
-try
+if !empty(glob('~/.vim/bundle/unite.vim/autoload/unite.vim'))
   call unite#custom#source('buffer,grep,file_rec/async', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
   call unite#custom#source('buffer,grep,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy', 'matcher_project_ignore_files'])
   call unite#filters#sorter_default#use(['sorter_rank'])
-catch
+else
   " Plugin 'shougo/unite.vim' is inactive
-endtry
+endif
 
 let g:gitgutter_enabled=1
 let g:gitgutter_map_keys=0
