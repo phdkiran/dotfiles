@@ -38,7 +38,8 @@ NeoBundle 'wikitopian/hardmode'
 NeoBundleCheck
 call neobundle#end()
 filetype plugin indent on
-syntax on
+silent !mkdir -p ~/.vim/cache > /dev/null 2>&1
+silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
 
 if !empty(glob('~/.vim/bundle/vim-tomorrow-theme/colors/Tomorrow-Night.vim'))
   colorscheme Tomorrow-Night
@@ -51,11 +52,8 @@ if !empty(glob('~/.vim/bundle/vim-tomorrow-theme/colors/Tomorrow-Night.vim'))
   highlight markdownItalic ctermfg=blue guifg=blue
   match ExtraWhitespace /\s\+$/
 else
-  set syntax=
+  " Plugin 'chriskempson/vim-tomorrow-theme' is inactive
 endif
-
-silent !mkdir -p ~/.vim/cache > /dev/null 2>&1
-silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
 
 if !empty(glob('~/.vim/bundle/unite.vim/autoload/unite.vim'))
   call unite#custom#source('buffer,grep,file_rec/async', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
@@ -142,6 +140,7 @@ nmap <silent> <Leader>` ysiW`
 nmap <silent> <Leader>a <Nop>
 nmap <silent> <Leader>b :Unite buffer<CR>
 nmap <silent> <Leader>c :let @c=expand('%')<CR>:Gcommit<CR>iUpdate <Esc>"cp
+nmap <silent> <Leader>\ :lcd %:p:h<CR>:pwd<CR>
 nmap <silent> <Leader>d eb4li-<Esc>3li-<Esc>ll
 nmap <silent> <Leader>e :edit .<CR>
 nmap <silent> <Leader>f :Unite -start-insert file_rec/async<CR>
@@ -187,15 +186,16 @@ function! Trim()
 endfunction
 
 function! RestoreCursorPositon()
-  if line("'\"") <= line('$')
+  try
     normal! g`"
-  endif
+  catch
+    " A mark isn't set
+  endtry
 endfunction
 
 augroup Auto
   autocmd!
 
-  autocmd BufEnter * silent! lcd %:p:h
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWinEnter * call RestoreCursorPositon()
   autocmd BufWrite *vimrc,*.coffee,*.styl,*.jade,*.md,*.journal call Trim()
