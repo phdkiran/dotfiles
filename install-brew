@@ -17,20 +17,14 @@ brew install \
   ctags \
   ffmpeg \
   git \
-  git-cal \
   hub \
   imagemagick \
-  macvim --with-lua \
-  mongodb \
+  macvim --override-system-vim --with-lua \
   node \
-  openssl \
-  phantomjs \
-  python \
   reattach-to-user-namespace \
   ruby \
-  sqlite \
   the_silver_searcher \
   tmux \
-  vim \
   wget
+brew linkapps macvim
 brew cleanup

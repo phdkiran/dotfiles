@@ -8,8 +8,6 @@ for source in \
   'archive' \
   'git-pulls' \
   'git-statuses' \
-  'run-meteor' \
-  'tmux-session' \
   'tmux-battery'; do
   target="${SCRIPT_PATH}/${source}"
   ln -Fis "${PWD}/${source}" ${target} && echo "${target}"
