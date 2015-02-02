@@ -11,5 +11,9 @@ export GREP_OPTIONS='--color=auto'
 export EDITOR='vim'
 set -o vi
 if [[ ! $TERM =~ screen ]]; then
-  exec tmux
+  session_name=$(date "+%Y%m%d%H%M%S")
+  tmux new-session -s $session_name
+  _trap_exit() { tmux kill-session -t $session_name; }
+  trap _trap_exit EXIT
+  exit
 fi
