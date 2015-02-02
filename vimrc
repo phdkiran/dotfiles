@@ -45,10 +45,10 @@ if !empty(glob('~/.vim/bundle/vim-tomorrow-theme/colors/Tomorrow-Night.vim'))
   colorscheme Tomorrow-Night
   syntax on
   highlight ExtraWhitespace ctermbg=white guibg=white
-  highlight StatusLine ctermbg=darkgray guibg=#3a3a3a ctermfg=white guifg=white cterm=NONE gui=NONE
+  highlight StatusLine ctermbg=darkgray guibg=darkgray ctermfg=white guifg=white cterm=NONE gui=NONE
   highlight StatusLineNC ctermbg=237 guibg=#4e4e4e ctermfg=darkgray guifg=darkgray cterm=NONE gui=NONE
-  highlight User1 ctermbg=darkgray guibg=#3a3a3a ctermfg=yellow guifg=yellow
-  highlight VertSplit ctermfg=darkgray ctermbg=black guifg=darkgray guibg=#202020
+  highlight User1 ctermbg=darkgray guibg=darkgray ctermfg=yellow guifg=yellow
+  highlight VertSplit ctermfg=darkgray ctermbg=black guifg=darkgray guibg=black
   highlight markdownItalic ctermfg=blue guifg=blue
   match ExtraWhitespace /\s\+$/
 else
@@ -107,9 +107,9 @@ set pastetoggle=<F2>
 set relativenumber number
 set scrolloff=3 sidescrolloff=15 sidescroll=1
 set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
-set shortmess=AI
+set shortmess=AIWta
 set statusline=%*\ %F\ %1*%H%M%R%W%*%=\ %l,%c\ %<%P\ " cursorline colorcolumn=79 relativenumber
-set ttyfast laststatus=2 ruler showmode noshowcmd
+set ttyfast laststatus=2 noruler showmode noshowcmd
 set undodir=~/.vim/undo/ undofile undolevels=1000 undoreload=3000
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
 set wildmenu wildmode=list:longest,full
@@ -139,7 +139,7 @@ nmap <silent> <Leader>= gqip
 nmap <silent> <Leader>` ysiW`
 nmap <silent> <Leader>a <Nop>
 nmap <silent> <Leader>b :Unite buffer<CR>
-nmap <silent> <Leader>c :let @c=expand('%')<CR>:Gcommit<CR>iUpdate <Esc>"cp
+nmap <silent> <Leader>c :let @c=expand('%p')<CR>:Gcommit<CR>iUpdate <Esc>"cp
 nmap <silent> <Leader>\ :lcd %:p:h<CR>:pwd<CR>
 nmap <silent> <Leader>d eb4li-<Esc>3li-<Esc>ll
 nmap <silent> <Leader>e :edit .<CR>
@@ -195,7 +195,6 @@ endfunction
 
 augroup Auto
   autocmd!
-
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWinEnter * call RestoreCursorPositon()
   autocmd BufWrite *vimrc,*.coffee,*.styl,*.jade,*.md,*.journal call Trim()
@@ -204,8 +203,8 @@ augroup Auto
   autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
   autocmd FileType coffee,jade setlocal foldmethod=indent nofoldenable
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType journal setlocal colorcolumn=140
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline colorcolumn=0 norelativenumber
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
-
 augroup END
