@@ -15,6 +15,7 @@ NeoBundle 'wikitopian/hardmode'
 
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'jelera/vim-javascript-syntax'
@@ -99,7 +100,11 @@ set ttyfast laststatus=2 noruler showmode noshowcmd
 set undodir=~/.vim/undo/ undofile undolevels=1000 undoreload=3000
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
 set wildmenu wildmode=list:longest,full
-set winwidth=85 winheight=3 winminheight=3 winheight=100
+
+set winwidth=85
+set winheight=4
+set winminheight=4
+set winheight=100
 
 command! Q q
 command! W w
@@ -201,7 +206,7 @@ augroup Auto
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType journal setlocal colorcolumn=140
-  autocmd FileType netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline colorcolumn& nonumber norelativenumber
+  autocmd FileType netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline colorcolumn& nonumber norelativenumber winwidth=85 winheight=8
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
   autocmd WinEnter * setlocal relativenumber colorcolumn=79
   autocmd WinLeave * setlocal norelativenumber colorcolumn&
