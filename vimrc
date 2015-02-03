@@ -156,6 +156,7 @@ nmap <silent> ]h :GitGutterNextHunk<CR>
 nmap <silent> ]pc :read !pbpaste <BAR> js2coffee<CR>
 nmap <silent> ]pj :read !pbpaste <BAR> html2jade<CR>
 nmap <silent> cog :GitGutterLineHighlightsToggle<CR>
+nmap <silent> cop :call ToggleColorColumn()<CR>
 nmap <silent> j gj
 nmap <silent> k gk
 vmap <silent> < <gv
@@ -163,6 +164,14 @@ vmap <silent> <Leader>- mmvip:sort<CR>`m
 vmap <silent> <Leader>; :Commentary<CR>
 vmap <silent> <Leader>n "nd:new<CR>"nP
 vmap <silent> > >gv
+
+function! ToggleColorColumn()
+  if &colorcolumn == ''
+    setlocal colorcolumn=79
+  else
+    setlocal colorcolumn&
+  endif
+endfunction
 
 function! Trim()
   let pos = getpos('.')
@@ -192,8 +201,8 @@ augroup Auto
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType journal setlocal colorcolumn=140
-  autocmd FileType netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline colorcolumn=0 norelativenumber
+  autocmd FileType netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline colorcolumn& nonumber norelativenumber
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd WinEnter * setlocal relativenumber number
-  autocmd WinLeave * setlocal norelativenumber nonumber
+  autocmd WinEnter * setlocal relativenumber colorcolumn=79
+  autocmd WinLeave * setlocal norelativenumber colorcolumn&
 augroup END
