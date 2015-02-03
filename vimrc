@@ -19,6 +19,7 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'shougo/neocomplete'
@@ -44,6 +45,7 @@ if !empty(glob('~/.vim/bundle/base16-vim/colors/base16-tomorrow.vim'))
     colorscheme base16-tomorrow
     set background=dark
     syntax on
+    highlight User1 ctermfg=3 guifg=#f0c674 ctermbg=11 guibg=#373b41
   catch
     " Plugin 'chriskempson/base16-vim' is inactive
   endtry
@@ -71,6 +73,13 @@ let g:netrw_liststyle=3
 let g:netrw_menu=0
 let g:netrw_preview=1
 let g:sneak#streak = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_coffee_coffeelint_args = "--file ~/.linters/coffeescript.json"
+let g:syntastic_loc_list_height = 5
+let g:syntastic_stl_format = '[%E{ %fe #%e }%B{ }%W{%fw #%w }]'
 let g:unite_data_directory='~/.vim/cache/unite'
 let g:unite_source_grep_command='ag'
 let g:unite_source_grep_default_opts='--smart-case -i --line-numbers --nocolor --nogroup --hidden -S --ignore ''.git'''
@@ -95,7 +104,7 @@ set nowrap textwidth=0 wrapmargin=0 linebreak
 set scrolloff=3 sidescrolloff=15 sidescroll=1
 set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 set shortmess=AIWta
-set statusline=%*\ %F\ %1*%H%M%R%W%*%=\ %l,%c\ %<%P\ "
+set statusline=%*\ %F\ %1*%H%M%R%W%*%=\ %l,%c\ %<%P\ %1*%{SyntasticStatuslineFlag()}%*
 set ttyfast laststatus=2 noruler showmode noshowcmd
 set undodir=~/.vim/undo/ undofile undolevels=1000 undoreload=3000
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
@@ -145,10 +154,10 @@ nmap <silent> <Leader>m :edit ~/.gvimrc<CR>
 nmap <silent> <Leader>n :new<CR>
 nmap <silent> <Leader>p :Gpull<CR>
 nmap <silent> <Leader>po :Gpush<CR>
-nmap <silent> <Leader>q :q<CR>
+nmap <silent> <Leader>q :bdelete <BAR> :bprevious<CR>
 nmap <silent> <Leader>r :GitGutterRevertHunk<CR>
 nmap <silent> <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
-nmap <silent> <Leader>t :call Trim()<CR>
+nmap <silent> <Leader><Space> :call Trim()<CR>
 nmap <silent> <Leader>v :edit ~/.vimrc<CR>
 nmap <silent> <Leader>w :w<CR>
 nmap <silent> <Leader>y :Unite history/yank<CR>
@@ -206,7 +215,10 @@ augroup Auto
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType journal setlocal colorcolumn=140
-  autocmd FileType netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline colorcolumn& nonumber norelativenumber winwidth=85 winheight=8
+  autocmd FileType netrw,help setlocal winwidth=85 winheight=8
+  autocmd FileType vim,qf,netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline colorcolumn& nonumber norelativenumber
+  autocmd FileType gitcommit setlocal winheight=8
+  autocmd FileType qf setlocal winheight=5
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
   autocmd WinEnter * setlocal relativenumber colorcolumn=79
   autocmd WinLeave * setlocal norelativenumber colorcolumn&
