@@ -1,6 +1,6 @@
 # Roman’s dotfiles
 
-Dotfiles and scripts for tools I use every day as a programmer.
+Dotfiles and scripts I use every day as a programmer.
 
 ![Screenshot](screen.png)
 
