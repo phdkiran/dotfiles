@@ -1,18 +1,20 @@
-" .vimrc by Roman Zolotarev
 set nocompatible
 set runtimepath+=~/.vim/bundle/neobundle.vim
 set runtimepath+=~/.vim/bundle/vimproc.vim/autorun
 set runtimepath+=~/.vim/bundle/vimproc.vim/plugin
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'shougo/neobundle.vim'
+NeoBundle 'shougo/vimproc.vim'
 
 " NeoBundle '~/Repositories/romanzolotarev/vim-journal'
-
 NeoBundle 'romanzolotarev/vim-snippets'
 NeoBundle 'romanzolotarev/vim-journal'
+NeoBundle 'tpope/vim-jdaddy'
+NeoBundle 'justinmk/vim-sneak'
+NeoBundle 'wikitopian/hardmode'
 
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'chriskempson/vim-tomorrow-theme'
+NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'jelera/vim-javascript-syntax'
@@ -22,45 +24,38 @@ NeoBundle 'shougo/neocomplete'
 NeoBundle 'shougo/neosnippet'
 NeoBundle 'shougo/neosnippet-snippets'
 NeoBundle 'shougo/unite.vim'
-NeoBundle 'shougo/vimproc.vim'
-NeoBundle 't9md/vim-smalls'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-jdaddy'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'wavded/vim-stylus'
-NeoBundle 'wikitopian/hardmode'
 
 NeoBundleCheck
 call neobundle#end()
 filetype plugin indent on
-silent !mkdir -p ~/.vim/cache > /dev/null 2>&1
 silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
 
-if !empty(glob('~/.vim/bundle/vim-tomorrow-theme/colors/Tomorrow-Night.vim'))
-  colorscheme Tomorrow-Night
-  syntax on
-  highlight ExtraWhitespace ctermbg=white guibg=white
-  highlight StatusLine ctermbg=darkgray guibg=darkgray ctermfg=white guifg=white cterm=NONE gui=NONE
-  highlight StatusLineNC ctermbg=237 guibg=#4e4e4e ctermfg=darkgray guifg=darkgray cterm=NONE gui=NONE
-  highlight User1 ctermbg=darkgray guibg=darkgray ctermfg=yellow guifg=yellow
-  highlight VertSplit ctermfg=darkgray ctermbg=black guifg=darkgray guibg=black
-  highlight markdownItalic ctermfg=blue guifg=blue
-  match ExtraWhitespace /\s\+$/
-else
-  " Plugin 'chriskempson/vim-tomorrow-theme' is inactive
+if !empty(glob('~/.vim/bundle/base16-vim/colors/base16-tomorrow.vim'))
+  try
+    colorscheme base16-tomorrow
+    set background=dark
+    syntax on
+  catch
+    " Plugin 'chriskempson/base16-vim' is inactive
+  endtry
 endif
 
 if !empty(glob('~/.vim/bundle/unite.vim/autoload/unite.vim'))
-  call unite#custom#source('buffer,grep,file_rec/async', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
-  call unite#custom#source('buffer,grep,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy', 'matcher_project_ignore_files'])
-  call unite#filters#sorter_default#use(['sorter_rank'])
-else
-  " Plugin 'shougo/unite.vim' is inactive
+  try
+    call unite#custom#source('buffer,grep,file_rec/async', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
+    call unite#custom#source('buffer,grep,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy', 'matcher_project_ignore_files'])
+    call unite#filters#sorter_default#use(['sorter_rank'])
+  catch
+    " Plugin 'shougo/unite.vim' is inactive
+  endtry
 endif
 
 let g:gitgutter_enabled=1
@@ -74,10 +69,7 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 let g:netrw_liststyle=3
 let g:netrw_menu=0
 let g:netrw_preview=1
-let g:smalls_auto_jump=1
-let g:smalls_auto_jump_min_input_length=3
-let g:smalls_auto_jump_timeout=0.5
-let g:smalls_exit_at_notfound=1
+let g:sneak#streak = 1
 let g:unite_data_directory='~/.vim/cache/unite'
 let g:unite_source_grep_command='ag'
 let g:unite_source_grep_default_opts='--smart-case -i --line-numbers --nocolor --nogroup --hidden -S --ignore ''.git'''
@@ -85,16 +77,12 @@ let g:unite_source_grep_recursive_opt=''
 let g:unite_source_history_yank_enable=1
 let g:vim_json_syntax_conceal=0
 
-set winwidth=83
-set winheight=5
-set winminheight=5
-set winheight=999
-
 set autoindent
 set autoread nobackup noswapfile nowritebackup
 set backspace=indent,eol,start
 set clipboard=unnamed
 set cryptmethod=blowfish
+set cursorline colorcolumn=79 relativenumber number
 set encoding=utf-8
 set formatoptions+=l
 set gdefault
@@ -103,16 +91,15 @@ set ignorecase smartcase incsearch nohlsearch grepprg=ag
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 set listchars=tab:»·,trail:·,eol:¬
 set nowrap textwidth=0 wrapmargin=0 linebreak
-set pastetoggle=<F2>
-set relativenumber number
 set scrolloff=3 sidescrolloff=15 sidescroll=1
 set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 set shortmess=AIWta
-set statusline=%*\ %F\ %1*%H%M%R%W%*%=\ %l,%c\ %<%P\ " cursorline colorcolumn=79 relativenumber
+set statusline=%*\ %F\ %1*%H%M%R%W%*%=\ %l,%c\ %<%P\ "
 set ttyfast laststatus=2 noruler showmode noshowcmd
 set undodir=~/.vim/undo/ undofile undolevels=1000 undoreload=3000
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
 set wildmenu wildmode=list:longest,full
+set winwidth=85 winheight=3 winminheight=3 winheight=100
 
 command! Q q
 command! W w
@@ -136,11 +123,11 @@ nmap <silent> <Leader>/ :Unite -start-insert grep:.<CR>
 nmap <silent> <Leader>9 mmF(r f)r `m
 nmap <silent> <Leader>; :Commentary<CR>
 nmap <silent> <Leader>= gqip
+nmap <silent> <Leader>\ :lcd %:p:h<CR>:pwd<CR>
 nmap <silent> <Leader>` ysiW`
 nmap <silent> <Leader>a <Nop>
 nmap <silent> <Leader>b :Unite buffer<CR>
 nmap <silent> <Leader>c :let @c=expand('%p')<CR>:Gcommit<CR>iUpdate <Esc>"cp
-nmap <silent> <Leader>\ :lcd %:p:h<CR>:pwd<CR>
 nmap <silent> <Leader>d eb4li-<Esc>3li-<Esc>ll
 nmap <silent> <Leader>e :edit .<CR>
 nmap <silent> <Leader>f :Unite -start-insert file_rec/async<CR>
@@ -203,8 +190,10 @@ augroup Auto
   autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
   autocmd FileType coffee,jade setlocal foldmethod=indent nofoldenable
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType journal setlocal colorcolumn=140
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType journal setlocal colorcolumn=140
   autocmd FileType netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline colorcolumn=0 norelativenumber
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd WinEnter * setlocal relativenumber number
+  autocmd WinLeave * setlocal norelativenumber nonumber
 augroup END

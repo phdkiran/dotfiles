@@ -2,6 +2,8 @@
 
 Dotfiles and scripts for tools I use every day as a programmer.
 
+![Screenshot](screen.png)
+
 [Fork this repo](https://github.com/romanzolotarev/dotfiles/fork),
 then clone, customize, and run scripts for each tool manually.
 
