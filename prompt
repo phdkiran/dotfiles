@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 GIT_PS1_SHOWDIRTYSTATE=true
-YELLOW='\[\e[0;33m\]'
-CYAN='\[\e[0;36m\]'
+COLOR1='\[\e[0;90m\]'
+COLOR2='\[\e[0;93m\]'
 RESET='\[\e[0m\]'
-export PS1="${YELLOW}\w${CYAN}\$(__git_ps1)${RESET} "
+export PS1="${COLOR1}\w${COLOR2}\$(__git_ps1)${RESET} "
