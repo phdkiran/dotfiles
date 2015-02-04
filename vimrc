@@ -124,64 +124,59 @@ command! W w
 command! WQ w
 command! Wq wq
 
-imap <silent> <C-K> <Plug>(neosnippet_expand_or_jump)
-imap <silent> <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
-imap <silent> jj <Esc>
-imap <silent> jk <Esc>
-imap <silent> kk <Esc>
-map <silent> <Down> <Nop>
-map <silent> <Left> <Nop>
-map <silent> <Right> <Nop>
-map <silent> <Up> <Nop>
-nmap <silent> <Leader>" ysiW"
-nmap <silent> <Leader>' ysiW'
-nmap <silent> <Leader>- mmvip:sort<CR>`m
-nmap <silent> <Leader>. <Plug>(smalls)
-nmap <silent> <Leader>/ :Unite -start-insert grep:.<CR>
-nmap <silent> <Leader>9 mmF(r f)r `m
-nmap <silent> <Leader>; :Commentary<CR>
-nmap <silent> <Leader>= gqip
-nmap <silent> <Leader>\ :lcd %:p:h<CR>:pwd<CR>
-nmap <silent> <Leader>` ysiW`
-nmap <silent> <Leader>a <Nop>
-nmap <silent> <Leader>b :Unite buffer<CR>
-nmap <silent> <Leader>c :let @c=expand('%p')<CR>:Gcommit<CR>iUpdate <Esc>"cp
-nmap <silent> <Leader>d eb4li-<Esc>3li-<Esc>ll
-nmap <silent> <Leader>e :edit .<CR>
-nmap <silent> <Leader>f :Unite -start-insert file_rec/async<CR>
-nmap <silent> <Leader>g :Gstatus<CR>
-nmap <silent> <Leader>h :bnext<CR>
-nmap <silent> <Leader>j :bprevious<CR>
-nmap <silent> <Leader>k <Nop>
-nmap <silent> <Leader>l :!git l<CR>
-nmap <silent> <Leader>m :edit ~/.gvimrc<CR>
-nmap <silent> <Leader>n :new<CR>
-nmap <silent> <Leader>p :Gpull<CR>
-nmap <silent> <Leader>po :Gpush<CR>
-nmap <silent> <Leader>q :bdelete <BAR> :bprevious<CR>
-nmap <silent> <Leader>r :GitGutterRevertHunk<CR>
-nmap <silent> <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
-nmap <silent> <Leader><Space> :call Trim()<CR>
-nmap <silent> <Leader>v :edit ~/.vimrc<CR>
-nmap <silent> <Leader>w :w<CR>
-nmap <silent> <Leader>y :Unite history/yank<CR>
-nmap <silent> <Tab>l "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>:w<CR>
-nmap <silent> K i<CR><Esc>
-nmap <silent> Q <Nop>
-nmap <silent> Y y$
-nmap <silent> [h :GitGutterPrevHunk<CR>
-nmap <silent> ]h :GitGutterNextHunk<CR>
-nmap <silent> ]pc :read !pbpaste <BAR> js2coffee<CR>
-nmap <silent> ]pj :read !pbpaste <BAR> html2jade<CR>
-nmap <silent> cog :GitGutterLineHighlightsToggle<CR>
-nmap <silent> cop :call ToggleColorColumn()<CR>
-nmap <silent> j gj
-nmap <silent> k gk
-vmap <silent> < <gv
-vmap <silent> <Leader>- mmvip:sort<CR>`m
-vmap <silent> <Leader>; :Commentary<CR>
-vmap <silent> <Leader>n "nd:new<CR>"nP
-vmap <silent> > >gv
+imap <C-K> <Plug>(neosnippet_expand_or_jump)
+imap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
+inoremap jj <Esc>
+inoremap jk <Esc>
+inoremap kk <Esc>
+nnoremap ' :
+nnoremap <Leader>" ysiW"
+nnoremap <Leader>' ysiW'
+nnoremap <Leader>/ :Unite grep:.<CR>
+nnoremap <Leader>9 mmF(r f)r `m
+nnoremap <Leader>; :Commentary<CR>
+nnoremap <Leader><Space> :call Trim()<CR>
+nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
+nnoremap <Leader>b :Unite buffer<CR>
+nnoremap <Leader>eg :edit ~/.gvimrc<CR>
+nnoremap <Leader>en :new<CR>
+nnoremap <Leader>ev :edit ~/.vimrc<CR>
+nnoremap <Leader>f= gqip
+nnoremap <Leader>fS mmvip:sort!<CR>`m
+nnoremap <Leader>f` ysiW`
+nnoremap <Leader>fs mmvip:sort<CR>`m
+nnoremap <Leader>gc :let @c=expand('%p')<CR>:Gcommit<CR>iUpdate <Esc>"cp
+nnoremap <Leader>gl :!git l<CR>
+nnoremap <Leader>gp :Gpull<CR>
+nnoremap <Leader>gpo :Gpush<CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>h :bnext<CR>
+nnoremap <Leader>j :bprevious<CR>
+nnoremap <Leader>pc :read !pbpaste <BAR> js2coffee<CR>
+nnoremap <Leader>pj :read !pbpaste <BAR> html2jade<CR>
+nnoremap <Leader>q :bdelete <BAR> :bprevious<CR>
+nnoremap <Leader>r :GitGutterRevertHunk<CR>
+nnoremap <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
+nnoremap <Leader>t :Unite -start-insert file_rec/async<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>y :Unite history/yank<CR>
+nnoremap <Tab>l "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>:w<CR>
+nnoremap K i<CR><Esc>
+nnoremap N Nzz
+nnoremap Q <Nop>
+nnoremap Y y$
+nnoremap [h :GitGutterPrevHunk<CR>
+nnoremap ]h :GitGutterNextHunk<CR>
+nnoremap cog :GitGutterLineHighlightsToggle<CR>
+nnoremap cop :call ToggleColorColumn()<CR>
+nnoremap j gj
+nnoremap k gk
+nnoremap n nzz
+vnoremap < <gv
+vnoremap <Leader>en "nd:new<CR>"nP
+vnoremap <Leader>fS mmvip:sort!<CR>`m
+vnoremap <Leader>fs mmvip:sort<CR>`m
+vnoremap > >gv
 
 function! ToggleColorColumn()
   if &colorcolumn == ''
