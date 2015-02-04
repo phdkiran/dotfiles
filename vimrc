@@ -220,7 +220,7 @@ augroup Auto
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType journal setlocal colorcolumn=140
   autocmd FileType netrw,help setlocal winwidth=85 winheight=8
-  autocmd FileType vim,qf,netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline colorcolumn& nonumber norelativenumber
+  autocmd FileType qf,netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline colorcolumn& nonumber norelativenumber
   autocmd FileType gitcommit setlocal winheight=8
   autocmd FileType qf setlocal winheight=5
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
