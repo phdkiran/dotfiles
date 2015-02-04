@@ -9,10 +9,10 @@ NeoBundle 'shougo/vimproc.vim'
 " NeoBundle '~/Repositories/romanzolotarev/vim-journal'
 NeoBundle 'romanzolotarev/vim-snippets'
 NeoBundle 'romanzolotarev/vim-journal'
-NeoBundle 'tpope/vim-jdaddy'
-NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'wikitopian/hardmode'
 
+NeoBundle 'tpope/vim-jdaddy'
+NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
@@ -84,7 +84,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_coffee_coffeelint_args = "--file ~/.linters/coffeescript.json"
 let g:syntastic_loc_list_height = 5
-let g:syntastic_stl_format = '[%E{ %fe #%e }%B{ }%W{%fw #%w }]'
+let g:syntastic_stl_format = '%E{ %fe #%e }%B{ }%W{%fw #%w }'
 let g:unite_data_directory='~/.vim/cache/unite'
 let g:unite_source_grep_command='ag'
 let g:unite_source_grep_default_opts='--smart-case -i --line-numbers --nocolor --nogroup --hidden -S --ignore ''.git'''
@@ -109,7 +109,6 @@ set nowrap textwidth=0 wrapmargin=0 linebreak
 set scrolloff=3 sidescrolloff=15 sidescroll=1
 set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 set shortmess=AIWta
-set statusline=%*\ %F\ %1*%H%M%R%W%*%=\ %l,%c\ %<%P\ %1*%{SyntasticStatuslineFlag()}%*
 set ttyfast laststatus=2 noruler showmode noshowcmd
 set undodir=~/.vim/undo/ undofile undolevels=1000 undoreload=3000
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
@@ -119,6 +118,15 @@ set winwidth=85
 set winheight=4
 set winminheight=4
 set winheight=100
+
+set statusline=%*\ %F\ %1*%H%M%R%W%*
+if exists('*fugitive#statusline')
+  set statusline+=%{fugitive#statusline()}
+endif
+set statusline+=%=\ %l,%c\ %<%P\ "
+if exists('*SyntasticStatuslineFlag')
+  set statusline+=%1*%{SyntasticStatuslineFlag()}%*
+endif
 
 command! Q q
 command! W w
@@ -135,6 +143,7 @@ inoremap kk <Esc>
 nmap <Leader>" ysiW"
 nmap <Leader>' ysiW'
 nmap <Leader>` ysiW`
+nmap <Leader>fj gqaj
 nnoremap ' :
 nnoremap <Leader>/ :Unite grep:.<CR>
 nnoremap <Leader>9 mmF(r f)r `m
@@ -192,11 +201,11 @@ function! ToggleColorColumn()
 endfunction
 
 function! Trim()
-  let pos = getpos('.')
+  let s:pos = getpos('.')
   retab
   %s/\s\+$//ge
   %s/\($\n\s*\)\+\%$//e
-  call setpos('.', pos)
+  call setpos('.', s:pos)
 endfunction
 
 function! RestoreCursorPositon()
