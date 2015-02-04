@@ -1,19 +1,16 @@
 #!/usr/bin/env bash
-
 BREW_PATH='/usr/local/bin'
-
 # Move $(brew --prefix)/bin to the beginning of path
 # Thanks to @ntkme via http://ntk.me/2013/05/04/path-environment-variable/
 export PATH=${BREW_PATH}:`echo ":$PATH:" | \
   sed -e "s:\:${BREW_PATH}\::\::g" -e "s/^://" -e "s/:$//"`
-
-# Path for Homebrew
 if [ -x "$(brew --prefix)/bin/brew" ]; then
-
-  # Link Homebrew casks in `/Applications` rather than `~/Applications`
   export HOMEBREW_CASK_OPTS='--appdir=/Applications'
-
-  # Path for Python
   export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages"
-
 fi
+export CDPATH=".:\
+${HOME}/Dropbox:\
+${HOME}/Repositories/:\
+${HOME}/Repositories/romanzolotarev:\
+${HOME}/Repositories/plentiful:\
+"
