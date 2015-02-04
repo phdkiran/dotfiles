@@ -28,6 +28,7 @@ NeoBundle 'shougo/neosnippet'
 NeoBundle 'shougo/neosnippet-snippets'
 NeoBundle 'shougo/unite.vim'
 NeoBundle 'skwp/greplace.vim'
+NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-fugitive'
@@ -174,6 +175,8 @@ nnoremap cop :call ToggleColorColumn()<CR>
 nnoremap j gj
 nnoremap k gk
 nnoremap n nzz
+vmap <C-v> <Plug>(expand_region_shrink)
+vmap v <Plug>(expand_region_expand)
 vnoremap < <gv
 vnoremap <Leader>fS mmvip:sort!<CR>`m
 vnoremap <Leader>fs mmvip:sort<CR>`m
