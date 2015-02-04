@@ -132,20 +132,21 @@ imap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap jj <Esc>
 inoremap jk <Esc>
 inoremap kk <Esc>
+nmap <Leader>" ysiW"
+nmap <Leader>' ysiW'
+nmap <Leader>` ysiW`
 nnoremap ' :
-nnoremap <Leader>" ysiW"
-nnoremap <Leader>' ysiW'
 nnoremap <Leader>/ :Unite grep:.<CR>
 nnoremap <Leader>9 mmF(r f)r `m
 nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
 nnoremap <Leader>b :Unite buffer<CR>
 nnoremap <Leader>f= gqip
 nnoremap <Leader>fS mmvip:sort!<CR>`m
-nnoremap <Leader>f` ysiW`
 nnoremap <Leader>fs mmvip:sort<CR>`m
 nnoremap <Leader>ft :call Trim()<CR>
 nnoremap <Leader>g :edit ~/.gvimrc<CR>
 nnoremap <Leader>gc :let @c=expand('%p')<CR>:Gcommit<CR>iUpdate <Esc>"cp
+nnoremap <Leader>gd :Gvdiff<CR>
 nnoremap <Leader>gl :!git l<CR>
 nnoremap <Leader>gp :Gpull<CR>
 nnoremap <Leader>gpo :Gpush<CR>
@@ -157,7 +158,6 @@ nnoremap <Leader>pc :read !pbpaste <BAR> js2coffee<CR>
 nnoremap <Leader>pj :read !pbpaste <BAR> html2jade<CR>
 nnoremap <Leader>q :bdelete <BAR> :bprevious<CR>
 nnoremap <Leader>r :GitGutterRevertHunk<CR>
-nnoremap <Leader>S :GitGutterStageHunk<CR>:GitGutterPrevHunk<CR>
 nnoremap <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
 nnoremap <Leader>t :Unite -start-insert file_rec/async<CR>
 nnoremap <Leader>v :edit ~/.vimrc<CR>
