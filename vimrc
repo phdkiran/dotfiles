@@ -64,13 +64,13 @@ if !empty(glob('~/.vim/bundle/unite.vim/autoload/unite.vim'))
   endtry
 endif
 
+" let g:mapleader=','
 let g:gitgutter_enabled=1
 let g:gitgutter_map_keys=0
-let g:mapleader=','
+let g:grep_cmd_opts = '--line-numbers --noheading'
 let g:neocomplete#data_directory='~/.vim/cache/neocomplete'
 let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_auto_select=0
-let g:grep_cmd_opts = '--line-numbers --noheading'
 let g:neosnippet#data_directory='~/.vim/cache/neosnippet'
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 let g:netrw_liststyle=3
@@ -124,6 +124,8 @@ command! W w
 command! WQ w
 command! Wq wq
 
+nmap <Space> <Leader>
+
 imap <C-K> <Plug>(neosnippet_expand_or_jump)
 imap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap jj <Esc>
@@ -134,17 +136,14 @@ nnoremap <Leader>" ysiW"
 nnoremap <Leader>' ysiW'
 nnoremap <Leader>/ :Unite grep:.<CR>
 nnoremap <Leader>9 mmF(r f)r `m
-nnoremap <Leader>; :Commentary<CR>
-nnoremap <Leader><Space> :call Trim()<CR>
 nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
 nnoremap <Leader>b :Unite buffer<CR>
-nnoremap <Leader>eg :edit ~/.gvimrc<CR>
-nnoremap <Leader>en :new<CR>
-nnoremap <Leader>ev :edit ~/.vimrc<CR>
 nnoremap <Leader>f= gqip
 nnoremap <Leader>fS mmvip:sort!<CR>`m
 nnoremap <Leader>f` ysiW`
 nnoremap <Leader>fs mmvip:sort<CR>`m
+nnoremap <Leader>ft :call Trim()<CR>
+nnoremap <Leader>g :edit ~/.gvimrc<CR>
 nnoremap <Leader>gc :let @c=expand('%p')<CR>:Gcommit<CR>iUpdate <Esc>"cp
 nnoremap <Leader>gl :!git l<CR>
 nnoremap <Leader>gp :Gpull<CR>
@@ -152,12 +151,15 @@ nnoremap <Leader>gpo :Gpush<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>h :bnext<CR>
 nnoremap <Leader>j :bprevious<CR>
+nnoremap <Leader>n :new<CR>
 nnoremap <Leader>pc :read !pbpaste <BAR> js2coffee<CR>
 nnoremap <Leader>pj :read !pbpaste <BAR> html2jade<CR>
 nnoremap <Leader>q :bdelete <BAR> :bprevious<CR>
 nnoremap <Leader>r :GitGutterRevertHunk<CR>
+nnoremap <Leader>S :GitGutterStageHunk<CR>:GitGutterPrevHunk<CR>
 nnoremap <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
 nnoremap <Leader>t :Unite -start-insert file_rec/async<CR>
+nnoremap <Leader>v :edit ~/.vimrc<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>y :Unite history/yank<CR>
 nnoremap <Tab>l "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>:w<CR>
@@ -173,9 +175,9 @@ nnoremap j gj
 nnoremap k gk
 nnoremap n nzz
 vnoremap < <gv
-vnoremap <Leader>en "nd:new<CR>"nP
 vnoremap <Leader>fS mmvip:sort!<CR>`m
 vnoremap <Leader>fs mmvip:sort<CR>`m
+vnoremap <Leader>n "nd:new<CR>"nP
 vnoremap > >gv
 
 function! ToggleColorColumn()
