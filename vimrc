@@ -224,6 +224,6 @@ augroup Auto
   autocmd FileType gitcommit setlocal winheight=8
   autocmd FileType qf setlocal winheight=5
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd WinEnter * setlocal relativenumber colorcolumn=79
-  autocmd WinLeave * setlocal norelativenumber colorcolumn&
+  autocmd WinEnter * setlocal colorcolumn=79
+  autocmd WinLeave * setlocal colorcolumn&
 augroup END
