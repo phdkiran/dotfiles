@@ -1,18 +1,53 @@
 #!/usr/bin/env bash
 
-# Trackpad: enable tap to click for this user and for the login screen
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+sudo pmset -a standbydelay 86400
+
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain AppleICUDateFormatStrings -dict-add "1" "d/M/yy "
+defaults write NSGlobalDomain AppleICUDateFormatStrings -dict-add "2" "d MMM yyyy"
+defaults write NSGlobalDomain AppleICUDateFormatStrings -dict-add "3" "d MMMM yyyy"
+defaults write NSGlobalDomain AppleICUDateFormatStrings -dict-add "4" "EEEE, d MMMM yyyy"
+defaults write NSGlobalDomain AppleICUTimeFormatStrings -dict-add "1" "H:mm "
+defaults write NSGlobalDomain AppleICUTimeFormatStrings -dict-add "2" "H:mm:ss "
+defaults write NSGlobalDomain AppleICUTimeFormatStrings -dict-add "3" "H:mm:ss  z"
+defaults write NSGlobalDomain AppleICUTimeFormatStrings -dict-add "4" "H:mm:ss  z"
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+defaults write NSGlobalDomain AppleLanguages -array "en" "ru"
+defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
+defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
+defaults write NSGlobalDomain AppleMetricUnits -bool true
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-
-# Enable QuickTime Player autoplay
 defaults write com.apple.QuickTimePlayerX MGPlayMovieOnOpen 1
-
-# Disables launching MacVim through a login shell
+defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
+defaults write com.apple.Safari HomePage -string "about:blank"
+defaults write com.apple.Safari IncludeDevelopMenu -bool true
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0
+defaults write com.apple.dock expose-animation-duration -float 0.1
+defaults write com.apple.dock expose-group-by-app -bool false
+defaults write com.apple.dock launchanim -bool false
+defaults write com.apple.dock mineffect -string "scale"
+defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock mru-spaces -bool false
+defaults write com.apple.dock orientation -string "right"
+defaults write com.apple.dock persistent-apps -array ""
+defaults write com.apple.dock pinning -string "middle"
+defaults write com.apple.dock tilesize -int 72
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+defaults write com.apple.finder NewWindowTarget -string "PfDe"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Dropbox/"
+defaults write com.apple.menuextra.clock DateFormat -string 'EEEE d MMM HH:mm'
 defaults write org.vim.MacVim MMLoginShell 0
 
-# Add window paddings for MacVim
-defaults write org.vim.MacVim MMTextInsetTop '20'
-defaults write org.vim.MacVim MMTextInsetLeft '20'
-defaults write org.vim.MacVim MMTextInsetBottom '20'
-defaults write org.vim.MacVim MMTextInsetRight '20'
+find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 -delete
