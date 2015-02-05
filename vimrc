@@ -138,8 +138,6 @@ nmap <Space> <Leader>
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
-nnoremap <CR> G
-nnoremap <BS> gg
 imap <C-K> <Plug>(neosnippet_expand_or_jump)
 imap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap jj <Esc>
