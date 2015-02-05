@@ -4,7 +4,7 @@ set runtimepath+=~/.vim/bundle/vimproc.vim/autorun
 set runtimepath+=~/.vim/bundle/vimproc.vim/plugin
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'shougo/neobundle.vim'
-NeoBundle 'shougo/vimproc.vim'
+NeoBundle 'shougo/vimproc.vim', {'build': {'mac': 'make -f make_mac.mak', 'linux': 'make', 'unix': 'gmake'}}
 
 " NeoBundle '~/Repositories/romanzolotarev/vim-journal'
 NeoBundle 'romanzolotarev/vim-snippets'
