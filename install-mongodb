@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-cd "$(dirname "${BASH_SOURCE}")"
+# cd "$(dirname "${BASH_SOURCE}")"
 brew install mongo
-if [ $? -eq 0 ]; then
-  rm -f /usr/local/etc/mongod.conf
-  ln -s "${PWD}/mongod.conf" /usr/local/etc/mongod.conf && echo 'Link mongod.conf'
-else
-  echo 'Can not install mongo. Check brew first.'
-fi
+# if [ $? -eq 0 ]; then
+#   rm -f /usr/local/etc/mongod.conf
+#   ln -s "${PWD}/mongod.conf" /usr/local/etc/mongod.conf && echo 'Link mongod.conf'
+# else
+#   echo 'Can not install mongo. Check brew first.'
+# fi
 
 # To have launchd start mongodb at login:
 #     ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
