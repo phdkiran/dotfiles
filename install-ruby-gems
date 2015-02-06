@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-gem update --no-document
+brew update && brew doctor && brew install ruby && \
+gem update --no-document && \
 gem install \
   bundler \
   github-auth \

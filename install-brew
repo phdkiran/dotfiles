@@ -9,26 +9,21 @@ else
 fi
 
 echo 'Running brew doctor...'
-# brew update && brew doctor
-
-echo 'Install formulas...'
+brew update && brew doctor && \
+echo 'Install formulas...' && \
 brew install \
   bash \
   bash-completion \
   ctags \
-  ffmpeg \
   gpg \
   git \
   hub \
-  imagemagick \
-  node \
   reattach-to-user-namespace \
-  ruby \
   the_silver_searcher \
   tmux \
-  wget
-brew install macvim --override-system-vim --with-lua
-brew linkapps macvim
-
-brew install caskroom/cask/brew-cask
+  wget \
+  && \
+brew install macvim --override-system-vim --with-lua && \
+brew linkapps macvim && \
+brew install caskroom/cask/brew-cask && \
 brew cleanup

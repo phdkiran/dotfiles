@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-cd "$(dirname "${BASH_SOURCE}")"
-echo 'Installing node.js and npm'
-
-brew update && brew install node && brew cleanup
+brew update && brew doctor && brew install node && brew cleanup && \
 npm install -g \
   coffee-script \
   coffeelint \
