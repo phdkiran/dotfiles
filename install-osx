@@ -2,6 +2,15 @@
 
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+host=$(sudo scutil --get LocalHostName)
+cat <<EOM
+
+Warning! You are about to update preferences for Safari, Mail, Finder, Dock,
+and other OS X apps.
+
+Type-in a name for this computer (it is "${host}" now):
+EOM
+read host
 
 sudo pmset -a standbydelay 86400
 
@@ -51,3 +60,10 @@ defaults write com.apple.menuextra.clock DateFormat -string 'EEEE d MMM HH:mm'
 defaults write org.vim.MacVim MMLoginShell 0
 
 find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 -delete
+
+sudo scutil --set HostName $host 
+sudo scutil --set ComputerName $host 
+sudo scutil --set LocalHostName $host 
+
+killall Dock
+killall Finder

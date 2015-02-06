@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -x
+#!/usr/bin/env bash
 cd "$(dirname "${BASH_SOURCE}")"
 echo 'Installing node.js and npm'
 

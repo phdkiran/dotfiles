@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-gem update
-gem install bundler github-auth github-pages
+gem update --no-document
+gem install bundler github-auth github-pages --no-document

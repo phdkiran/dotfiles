@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+directory="${HOME}/.ssh"
+mkdir -p ${directory}
+chmod 700 ${directory} 
+host=$(scutil --get LocalHostName)
+file="${directory}/${host}"
+ssh-keygen -t rsa -C ${host} -f ${file}
+eval "$(ssh-agent -s)"
+ssh-add ${file}
+pbcopy < "${file}.pub"
+
+cat <<EOM
+
+The new public key copied into your clipboard.
+Sign in at GitHub and paste your SSH key.
+Then to test the connection run:
+
+  $ ssh -T git@github.com -i ${file}
+
+EOM
+open https://github.com/settings/ssh

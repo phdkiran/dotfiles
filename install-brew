@@ -2,30 +2,33 @@
 cd "$(dirname "${BASH_SOURCE}")"
 
 if brew --version &> /dev/null; then
-  echo 'Homebrew has been installed. Running brew doctor...'
-  brew update && brew doctor && brew cleanup
+  echo 'Homebrew has been installed.'
 else
   echo 'Installing Homebrew...'
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+echo 'Running brew doctor...'
+# brew update && brew doctor
+
 echo 'Install formulas...'
 brew install \
   bash \
   bash-completion \
-  brew-cask \
   ctags \
   ffmpeg \
   gpg \
   git \
   hub \
   imagemagick \
-  macvim --override-system-vim --with-lua \
   node \
   reattach-to-user-namespace \
   ruby \
   the_silver_searcher \
   tmux \
   wget
+brew install macvim --override-system-vim --with-lua
 brew linkapps macvim
+
+brew install caskroom/cask/brew-cask
 brew cleanup
