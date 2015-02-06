@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 rm -rf ~/.npm
-brew update && brew doctor && brew install node && brew cleanup && \
+brew install node && brew cleanup && \
 npm cache clear && \
 npm install -g \
   coffee-script \

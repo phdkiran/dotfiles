@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-brew update && brew doctor && brew install ruby && \
+brew install ruby && brew cleanup && \
 gem update --no-document && \
 gem install \
   bundler \
