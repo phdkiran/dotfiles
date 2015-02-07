@@ -9,6 +9,7 @@ if [ -x "$(brew --prefix)/bin/brew" ]; then
   export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages"
 fi
 export CDPATH=".:\
+${HOME}:\
 ${HOME}/Dropbox:\
 ${HOME}/Repositories/:\
 ${HOME}/Repositories/romanzolotarev:\
