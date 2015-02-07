@@ -153,7 +153,7 @@ nnoremap <Leader>f= gqip
 nnoremap <Leader>fS mmvip:sort!<CR>`m
 nnoremap <Leader>fs mmvip:sort<CR>`m
 nnoremap <Leader>ft :call Trim()<CR>
-nnoremap <Leader>gc :Gblame<CR>
+nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gc :let @c=expand('%p')<CR>:Gcommit<CR>iUpdate <Esc>"cp
 nnoremap <Leader>gd :Gvdiff<CR>
 nnoremap <Leader>gl :!git l<CR>
