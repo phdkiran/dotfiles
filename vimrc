@@ -156,7 +156,7 @@ nnoremap <Leader>ft :call Trim()<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gc :let @c=expand('%p')<CR>:Gcommit<CR>iUpdate <Esc>"cp
 nnoremap <Leader>gd :Gvdiff<CR>
-nnoremap <Leader>gl :!git l<CR>
+nnoremap <Leader>gl :Glog -- %<CR>
 nnoremap <Leader>gp :Gpull<CR>
 nnoremap <Leader>gpo :Gpush<CR>
 nnoremap <Leader>gs :Gstatus<CR>
@@ -199,7 +199,11 @@ vnoremap > >gv
 function! Quit()
   let numberOfListedBuffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
   if numberOfListedBuffers > 1
-    bprevious | bdelete #
+    try
+      bprevious | bdelete #
+    catch
+      " Can't delete buffer
+    endtry
   else
     if &modified
       echohl WarningMsg | echo "This buffer has unsaved changes. I don't want to quit." | echohl None
