@@ -68,5 +68,14 @@ sudo scutil --set HostName $host
 sudo scutil --set ComputerName $host 
 sudo scutil --set LocalHostName $host 
 
+sudo chflags hidden ${HOME}/Public && echo 'Hide ~/Public'
+sudo chflags hidden ${HOME}/Documents && echo 'Hide ~/Documents'
+sudo chflags hidden ${HOME}/Desktop && echo 'Hide ~/Desktop'
+sudo chflags hidden ${HOME}/Music && echo 'Hide ~/Music'
+sudo chflags hidden ${HOME}/Pictures && echo 'Hide ~/Pictures'
+sudo chflags hidden ${HOME}/Movies && echo 'Hide ~/Movies'
+sudo chflags hidden ${HOME}/Applications && echo 'Hide ~/Applications'
+sudo chflags hidden /opt && echo 'Hide /opt'
+
 killall Dock
 killall Finder
