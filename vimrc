@@ -135,9 +135,6 @@ command! Wq wq
 
 nmap <Space> <Leader>
 
-vnoremap <silent> y y`]
-vnoremap <silent> p p`]
-nnoremap <silent> p p`]
 imap <C-K> <Plug>(neosnippet_expand_or_jump)
 imap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap jj <Esc>
@@ -156,7 +153,6 @@ nnoremap <Leader>f= gqip
 nnoremap <Leader>fS mmvip:sort!<CR>`m
 nnoremap <Leader>fs mmvip:sort<CR>`m
 nnoremap <Leader>ft :call Trim()<CR>
-nnoremap <Leader>g :edit ~/.gvimrc<CR>
 nnoremap <Leader>gc :let @c=expand('%p')<CR>:Gcommit<CR>iUpdate <Esc>"cp
 nnoremap <Leader>gd :Gvdiff<CR>
 nnoremap <Leader>gl :!git l<CR>
@@ -165,6 +161,7 @@ nnoremap <Leader>gpo :Gpush<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>h :bnext<CR>
 nnoremap <Leader>j :bprevious<CR>
+nnoremap <Leader>m :edit ~/.gvimrc<CR>
 nnoremap <Leader>n :new<CR>
 nnoremap <Leader>pc :read !pbpaste <BAR> js2coffee<CR>
 nnoremap <Leader>pj :read !pbpaste <BAR> html2jade<CR>
@@ -176,6 +173,7 @@ nnoremap <Leader>v :edit ~/.vimrc<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>y :Unite history/yank<CR>
 nnoremap <Tab>l "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>:w<CR>
+nnoremap <silent> p p`]
 nnoremap K i<CR><Esc>
 nnoremap N Nzz
 nnoremap Q <Nop>
@@ -193,6 +191,8 @@ vnoremap < <gv
 vnoremap <Leader>fS mmvip:sort!<CR>`m
 vnoremap <Leader>fs mmvip:sort<CR>`m
 vnoremap <Leader>n "nd:new<CR>"nP
+vnoremap <silent> p p`]
+vnoremap <silent> y y`]
 vnoremap > >gv
 
 function! ToggleColorColumn()
