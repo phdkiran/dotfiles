@@ -65,7 +65,6 @@ if !empty(glob('~/.vim/bundle/unite.vim/autoload/unite.vim'))
   endtry
 endif
 
-" let g:mapleader=','
 let g:gitgutter_enabled=1
 let g:gitgutter_map_keys=0
 let g:grep_cmd_opts = '--line-numbers --noheading'
@@ -149,6 +148,8 @@ nnoremap <Leader>/ :Unite grep:.<CR>
 nnoremap <Leader>9 mmF(r f)r `m
 nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
 nnoremap <Leader>b :Unite buffer<CR>
+nnoremap <Leader>ej :edit ~/Dropbox/Notes/diary.journal<CR>
+nnoremap <Leader>ep :edit ~/Dropbox/Notes/posts.md<CR>
 nnoremap <Leader>f= gqip
 nnoremap <Leader>fS mmvip:sort!<CR>`m
 nnoremap <Leader>fs mmvip:sort<CR>`m

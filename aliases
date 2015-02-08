@@ -3,6 +3,7 @@
 alias v="${EDITOR}"
 alias e="${EDITOR} ."
 
+alias i='./install'
 alias o='./open'
 alias r='./run'
 alias d='./deploy'
