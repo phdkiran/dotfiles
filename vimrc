@@ -49,6 +49,7 @@ if !empty(glob('~/.vim/bundle/base16-vim/colors/base16-tomorrow.vim'))
     colorscheme base16-tomorrow
     set background=dark
     syntax on
+    highlight Search ctermfg=3 guifg=#f0c674 ctermbg=11 guibg=#373b41 cterm=underline gui=underline
     highlight User1 ctermfg=3 guifg=#f0c674 ctermbg=11 guibg=#373b41
   catch
     " Plugin 'chriskempson/base16-vim' is inactive
@@ -74,6 +75,7 @@ let g:neocomplete#enable_auto_select=0
 let g:neosnippet#data_directory='~/.vim/cache/neosnippet'
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 let g:netrw_liststyle=3
+let g:netrw_localrmdir='rm -r'
 let g:netrw_menu=0
 let g:netrw_preview=1
 let g:sneak#streak = 1
@@ -101,7 +103,7 @@ set encoding=utf-8
 set formatoptions+=l
 set gdefault
 set hidden
-set ignorecase smartcase incsearch nohlsearch grepprg=ag
+set ignorecase smartcase incsearch hlsearch grepprg=ag
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 set listchars=tab:»·,trail:·,eol:¬
 set nowrap textwidth=0 wrapmargin=0 linebreak
@@ -139,9 +141,9 @@ imap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap jj <Esc>
 inoremap jk <Esc>
 inoremap kk <Esc>
-nmap <Leader>" ysiW"
-nmap <Leader>' ysiW'
-nmap <Leader>` ysiW`
+nmap <Leader>" ysiw"
+nmap <Leader>' ysiw'
+nmap <Leader>` ysiw`
 nmap <Leader>fj gqaj
 nnoremap ' :
 nnoremap <Leader>/ :Unite grep:.<CR>
@@ -164,7 +166,8 @@ nnoremap <Leader>gpo :Gpush<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>h :bnext<CR>
 nnoremap <Leader>j :bprevious<CR>
-nnoremap <Leader>l "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>:write<CR>
+nnoremap <Leader>l "lyiwoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
+nnoremap <Leader>L "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
 nnoremap <Leader>m :edit ~/.gvimrc<CR>
 nnoremap <Leader>n :new<CR>
 nnoremap <Leader>pc :read !pbpaste <BAR> js2coffee<CR>
