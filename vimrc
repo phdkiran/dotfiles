@@ -147,10 +147,10 @@ nnoremap ' :
 nnoremap <Leader>/ :Unite grep:.<CR>
 nnoremap <Leader>9 mmF(r f)r `m
 nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
+nnoremap <Leader>a :Unite -start-insert file_rec/async<CR>
 nnoremap <Leader>b :Unite buffer<CR>
 nnoremap <Leader>ed :edit ~/Dropbox/Notes/diary.journal<CR>
 nnoremap <Leader>ep :edit ~/Dropbox/Notes/posts.md<CR>
-nnoremap <Leader>f :Unite -start-insert file_rec/async<CR>
 nnoremap <Leader>f= gqip
 nnoremap <Leader>fS mmvip:sort!<CR>`m
 nnoremap <Leader>fs mmvip:sort<CR>`m
@@ -164,6 +164,7 @@ nnoremap <Leader>gpo :Gpush<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>h :bnext<CR>
 nnoremap <Leader>j :bprevious<CR>
+nnoremap <Leader>l "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>:write<CR>
 nnoremap <Leader>m :edit ~/.gvimrc<CR>
 nnoremap <Leader>n :new<CR>
 nnoremap <Leader>pc :read !pbpaste <BAR> js2coffee<CR>
@@ -174,7 +175,6 @@ nnoremap <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
 nnoremap <Leader>v :edit ~/.vimrc<CR>
 nnoremap <Leader>w :write<CR>
 nnoremap <Leader>y :Unite history/yank<CR>
-nnoremap <Tab>l "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>:write<CR>
 nnoremap <silent> p p`]
 nnoremap K i<CR><Esc>
 nnoremap N Nzz
