@@ -4,7 +4,7 @@ DULL=0
 FG_RED=31
 FG_GREEN=32
 FG_YELLOW=33
-FG_GRAY=33
+FG_GRAY=94
 FG_DARKGRAY=92
 BG_NULL=00
 ESC="\033"
@@ -36,10 +36,9 @@ git_prompt() {
       local COLOR=${GREEN}
     fi
     local SINCE_LAST_COMMIT="${COLOR}$(minutes_since_last_commit)m${DARKGRAY}"
-    # The __git_ps1 function inserts the current git branch where %s is
     local GIT_PROMPT=`__git_ps1 "(%s|${SINCE_LAST_COMMIT})"`
-    echo ${GIT_PROMPT}
+    echo " ${GIT_PROMPT}"
   fi
 }
 GIT_PS1_SHOWDIRTYSTATE=true
-PS1="${DARKGRAY}\h ${GRAY}\w${DARKGRAY} \$(git_prompt)${NORMAL} "
+PS1="${DARKGRAY}\h ${GRAY}\w${DARKGRAY}\$(git_prompt) ${NORMAL}"
