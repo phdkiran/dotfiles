@@ -148,7 +148,7 @@ nnoremap <Leader>/ :Unite grep:.<CR>
 nnoremap <Leader>9 mmF(r f)r `m
 nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
 nnoremap <Leader>b :Unite buffer<CR>
-nnoremap <Leader>ej :edit ~/Dropbox/Notes/diary.journal<CR>
+nnoremap <Leader>ed :edit ~/Dropbox/Notes/diary.journal<CR>
 nnoremap <Leader>ep :edit ~/Dropbox/Notes/posts.md<CR>
 nnoremap <Leader>f= gqip
 nnoremap <Leader>fS mmvip:sort!<CR>`m
