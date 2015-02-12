@@ -150,6 +150,7 @@ nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
 nnoremap <Leader>b :Unite buffer<CR>
 nnoremap <Leader>ed :edit ~/Dropbox/Notes/diary.journal<CR>
 nnoremap <Leader>ep :edit ~/Dropbox/Notes/posts.md<CR>
+nnoremap <Leader>f :Unite -start-insert file_rec/async<CR>
 nnoremap <Leader>f= gqip
 nnoremap <Leader>fS mmvip:sort!<CR>`m
 nnoremap <Leader>fs mmvip:sort<CR>`m
@@ -170,7 +171,6 @@ nnoremap <Leader>pj :read !pbpaste <BAR> html2jade<CR>
 nnoremap <Leader>q :call Quit()<CR>
 nnoremap <Leader>r :GitGutterRevertHunk<CR>
 nnoremap <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
-nnoremap <Leader>t :Unite -start-insert file_rec/async<CR>
 nnoremap <Leader>v :edit ~/.vimrc<CR>
 nnoremap <Leader>w :write<CR>
 nnoremap <Leader>y :Unite history/yank<CR>
