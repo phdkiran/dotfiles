@@ -15,6 +15,7 @@ brew install \
   bash \
   bash-completion \
   ctags \
+  cloc \
   gpg \
   git \
   hub \
