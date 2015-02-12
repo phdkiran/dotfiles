@@ -1,6 +1,45 @@
 #!/usr/bin/env bash
+
+DULL=0
+FG_RED=31
+FG_GREEN=32
+FG_YELLOW=33
+FG_GRAY=33
+FG_DARKGRAY=92
+BG_NULL=00
+ESC="\033"
+NORMAL="$ESC[m"
+
+DARKGRAY="$ESC[${DULL};${FG_DARKGRAY}m"
+GRAY="$ESC[${DULL};${FG_GRAY}m"
+RED="$ESC[${DULL};${FG_RED}m"
+GREEN="$ESC[${DULL};${FG_GREEN}m"
+YELLOW="$ESC[${DULL};${FG_YELLOW}m"
+
+function minutes_since_last_commit {
+  now=`date +%s`
+  last_commit=`git log --pretty=format:'%at' -1`
+  seconds_since_last_commit=$((now - last_commit))
+  minutes_since_last_commit=$((seconds_since_last_commit/60))
+  echo $minutes_since_last_commit
+}
+
+git_prompt() {
+  local g="$(__gitdir)"
+  if [ -n "$g" ]; then
+    local MINUTES_SINCE_LAST_COMMIT=`minutes_since_last_commit`
+    if [ "$MINUTES_SINCE_LAST_COMMIT" -gt 30 ]; then
+      local COLOR=${RED}
+    elif [ "$MINUTES_SINCE_LAST_COMMIT" -gt 10 ]; then
+      local COLOR=${YELLOW}
+    else
+      local COLOR=${GREEN}
+    fi
+    local SINCE_LAST_COMMIT="${COLOR}$(minutes_since_last_commit)m${DARKGRAY}"
+    # The __git_ps1 function inserts the current git branch where %s is
+    local GIT_PROMPT=`__git_ps1 "(%s|${SINCE_LAST_COMMIT})"`
+    echo ${GIT_PROMPT}
+  fi
+}
 GIT_PS1_SHOWDIRTYSTATE=true
-COLOR1='\[\e[0;93m\]'
-COLOR2='\[\e[0;33m\]'
-RESET='\[\e[0m\]'
-export PS1="${COLOR1}\h ${COLOR2}\w${COLOR1}\$(__git_ps1)${RESET} "
+PS1="${DARKGRAY}\h ${GRAY}\w${DARKGRAY} \$(git_prompt)${NORMAL} "
