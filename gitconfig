@@ -7,6 +7,8 @@
 	protocol = ssh
 [color]
   ui = true
+[core]
+  excludesfile = ~/.gitignore
 [alias]
   ca = !"git add -A && git commit -av"
   l = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short --graph -n 20 --abbrev-commit
