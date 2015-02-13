@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+alias tl="tmux list-sessions"
+alias tka="tmux kill-session -a"
+
 alias v="${EDITOR}"
 alias e="${EDITOR} ."
 

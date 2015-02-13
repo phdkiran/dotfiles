@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
-
-say "Tick-tack. 25 minutes to go." && \
-sleep 1200 && \
-say "Wrap up." && \
-sleep 300 && \
-say "Good job. Take 5 minute break" && \
-sleep 300 && say "Ding-don. Back to work" &
+say '24 minutes to go.' && \
+sleep 180 && say '21' && \
+sleep 180 && say '18' && \
+sleep 180 && say '15' && \
+sleep 180 && say '12' && \
+sleep 180 && say '9' && \
+sleep 180 && say '6' && \
+sleep 180 && say '3' && \
+sleep 180 && say 'Good job, my master. Take 6 minute break.' && \
+sleep 360 && say 'Are you there? Back to work meatbag.' &
