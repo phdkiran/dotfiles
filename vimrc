@@ -125,7 +125,7 @@ set statusline=%*\ %F\ %1*%H%M%R%W%*
 if exists('*fugitive#statusline')
   set statusline+=%{fugitive#statusline()}
 endif
-set statusline+=%=\ %l,%c\ %<%P\ "
+set statusline+=%=\ %{FileModified()}\ %l,%c\ %<%P\ "
 if exists('*SyntasticStatuslineFlag')
   set statusline+=%1*%{SyntasticStatuslineFlag()}%*
 endif
@@ -199,6 +199,22 @@ vnoremap <Leader>n "nd:new<CR>"nP
 vnoremap <silent> p p`]
 vnoremap <silent> y y`]
 vnoremap > >gv
+
+function! FileModified()
+  let file=expand('%:p')
+  let date=getftime(file)
+  return GetTime(date)
+endfunction
+
+function! GetTime(time)
+  if a:time < 0 | return 'new' | endif
+  let sec = localtime() - a:time
+  if sec < 1 | return 'saved' | endif
+  if sec < 60 | return sec.'s' | endif
+  if sec < 3600 | return (sec/60).'m' | endif
+  if sec < 3600 * 24 | return (sec/3600).'h' | endif
+  return (sec/86400).'d'
+endfunction
 
 function! SetLineLength(length)
   execute 'match OverLengthOrSpaces /\%' . a:length . 'v.*\|\s\+$\| \+\ze\t/'
