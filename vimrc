@@ -11,8 +11,6 @@ NeoBundle 'romanzolotarev/vim-snippets'
 NeoBundle 'romanzolotarev/vim-journal'
 NeoBundle 'wikitopian/hardmode'
 
-NeoBundle 'tpope/vim-jdaddy'
-NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
@@ -21,6 +19,7 @@ NeoBundle 'elzr/vim-json'
 NeoBundle 'gorodinskiy/vim-coloresque'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jtratner/vim-flavored-markdown'
+NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'shougo/neocomplete'
@@ -32,6 +31,7 @@ NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-jdaddy'
 NeoBundle 'tpope/vim-projectionist'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
@@ -49,8 +49,9 @@ if !empty(glob('~/.vim/bundle/base16-vim/colors/base16-tomorrow.vim'))
     colorscheme base16-tomorrow
     set background=dark
     syntax on
+    highlight User1 ctermfg=11 guifg=#373b41 ctermbg=3 guibg=#f0c674
     highlight Search ctermfg=3 guifg=#f0c674 ctermbg=11 guibg=#373b41 cterm=underline gui=underline
-    highlight User1 ctermfg=3 guifg=#f0c674 ctermbg=11 guibg=#373b41
+    highlight OverLengthOrSpaces ctermfg=11 guifg=#373b41 ctermbg=3 guibg=#f0c674
   catch
     " Plugin 'chriskempson/base16-vim' is inactive
   endtry
@@ -98,7 +99,7 @@ set autoread nobackup noswapfile nowritebackup
 set backspace=indent,eol,start
 set clipboard=unnamed
 set cryptmethod=blowfish
-set cursorline colorcolumn=79 relativenumber number
+set cursorline relativenumber number
 set encoding=utf-8
 set formatoptions+=l
 set gdefault
@@ -186,7 +187,6 @@ nnoremap Y y$
 nnoremap [h :GitGutterPrevHunk<CR>
 nnoremap ]h :GitGutterNextHunk<CR>
 nnoremap cog :GitGutterLineHighlightsToggle<CR>
-nnoremap cop :call ToggleColorColumn()<CR>
 nnoremap j gj
 nnoremap k gk
 nnoremap n nzz
@@ -199,6 +199,10 @@ vnoremap <Leader>n "nd:new<CR>"nP
 vnoremap <silent> p p`]
 vnoremap <silent> y y`]
 vnoremap > >gv
+
+function! SetLineLength(length)
+  execute 'match OverLengthOrSpaces /\%' . a:length . 'v.*\|\s\+$\| \+\ze\t/'
+endfunction
 
 function! Quit()
   let numberOfListedBuffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
@@ -214,14 +218,6 @@ function! Quit()
     else
       quit
     endif
-  endif
-endfunction
-
-function! ToggleColorColumn()
-  if &colorcolumn == ''
-    setlocal colorcolumn=79
-  else
-    setlocal colorcolumn&
   endif
 endfunction
 
@@ -243,21 +239,20 @@ endfunction
 
 augroup Auto
   autocmd!
+  autocmd BufEnter *.txt if &filetype == 'help' | execute "normal \<C-W>T" | endif
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWinEnter * call RestoreCursorPositon()
+  autocmd BufWinEnter *.coffee,*.jade call SetLineLength(79)
   autocmd BufWrite *vimrc,*.coffee,*.styl,*.jade,*.md,*.journal call Trim()
   autocmd BufWritePost *gvimrc source %
   autocmd BufWritePost *vimrc source %
   autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
   autocmd FileType coffee,jade setlocal foldmethod=indent nofoldenable
+  autocmd FileType gitcommit setlocal winheight=8
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType journal setlocal colorcolumn=140
   autocmd FileType netrw,help setlocal winwidth=85 winheight=8
-  autocmd FileType qf,netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline colorcolumn& nonumber norelativenumber
-  autocmd FileType gitcommit setlocal winheight=8
   autocmd FileType qf setlocal winheight=5
+  autocmd FileType qf,netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline nonumber norelativenumber
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd WinEnter * setlocal colorcolumn=79
-  autocmd WinLeave * setlocal colorcolumn&
 augroup END
