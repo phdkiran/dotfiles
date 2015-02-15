@@ -6,10 +6,11 @@ alias tka="tmux kill-session -a"
 alias v="${EDITOR}"
 alias e="${EDITOR} ."
 
+alias d='./deploy'
 alias i='./install'
 alias o='./open'
 alias r='./run'
-alias d='./deploy'
+alias s='./styling'
 alias t='./test'
 
 alias -- -="cd -"

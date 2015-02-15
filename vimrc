@@ -11,6 +11,7 @@ NeoBundle 'romanzolotarev/vim-snippets'
 NeoBundle 'romanzolotarev/vim-journal'
 NeoBundle 'wikitopian/hardmode'
 
+" NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
@@ -37,7 +38,6 @@ NeoBundle 'tpope/vim-projectionist'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'wavded/vim-stylus'
 
 NeoBundleCheck
@@ -130,15 +130,6 @@ set winheight=4
 set winminheight=4
 set winheight=100
 
-set statusline=%*\ %F\ %1*%H%M%R%W%*
-if exists('*fugitive#statusline')
-  set statusline+=%1*\ %{fugitive#head()}%*
-endif
-set statusline+=%=\ %{FileModified()}\ %l,%c\ %<%P\ "
-if exists('*SyntasticStatuslineFlag')
-  set statusline+=%1*%{SyntasticStatuslineFlag()}%*
-endif
-
 command! Q q
 command! W w
 command! WQ w
@@ -165,8 +156,10 @@ nnoremap <Leader>a :Unite -start-insert file_rec/async<CR>
 nnoremap <Leader>b :Unite buffer<CR>
 nnoremap <Leader>ed :edit ~/Dropbox/Notes/diary.journal<CR>
 nnoremap <Leader>ep :edit ~/Dropbox/Notes/posts.md<CR>
+nnoremap <Leader>f- mmvip:s/^/- /<CR>`m
 nnoremap <Leader>f= gqip
 nnoremap <Leader>fS mmvip:sort!<CR>`m
+nnoremap <Leader>f_ mmvip:s/^- //<CR>`m
 nnoremap <Leader>fs mmvip:sort<CR>`m
 nnoremap <Leader>ft :call Trim()<CR>
 nnoremap <Leader>gb :Gblame<CR>
@@ -210,6 +203,17 @@ vnoremap <Leader>n "nd:new<CR>"nP
 vnoremap <silent> p p`]
 vnoremap <silent> y y`]
 vnoremap > >gv
+
+function! SetStatusLine() abort
+  set statusline=%*\ %F\ %1*%H%M%R%W%*
+  if exists('*fugitive#head')
+    set statusline+=%1*\ %{fugitive#head()}%*
+  endif
+  set statusline+=%=\ %{FileModified()}\ %l,%c\ %<%P\ "
+  if exists('*SyntasticStatuslineFlag')
+    set statusline+=%1*%{SyntasticStatuslineFlag()}%*
+  endif
+endfunction
 
 if !exists('*Save')
   function! Save()
@@ -278,11 +282,10 @@ endfunction
 
 augroup Auto
   autocmd!
-
   autocmd BufEnter *.txt if &filetype == 'help' | execute "normal \<C-W>T" | endif
-  autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
-  autocmd BufWinEnter * call RestoreCursorPositon()
-  autocmd BufWinEnter *.coffee,*.styl,*.jade,*.md,*.journal call SetLineLength(79)
+  autocmd BufNewFile,BufRead,BufWrite *.md,*.markdown setlocal filetype=ghmarkdown
+  autocmd BufWinEnter * call RestoreCursorPositon() | call SetStatusLine()
+  autocmd BufWinEnter *.coffee,*.styl,*.jade call SetLineLength(79)
   autocmd BufWrite *vimrc,*.coffee,*.styl,*.jade,*.md,*.journal call Trim()
   autocmd BufWritePost *gvimrc source %
   autocmd BufWritePost *vimrc source %
