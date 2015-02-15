@@ -49,6 +49,7 @@ if !empty(glob('~/.vim/bundle/base16-vim/colors/base16-tomorrow.vim'))
     colorscheme base16-tomorrow
     set background=dark
     syntax on
+    highlight MatchParen ctermbg=10 ctermfg=3 guibg=#282a2e guifg=#f0c674
     highlight User1 ctermfg=11 guifg=#373b41 ctermbg=3 guibg=#f0c674
     highlight Search ctermfg=3 guifg=#f0c674 ctermbg=11 guibg=#373b41 cterm=underline gui=underline
     highlight OverLengthOrSpaces ctermfg=11 guifg=#373b41 ctermbg=3 guibg=#f0c674
@@ -59,6 +60,7 @@ endif
 
 if !empty(glob('~/.vim/bundle/unite.vim/autoload/unite.vim'))
   try
+    call unite#custom#profile('default', 'context', {'winheight': 10, 'direction': 'botright'})
     call unite#custom#source('buffer,grep,file_rec/async', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
     call unite#custom#source('buffer,grep,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy', 'matcher_project_ignore_files'])
     call unite#filters#sorter_default#use(['sorter_rank'])
@@ -269,6 +271,7 @@ augroup Auto
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType netrw,help setlocal winwidth=85 winheight=8
   autocmd FileType qf setlocal winheight=5
+  autocmd FileType unite highlight StatusLine ctermbg=0 guibg=#1d1f21
   autocmd FileType qf,netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline nonumber norelativenumber
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
 augroup END
