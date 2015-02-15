@@ -21,7 +21,7 @@ alias db="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 alias dn="cd ~/Dropbox/Notes"
 alias rr="cd ~/Repositories"
-alias do="cd ~/Repositories/romanzolotarev/dotfiles"
+alias dot="cd ~/Repositories/romanzolotarev/dotfiles"
 
 alias gss='git-statuses'
 alias gpp='git-pulls'
