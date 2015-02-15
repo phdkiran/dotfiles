@@ -9,9 +9,7 @@ NeoBundle 'shougo/vimproc.vim', {'build': {'mac': 'make -f make_mac.mak', 'linux
 " NeoBundle '~/Repositories/romanzolotarev/vim-journal'
 NeoBundle 'romanzolotarev/vim-snippets'
 NeoBundle 'romanzolotarev/vim-journal'
-NeoBundle 'wikitopian/hardmode'
 
-" NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
@@ -20,8 +18,6 @@ NeoBundle 'elzr/vim-json'
 NeoBundle 'gorodinskiy/vim-coloresque'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jtratner/vim-flavored-markdown'
-NeoBundle 'junegunn/vim-easy-align'
-NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'shougo/neocomplete'
@@ -83,10 +79,6 @@ let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_auto_select=0
 let g:neosnippet#data_directory='~/.vim/cache/neosnippet'
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-let g:netrw_liststyle=3
-let g:netrw_localrmdir='rm -r'
-let g:netrw_menu=0
-let g:netrw_preview=1
 let g:sneak#streak = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -205,14 +197,15 @@ vnoremap <silent> y y`]
 vnoremap > >gv
 
 function! SetStatusLine() abort
-  set statusline=%*\ %F\ %1*%H%M%R%W%*
+  set statusline=%*\ %F\ "
   if exists('*fugitive#head')
-    set statusline+=%1*\ %{fugitive#head()}%*
+    set statusline+=%1*%{fugitive#head()}\ %*
   endif
-  set statusline+=%=\ %{FileModified()}\ %l,%c\ %<%P\ "
-  if exists('*SyntasticStatuslineFlag')
-    set statusline+=%1*%{SyntasticStatuslineFlag()}%*
-  endif
+  set statusline+=%1*%H%M%R%W%*\ %{FileModified()}%=\ %l,%c\ %<%P\ "
+endfunction
+
+function! SetStatusLineForHelpers()
+  setlocal statusline=\ %{tolower(&filetype)} nocursorline nonumber norelativenumber
 endfunction
 
 if !exists('*Save')
@@ -284,12 +277,20 @@ function! RestoreCursorPositon()
   endtry
 endfunction
 
+function! OpenHelp()
+  if &filetype == 'help'
+    execute "normal \<C-W>T"
+  endif
+endfunction
+
+call SetStatusLine()
+
 augroup Auto
   autocmd!
-  autocmd BufEnter *.txt if &filetype == 'help' | execute "normal \<C-W>T" | endif
+  autocmd BufEnter *.txt call OpenHelp()
   autocmd BufNewFile,BufRead,BufWrite *.md,*.markdown setlocal filetype=ghmarkdown
-  autocmd BufWinEnter * call RestoreCursorPositon() | call SetStatusLine()
-  autocmd BufWinEnter *.coffee,*.styl,*.jade call SetLineLength(79)
+  autocmd BufWinEnter * call RestoreCursorPositon()
+  autocmd BufWinEnter *.coffee,*.styl,*.jade call SetLineLength(79) | call SetStatusLine()
   autocmd BufWrite *vimrc,*.coffee,*.styl,*.jade,*.md,*.journal call Trim()
   autocmd BufWritePost *gvimrc source %
   autocmd BufWritePost *vimrc source %
@@ -300,6 +301,6 @@ augroup Auto
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType netrw,help setlocal winwidth=85 winheight=8
   autocmd FileType qf setlocal winheight=5
-  autocmd FileType qf,netrw,help,gitcommit setlocal statusline=\ %{tolower(&filetype)} nocursorline nonumber norelativenumber
+  autocmd FileType qf,netrw,help,gitcommit call SetStatusLineForHelpers()
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
 augroup END
