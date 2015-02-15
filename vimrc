@@ -62,7 +62,7 @@ if !empty(glob('~/.vim/bundle/unite.vim/autoload/unite.vim'))
   try
     call unite#custom#profile('default', 'context', {'winheight': 10, 'direction': 'botright'})
     call unite#custom#source('buffer,grep,file_rec/async', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
-    call unite#custom#source('buffer,grep,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy', 'matcher_project_ignore_files'])
+    call unite#custom#source('buffer,grep,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy'])
     call unite#filters#sorter_default#use(['sorter_rank'])
   catch
     " Plugin 'shougo/unite.vim' is inactive
