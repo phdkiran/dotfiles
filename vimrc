@@ -19,6 +19,7 @@ NeoBundle 'elzr/vim-json'
 NeoBundle 'gorodinskiy/vim-coloresque'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jtratner/vim-flavored-markdown'
+NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'scrooloose/syntastic'
@@ -118,6 +119,7 @@ set nowrap textwidth=0 wrapmargin=0 linebreak
 set scrolloff=3 sidescrolloff=15 sidescroll=1
 set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 set shortmess=AIWta
+set spellfile=~/.vim/spell/en.utf-8.add,~/.vim/spell/off.utf-8.add
 set ttyfast laststatus=2 noruler showmode noshowcmd
 set undodir=~/.vim/undo/ undofile undolevels=1000 undoreload=3000
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
@@ -152,10 +154,12 @@ inoremap kk <Esc>
 nmap <Leader>" ysiw"
 nmap <Leader>' ysiw'
 nmap <Leader>` ysiw`
+nmap <Leader>f\ mmvip:EasyAlign*\|<CR>`m
 nmap <Leader>fj gqaj
 nnoremap ' :
 nnoremap <Leader>/ :Unite grep:.<CR>
 nnoremap <Leader>9 mmF(r f)r `m
+nnoremap <Leader>L "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
 nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
 nnoremap <Leader>a :Unite -start-insert file_rec/async<CR>
 nnoremap <Leader>b :Unite buffer<CR>
@@ -175,7 +179,6 @@ nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>h :bnext<CR>
 nnoremap <Leader>j :bprevious<CR>
 nnoremap <Leader>l "lyiwoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
-nnoremap <Leader>L "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
 nnoremap <Leader>m :edit ~/.gvimrc<CR>
 nnoremap <Leader>n :new<CR>
 nnoremap <Leader>pc :read !pbpaste <BAR> js2coffee<CR>
@@ -198,6 +201,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap n nzz
 vmap <C-v> <Plug>(expand_region_shrink)
+vmap <Enter> <Plug>(EasyAlign)
 vmap v <Plug>(expand_region_expand)
 vnoremap < <gv
 vnoremap <Leader>fS mmvip:sort!<CR>`m
