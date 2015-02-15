@@ -130,7 +130,7 @@ set winheight=100
 
 set statusline=%*\ %F\ %1*%H%M%R%W%*
 if exists('*fugitive#statusline')
-  set statusline+=%1*%{fugitive#head()}%*
+  set statusline+=%1*\ %{fugitive#head()}%*
 endif
 set statusline+=%=\ %{FileModified()}\ %l,%c\ %<%P\ "
 if exists('*SyntasticStatuslineFlag')
@@ -182,7 +182,7 @@ nnoremap <Leader>pc :read !pbpaste <BAR> js2coffee<CR>
 nnoremap <Leader>pj :read !pbpaste <BAR> html2jade<CR>
 nnoremap <Leader>q :call Quit()<CR>
 nnoremap <Leader>r :GitGutterRevertHunk<CR>
-nnoremap <Leader>s :GitGutterStageHunk<CR>:GitGutterNextHunk<CR>
+nnoremap <Leader>s :call Save()<CR>
 nnoremap <Leader>v :edit ~/.vimrc<CR>
 nnoremap <Leader>w :write<CR>
 nnoremap <Leader>y :Unite history/yank<CR>
@@ -206,6 +206,17 @@ vnoremap <Leader>n "nd:new<CR>"nP
 vnoremap <silent> p p`]
 vnoremap <silent> y y`]
 vnoremap > >gv
+
+if !exists('*Save')
+  function! Save()
+    if exists(':Gstatus')
+      GitGutterStageHunk
+      GitGutterNextHunk
+    else
+      write
+    endif
+  endfunction
+endif
 
 function! FileModified()
   let file=expand('%:p')
