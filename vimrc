@@ -111,7 +111,7 @@ set encoding=utf-8
 set formatoptions+=l
 set gdefault
 set hidden
-set ignorecase smartcase incsearch hlsearch grepprg=ag
+set ignorecase smartcase incsearch nohlsearch grepprg=ag
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 set listchars=tab:»·,trail:·,eol:¬
 set nowrap textwidth=0 wrapmargin=0 linebreak
@@ -217,14 +217,15 @@ function! GetTime(time)
   if a:time < 0 | return 'new' | endif
   let sec = localtime() - a:time
   if sec < 1 | return 'saved' | endif
-  if sec < 60 | return sec.'s' | endif
-  if sec < 3600 | return (sec/60).'m' | endif
-  if sec < 3600 * 24 | return (sec/3600).'h' | endif
-  return (sec/86400).'d'
+  if sec < 60 | return sec . 's' | endif
+  if sec < 3600 | return (sec / 60) . 'm' | endif
+  if sec < 3600 * 24 | return (sec / 3600) . 'h' | endif
+  return (sec/86400) . 'd'
 endfunction
 
 function! SetLineLength(length)
-  execute 'match OverLengthOrSpaces /\%' . a:length . 'v.*\|\s\+$\| \+\ze\t/'
+  let lengthPlusNewLineChar = a:length + 1
+  execute 'match OverLengthOrSpaces /\%' . lengthPlusNewLineChar . 'v.*\|\s\+$\| \+\ze\t/'
 endfunction
 
 function! Quit()
@@ -266,7 +267,7 @@ augroup Auto
   autocmd BufEnter *.txt if &filetype == 'help' | execute "normal \<C-W>T" | endif
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWinEnter * call RestoreCursorPositon()
-  autocmd BufWinEnter *vimrc,*.coffee,*.styl,*.jade,*.md,*.journal call SetLineLength(80)
+  autocmd BufWinEnter *.coffee,*.styl,*.jade,*.md,*.journal call SetLineLength(79)
   autocmd BufWrite *vimrc,*.coffee,*.styl,*.jade,*.md,*.journal call Trim()
   autocmd BufWritePost *gvimrc source %
   autocmd BufWritePost *vimrc source %
