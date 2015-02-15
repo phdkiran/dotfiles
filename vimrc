@@ -218,8 +218,12 @@ endfunction
 if !exists('*Save')
   function! Save()
     if exists(':Gstatus')
-      GitGutterStageHunk
-      GitGutterNextHunk
+      try
+        GitGutterStageHunk
+        GitGutterNextHunk
+      catch
+        write
+      endtry
     else
       write
     endif
