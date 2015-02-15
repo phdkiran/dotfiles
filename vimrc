@@ -130,7 +130,7 @@ set winheight=100
 
 set statusline=%*\ %F\ %1*%H%M%R%W%*
 if exists('*fugitive#statusline')
-  set statusline+=%1*%{fugitive#statusline()}%*
+  set statusline+=%1*%{fugitive#head()}%*
 endif
 set statusline+=%=\ %{FileModified()}\ %l,%c\ %<%P\ "
 if exists('*SyntasticStatuslineFlag')
@@ -262,10 +262,11 @@ endfunction
 
 augroup Auto
   autocmd!
+
   autocmd BufEnter *.txt if &filetype == 'help' | execute "normal \<C-W>T" | endif
   autocmd BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWinEnter * call RestoreCursorPositon()
-  autocmd BufWinEnter *.coffee,*.jade call SetLineLength(79)
+  autocmd BufWinEnter *vimrc,*.coffee,*.styl,*.jade,*.md,*.journal call SetLineLength(80)
   autocmd BufWrite *vimrc,*.coffee,*.styl,*.jade,*.md,*.journal call Trim()
   autocmd BufWritePost *gvimrc source %
   autocmd BufWritePost *vimrc source %

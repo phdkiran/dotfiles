@@ -36,10 +36,10 @@ git_prompt() {
       local COLOR=${GREEN}
     fi
     local SINCE_LAST_COMMIT="${COLOR}$(minutes_since_last_commit)m${DARKGRAY}"
-    local GIT_PROMPT=`__git_ps1 "(%s|${SINCE_LAST_COMMIT})"`
+    local GIT_PROMPT=`__git_ps1 "%s ${SINCE_LAST_COMMIT}"`
     echo " ${GIT_PROMPT}"
   fi
 }
 GIT_PS1_SHOWDIRTYSTATE=true
-PS1="${DARKGRAY}\h ${GRAY}\w${DARKGRAY}\$(git_prompt) ${NORMAL}
+PS1="${DARKGRAY}\h ${GRAY}\w${YELLOW}\$(git_prompt) ${NORMAL}
 $ "
