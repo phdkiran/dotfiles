@@ -49,8 +49,13 @@ if !empty(glob('~/.vim/bundle/base16-vim/colors/base16-tomorrow.vim'))
     colorscheme base16-tomorrow
     set background=dark
     syntax on
+    highlight uniteStatusHead ctermbg=11 guibg=#373b41
+    highlight uniteStatusLineNR ctermbg=11 guibg=#373b41
+    highlight uniteStatusSourceNames ctermbg=11 guibg=#373b41
+    highlight uniteStatusSourceCandidates ctermbg=11 ctermfg=3 guibg=#373b41
+    highlight uniteStatusMessage ctermbg=11 guibg=#373b41
     highlight MatchParen ctermbg=10 ctermfg=3 guibg=#282a2e guifg=#f0c674
-    highlight User1 ctermfg=11 guifg=#373b41 ctermbg=3 guibg=#f0c674
+    highlight User1 ctermbg=11 guibg=#373b41 ctermfg=3 guifg=#f0c674
     highlight Search ctermfg=3 guifg=#f0c674 ctermbg=11 guibg=#373b41 cterm=underline gui=underline
     highlight OverLengthOrSpaces ctermfg=11 guifg=#373b41 ctermbg=3 guibg=#f0c674
   catch
@@ -125,7 +130,7 @@ set winheight=100
 
 set statusline=%*\ %F\ %1*%H%M%R%W%*
 if exists('*fugitive#statusline')
-  set statusline+=%{fugitive#statusline()}
+  set statusline+=%1*%{fugitive#statusline()}%*
 endif
 set statusline+=%=\ %{FileModified()}\ %l,%c\ %<%P\ "
 if exists('*SyntasticStatuslineFlag')
@@ -271,7 +276,6 @@ augroup Auto
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType netrw,help setlocal winwidth=85 winheight=8
   autocmd FileType qf setlocal winheight=5
-  autocmd FileType unite highlight StatusLine ctermbg=0 guibg=#1d1f21
-  autocmd FileType qf,netrw,help,gitcommit setlocal statusline=\ %{toupper(&filetype)} nocursorline nonumber norelativenumber
+  autocmd FileType qf,netrw,help,gitcommit setlocal statusline=\ %{tolower(&filetype)} nocursorline nonumber norelativenumber
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
 augroup END
