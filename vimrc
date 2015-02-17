@@ -79,6 +79,11 @@ let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_auto_select=0
 let g:neosnippet#data_directory='~/.vim/cache/neosnippet'
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:netrw_banner = 0
+let g:netrw_liststyle=3
+let g:netrw_localrmdir='rm -r'
+let g:netrw_menu=0
+let g:netrw_preview=1
 let g:sneak#streak = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -97,11 +102,11 @@ let g:vim_json_syntax_conceal=0
 set autoindent
 set autoread nobackup noswapfile nowritebackup
 set backspace=indent,eol
-",start
 set clipboard=unnamed
 set cryptmethod=blowfish
 set cursorline relativenumber number
 set encoding=utf-8
+set foldlevel=99
 set formatoptions+=l
 set gdefault
 set hidden
