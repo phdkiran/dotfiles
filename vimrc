@@ -63,7 +63,7 @@ endif
 if !empty(glob('~/.vim/bundle/unite.vim/autoload/unite.vim'))
   try
     call unite#custom#profile('default', 'context', {'winheight': 10, 'direction': 'botright'})
-    call unite#custom#source('buffer,grep,file_rec/async', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
+    call unite#custom#source('buffer,grep,file_rec/async', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '_site/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
     call unite#custom#source('buffer,grep,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy'])
     call unite#filters#sorter_default#use(['sorter_rank'])
   catch
@@ -96,7 +96,8 @@ let g:vim_json_syntax_conceal=0
 
 set autoindent
 set autoread nobackup noswapfile nowritebackup
-set backspace=indent,eol,start
+set backspace=indent,eol
+",start
 set clipboard=unnamed
 set cryptmethod=blowfish
 set cursorline relativenumber number
