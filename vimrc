@@ -62,7 +62,6 @@ endif
 
 if !empty(glob('~/.vim/bundle/unite.vim/autoload/unite.vim'))
   try
-    call unite#custom#profile('default', 'context', {'winheight': 10, 'direction': 'botright'})
     call unite#custom#source('buffer,grep,file_rec/async', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '_site/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
     call unite#custom#source('buffer,grep,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy'])
     call unite#filters#sorter_default#use(['sorter_rank'])
@@ -296,7 +295,7 @@ augroup Auto
   autocmd BufEnter *.txt call OpenHelp()
   autocmd BufNewFile,BufRead,BufWrite *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWinEnter * call RestoreCursorPositon()
-  autocmd BufWinEnter *.coffee,*.styl,*.jade call SetLineLength(79) | call SetStatusLine()
+  autocmd BufWinEnter *.md,*.coffee,*.styl,*.jade call SetLineLength(79) | call SetStatusLine()
   autocmd BufWrite *vimrc,*.coffee,*.styl,*.jade,*.md,*.journal call Trim()
   autocmd BufWritePost *gvimrc source %
   autocmd BufWritePost *vimrc source %
