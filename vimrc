@@ -34,6 +34,7 @@ NeoBundle 'tpope/vim-projectionist'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'wavded/vim-stylus'
 
 NeoBundleCheck
@@ -166,15 +167,17 @@ nnoremap <Leader>gl :Glog -- %<CR>
 nnoremap <Leader>gp :Gpull<CR>
 nnoremap <Leader>gpo :Gpush<CR>
 nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>h :bnext<CR>
-nnoremap <Leader>j :bprevious<CR>
+nnoremap <Leader>j :bnext<CR>
+nnoremap <Leader>k :bprevious<CR>
 nnoremap <Leader>l "lyiwoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
-nnoremap <Leader>m :edit ~/.gvimrc<CR>
 nnoremap <Leader>n :new<CR>
 nnoremap <Leader>pc :read !pbpaste <BAR> js2coffee<CR>
 nnoremap <Leader>pj :read !pbpaste <BAR> html2jade<CR>
 nnoremap <Leader>q :call Quit()<CR>
 nnoremap <Leader>r :GitGutterRevertHunk<CR>
+nnoremap <Leader>tt :call ToggleTest('it')<CR>
+nnoremap <Leader>ts :call ToggleTest('describe')<CR>
+nnoremap <Leader>tn :call TurnOnAllTests(['it','describe'])<CR>
 nnoremap <Leader>s :call Save()<CR>
 nnoremap <Leader>v :edit ~/.vimrc<CR>
 nnoremap <Leader>w :write<CR>
@@ -200,6 +203,31 @@ vnoremap <Leader>n "nd:new<CR>"nP
 vnoremap <silent> p p`]
 vnoremap <silent> y y`]
 vnoremap > >gv
+
+function! ToggleTest(string)
+  normal mtj
+  execute('?^\s*f\=' . a:string)
+  try
+    execute('s/^\(\s*\)' . a:string . '/\1f' . a:string . '/')
+    write
+  catch
+    execute('s/^\(\s*\)f' . a:string . '/\1' . a:string . '/')
+  endtry
+  normal `t
+endfunction
+
+function! TurnOnAllTests(list)
+  normal mt
+  for string in a:list
+    try
+      execute('%s/^\(\s*\)f' . string . '/\1' . string . '/')
+      write
+    catch
+      " All tests are on already
+    endtry
+  endfor
+  normal `t
+endfunction
 
 function! SetStatusLine() abort
   set statusline=%*\ %F\ "
