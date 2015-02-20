@@ -34,7 +34,6 @@ NeoBundle 'tpope/vim-projectionist'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'wavded/vim-stylus'
 
 NeoBundleCheck
@@ -79,11 +78,6 @@ let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_auto_select=0
 let g:neosnippet#data_directory='~/.vim/cache/neosnippet'
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-let g:netrw_banner = 0
-let g:netrw_liststyle=3
-let g:netrw_localrmdir='rm -r'
-let g:netrw_menu=0
-let g:netrw_preview=1
 let g:sneak#streak = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -143,7 +137,6 @@ inoremap kk <Esc>
 nmap <Leader>" ysiw"
 nmap <Leader>' ysiw'
 nmap <Leader>` ysiw`
-nmap <Leader>f\ mmvip:EasyAlign*\|<CR>`m
 nmap <Leader>fj gqaj
 nnoremap ' :
 nnoremap <Leader>/ :Unite grep:.<CR>
@@ -194,7 +187,6 @@ nnoremap j gj
 nnoremap k gk
 nnoremap n nzz
 vmap <C-v> <Plug>(expand_region_shrink)
-vmap <Enter> <Plug>(EasyAlign)
 vmap v <Plug>(expand_region_expand)
 vnoremap < <gv
 vnoremap <Leader>fS mmvip:sort!<CR>`m
