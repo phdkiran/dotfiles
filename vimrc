@@ -160,7 +160,7 @@ nnoremap <Leader>f_ mmvip:s/^- //<CR>`m
 nnoremap <Leader>fs mmvip:sort<CR>`m
 nnoremap <Leader>ft :call Trim()<CR>
 nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gc :let @c=expand('%p')<CR>:Gcommit<CR>iUpdate <Esc>"cp
+nnoremap <Leader>gc :Gcommit<CR>i
 nnoremap <Leader>gd :Gvdiff<CR>
 nnoremap <Leader>gl :Glog -- %<CR>
 nnoremap <Leader>gp :Gpull<CR>
