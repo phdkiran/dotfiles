@@ -24,6 +24,7 @@ NeoBundle 'shougo/neocomplete'
 NeoBundle 'shougo/neosnippet'
 NeoBundle 'shougo/neosnippet-snippets'
 NeoBundle 'shougo/unite.vim'
+NeoBundle 'shougo/vimfiler'
 NeoBundle 'skwp/greplace.vim'
 NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'tpope/vim-abolish'
@@ -92,6 +93,10 @@ let g:unite_source_grep_default_opts='--smart-case -i --line-numbers --nocolor -
 let g:unite_source_grep_recursive_opt=''
 let g:unite_source_history_yank_enable=1
 let g:vim_json_syntax_conceal=0
+let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_tree_leaf_icon = ' '
+let g:vimfiler_tree_opened_icon = '▾'
 
 set autoindent
 set autoread nobackup noswapfile nowritebackup
@@ -138,9 +143,9 @@ nmap <Leader>" ysiw"
 nmap <Leader>' ysiw'
 nmap <Leader>` ysiw`
 nmap <Leader>fj gqaj
-nnoremap ' :
 nnoremap <Leader>/ :Unite grep:.<CR>
 nnoremap <Leader>9 mmF(r f)r `m
+nnoremap <Tab> :VimFilerBufferDir -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
 nnoremap <Leader>L "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
 nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
 nnoremap <Leader>a :Unite -start-insert file_rec/async<CR>
@@ -168,10 +173,10 @@ nnoremap <Leader>pc :read !pbpaste <BAR> js2coffee<CR>
 nnoremap <Leader>pj :read !pbpaste <BAR> html2jade<CR>
 nnoremap <Leader>q :call Quit()<CR>
 nnoremap <Leader>r :GitGutterRevertHunk<CR>
-nnoremap <Leader>tt :call ToggleTest('it')<CR>
-nnoremap <Leader>ts :call ToggleTest('describe')<CR>
-nnoremap <Leader>tn :call TurnOnAllTests(['it','describe'])<CR>
 nnoremap <Leader>s :call Save()<CR>
+nnoremap <Leader>tn :call TurnOnAllTests(['it','describe'])<CR>
+nnoremap <Leader>ts :call ToggleTest('describe')<CR>
+nnoremap <Leader>tt :call ToggleTest('it')<CR>
 nnoremap <Leader>v :edit ~/.vimrc<CR>
 nnoremap <Leader>w :write<CR>
 nnoremap <Leader>y :Unite history/yank<CR>
@@ -324,8 +329,8 @@ augroup Auto
   autocmd FileType gitcommit setlocal winheight=8
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType netrw,help setlocal winwidth=85 winheight=8
+  autocmd FileType help setlocal winwidth=85 winheight=8
   autocmd FileType qf setlocal winheight=5
-  autocmd FileType qf,netrw,help,gitcommit call SetStatusLineForHelpers()
+  autocmd FileType qf,help,gitcommit call SetStatusLineForHelpers()
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
 augroup END
