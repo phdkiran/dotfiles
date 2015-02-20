@@ -94,6 +94,7 @@ let g:unite_source_grep_recursive_opt=''
 let g:unite_source_history_yank_enable=1
 let g:vim_json_syntax_conceal=0
 let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_force_overwrite_statusline = 0
 let g:vimfiler_tree_closed_icon = '▸'
 let g:vimfiler_tree_leaf_icon = ' '
 let g:vimfiler_tree_opened_icon = '▾'
@@ -331,6 +332,6 @@ augroup Auto
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType help setlocal winwidth=85 winheight=8
   autocmd FileType qf setlocal winheight=5
-  autocmd FileType qf,help,gitcommit call SetStatusLineForHelpers()
+  autocmd FileType qf,vimfiler,help,gitcommit call SetStatusLineForHelpers()
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
 augroup END
