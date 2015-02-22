@@ -4,7 +4,7 @@ alias tl="tmux list-sessions"
 alias tka="tmux kill-session -a"
 
 alias v="${EDITOR}"
-alias e="${EDITOR} ."
+alias e="${EDITOR}"
 
 alias d='./deploy'
 alias i='./install'
