@@ -149,8 +149,9 @@ nnoremap <Leader>9 mmF(r f)r `m
 nnoremap <Tab> :VimFilerBufferDir -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
 nnoremap <Leader>L "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
 nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
-nnoremap <Leader>a :Unite -start-insert file_rec/async<CR>
-nnoremap <Leader>b :Unite buffer<CR>
+nnoremap <Leader>A :UniteWithBufferDir -start-insert buffer file_rec/async<CR>
+nnoremap <Leader>a :UniteWithProjectDir -start-insert buffer file_rec/async<CR>
+nnoremap <Leader>b :Unite -start-insert buffer:-<CR>
 nnoremap <Leader>ed :edit ~/Dropbox/Notes/diary.journal<CR>
 nnoremap <Leader>ep :edit ~/Dropbox/Notes/posts.md<CR>
 nnoremap <Leader>f- mmvip:s/^/- /<CR>`m
@@ -228,7 +229,7 @@ function! TurnOnAllTests(list)
 endfunction
 
 function! SetStatusLine() abort
-  set statusline=%*\ %F\ "
+  set statusline=%*\ %f\ "
   if exists('*fugitive#head')
     set statusline+=%1*%{fugitive#head()}\ %*
   endif
