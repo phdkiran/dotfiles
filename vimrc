@@ -55,7 +55,6 @@ if !empty(glob('~/.vim/bundle/base16-vim/colors/base16-tomorrow.vim'))
     highlight MatchParen ctermbg=10 ctermfg=3 guibg=#282a2e guifg=#f0c674
     highlight User1 ctermbg=11 guibg=#373b41 ctermfg=3 guifg=#f0c674
     highlight Search ctermfg=3 guifg=#f0c674 ctermbg=11 guibg=#373b41 cterm=underline gui=underline
-    highlight OverLengthOrSpaces ctermfg=11 guifg=#373b41 ctermbg=3 guibg=#f0c674
   catch
     " Plugin 'chriskempson/base16-vim' is inactive
   endtry
@@ -273,6 +272,7 @@ endfunction
 
 function! SetLineLength(length)
   let lengthPlusNewLineChar = a:length + 1
+  highlight OverLengthOrSpaces ctermfg=11 guifg=#373b41 ctermbg=3 guibg=#f0c674
   execute 'match OverLengthOrSpaces /\%' . lengthPlusNewLineChar . 'v.*\|\s\+$\| \+\ze\t/'
 endfunction
 
@@ -320,6 +320,7 @@ call SetStatusLine()
 augroup Auto
   autocmd!
   autocmd BufEnter *.txt call OpenHelp()
+  autocmd BufNewFile,BufRead,BufWrite *.tpl.jade setlocal filetype=jade
   autocmd BufNewFile,BufRead,BufWrite *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWinEnter * call RestoreCursorPositon()
   autocmd BufWinEnter *.md,*.coffee,*.styl,*.jade call SetLineLength(79) | call SetStatusLine()
