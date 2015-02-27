@@ -8,6 +8,8 @@ Dotfiles and scripts I use every day as a programmer.
 
 ## Thanks To…
 
+- [Ben Orenstein](https://github.com/r00k/dotfiles)
+- [Gary Bernhardt](https://github.com/garybernhardt/dotfiles)
 - [Sam Stephenson](http://sstephenson.us/posts/on-configuration)
 - [Yan Pritzker](http://skwp.github.io/dotfiles/)
 - [Mathias Bynens](https://github.com/mathiasbynens/dotfiles)
