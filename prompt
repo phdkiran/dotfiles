@@ -41,5 +41,4 @@ function git_prompt() {
   fi
 }
 GIT_PS1_SHOWDIRTYSTATE=true
-PS1="${DARKGRAY}\A \h ${GRAY}\w${YELLOW}\$(git_prompt) ${NORMAL}
-$ "
+PS1="${DARKGRAY}\A \h ${GRAY}\w${YELLOW}\$(git_prompt) ${NORMAL}\n☞  "
