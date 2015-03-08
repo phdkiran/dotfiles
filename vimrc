@@ -6,17 +6,22 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'shougo/neobundle.vim'
 NeoBundle 'shougo/vimproc.vim', {'build': {'mac': 'make -f make_mac.mak', 'linux': 'make', 'unix': 'gmake'}}
 
+" NeoBundle 'dhruvasagar/vim-dotoo'
 " NeoBundle '~/Repositories/romanzolotarev/vim-journal'
-NeoBundle 'romanzolotarev/vim-snippets'
 NeoBundle 'romanzolotarev/vim-journal'
+NeoBundle 'romanzolotarev/vim-snippets'
 
+" NeoBundle 'gorodinskiy/vim-coloresque'
+" NeoBundle 'jeetsukumaran/vim-indentwise'
+" NeoBundle 'jelera/vim-javascript-syntax'
+" NeoBundle 'tpope/vim-abolish'
+" NeoBundle 'wavded/vim-stylus'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
+NeoBundle 'claco/jasmine.vim'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'elzr/vim-json'
-NeoBundle 'gorodinskiy/vim-coloresque'
-NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'scrooloose/syntastic'
@@ -27,7 +32,6 @@ NeoBundle 'shougo/unite.vim'
 NeoBundle 'shougo/vimfiler'
 NeoBundle 'skwp/greplace.vim'
 NeoBundle 'terryma/vim-expand-region'
-NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-jdaddy'
@@ -35,7 +39,6 @@ NeoBundle 'tpope/vim-projectionist'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'wavded/vim-stylus'
 
 NeoBundleCheck
 call neobundle#end()
@@ -62,14 +65,16 @@ endif
 
 if !empty(glob('~/.vim/bundle/unite.vim/autoload/unite.vim'))
   try
-    call unite#custom#source('buffer,grep,file_rec/async', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', '_site/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
+    call unite#custom#source('buffer,grep,file_rec/async', 'ignore_pattern', join([ '\.git/', '\.build/', '\.meteor/', 'node_modules/', '\.sass-cache/', 'doc/', '_site/', '\.gif', '\.png', '\.jpg', '\.jpeg', '\.css', '\.build\.'], '\|'))
     call unite#custom#source('buffer,grep,file_rec/async', 'matchers', ['converter_relative_word', 'matcher_fuzzy'])
+    " call unite#custom#source('buffer,grep,file_rec/async', 'matchers', ['converter_relative_word'])
     call unite#filters#sorter_default#use(['sorter_rank'])
   catch
     " Plugin 'shougo/unite.vim' is inactive
   endtry
 endif
 
+let g:sh_noisk=1
 let g:gitgutter_enabled=1
 let g:gitgutter_map_keys=0
 let g:grep_cmd_opts = '--line-numbers --noheading'
@@ -98,9 +103,12 @@ let g:vimfiler_tree_closed_icon = '▸'
 let g:vimfiler_tree_leaf_icon = ' '
 let g:vimfiler_tree_opened_icon = '▾'
 
+set modeline
+set modelines=3
+set timeout timeoutlen=1000 ttimeoutlen=100
 set autoindent
 set autoread nobackup noswapfile nowritebackup
-set backspace=indent,eol
+set backspace=start,indent,eol
 set clipboard=unnamed
 set cryptmethod=blowfish
 set cursorline relativenumber number
@@ -148,9 +156,9 @@ nnoremap <Leader>9 mmF(r f)r `m
 nnoremap <Tab> :VimFilerBufferDir -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
 nnoremap <Leader>L "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
 nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
-nnoremap <Leader>A :UniteWithBufferDir -start-insert buffer file_rec/async<CR>
-nnoremap <Leader>a :UniteWithProjectDir -start-insert buffer file_rec/async<CR>
-nnoremap <Leader>b :Unite -start-insert buffer:-<CR>
+nnoremap <Leader>A :UniteWithBufferDir -start-insert file_rec/async<CR>
+nnoremap <Leader>a :UniteWithProjectDir -start-insert file_rec/async<CR>
+nnoremap <Leader>b :Unite buffer:-<CR>
 nnoremap <Leader>ed :edit ~/Dropbox/Notes/diary.journal<CR>
 nnoremap <Leader>ep :edit ~/Dropbox/Notes/posts.md<CR>
 nnoremap <Leader>f- mmvip:s/^/- /<CR>`m
