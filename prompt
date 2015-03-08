@@ -40,9 +40,6 @@ function git_prompt() {
     echo " ${GIT_PROMPT}"
   fi
 }
-function timestamp() {
-  echo $(date "+%H:%M")
-}
 GIT_PS1_SHOWDIRTYSTATE=true
-PS1="${DARKGRAY}$(timestamp) \h ${GRAY}\w${YELLOW}\$(git_prompt) ${NORMAL}
+PS1="${DARKGRAY}\A \h ${GRAY}\w${YELLOW}\$(git_prompt) ${NORMAL}
 $ "
