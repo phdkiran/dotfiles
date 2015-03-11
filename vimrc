@@ -130,7 +130,7 @@ set undodir=~/.vim/undo/ undofile undolevels=1000 undoreload=3000
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
 set wildmenu wildmode=list:longest,full
 
-set winwidth=85
+set winwidth=78
 set winheight=4
 set winminheight=4
 set winheight=100
@@ -142,6 +142,7 @@ command! Wq wq
 
 nmap <Space> <Leader>
 
+" nnoremap <Tab> :VimFilerBufferDir -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
 imap <C-K> <Plug>(neosnippet_expand_or_jump)
 imap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap jj <Esc>
@@ -153,10 +154,9 @@ nmap <Leader>` ysiw`
 nmap <Leader>fj gqaj
 nnoremap <Leader>/ :Unite grep:.<CR>
 nnoremap <Leader>9 mmF(r f)r `m
-" nnoremap <Tab> :VimFilerBufferDir -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
+nnoremap <Leader>A :UniteWithBufferDir -start-insert file_rec/async<CR>
 nnoremap <Leader>L "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
 nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
-nnoremap <Leader>A :UniteWithBufferDir -start-insert file_rec/async<CR>
 nnoremap <Leader>a :UniteWithProjectDir -start-insert file_rec/async<CR>
 nnoremap <Leader>b :Unite buffer:-<CR>
 nnoremap <Leader>d :Unite directory<CR>
@@ -326,10 +326,6 @@ endfunction
 
 call SetStatusLine()
 
-function! s:UniteSettings()
-  imap <buffer> <ESC> <Plug>(unite_exit)
-endfunction
-
 augroup Auto
   autocmd!
   autocmd BufEnter *.txt call OpenHelp()
@@ -349,5 +345,4 @@ augroup Auto
   autocmd FileType qf setlocal winheight=5
   autocmd FileType qf,help,gitcommit call SetStatusLineForHelpers()
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType unite call s:UniteSettings()
 augroup END
