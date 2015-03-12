@@ -16,6 +16,7 @@ NeoBundle 'romanzolotarev/vim-snippets'
 " NeoBundle 'jelera/vim-javascript-syntax'
 " NeoBundle 'tpope/vim-abolish'
 " NeoBundle 'wavded/vim-stylus'
+NeoBundle 'itchyny/dictionary.vim'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
@@ -150,6 +151,7 @@ inoremap jk <Esc>
 inoremap kk <Esc>
 nmap <Leader>" ysiw"
 nmap <Leader>' ysiw'
+nmap <Leader>? "wyiw:Dictionary<CR><C-R>w<Esc>
 nmap <Leader>` ysiw`
 nmap <Leader>fj gqaj
 nnoremap <Leader>/ :Unite grep:.<CR>
