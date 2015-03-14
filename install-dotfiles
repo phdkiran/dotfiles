@@ -19,6 +19,7 @@ for source in \
   'archiveignore' \
   'bash_profile' \
   'completions' \
+  'ctags' \
   'gitconfig' \
   'gitignore' \
   'gvimrc' \
