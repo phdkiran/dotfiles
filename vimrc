@@ -14,15 +14,16 @@ NeoBundle 'romanzolotarev/vim-snippets'
 " NeoBundle 'gorodinskiy/vim-coloresque'
 " NeoBundle 'jeetsukumaran/vim-indentwise'
 " NeoBundle 'jelera/vim-javascript-syntax'
+" NeoBundle 'shougo/vimfiler'
 " NeoBundle 'tpope/vim-abolish'
 " NeoBundle 'wavded/vim-stylus'
-NeoBundle 'itchyny/dictionary.vim'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'claco/jasmine.vim'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'elzr/vim-json'
+NeoBundle 'itchyny/dictionary.vim'
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'scrooloose/syntastic'
@@ -30,7 +31,6 @@ NeoBundle 'shougo/neocomplete'
 NeoBundle 'shougo/neosnippet'
 NeoBundle 'shougo/neosnippet-snippets'
 NeoBundle 'shougo/unite.vim'
-" NeoBundle 'shougo/vimfiler'
 NeoBundle 'skwp/greplace.vim'
 NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'tpope/vim-commentary'
@@ -40,6 +40,7 @@ NeoBundle 'tpope/vim-projectionist'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tsukkee/unite-tag'
 
 NeoBundleCheck
 call neobundle#end()
@@ -189,6 +190,7 @@ nnoremap <Leader>pj :read !pbpaste <BAR> html2jade<CR>
 nnoremap <Leader>q :call Quit()<CR>
 nnoremap <Leader>r :GitGutterRevertHunk<CR>
 nnoremap <Leader>s :call Save()<CR>
+nnoremap <Leader>t :Unite tag<CR>
 nnoremap <Leader>tn :call TurnOnAllTests(['it','describe'])<CR>
 nnoremap <Leader>ts :call ToggleTest('describe')<CR>
 nnoremap <Leader>tt :call ToggleTest('it')<CR>
@@ -333,6 +335,10 @@ call SetStatusLine()
 
 augroup Auto
   autocmd!
+  autocmd BufEnter *
+    \   if empty(&buftype)
+    \|      nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<CR>
+    \|  endif
   autocmd BufEnter *.txt call OpenHelp()
   autocmd BufNewFile,BufRead,BufWrite *.tpl.jade setlocal filetype=jade
   autocmd BufNewFile,BufRead,BufWrite *.md,*.markdown setlocal filetype=ghmarkdown

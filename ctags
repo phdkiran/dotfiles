@@ -1,4 +1,20 @@
---exclude=\.meteor
+--exclude=.meteor
+--exclude=node_modules
+--exclude=.git
+--recurse=yes
+--totals=yes
+--tag-relative=yes
+--extra=+f
+
+--langdef=file
+--langmap=file:.jade
+
+--langdef=markdown
+--langmap=markdown:.md.markdown
+--regex-markdown=/^#[ \t]+(.*)/\1/h,heading1/
+--regex-markdown=/^##[ \t]+(.*)/\1/h,heading2/
+--regex-markdown=/^###[ \t]+(.*)/\1/h,heading3/
+
 --langdef=js
 --langmap=js:.js
 --regex-js=/([A-Za-z0-9._$]+)[ \t]*[:=][ \t]*\{/\1/,object/
@@ -7,9 +23,10 @@
 --regex-js=/([A-Za-z0-9._$]+)[ \t]*[:=][ \t]*\[/\1/,array/
 --regex-js=/([^= ]+)[ \t]*=[ \t]*[^"]'[^']*/\1/,string/
 --regex-js=/([^= ]+)[ \t]*=[ \t]*[^']"[^"]*/\1/,string/
+
 --langdef=coffee
 --langmap=coffee:.coffee
---regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){0}/\8/f,field/
+--regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){0}/\4/f,field/
 --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){1}/\8/f,field/
 --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){2}/\8/f,field/
 --regex-coffee=/((constructor|initialize):[ \t]*\()@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?(,[ \t]*@(([A-Za-z][A-Za-z0-9_.]*)+)([ \t]*=[ \t]*[^,)]+)?){3}/\8/f,field/
@@ -28,3 +45,4 @@
 --regex-coffee=/^[ \t]*@(([A-Za-z_][A-Za-z0-9_.]*)+):[^->\n]*$/\1/f,static field/
 --regex-coffee=/^[ \t]*@(([A-Za-z_][A-Za-z0-9_.]*)+)[ \t]*=[^->\n]*$/\1/f,field/
 
+--languages=coffee,file,js,markdown
