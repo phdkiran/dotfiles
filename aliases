@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+alias a="vim ~/.aliases && source ~/.aliases"
 
 alias tl="tmux list-sessions"
 alias tka="tmux kill-session -a"

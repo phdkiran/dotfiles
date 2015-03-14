@@ -24,7 +24,7 @@ function minutes_since_last_commit {
   echo $minutes_since_last_commit
 }
 
-function git_prompt() {
+function git_prompt {
   local g="$(__gitdir)"
   if [ -n "$g" ]; then
     local MINUTES_SINCE_LAST_COMMIT=`minutes_since_last_commit`
@@ -40,5 +40,12 @@ function git_prompt() {
     echo " ${GIT_PROMPT}"
   fi
 }
+
+function ls_after_cd {
+  if [[ $previous_command == cd* ]]; then l; fi
+}
+trap 'previous_command=$this_command; this_command=$BASH_COMMAND' DEBUG
+PROMPT_COMMAND=ls_after_cd
+
 GIT_PS1_SHOWDIRTYSTATE=true
 PS1="${DARKGRAY}\A \h ${GRAY}\w${YELLOW}\$(git_prompt) ${NORMAL}\n☛  "

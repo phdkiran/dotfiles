@@ -143,6 +143,8 @@ command! Wq wq
 
 nmap <Space> <Leader>
 
+" nnoremap <Leader>j :bnext<CR>
+" nnoremap <Leader>k :bprevious<CR>
 " nnoremap <Tab> :VimFilerBufferDir -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
 imap <C-K> <Plug>(neosnippet_expand_or_jump)
 imap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
@@ -150,8 +152,9 @@ inoremap jj <Esc>
 inoremap jk <Esc>
 inoremap kk <Esc>
 nmap <Leader>" ysiw"
+nmap <Leader># ysiw}i#<Esc>
 nmap <Leader>' ysiw'
-nmap <Leader>? "wyiw:Dictionary<CR><C-R>w<Esc>
+nmap <Leader>? "wyiw:Dictionary<CR><C-R>w
 nmap <Leader>` ysiw`
 nmap <Leader>fj gqaj
 nnoremap <Leader>/ :Unite grep:.<CR>
@@ -177,10 +180,10 @@ nnoremap <Leader>gl :Glog -- %<CR>
 nnoremap <Leader>gp :Gpull<CR>
 nnoremap <Leader>gpo :Gpush<CR>
 nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>j :bnext<CR>
-nnoremap <Leader>k :bprevious<CR>
 nnoremap <Leader>l "lyiwoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
 nnoremap <Leader>n :new<CR>
+nnoremap <Leader>nn :new<CR>
+nnoremap <Leader>nt :tabnew<CR>
 nnoremap <Leader>pc :read !pbpaste <BAR> js2coffee<CR>
 nnoremap <Leader>pj :read !pbpaste <BAR> html2jade<CR>
 nnoremap <Leader>q :call Quit()<CR>
