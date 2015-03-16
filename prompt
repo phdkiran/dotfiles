@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+export PROMPT_COMMAND=__prompt_command
+export GIT_PS1_SHOWDIRTYSTATE=true
 
 DULL=0
 FG_RED=31
@@ -37,15 +39,21 @@ function git_prompt {
     fi
     local SINCE_LAST_COMMIT="${COLOR}$(minutes_since_last_commit)m${DARKGRAY}"
     local GIT_PROMPT=`__git_ps1 "%s ${SINCE_LAST_COMMIT}"`
-    echo " ${GIT_PROMPT}"
+    echo "${GIT_PROMPT}"
   fi
 }
 
-function ls_after_cd {
-  if [[ $previous_command == cd* ]]; then l; fi
+function color_exit_code() {
+  local EXIT="$?"
+  if [ $EXIT != 0 ]; then 
+    local COLOR="${RED}"
+  else 
+    local COLOR="${NORMAL}"
+  fi
+  local COLOR_PROMPT=`echo "${COLOR}☛ ${NORMAL}"`
+  echo "${COLOR_PROMPT}"
 }
-trap 'previous_command=$this_command; this_command=$BASH_COMMAND' DEBUG
-PROMPT_COMMAND=ls_after_cd
 
-GIT_PS1_SHOWDIRTYSTATE=true
-PS1="${DARKGRAY}\A \h ${GRAY}\w${YELLOW}\$(git_prompt) ${NORMAL}\n☛  "
+function __prompt_command() {
+  PS1="${DARKGRAY}\A \h ${GRAY}\w${YELLOW}\$(git_prompt) ${NORMAL}\n$(color_exit_code)"
+}
