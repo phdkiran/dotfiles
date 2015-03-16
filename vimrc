@@ -154,6 +154,10 @@ inoremap jk <Esc>
 inoremap kk <Esc>
 nmap <Leader>" ysiw"
 nmap <Leader># ysiw}i#<Esc>
+nmap <Leader>, mm/,$<CR>x`m
+nmap <Leader>; mm/;$<CR>x`m
+nmap <Leader>@ mmbi@<Esc>`m
+nmap <Leader>( :s/(\([^(]*\))$/ \1/<CR>
 nmap <Leader>' ysiw'
 nmap <Leader>? "wyiw:Dictionary<CR><C-R>w
 nmap <Leader>` ysiw`
