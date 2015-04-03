@@ -10,7 +10,7 @@ NeoBundle 'shougo/vimproc.vim', {'build': {'mac': 'make -f make_mac.mak', 'linux
 " NeoBundle '~/Repositories/romanzolotarev/vim-journal'
 NeoBundle 'romanzolotarev/vim-journal'
 NeoBundle 'romanzolotarev/vim-snippets'
-
+NeoBundle 'craigemery/vim-autotag'
 " NeoBundle 'gorodinskiy/vim-coloresque'
 " NeoBundle 'jeetsukumaran/vim-indentwise'
 " NeoBundle 'jelera/vim-javascript-syntax'
@@ -26,13 +26,14 @@ NeoBundle 'elzr/vim-json'
 NeoBundle 'itchyny/dictionary.vim'
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'scrooloose/syntastic'
 NeoBundle 'shougo/neocomplete'
 NeoBundle 'shougo/neosnippet'
 NeoBundle 'shougo/neosnippet-snippets'
 NeoBundle 'shougo/unite.vim'
 NeoBundle 'skwp/greplace.vim'
 NeoBundle 'terryma/vim-expand-region'
+NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-jdaddy'
@@ -105,13 +106,11 @@ let g:vim_json_syntax_conceal=0
 " let g:vimfiler_tree_leaf_icon = ' '
 " let g:vimfiler_tree_opened_icon = '▾'
 
-set modeline
-set modelines=3
-set timeout timeoutlen=1000 ttimeoutlen=100
 set autoindent
 set autoread nobackup noswapfile nowritebackup
 set backspace=start,indent,eol
 set clipboard=unnamed
+set cmdheight=2
 set cryptmethod=blowfish
 set cursorline "relativenumber number
 set encoding=utf-8
@@ -122,11 +121,14 @@ set hidden
 set ignorecase smartcase incsearch nohlsearch grepprg=ag
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 set listchars=tab:»·,trail:·,eol:¬
+set modeline
+set modelines=3
 set nowrap textwidth=0 wrapmargin=0 linebreak
 set scrolloff=3 sidescrolloff=15 sidescroll=1
 set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 set shortmess=AIWta
 set spellfile=~/.vim/spell/en.utf-8.add,~/.vim/spell/off.utf-8.add
+set timeout timeoutlen=1000 ttimeoutlen=100
 set ttyfast laststatus=2 noruler showmode noshowcmd
 set undodir=~/.vim/undo/ undofile undolevels=1000 undoreload=3000
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
@@ -153,13 +155,14 @@ inoremap jj <Esc>
 inoremap jk <Esc>
 inoremap kk <Esc>
 nmap <Leader>" ysiw"
+nmap <Leader>] ysiw]
 nmap <Leader># ysiw}i#<Esc>
 nmap <Leader>, mm/,$<CR>x`m
 nmap <Leader>; mm/;$<CR>x`m
 nmap <Leader>@ mmbi@<Esc>`m
 nmap <Leader>( :s/(\([^(]*\))$/ \1/<CR>
 nmap <Leader>' ysiw'
-nmap <Leader>? "wyiw:Dictionary<CR><C-R>w
+nmap <Leader>? :Dictionary -no-duplicate -cursor-word<CR>
 nmap <Leader>` ysiw`
 nmap <Leader>fj gqaj
 nnoremap <Leader>/ :Unite grep:.<CR>
@@ -221,6 +224,17 @@ vnoremap <Leader>n "nd:new<CR>"nP
 vnoremap <silent> p p`]
 vnoremap <silent> y y`]
 vnoremap > >gv
+
+function! Multiple_cursors_before()
+  if exists(':NeoCompleteLock')==2
+    execute 'NeoCompleteLock'
+  endif
+endfunction
+function! Multiple_cursors_after()
+  if exists(':NeoCompleteUnlock')==2
+    execute 'NeoCompleteUnlock'
+  endif
+endfunction
 
 function! ToggleTest(string)
   normal mtj
@@ -313,6 +327,8 @@ function! Quit()
   endif
 endfunction
 
+noremap <Leader>j gg>GOtemplate(name='<C-R>=expand("%:t:r:r")<CR>')<Esc>:bn
+
 function! Trim()
   let s:pos = getpos('.')
   retab
@@ -345,14 +361,16 @@ augroup Auto
     \|  endif
   autocmd BufEnter *.txt call OpenHelp()
   autocmd BufNewFile,BufRead,BufWrite *.tpl.jade setlocal filetype=jade
+  autocmd BufNewFile,BufRead,BufWrite *.coffee,*.cjsx setlocal filetype=coffee
   autocmd BufNewFile,BufRead,BufWrite *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWinEnter * call RestoreCursorPositon()
   autocmd BufWinEnter *.md,*.coffee,*.styl,*.jade call SetLineLength(79) | call SetStatusLine()
-  autocmd BufWrite *vimrc,*.coffee,*.styl,*.jade,*.md,*.journal call Trim()
+  autocmd BufWrite *vimrc,*.coffee,*.cjsx,*.styl,*.jade,*.md,*.journal call Trim()
   autocmd BufWritePost *gvimrc source %
   autocmd BufWritePost *vimrc source %
   autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
   autocmd FileType coffee,jade setlocal foldmethod=indent nofoldenable
+  autocmd FileType dictionary inoremap <buffer> <Esc> <Esc>:q<CR> | inoremap <buffer> q <Esc>:q<CR>
   autocmd FileType gitcommit setlocal winheight=8
   autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS

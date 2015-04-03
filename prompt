@@ -55,5 +55,5 @@ function color_exit_code() {
 }
 
 function __prompt_command() {
-  PS1="${DARKGRAY}\A \h ${GRAY}\w${YELLOW} \$(git_prompt) ${NORMAL}\n☛ "
+  PS1="${DARKGRAY}\A \h ${GRAY}\w${YELLOW} \$(git_prompt) ${NORMAL}\n☛  "
 }
