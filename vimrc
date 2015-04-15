@@ -6,34 +6,33 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'shougo/neobundle.vim'
 NeoBundle 'shougo/vimproc.vim', {'build': {'mac': 'make -f make_mac.mak', 'linux': 'make', 'unix': 'gmake'}}
 
-" NeoBundle 'dhruvasagar/vim-dotoo'
 " NeoBundle '~/Repositories/romanzolotarev/vim-journal'
 NeoBundle 'romanzolotarev/vim-journal'
 NeoBundle 'romanzolotarev/vim-snippets'
-NeoBundle 'craigemery/vim-autotag'
+
+" NeoBundle 'claco/jasmine.vim'
 " NeoBundle 'gorodinskiy/vim-coloresque'
 " NeoBundle 'jeetsukumaran/vim-indentwise'
 " NeoBundle 'jelera/vim-javascript-syntax'
 " NeoBundle 'shougo/vimfiler'
-" NeoBundle 'tpope/vim-abolish'
+" NeoBundle 'terryma/vim-expand-region'
 " NeoBundle 'wavded/vim-stylus'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundle 'claco/jasmine.vim'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'itchyny/dictionary.vim'
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
-" NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'shougo/neocomplete'
 NeoBundle 'shougo/neosnippet'
 NeoBundle 'shougo/neosnippet-snippets'
 NeoBundle 'shougo/unite.vim'
 NeoBundle 'skwp/greplace.vim'
-NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-jdaddy'
@@ -100,11 +99,6 @@ let g:unite_source_grep_default_opts='--smart-case -i --line-numbers --nocolor -
 let g:unite_source_grep_recursive_opt=''
 let g:unite_source_history_yank_enable=1
 let g:vim_json_syntax_conceal=0
-" let g:vimfiler_as_default_explorer = 1
-" let g:vimfiler_force_overwrite_statusline = 0
-" let g:vimfiler_tree_closed_icon = '▸'
-" let g:vimfiler_tree_leaf_icon = ' '
-" let g:vimfiler_tree_opened_icon = '▾'
 
 set autoindent
 set autoread nobackup noswapfile nowritebackup
@@ -125,7 +119,7 @@ set modeline
 set modelines=3
 set nowrap textwidth=0 wrapmargin=0 linebreak
 set scrolloff=3 sidescrolloff=15 sidescroll=1
-set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
+set shiftwidth=2 softtabstop=2 tabstop=2 expandtab shiftround
 set shortmess=AIWta
 set spellfile=~/.vim/spell/en.utf-8.add,~/.vim/spell/off.utf-8.add
 set timeout timeoutlen=1000 ttimeoutlen=100
@@ -146,9 +140,7 @@ command! Wq wq
 
 nmap <Space> <Leader>
 
-" nnoremap <Leader>j :bnext<CR>
-" nnoremap <Leader>k :bprevious<CR>
-" nnoremap <Tab> :VimFilerBufferDir -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit<CR>
+nmap <Space><Space> <C-^>
 imap <C-K> <Plug>(neosnippet_expand_or_jump)
 imap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap jj <Esc>
@@ -171,6 +163,11 @@ nnoremap <Leader>A :UniteWithBufferDir -start-insert file_rec/async<CR>
 nnoremap <Leader>L "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
 nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
 nnoremap <Leader>a :UniteWithProjectDir -start-insert file_rec/async<CR>
+nnoremap <Leader>eb :Eb<Space>
+nnoremap <Leader>es :Es<Space>
+nnoremap <Leader>ec :Ec<Space>
+nnoremap <Leader>c :Ec<Space>
+" nnoremap <Leader>a :E
 nnoremap <Leader>b :Unite buffer:-<CR>
 nnoremap <Leader>d :Unite directory<CR>
 nnoremap <Leader>ed :edit ~/Dropbox/Notes/diary.journal<CR>
@@ -197,7 +194,7 @@ nnoremap <Leader>pj :read !pbpaste <BAR> html2jade<CR>
 nnoremap <Leader>q :call Quit()<CR>
 nnoremap <Leader>r :GitGutterRevertHunk<CR>
 nnoremap <Leader>s :call Save()<CR>
-nnoremap <Leader>t :Unite tag<CR>
+nnoremap <Leader>t :tabnew<CR>
 nnoremap <Leader>tn :call TurnOnAllTests(['it','describe'])<CR>
 nnoremap <Leader>ts :call ToggleTest('describe')<CR>
 nnoremap <Leader>tt :call ToggleTest('it')<CR>
