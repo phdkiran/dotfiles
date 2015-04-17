@@ -25,6 +25,7 @@ NeoBundle 'elzr/vim-json'
 NeoBundle 'itchyny/dictionary.vim'
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'reedes/vim-pencil'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'shougo/neocomplete'
 NeoBundle 'shougo/neosnippet'
@@ -177,6 +178,7 @@ nnoremap <Leader>f= gqip
 nnoremap <Leader>fS mmvip:sort!<CR>`m
 nnoremap <Leader>f_ mmvip:s/^- //<CR>`m
 nnoremap <Leader>fs mmvip:sort<CR>`m
+nnoremap <Leader>fT :%s/\v(\w)\s\s(\w)/\1 \2/c<CR>
 nnoremap <Leader>ft :call Trim()<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gc :Gcommit<CR>i
@@ -185,7 +187,7 @@ nnoremap <Leader>gl :Glog -- %<CR>
 nnoremap <Leader>gp :Gpull<CR>
 nnoremap <Leader>gpo :Gpush<CR>
 nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>l "lyiwoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
+nnoremap <Leader>l "lyiwoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j^"lyiW`ma, '<C-R>l'<Esc>
 nnoremap <Leader>n :new<CR>
 nnoremap <Leader>nn :new<CR>
 nnoremap <Leader>nt :tabnew<CR>
@@ -361,7 +363,7 @@ augroup Auto
   autocmd BufNewFile,BufRead,BufWrite *.coffee,*.cjsx setlocal filetype=coffee
   autocmd BufNewFile,BufRead,BufWrite *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWinEnter * call RestoreCursorPositon()
-  autocmd BufWinEnter *.md,*.coffee,*.styl,*.jade call SetLineLength(79) | call SetStatusLine()
+  autocmd BufWinEnter *.coffee,*.styl,*.jade call SetLineLength(79) | call SetStatusLine()
   autocmd BufWrite *vimrc,*.coffee,*.cjsx,*.styl,*.jade,*.md,*.journal call Trim()
   autocmd BufWritePost *gvimrc source %
   autocmd BufWritePost *vimrc source %
@@ -375,4 +377,10 @@ augroup Auto
   autocmd FileType qf setlocal winheight=5
   autocmd FileType qf,help,gitcommit call SetStatusLineForHelpers()
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
+augroup END
+
+augroup pencil
+  autocmd!
+  autocmd FileType journal,ghmarkdown,markdown,mkd call pencil#init()
+  autocmd FileType text call pencil#init()
 augroup END
