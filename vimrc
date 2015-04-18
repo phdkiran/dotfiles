@@ -178,7 +178,7 @@ nnoremap <Leader>f= gqip
 nnoremap <Leader>fS mmvip:sort!<CR>`m
 nnoremap <Leader>f_ mmvip:s/^- //<CR>`m
 nnoremap <Leader>fs mmvip:sort<CR>`m
-nnoremap <Leader>fT :%s/\v(\w)\s\s(\w)/\1 \2/c<CR>
+nnoremap <Leader>fT :%s/\v(\S)\s{2,}(\S)/\1 \2/cg<CR>
 nnoremap <Leader>ft :call Trim()<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gc :Gcommit<CR>i
@@ -350,37 +350,48 @@ function! OpenHelp()
   endif
 endfunction
 
+function! OpenTags ()
+  if empty(&buftype)
+    nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<CR>
+  endif
+endfunction
+
 call SetStatusLine()
 
-augroup Auto
+augroup Common
   autocmd!
-  autocmd BufEnter *
-    \   if empty(&buftype)
-    \|      nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<CR>
-    \|  endif
   autocmd BufEnter *.txt call OpenHelp()
-  autocmd BufNewFile,BufRead,BufWrite *.tpl.jade setlocal filetype=jade
-  autocmd BufNewFile,BufRead,BufWrite *.coffee,*.cjsx setlocal filetype=coffee
-  autocmd BufNewFile,BufRead,BufWrite *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWinEnter * call RestoreCursorPositon()
-  autocmd BufWinEnter *.coffee,*.styl,*.jade call SetLineLength(79) | call SetStatusLine()
-  autocmd BufWrite *vimrc,*.coffee,*.cjsx,*.styl,*.jade,*.md,*.journal call Trim()
   autocmd BufWritePost *gvimrc source %
   autocmd BufWritePost *vimrc source %
-  autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
-  autocmd FileType coffee,jade setlocal foldmethod=indent nofoldenable
   autocmd FileType dictionary inoremap <buffer> <Esc> <Esc>:q<CR> | inoremap <buffer> q <Esc>:q<CR>
   autocmd FileType gitcommit setlocal winheight=8
-  autocmd FileType html,journal,ghmarkdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType help setlocal winwidth=85 winheight=8
   autocmd FileType qf setlocal winheight=5
   autocmd FileType qf,help,gitcommit call SetStatusLineForHelpers()
+augroup END
+
+augroup CoffeeJadeStylus
+  autocmd BufNewFile,BufRead,BufWrite *.tpl.jade setlocal filetype=jade
+  autocmd BufNewFile,BufRead,BufWrite *.coffee,*.cjsx setlocal filetype=coffee
+  autocmd BufWinEnter *.coffee,*.styl,*.jade call SetLineLength(79) | call SetStatusLine()
+  autocmd BufWrite *.coffee,*.cjsx,*.styl,*.jade,*.md,*.journal call Trim()
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
+  autocmd FileType coffee,jade setlocal foldmethod=indent nofoldenable
   autocmd FileType stylus setlocal omnifunc=csscomplete#CompleteCSS
 augroup END
 
-augroup pencil
+augroup Ctags
   autocmd!
-  autocmd FileType journal,ghmarkdown,markdown,mkd call pencil#init()
+  autocmd BufEnter * call OpenTags()
+augroup END
+
+augroup Markdown
+  autocmd!
+  autocmd BufNewFile,BufRead,BufWrite *.md,*.markdown setlocal filetype=ghmarkdown
+  autocmd BufWrite *.md,*.journal call Trim()
+  autocmd FileType ghmarkdown,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType ghmarkdown,markdown call pencil#init()
   autocmd FileType text call pencil#init()
 augroup END
