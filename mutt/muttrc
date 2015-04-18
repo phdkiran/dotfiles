@@ -2,21 +2,22 @@ set realname = 'Roman Zolotarev'
 set from = 'hi@romanzolotarev.com'
 
 # Send and Receive
+alternates `get-password fastmail-alternatives | sed "s/\./\\\./g"`
 set my_username = `get-password fastmail-username`
 set my_password = `get-password fastmail-password`
 set smtp_url = "smtps://$my_username@mail.messagingengine.com"
 set smtp_authenticators = 'gssapi:login'
 set smtp_pass = "$my_password"
+set reverse_name = yes
+set use_from = yes
 set use_envelope_from = yes
 # Check mail
-macro index,pager,attach gq '!offlineimap -q -o -u blinkenlights<enter>' 'Refresh offlineimap'
+macro index,pager,attach gq '!offlineimap -q -o -u blinkenlights -f INBOX<enter>' 'Refresh offlineimap'
 macro index,pager,attach go '!offlineimap -u blinkenlights<enter>' 'Refresh offlineimap'
-# Save sent mail to the Sent folder
-unset record
 # Save a copy of sent mail
 set copy = yes
 # Delete things when leaving a folder, but confirm first
-set delete = yes
+set delete = ask-yes
 # Don't wait after running external command
 set wait_key = no
 # Look for email after three seconds of inactivity
@@ -32,6 +33,7 @@ set my_archive = 'INBOX.Archive'
 set my_drafts = 'INBOX.Drafts'
 set my_sent = 'INBOX.Sent<quote-char> Items'
 set my_junk = 'INBOX.Junk<quote-char> Mail'
+set my_notes= 'INBOX.Notes'
 set my_trash = 'INBOX.Trash'
 set folder = '~/Downloads/Mail'
 set header_cache = '~/.mutt/cache/headers'
@@ -39,10 +41,11 @@ set message_cachedir = '~/.mutt/cache/messages'
 set certificate_file = '~/.mutt/certificates'
 set spoolfile = "+$my_inbox"
 set postponed = "+$my_drafts"
+set record = "=INBOX.Sent Items"
 
 # Organize
 set status_format = '%f %r%m =%?n? %n new?%?d? %d to delete?%?t? %t tagged?%?p? %p postponed?'
-set index_format = '%{%a %k:%M}  %-25.25L  %s'
+set index_format = '%{%b %d %k:%M}  %-25.25L  %s'
 # Archive when hitting the delete key
 macro index y "<save-message>+$my_archive<enter>"
 macro pager y "<exit><save-message>+$my_archive<enter>"
@@ -53,11 +56,13 @@ set sort = threads
 set sort_aux = reverse-last-date-received
 # Folder navigation
 macro index,pager gl '<change-folder>?'
-macro index,pager gi "<change-folder>=$my_inbox<enter>" 'Go to inbox'
-macro index,pager ga "<change-folder>=$my_archive<enter>" 'Go to all mail'
-macro index,pager gd "<change-folder>=$my_drafts<enter>" 'Go to drafts'
-macro index,pager gs "<change-folder>=$my_sent<enter>" 'Go to sent mail'
-macro index,pager gj "<change-folder>=$my_junk<enter>" 'Go to junk'
+macro index,pager gi "<change-folder>=$my_inbox<enter>" 'Go to Inbox'
+macro index,pager ga "<change-folder>=$my_archive<enter>" 'Go to Archive'
+macro index,pager gd "<change-folder>=$my_drafts<enter>" 'Go to Drafts'
+macro index,pager gs "<change-folder>=$my_sent<enter>" 'Go to Sent'
+macro index,pager gj "<change-folder>=$my_junk<enter>" 'Go to Junk'
+macro index,pager gt "<change-folder>=$my_trash<enter>" 'Go to Trash'
+macro index,pager gn "<change-folder>=$my_notes<enter>" 'Go to Notes'
 # Don't skip deleted
 bind index j next-entry
 bind index k previous-entry
