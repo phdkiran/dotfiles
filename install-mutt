@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+echo -e "You're about to replace \e[33m~/.mutt\e[0m"
+echo 'Sure?'
+read
+brew install mutt w3m offlineimap
+ln -sf ${PWD}/mutt ${HOME}/.mutt && echo 'Link ~/.mutt'
+ln -sf ${PWD}/offlineimap.py ${HOME}/.offlineimap.py && echo 'Link ~/.offlineimap.py'
+ln -sf ${PWD}/offlineimaprc ${HOME}/.offlineimaprc && echo 'Link ~/.offlineimaprc'

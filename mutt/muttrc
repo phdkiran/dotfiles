@@ -1,0 +1,91 @@
+set realname = 'Roman Zolotarev'
+set from = 'hi@romanzolotarev.com'
+
+# Send and Receive
+set my_username = `get-password fastmail-username`
+set my_password = `get-password fastmail-password`
+set smtp_url = "smtps://$my_username@mail.messagingengine.com"
+set smtp_authenticators = 'gssapi:login'
+set smtp_pass = "$my_password"
+set use_envelope_from = yes
+# Check mail
+macro index,pager,attach gq '!offlineimap -q -o -u blinkenlights<enter>' 'Refresh offlineimap'
+macro index,pager,attach go '!offlineimap -u blinkenlights<enter>' 'Refresh offlineimap'
+# Save sent mail to the Sent folder
+unset record
+# Save a copy of sent mail
+set copy = yes
+# Delete things when leaving a folder, but confirm first
+set delete = yes
+# Don't wait after running external command
+set wait_key = no
+# Look for email after three seconds of inactivity
+set timeout = 3
+# Minimum time between email checks
+set mail_check = 0
+# Don't update read counts very frequently when loading large mailboxes
+set read_inc = 1000
+
+# Folders
+set my_inbox = 'INBOX'
+set my_archive = 'INBOX.Archive'
+set my_drafts = 'INBOX.Drafts'
+set my_sent = 'INBOX.Sent<quote-char> Items'
+set my_junk = 'INBOX.Junk<quote-char> Mail'
+set my_trash = 'INBOX.Trash'
+set folder = '~/Downloads/Mail'
+set header_cache = '~/.mutt/cache/headers'
+set message_cachedir = '~/.mutt/cache/messages'
+set certificate_file = '~/.mutt/certificates'
+set spoolfile = "+$my_inbox"
+set postponed = "+$my_drafts"
+
+# Organize
+set status_format = '%f %r%m =%?n? %n new?%?d? %d to delete?%?t? %t tagged?%?p? %p postponed?'
+set index_format = '%{%a %k:%M}  %-25.25L  %s'
+# Archive when hitting the delete key
+macro index y "<save-message>+$my_archive<enter>"
+macro pager y "<exit><save-message>+$my_archive<enter>"
+# Show index in pager
+set pager_index_lines = 5
+# Sort by threads by sender
+set sort = threads
+set sort_aux = reverse-last-date-received
+# Folder navigation
+macro index,pager gl '<change-folder>?'
+macro index,pager gi "<change-folder>=$my_inbox<enter>" 'Go to inbox'
+macro index,pager ga "<change-folder>=$my_archive<enter>" 'Go to all mail'
+macro index,pager gd "<change-folder>=$my_drafts<enter>" 'Go to drafts'
+macro index,pager gs "<change-folder>=$my_sent<enter>" 'Go to sent mail'
+macro index,pager gj "<change-folder>=$my_junk<enter>" 'Go to junk'
+# Don't skip deleted
+bind index j next-entry
+bind index k previous-entry
+
+# Compose
+# Always quote in replies
+set include = yes
+# Hitting g replies to all
+macro index,pager G '<group-reply>'
+
+# Pager
+# Header
+ignore *
+unignore from: to: cc: date: subject:
+unhdr_order *
+hdr_order from: to: cc: date: subject:
+# Strip HTML tags
+set mailcap_path = '~/.mutt/mailcap'
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+# Open an HTML attachment
+macro pager H <view-attachments>/html<enter><view-mailcap><exit>
+# Only move read emails when they're actually looked at
+set mark_old = no
+# Hitting C-b while viewing a message opens links
+macro index,pager \cb <pipe-entry>'urlview'<enter> 'Open links'
+
+# Colors
+source ~/.mutt/colors.muttrc
+# Reload config
+macro index gr ':source ~/.mutt/muttrc<enter>' 'Source muttrc'
