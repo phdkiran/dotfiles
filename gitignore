@@ -1,6 +1,7 @@
+*.sassc
 .DS_Store
 Gemfile.lock
 _site/
 _styles/cache/
-*.sassc
+mutt/cache/
 node_modules
