@@ -392,6 +392,6 @@ augroup Prose
   autocmd BufNewFile,BufRead,BufWrite *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWrite *.md,*.journal call Trim()
   autocmd FileType mail nnoremap <buffer> q ZZ 
-  autocmd FileType ghmarkdown,markdown setlocal omnifunc=htmlcomplete#CompleteTags spell
+  autocmd FileType ghmarkdown,markdown setlocal omnifunc=htmlcomplete#CompleteTags spell formatoptions+=aw
   autocmd FileType text,mail,ghmarkdown,markdown call pencil#init()
 augroup END
