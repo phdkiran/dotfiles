@@ -19,35 +19,36 @@ set smtp_pass = "$my_password"
 
 set folder = '~/Mail'
 
-set alias_file = '~/.mutt/aliases' 
+set alias_file = '~/.mutt/aliases'
 set certificate_file = '~/.mutt/certificates'
 set header_cache = '~/.mutt/cache/headers'
 set mailcap_path = '~/.mutt/mailcap'
 set message_cachedir = '~/.mutt/cache/messages'
-source $alias_file 
+source $alias_file
 source ~/.mutt/colors
 
-# set query_command = "contacts -l -f%e %s"
 set copy = yes # Save a copy of sent mail
 set delete = ask-yes # Confirm and purge deleted when leaving a folder
 set display_filter = '~/.mutt/display-filter'
 set fast_reply = yes
 set include = yes # Always quote in replies
-set index_format = '%{%b %d %k:%M}  %-25.25L  %s'
+set index_format = '%[%Y-%m-%d %H:%M] %Z %l  %35L  %s'
 set mail_check = 0 # Minimum time between email checks
 set mark_old = no # Only move read emails when they're actually looked at
-set pager_index_lines = 5 # Show index in pager
+set pager_format = "$index_format %> %P"
+set pager_index_lines = 4 # Show index in pager
 set postponed = "+$my_drafts"
+set query_command = "contacts '%s'"
 set read_inc = 1000 # Don't update read counts very frequently when loading large mailboxes
 set record = "=INBOX.Sent Items"
 set reverse_alias = yes
 set reverse_name = yes
 set sleep_time = 0
-set sort = threads # Sort by threads 
+set sort = threads # Sort by threads
 set sort_alias = alias
 set sort_aux = reverse-last-date-received
 set spoolfile = "+$my_inbox"
-set status_format = '%f %r%m =%?n? %n new?%?d? %d to delete?%?t? %t tagged?%?p? %p postponed?'
+set status_format = '%-51.51f %r %?n? %n new ?%?d? %d deleted ?%?t? %t tagged ?%?p? %p postponed ? of %m %> %P'
 set text_flowed = yes
 set timeout = 3 # Look for email after three seconds of inactivity
 set use_envelope_from = yes
@@ -75,8 +76,12 @@ macro pager H <view-attachments>/html<enter><view-mailcap><exit>
 macro pager d "<exit>:set confirmappend=no<enter><save-message>=$my_trash<enter>:set confirmappend=yes<enter>"
 macro pager x <exit><delete-message><display-message>
 macro pager y "<exit><save-message>+$my_archive<enter>"
+macro index L "<enter-command>unset wait_key<enter><shell-escape>notmuch new; read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" 'Show only messages matching a notmuch pattern'
+macro index a '<limit>all<enter>' 'Show all messages (undo limit)'
 
 bind compose p postpone-message
+bind editor <tab> complete-query
+bind editor ^T complete
 bind index <space> collapse-thread
 bind index G last-entry
 bind index _ collapse-all
@@ -94,11 +99,10 @@ bind pager k previous-line
 
 # Headers
 ignore *
-unignore from: to: cc: date: subject:
+unignore from to cc subject
 unhdr_order *
-hdr_order from: to: cc: date: subject:
+hdr_order from to cc subject
 
 # Strip HTML tags
 auto_view text/html
 alternative_order text/plain text/enriched text/html
-

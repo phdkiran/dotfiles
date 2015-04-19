@@ -6,7 +6,7 @@ alias a="vim ~/.aliases && source ~/.aliases"
 alias tl="tmux list-sessions"
 alias tka="tmux kill-session -a"
 
-alias m="security unlock-keychain && mutt"
+alias m="security unlock-keychain && offlineimap -o -u blinkenlights && mutt"
 
 alias d='./deploy'
 alias i='./install'
