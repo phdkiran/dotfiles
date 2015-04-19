@@ -387,11 +387,11 @@ augroup Ctags
   autocmd BufEnter * call OpenTags()
 augroup END
 
-augroup Markdown
+augroup Prose
   autocmd!
   autocmd BufNewFile,BufRead,BufWrite *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWrite *.md,*.journal call Trim()
-  autocmd FileType ghmarkdown,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType ghmarkdown,markdown call pencil#init()
-  autocmd FileType text call pencil#init()
+  autocmd FileType mail nnoremap <buffer> q ZZ 
+  autocmd FileType ghmarkdown,markdown setlocal omnifunc=htmlcomplete#CompleteTags spell
+  autocmd FileType text,mail,ghmarkdown,markdown call pencil#init()
 augroup END
