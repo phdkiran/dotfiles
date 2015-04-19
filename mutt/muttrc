@@ -32,7 +32,7 @@ set delete = ask-yes # Confirm and purge deleted when leaving a folder
 set display_filter = '~/.mutt/display-filter'
 set fast_reply = yes
 set include = yes # Always quote in replies
-set index_format = '%[%Y-%m-%d %H:%M] %Z %l  %35L  %s'
+set index_format = '%[%Y-%m-%d %H:%M] %Z  %35L  %s'
 set mail_check = 0 # Minimum time between email checks
 set mark_old = no # Only move read emails when they're actually looked at
 set pager_format = "$index_format %> %P"
@@ -63,7 +63,8 @@ macro index y "<save-message>+$my_archive<enter>"
 macro index,pager R <group-reply>
 macro index,pager S "<save-message>=$my_junk<enter>"
 macro index,pager \cb <pipe-entry>'urlview'<enter> 'Open links'
-macro index,pager ga "<change-folder>=$my_archive<enter>" 'Go to Archive'
+macro index,pager ga "<change-folder>=$my_archive." 'Go to ...'
+macro index,pager gA "<change-folder>=$my_archive<enter>" 'Go to Archive'
 macro index,pager gd "<change-folder>=$my_drafts<enter>" 'Go to Drafts'
 macro index,pager gi "<change-folder>=$my_inbox<enter>" 'Go to Inbox'
 macro index,pager gj "<change-folder>=$my_junk<enter>" 'Go to Junk'
