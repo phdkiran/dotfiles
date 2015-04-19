@@ -1,16 +1,16 @@
 [general]
 pythonfile = ~/.offlineimap.py
-accounts = Fastmail
+accounts = FastMail
 socktimeout = 60
 maxsyncaccounts = 3
 
-[Account Fastmail]
+[Account FastMail]
 localrepository = Local
 remoterepository = Remote
 status_backend = sqlite
 
 [Repository Local]
-localfolders = ~/Downloads/Mail
+localfolders = ~/Mail
 type = Maildir
 readonly = False
 
