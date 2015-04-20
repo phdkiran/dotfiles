@@ -3,13 +3,13 @@ set realname = 'Roman Zolotarev'
 set folder = '~/Mail'
 
 alternates `get-password fastmail-alternatives | sed "s/\./\\\./g"`
-# set sendmail="/usr/local/bin/msmtp"
-set my_password = `get-password fastmail-password`
 set my_username = `get-password fastmail-username`
-set smtp_url = "smtps://$my_username@mail.messagingengine.com"
-set smtp_authenticators = 'gssapi:login'
-set smtp_pass = "$my_password"
-# set sendmail_wait = -1
+set sendmail = "/usr/local/bin/msmtp -a FastMail --from $from --user $my_username"
+set sendmail_wait = -1
+# set my_password = `get-password fastmail-password`
+# set smtp_url = "smtps://$my_username@mail.messagingengine.com"
+# set smtp_authenticators = 'gssapi:login'
+# set smtp_pass = "$my_password"
 
 set my_inbox = 'INBOX'
 set my_archive = 'INBOX.Archive'
