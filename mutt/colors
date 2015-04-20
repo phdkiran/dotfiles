@@ -1,49 +1,50 @@
 # vim: filetype=muttrc
 
 color normal      color7   color0
-color error       color10  default
-color tilde       color11  default
-color message     color10  default
-color markers     color11  default
-color attachment  color8   default
-color search      color3   default
-color status      color10  default
+color error       color10  color0
+color tilde       color11  color0
+color message     color11  color0
+color markers     color10  color0
+color attachment  color8   color0
+color search      color3   color0
+color status      color11  color0
 color indicator   color15  color11
-color tree        color10  default 
+color tree        color11  color0 
 
-color index       color8   default   '~P'    # from me
-color index       color15  color1    '~='    # duplicate messages
-color index       default  color10   '~v'    # messages part of a collapsed thread
-color index       color3   default   '~N'    # new messages
-color index       color15  default   '~F'    # flagged
-color index       color4   black     '~X 1-' # with attachment
-color index       color1   default   '~D'    # deleted
-color index       default  color11   '~T'    # tagged 
+uncolor index *
+color index       color8   color0   '~P'    # from me
+color index       color15  color1   '~='    # duplicate messages
+color index       color7   color10  '~v'    # messages part of a collapsed thread
+color index       color3   color0   '~N'    # new messages
+color index       color15  color0   '~F'    # flagged
+color index       color4   color0   '~X 1-' # with attachment
+color index       color1   color0   '~D'    # deleted
+color index       color7   color11  '~T'    # tagged 
 
-color header      color8   default   '^'
-color hdrdefault  color8   default
-color header      color2   default   '^(From)'
-color header      color3   default   '^(Subject)'
+color header      color8   color0   '^'
+color hdrdefault  color8   color0
+color header      color2   color0   '^(From)'
+color header      color3   color0   '^(Subject)'
 
-color quoted      color9   default
-color quoted1     color1   default
-color quoted2     color2   default
-color quoted3     color3   default
-color quoted4     color4   default
-color quoted5     color5   default
-color quoted6     color6   default
-color quoted7     color7   default
-color quoted8     color8   default
-color signature   color11  default
-color bold        color15  default
-color underline   color7   default
+color quoted      color9   color0
+color quoted1     color1   color0
+color quoted2     color2   color0
+color quoted3     color3   color0
+color quoted4     color4   color0
+color quoted5     color5   color0
+color quoted6     color6   color0
+color quoted7     color7   color0
+color quoted8     color8   color0
+color signature   color11  color0
+color bold        color15  color0
+color underline   color7   color0
 
 # URLs
-color body        color2   default   "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\']"
+color body        color2   color0   "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\']"
 
 # GPG
-color body        color1   default   '(BAD signature)'
-color body        color2   default   '(Good signature)'
-color body        color2   default   '^gpg: Good signature .*'
-color body        color2   default   '^gpg: '
-color body        color1   color11   '^gpg: BAD signature from.*'
+color body        color1   color0   '(BAD signature)'
+color body        color2   color0   '(Good signature)'
+color body        color2   color0   '^gpg: Good signature .*'
+color body        color2   color0   '^gpg: '
+color body        color1   color11  '^gpg: BAD signature from.*'
