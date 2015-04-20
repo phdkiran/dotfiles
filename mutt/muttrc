@@ -19,6 +19,8 @@ set smtp_pass = "$my_password"
 
 set folder = '~/Mail'
 
+set reply_self = no
+set fcc_attach = yes
 set alias_file = '~/.mutt/aliases'
 set certificate_file = '~/.mutt/certificates'
 set header_cache = '~/.mutt/cache/headers'
