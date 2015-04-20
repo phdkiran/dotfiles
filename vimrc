@@ -14,8 +14,8 @@ NeoBundle 'romanzolotarev/vim-snippets'
 " NeoBundle 'gorodinskiy/vim-coloresque'
 " NeoBundle 'jeetsukumaran/vim-indentwise'
 " NeoBundle 'jelera/vim-javascript-syntax'
+" NeoBundle 'reedes/vim-pencil'
 " NeoBundle 'shougo/vimfiler'
-" NeoBundle 'terryma/vim-expand-region'
 " NeoBundle 'wavded/vim-stylus'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/base16-vim'
@@ -25,13 +25,13 @@ NeoBundle 'elzr/vim-json'
 NeoBundle 'itchyny/dictionary.vim'
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'reedes/vim-pencil'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'shougo/neocomplete'
 NeoBundle 'shougo/neosnippet'
 NeoBundle 'shougo/neosnippet-snippets'
 NeoBundle 'shougo/unite.vim'
 NeoBundle 'skwp/greplace.vim'
+NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
@@ -393,5 +393,4 @@ augroup Prose
   autocmd BufWrite *.md,*.journal call Trim()
   autocmd FileType mail nnoremap <buffer> q ZZ 
   autocmd FileType ghmarkdown,markdown setlocal omnifunc=htmlcomplete#CompleteTags spell formatoptions+=aw
-  autocmd FileType text,mail,ghmarkdown,markdown call pencil#init()
 augroup END
