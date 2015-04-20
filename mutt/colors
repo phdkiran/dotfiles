@@ -11,13 +11,14 @@ color status      color10  default
 color indicator   color15  color11
 color tree        color10  default 
 
-color index       color4   default   '~P'  # from me
-color index       color15  color1    '~='  # duplicate messages
-color index       default  color10   '~v'  # messages part of a collapsed thread
-color index       color3   default   '~N'  # new messages
-color index       color15  default   '~F'  # flagged
-color index       color1   default   '~D'  # deleted
-color index       default  color11   '~T'  # tagged 
+color index       color8   default   '~P'    # from me
+color index       color15  color1    '~='    # duplicate messages
+color index       default  color10   '~v'    # messages part of a collapsed thread
+color index       color3   default   '~N'    # new messages
+color index       color15  default   '~F'    # flagged
+color index       color4   black     '~X 1-' # with attachment
+color index       color1   default   '~D'    # deleted
+color index       default  color11   '~T'    # tagged 
 
 color header      color8   default   '^'
 color hdrdefault  color8   default
