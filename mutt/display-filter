@@ -1,2 +1,2 @@
 #!/bin/sh
-$HOME/.mutt/add-aliases
+$HOME/.mutt/add-aliases | $HOME/.mutt/format-text

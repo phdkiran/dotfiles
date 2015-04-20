@@ -1,28 +1,17 @@
-# MS Excel
-application/x-msexcel; ~/.mutt/view %s
-application/ms-exc; ~/.mutt/view %s
 application/excel; ~/.mutt/view %s
+application/ms-exc; ~/.mutt/view %s
 application/msexcel; ~/.mutt/view %s
+application/msword; ~/.mutt/view %s
+application/octet-stream; ~/.mutt/view %s
+application/pdf; ~/.mutt/view %s
 application/vnd.ms-exc; ~/.mutt/view %s
 application/vnd.ms-excel; ~/.mutt/view %s
-
-# MS Word
-application/msword; ~/.mutt/view %s "-" '/Applications/TextEdit.app'
 application/vnd.openxm; ~/.mutt/view %s 
+application/x-msexcel; ~/.mutt/view %s
+image/gif; ~/.mutt/view %s
+image/jpeg; ~/.mutt/view %s
+image/pjpeg; ~/.mutt/view %s
+image/png; ~/.mutt/view %s
 
-# Images
-image/jpeg; ~/.mutt/view %s jpeg 
-image/pjpeg; ~/.mutt/view %s jpeg
-image/png; ~/.mutt/view %s png
-image/gif; ~/.mutt/view %s gif
-
-# PDF
-application/pdf; ~/.mutt/view %s pdf
-
-# HTML
 text/html; open -a "Google Chrome" %s & sleep 2; test=sh -c 'test -n $DISPLAY'; needsterminal;
-# text/html; pandoc -f html -t markdown; copiousoutput;
 text/html; w3m -I %{charset} -T text/html; copiousoutput;
-
-# Unidentified
-application/octet-stream; ~/.mutt/view %s "-" 
