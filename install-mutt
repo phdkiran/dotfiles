@@ -3,7 +3,7 @@ echo -e "You're about to replace \e[33m~/.mutt\e[0m"
 echo 'Sure?'
 read
 brew install https://raw.github.com/tgray/homebrew-tgbrew/master/contacts2.rb
-brew install mutt w3m offlineimap notmuch #contacts
+brew install mutt w3m offlineimap notmuch ripmime msmtp #contacts
 rm -rf ${HOME}/.mutt
 ln -s ${PWD}/mutt ${HOME}/.mutt && echo 'Link ~/.mutt'
 touch ${HOME}/.mutt/aliases

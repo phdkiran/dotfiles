@@ -13,7 +13,6 @@ alias i='./install'
 alias o='./open'
 alias r='./run'
 alias s='./styling'
-alias t='./test'
 
 alias -- -='cd -'
 alias ....='cd ../../..'
