@@ -1,6 +1,8 @@
 [general]
 pythonfile = ~/.offlineimap.py
 accounts = FastMail
+# ui = blinkenlights 
+ui = ttyui 
 socktimeout = 60
 maxsyncaccounts = 3
 
@@ -8,6 +10,8 @@ maxsyncaccounts = 3
 localrepository = Local
 remoterepository = Remote
 status_backend = sqlite
+autorefresh = 2
+postsynchook = notmuch new
 
 [Repository Local]
 localfolders = ~/Mail
