@@ -1,1 +1,1 @@
-set guifont=Inconsolata-g:h18 linespace=6 guioptions=g
+set guifont=Menlo:h18 linespace=10 guioptions=g
