@@ -7,7 +7,6 @@ alias tl='tmux list-sessions'
 alias tka='tmux kill-session -a'
 
 alias unlock='security unlock-keychain'
-alias m='offlineimap -o -u blinkenlights -f INBOX && mutt'
 
 alias d='./deploy'
 alias i='./install'
@@ -76,4 +75,3 @@ alias spotlighton='sudo mdutil -a -i on'
 
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update --system; sudo gem update --no-document'
 alias reload="exec $SHELL -l"
-
