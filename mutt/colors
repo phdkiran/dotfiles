@@ -9,7 +9,7 @@ color attachment  color8   color0
 color search      color3   color0
 color status      color8   color0
 color indicator   color15  color11
-color tree        color8   color0 
+color tree        color8   color0
 
 uncolor index *
 color index       color8   color0   '~P'    # from me
@@ -19,7 +19,7 @@ color index       color3   color0   '~N'    # new messages
 color index       color15  color0   '~F'    # flagged
 color index       color4   color0   '~X 1-' # with attachment
 color index       color1   color0   '~D'    # deleted
-color index       color7   color11  '~T'    # tagged 
+color index       color7   color11  '~T'    # tagged
 
 color header      color8   color0   '^'
 color hdrdefault  color8   color0
