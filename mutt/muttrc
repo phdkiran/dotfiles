@@ -4,7 +4,7 @@ set folder = '~/Mail'
 
 alternates `get-password fastmail-alternatives | sed "s/\./\\\./g"`
 set my_username = `get-password fastmail-username`
-set sendmail = "/usr/local/bin/msmtp -a FastMail --from $from --user $my_username"
+set sendmail = "/usr/local/bin/msmtp -a FastMail --user $my_username"
 set sendmail_wait = -1
 # set my_password = `get-password fastmail-password`
 # set smtp_url = "smtps://$my_username@mail.messagingengine.com"
@@ -49,24 +49,30 @@ set sleep_time = 0
 set sort = threads # Sort by threads
 set sort_alias = alias
 set sort_aux = reverse-last-date-received
-set spoolfile = "+$my_inbox"
-set status_format = '%-51.51f %r %?n? %n new ?%?d? %d deleted ?%?t? %t tagged ?%?p? %p postponed ? of %m %> %P'
+set spoolfile = "=$my_inbox"
+set status_format = '%-51.51f %r %?n? %n new ?%?d? %d deleted ?%?t? %t tagged ?%?p? %p postponed ? %?m?of %m&is empty?%> %P'
 set text_flowed = yes
 set timeout = 3 # Look for email after three seconds of inactivity
 set use_envelope_from = yes
 set use_from = yes
 set wait_key = no # Don't wait after running external command
+set folder_format = '%f %> %N'
 # unset markers
 
-macro index d ":set confirmappend=no<enter><save-message>=$my_trash<enter>:set confirmappend=yes<enter>"
+# macro index,pager,attach go '<sync-mailbox><shell-escape>~/.mutt/single-offlineimap &<enter>' 'Sync offlineimap'
+macro index L "<enter-command>unset wait_key<enter><shell-escape>notmuch new; read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" 'show only messages matching a notmuch pattern'
+macro index a '<limit>all<enter>' 'Show all messages (undo limit)'
+macro index d "<enter-command>unset wait_key<enter><save-message>=$my_trash<enter>"
 macro index gr ':source ~/.mutt/muttrc<enter>' 'Source muttrc'
 macro index x <delete-message>
-macro index y "<save-message>+$my_archive<enter>"
+macro index y "<save-message>=$my_archive<enter>"
+macro index,pager A '<pipe-message>pycard-import<enter>' 'add sender address to pycardsyncer'
 macro index,pager R <group-reply>
 macro index,pager S "<save-message>=$my_junk<enter>"
+macro index,pager X '<pipe-message>ripmime -i --no-nameless - -d ~/Downloads/'
 macro index,pager \cb <pipe-entry>'urlview'<enter> 'Open links'
-macro index,pager ga "<change-folder>=$my_archive." 'Go to ...'
 macro index,pager gA "<change-folder>=$my_archive<enter>" 'Go to Archive'
+macro index,pager ga "<change-folder>=$my_archive." 'Go to ...'
 macro index,pager gd "<change-folder>=$my_drafts<enter>" 'Go to Drafts'
 macro index,pager gi "<change-folder>=$my_inbox<enter>" 'Go to Inbox'
 macro index,pager gj "<change-folder>=$my_junk<enter>" 'Go to Junk'
@@ -74,13 +80,11 @@ macro index,pager gl '<change-folder>?'
 macro index,pager gn "<change-folder>=$my_notes<enter>" 'Go to Notes'
 macro index,pager gs "<change-folder>=$my_sent<enter>" 'Go to Sent'
 macro index,pager gt "<change-folder>=$my_trash<enter>" 'Go to Trash'
-macro index,pager,attach go '!offlineimap -o -u blinkenlights<enter>' 'Run offlineimap'
+macro index,pager s "<save-message>=$my_archive."
 macro pager H <view-attachments>/html<enter><view-mailcap><exit>
 macro pager d "<exit>:set confirmappend=no<enter><save-message>=$my_trash<enter>:set confirmappend=yes<enter>"
 macro pager x <exit><delete-message><display-message>
-macro pager y "<exit><save-message>+$my_archive<enter>"
-macro index L "<enter-command>unset wait_key<enter><shell-escape>notmuch new; read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" 'Show only messages matching a notmuch pattern'
-macro index a '<limit>all<enter>' 'Show all messages (undo limit)'
+macro pager y "<exit><save-message>=$my_archive<enter>"
 
 bind compose p postpone-message
 bind editor <tab> complete-query
