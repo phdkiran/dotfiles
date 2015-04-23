@@ -1,0 +1,3 @@
+#!/bin/bash
+tail -f ~/.mutt/logs/msmtp | sed -l -e 's/recipients=//;s/mailsize=\([0-9]*\)/\1 bytes/;s/smtpstatus=250/sent/;s/,/, /g' | cut -f1-3,9-11 -d ' '
+
