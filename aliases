@@ -10,9 +10,11 @@ alias unlock='security unlock-keychain'
 
 alias d='./deploy'
 alias i='./install'
+alias m='mutt'
 alias o='./open'
 alias r='./run'
 alias s='./styling'
+alias x='mux x'
 
 alias -- -='cd -'
 alias ....='cd ../../..'
