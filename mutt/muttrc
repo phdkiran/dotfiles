@@ -77,7 +77,6 @@ macro index,pager gl '<change-folder>?'
 macro index,pager gn "<change-folder>=$my_notes<enter>" 'Go to Notes'
 macro index,pager gs "<change-folder>=$my_sent<enter>" 'Go to Sent'
 macro index,pager gt "<change-folder>=$my_trash<enter>" 'Go to Trash'
-macro index,pager s "<save-message>=$my_archive."
 macro pager H <view-attachments>/html<enter><view-mailcap><exit>
 
 bind compose p postpone-message
@@ -92,6 +91,7 @@ bind index k previous-entry
 bind index,pager \# noop
 bind index,pager \& noop
 bind index,pager \cD noop
+bind index,pager x delete-message
 bind pager / search
 bind pager G bottom
 bind pager gg top
@@ -99,6 +99,8 @@ bind pager j next-line
 bind pager k previous-line
 
 folder-hook . 'exec collapse-all'
+save-hook '~t ^hi@romanzolotarev\.com$'  "=$my_archive.romanzolotarev"
+save-hook ^  "=$my_archive."
 
 # Headers
 ignore *
