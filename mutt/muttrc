@@ -66,7 +66,7 @@ macro index gr ':source ~/.mutt/muttrc<enter>' 'Source muttrc'
 macro index,pager A '<pipe-message>pycard-import<enter>' 'add sender address to pycardsyncer'
 macro index,pager R <group-reply>
 macro index,pager S "<save-message>=$my_junk<enter>"
-macro index,pager X '<pipe-message>ripmime -i --no-nameless - -d ~/Downloads/'
+macro index,pager X '<pipe-message>ripmime -i - --no-nameless -d ~/Downloads/'
 macro index,pager \cb <pipe-entry>'urlview'<enter> 'Open links'
 macro index,pager gA "<change-folder>=$my_archive<enter>" 'Go to Archive'
 macro index,pager ga "<change-folder>=$my_archive." 'Go to ...'
@@ -87,8 +87,8 @@ bind index <space> collapse-thread
 bind index G last-entry
 bind index _ collapse-all
 bind index gg first-entry
-# bind index j next-entry
-# bind index k previous-entry
+bind index j next-entry
+bind index k previous-entry
 bind index,pager \# noop
 bind index,pager \& noop
 bind index,pager \cD noop
