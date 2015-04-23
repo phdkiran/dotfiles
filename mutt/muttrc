@@ -11,13 +11,13 @@ set sendmail_wait = -1
 # set smtp_authenticators = 'gssapi:login'
 # set smtp_pass = "$my_password"
 
-set my_inbox = 'INBOX'
-set my_archive = 'INBOX.Archive'
-set my_drafts = 'INBOX.Drafts'
-set my_sent = 'INBOX.Sent<quote-char> Items'
-set my_junk = 'INBOX.Junk<quote-char> Mail'
-set my_notes = 'INBOX.Notes'
-set my_trash = 'INBOX.Trash'
+set my_inbox = 'Inbox'
+set my_archive = 'Archive'
+set my_drafts = 'Drafts'
+set my_sent = 'Sent<quote-char> Items'
+set my_junk = 'Junk<quote-char> Mail'
+set my_notes = 'Notes'
+set my_trash = 'Trash'
 
 set reply_self = no
 set fcc_attach = yes
@@ -41,10 +41,10 @@ set mail_check = 0 # Minimum time between email checks
 set mark_old = no # Only move read emails when they're actually looked at
 set pager_format = "$index_format %> %P"
 set pager_index_lines = 4 # Show index in pager
-set postponed = "+$my_drafts"
-set query_command = "contacts '%s'"
+set postponed = "=$my_drafts"
+set query_command = "pc_query -m '%s'"
 set read_inc = 1000 # Don't update read counts very frequently when loading large mailboxes
-set record = "=INBOX.Sent Items"
+set record = "=Sent Items"
 set reverse_alias = yes
 set reverse_name = yes
 set sleep_time = 0

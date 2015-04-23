@@ -21,7 +21,7 @@ primary_email=hi@romanzolotarev.com
 #
 [new]
 tags=
-ignore=INBOX.Trash;.git
+ignore=Trash;.git;.mbsyncstate;.uidvalidity
 
 # Search configuration
 #

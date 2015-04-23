@@ -1,0 +1,35 @@
+# .mbsyncrc
+Sync All
+Create Both
+SyncState *
+
+IMAPAccount fastmail-account
+  Host mail.messagingengine.com
+  # User XXX
+  PassCmd "get-password fastmail-password"
+  UseIMAPS yes
+  RequireSSL yes
+  CertificateFile ~/Repositories/romanzolotarev/dotfiles/DigiCertHighAssuranceEVRootCA.crt
+
+IMAPStore fastmail-remote
+  Account fastmail-account
+  Path INBOX.
+
+MaildirStore fastmail-local
+  Path ~/Mail/
+  Inbox ~/Mail/Inbox
+  Flatten .
+
+Channel fastmail-inbox
+  Master :fastmail-remote:
+  Slave :fastmail-local:
+  Pattern INBOX
+
+Channel fastmail
+  Master :fastmail-remote:INBOX/
+  Slave :fastmail-local:
+  Pattern * !INBOX
+
+Group fastmail-group
+  Channel fastmail-inbox
+  Channel fastmail

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+while true; do 
+  mbsync -a | grep --line-buffered --color=never 'M:\|Selecting slave' | sed -l -e 's/Selecting slave //;s/\.\.\.//'
+  echo -e "\e[33m`date "+%b %d %H:%M:%S"`\e[0m"
+  counter=12
+  timeout=10
+  while [ $counter -gt 0 ]; do
+    echo -ne "0:$((counter * timeout)) \r"
+    sleep $timeout
+    counter=$((counter-1))
+  done
+done

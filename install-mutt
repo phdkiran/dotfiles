@@ -2,13 +2,10 @@
 echo -e "You're about to replace \e[33m~/.mutt\e[0m"
 echo 'Sure?'
 read
-brew install https://raw.github.com/tgray/homebrew-tgbrew/master/contacts2.rb
-brew install mutt w3m offlineimap notmuch ripmime msmtp #contacts
+brew install mutt w3m isync notmuch ripmime msmtp 
 rm -rf ${HOME}/.mutt
 ln -s ${PWD}/mutt ${HOME}/.mutt && echo 'Link ~/.mutt'
 touch ${HOME}/.mutt/aliases
 ln -sf ${PWD}/msmtprc ${HOME}/.msmtprc && echo 'Link ~/.msmtprc'
-touch ${HOME}/.msmtp.log
-ln -sf ${PWD}/offlineimap.py ${HOME}/.offlineimap.py && echo 'Link ~/.offlineimap.py'
-ln -sf ${PWD}/offlineimaprc ${HOME}/.offlineimaprc && echo 'Link ~/.offlineimaprc'
+ln -sf ${PWD}/mbsyncrc ${HOME}/.mbsyncrc && echo 'Link ~/.mbsyncrc'
 ln -sf ${PWD}/notmuch-config ${HOME}/.notmuch-config && echo 'Link ~/.notmuch-config'
