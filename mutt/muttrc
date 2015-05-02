@@ -30,6 +30,7 @@ source $alias_file
 source ~/.mutt/colors
 
 # unset markers
+set confirmappend = no
 set copy = yes # Save a copy of sent mail
 set delete = ask-yes # Confirm and purge deleted when leaving a folder
 set display_filter = '~/.mutt/display-filter'
@@ -77,6 +78,7 @@ macro index,pager gl '<change-folder>?'
 macro index,pager gn "<change-folder>=$my_notes<enter>" 'Go to Notes'
 macro index,pager gs "<change-folder>=$my_sent<enter>" 'Go to Sent'
 macro index,pager gt "<change-folder>=$my_trash<enter>" 'Go to Trash'
+macro index,pager s '<save-message><tab>'
 macro pager H <view-attachments>/html<enter><view-mailcap><exit>
 
 bind compose p postpone-message
@@ -99,8 +101,9 @@ bind pager j next-line
 bind pager k previous-line
 
 folder-hook . 'exec collapse-all'
-save-hook '~t ^hi@romanzolotarev\.com$'  "=$my_archive.romanzolotarev"
-save-hook ^  "=$my_archive."
+save-hook '~t hi@romanzolotarev\.com$' "=$my_archive.romanzolotarev"
+save-hook '~f hi@romanzolotarev\.com$' "=$my_archive.romanzolotarev"
+save-hook '^' "=$my_archive."
 
 # Headers
 ignore *
@@ -111,3 +114,6 @@ hdr_order from to cc
 # Strip HTML tags
 auto_view text/html
 alternative_order text/plain text/enriched text/html
+
+subscribe mutt-user
+
