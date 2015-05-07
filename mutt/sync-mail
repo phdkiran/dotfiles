@@ -3,8 +3,10 @@ while true; do
   mbsync -a | grep --line-buffered --color=never 'M:\|Selecting slave' | sed -l -e 's/Selecting slave //;s/\.\.\.//'
   newmail=`notmuch new`
   echo "$newmail"
-  if [ "$newmail" != 'No new mail.' ]; then
-    say 'Check mail' 
+  if [[ "$newmail" =~ No\ new\ mail ]]; then
+    :
+  else
+    say 'New mail' 
   fi
   echo -e "\e[33m`date "+%b %d %H:%M:%S"`\e[0m"
   counter=200
