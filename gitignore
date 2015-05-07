@@ -1,4 +1,5 @@
 *.sassc
+tags
 .DS_Store
 Gemfile.lock
 _site/
