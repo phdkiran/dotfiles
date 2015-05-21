@@ -22,8 +22,8 @@ NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'elzr/vim-json'
-NeoBundle 'itchyny/dictionary.vim'
 NeoBundle 'jtratner/vim-flavored-markdown'
+NeoBundle 'justinmk/vim-dirvish'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'shougo/neocomplete'
@@ -35,6 +35,7 @@ NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-eunuch'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-jdaddy'
 NeoBundle 'tpope/vim-projectionist'
@@ -77,23 +78,28 @@ if !empty(glob('~/.vim/bundle/unite.vim/autoload/unite.vim'))
   endtry
 endif
 
-let g:sh_noisk=1
 let g:gitgutter_enabled=1
 let g:gitgutter_map_keys=0
-let g:grep_cmd_opts = '--line-numbers --noheading'
+let g:grep_cmd_opts='--line-numbers --noheading'
 let g:neocomplete#data_directory='~/.vim/cache/neocomplete'
 let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_auto_select=0
 let g:neosnippet#data_directory='~/.vim/cache/neosnippet'
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-let g:sneak#streak = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_coffee_coffeelint_args = "--file ~/.lints/coffeescript.json"
-let g:syntastic_loc_list_height = 5
-let g:syntastic_stl_format = '%E{ %fe #%e }%B{ }%W{%fw #%w }'
+let g:netrw_banner=0
+let g:netrw_liststyle=3
+let g:netrw_localrmdir='rm -r'
+let g:netrw_menu=0
+let g:netrw_preview=1
+let g:sh_noisk=1
+let g:sneak#streak=1
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=1
+let g:syntastic_coffee_coffeelint_args="--file ~/.lints/coffeescript.json"
+let g:syntastic_loc_list_height=5
+let g:syntastic_stl_format='%E{ %fe #%e }%B{ }%W{%fw #%w }'
 let g:unite_data_directory='~/.vim/cache/unite'
 let g:unite_source_grep_command='ag'
 let g:unite_source_grep_default_opts='--smart-case -i --line-numbers --nocolor --nogroup --hidden -S --ignore ''.git'''
@@ -155,22 +161,21 @@ nmap <Leader>; mm/;$<CR>x`m
 nmap <Leader>@ mmbi@<Esc>`m
 nmap <Leader>( :s/(\([^(]*\))$/ \1/<CR>
 nmap <Leader>' ysiw'
-nmap <Leader>? :Dictionary -no-duplicate -cursor-word<CR>
 nmap <Leader>` ysiw`
 nmap <Leader>fj gqaj
-nnoremap <Leader>/ :Unite grep:.<CR>
+nnoremap <Leader>/ :Unite -no-empty grep:.<CR>
 nnoremap <Leader>9 mmF(r f)r `m
-nnoremap <Leader>A :UniteWithBufferDir -start-insert file_rec/async<CR>
+nnoremap <Leader>A :UniteWithBufferDir -no-empty -start-insert file_rec/async<CR>
 nnoremap <Leader>L "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
 nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
-nnoremap <Leader>a :UniteWithProjectDir -start-insert file_rec/async<CR>
+nnoremap <Leader>a :UniteWithProjectDir -no-empty -start-insert file_rec/async<CR>
 nnoremap <Leader>eb :Eb<Space>
 nnoremap <Leader>es :Es<Space>
 nnoremap <Leader>ec :Ec<Space>
 nnoremap <Leader>c :Ec<Space>
 " nnoremap <Leader>a :E
-nnoremap <Leader>b :Unite buffer:-<CR>
-nnoremap <Leader>d :Unite directory<CR>
+nnoremap <Leader>b :Unite -no-empty buffer:-<CR>
+nnoremap <Leader>d :Unite -no-empty directory<CR>
 nnoremap <Leader>ed :edit ~/Dropbox/Notes/diary.journal<CR>
 nnoremap <Leader>ep :edit ~/Dropbox/Notes/posts.md<CR>
 nnoremap <Leader>f- mmvip:s/^/- /<CR>`m
@@ -202,7 +207,7 @@ nnoremap <Leader>ts :call ToggleTest('describe')<CR>
 nnoremap <Leader>tt :call ToggleTest('it')<CR>
 nnoremap <Leader>v :edit ~/.vimrc<CR>
 nnoremap <Leader>w :write<CR>
-nnoremap <Leader>y :Unite history/yank<CR>
+nnoremap <Leader>y :Unite -no-empty history/yank<CR>
 nnoremap <silent> p p`]
 nnoremap K i<CR><Esc>
 nnoremap N Nzz
@@ -303,12 +308,6 @@ function! GetTime(time)
   return (sec/86400) . 'd'
 endfunction
 
-function! SetLineLength(length)
-  let lengthPlusNewLineChar = a:length + 1
-  highlight OverLengthOrSpaces ctermfg=11 guifg=#373b41 ctermbg=3 guibg=#f0c674
-  execute 'match OverLengthOrSpaces /\%' . lengthPlusNewLineChar . 'v.*\|\s\+$\| \+\ze\t/'
-endfunction
-
 function! Quit()
   let numberOfListedBuffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
   if numberOfListedBuffers > 1
@@ -352,7 +351,7 @@ endfunction
 
 function! OpenTags ()
   if empty(&buftype)
-    nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<CR>
+    nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -no-empty -immediately tag<CR>
   endif
 endfunction
 
@@ -364,7 +363,6 @@ augroup Common
   autocmd BufWinEnter * call RestoreCursorPositon()
   autocmd BufWritePost *gvimrc source %
   autocmd BufWritePost *vimrc source %
-  autocmd FileType dictionary inoremap <buffer> <Esc> <Esc>:q<CR> | inoremap <buffer> q <Esc>:q<CR>
   autocmd FileType gitcommit setlocal winheight=8
   autocmd FileType help setlocal winwidth=85 winheight=8
   autocmd FileType qf setlocal winheight=5
@@ -374,7 +372,7 @@ augroup END
 augroup CoffeeJadeStylus
   autocmd BufNewFile,BufRead,BufWrite *.tpl.jade setlocal filetype=jade
   autocmd BufNewFile,BufRead,BufWrite *.coffee,*.cjsx setlocal filetype=coffee
-  autocmd BufWinEnter *.coffee,*.styl,*.jade call SetLineLength(79) | call SetStatusLine()
+  autocmd BufWinEnter *.coffee,*.styl,*.jade call SetStatusLine()
   autocmd BufWrite *.coffee,*.cjsx,*.styl,*.jade,*.md,*.journal call Trim()
   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType coffee setlocal omnifunc=coffeecomplete#Complete
@@ -391,6 +389,6 @@ augroup Prose
   autocmd!
   autocmd BufNewFile,BufRead,BufWrite *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWrite *.md,*.journal call Trim()
-  autocmd FileType mail nnoremap <buffer> q ZZ 
+  autocmd FileType mail nnoremap <buffer> q ZZ
   autocmd FileType ghmarkdown,markdown setlocal omnifunc=htmlcomplete#CompleteTags spell formatoptions+=aw
 augroup END
