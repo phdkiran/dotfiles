@@ -5,7 +5,6 @@ SCRIPT_PATH='/usr/local/bin'
 
 echo -e "Link scripts to \e[33m${SCRIPT_PATH}...\e[0m"
 for source in \
-  'archive' \
   'get-password' \
   'git-pulls' \
   'git-statuses' \
