@@ -5,7 +5,7 @@ SyncState *
 
 IMAPAccount fastmail-account
   Host mail.messagingengine.com
-  # User XXX
+  User romanzolotarev@fastmail.com
   PassCmd "get-password fastmail-password"
   UseIMAPS yes
   RequireSSL yes
