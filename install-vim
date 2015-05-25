@@ -2,11 +2,11 @@
 echo -e "You're about to replace \e[33m~/.vim\e[0m"
 echo 'Sure?'
 read
-rm -rf ${HOME}/.vim && mkdir ${HOME}/.vim && echo 'Make ~/.vim'
-mkdir ${HOME}/.vim/bundle && echo 'Make ~/.vim/bundle'
-git clone https://github.com/shougo/neobundle.vim ${HOME}/.vim/bundle/neobundle.vim
-git clone https://github.com/shougo/vimproc.vim ${HOME}/.vim/bundle/vimproc.vim
-cd ${HOME}/.vim/bundle/vimproc.vim
+rm -rf "${HOME}/.vim" && mkdir "${HOME}/.vim" && echo 'Make ~/.vim'
+mkdir "${HOME}/.vim/bundle" && echo 'Make ~/.vim/bundle'
+git clone https://github.com/shougo/neobundle.vim "${HOME}/.vim/bundle/neobundle.vim"
+git clone https://github.com/shougo/vimproc.vim "${HOME}/.vim/bundle/vimproc.vim"
+cd "${HOME}/.vim/bundle/vimproc.vim"
 make
-vim -N -u ${HOME}/.vimrc -U NONE -i NONE -V1 -e -s -c "try | NeoBundleUpdate! $* | finally | qall! | endtry"
+vim -N -u "${HOME}/.vimrc" -U NONE -i NONE -V1 -e -s -c "try | NeoBundleUpdate! $* | finally | qall! | endtry"
 echo ''
