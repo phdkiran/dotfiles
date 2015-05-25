@@ -11,21 +11,22 @@ NeoBundle 'romanzolotarev/vim-journal'
 NeoBundle 'romanzolotarev/vim-snippets'
 
 " NeoBundle 'claco/jasmine.vim'
+" NeoBundle 'digitaltoad/vim-jade'
+" NeoBundle 'elzr/vim-json'
 " NeoBundle 'gorodinskiy/vim-coloresque'
 " NeoBundle 'jeetsukumaran/vim-indentwise'
 " NeoBundle 'jelera/vim-javascript-syntax'
+" NeoBundle 'jtratner/vim-flavored-markdown'
+" NeoBundle 'kchmck/vim-coffee-script'
 " NeoBundle 'reedes/vim-pencil'
 " NeoBundle 'shougo/vimfiler'
 " NeoBundle 'wavded/vim-stylus'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'elzr/vim-json'
-NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'justinmk/vim-dirvish'
-NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'sheerun/vim-polyglot'
 NeoBundle 'shougo/neocomplete'
 NeoBundle 'shougo/neosnippet'
 NeoBundle 'shougo/neosnippet-snippets'
@@ -86,11 +87,11 @@ let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_auto_select=0
 let g:neosnippet#data_directory='~/.vim/cache/neosnippet'
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-let g:netrw_banner=0
-let g:netrw_liststyle=3
-let g:netrw_localrmdir='rm -r'
-let g:netrw_menu=0
-let g:netrw_preview=1
+" let g:netrw_banner=0
+" let g:netrw_liststyle=3
+" let g:netrw_localrmdir='rm -r'
+" let g:netrw_menu=0
+" let g:netrw_preview=1
 let g:sh_noisk=1
 let g:sneak#streak=1
 let g:syntastic_always_populate_loc_list=1
@@ -129,7 +130,7 @@ set scrolloff=3 sidescrolloff=15 sidescroll=1
 set shiftwidth=2 softtabstop=2 tabstop=2 expandtab shiftround
 set shortmess=AIWta
 set spellfile=~/.vim/spell/en.utf-8.add,~/.vim/spell/off.utf-8.add
-set timeout timeoutlen=1000 ttimeoutlen=100
+set timeoutlen=2000 ttimeoutlen=0
 set ttyfast laststatus=2 noruler showmode noshowcmd
 set undodir=~/.vim/undo/ undofile undolevels=1000 undoreload=3000
 set viminfo='10,\"100,:20,%,n~/.vim/.viminfo
@@ -147,43 +148,42 @@ command! Wq wq
 
 nmap <Space> <Leader>
 
-nmap <Space><Space> <C-^>
 imap <C-K> <Plug>(neosnippet_expand_or_jump)
 imap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap jj <Esc>
 inoremap jk <Esc>
 inoremap kk <Esc>
 nmap <Leader>" ysiw"
-nmap <Leader>] ysiw]
 nmap <Leader># ysiw}i#<Esc>
+nmap <Leader>' ysiw'
+nmap <Leader>( :s/(\([^(]*\))$/ \1/<CR>
 nmap <Leader>, mm/,$<CR>x`m
 nmap <Leader>; mm/;$<CR>x`m
 nmap <Leader>@ mmbi@<Esc>`m
-nmap <Leader>( :s/(\([^(]*\))$/ \1/<CR>
-nmap <Leader>' ysiw'
+nmap <Leader>] ysiw]
 nmap <Leader>` ysiw`
 nmap <Leader>fj gqaj
+nmap <Space><Space> <C-^>
 nnoremap <Leader>/ :Unite -no-empty grep:.<CR>
 nnoremap <Leader>9 mmF(r f)r `m
 nnoremap <Leader>A :UniteWithBufferDir -no-empty -start-insert file_rec/async<CR>
 nnoremap <Leader>L "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
 nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
 nnoremap <Leader>a :UniteWithProjectDir -no-empty -start-insert file_rec/async<CR>
-nnoremap <Leader>eb :Eb<Space>
-nnoremap <Leader>es :Es<Space>
-nnoremap <Leader>ec :Ec<Space>
-nnoremap <Leader>c :Ec<Space>
-" nnoremap <Leader>a :E
 nnoremap <Leader>b :Unite -no-empty buffer:-<CR>
+nnoremap <Leader>c :Ec<Space>
 nnoremap <Leader>d :Unite -no-empty directory<CR>
+nnoremap <Leader>eb :Eb<Space>
+nnoremap <Leader>ec :Ec<Space>
 nnoremap <Leader>ed :edit ~/Dropbox/Notes/diary.journal<CR>
 nnoremap <Leader>ep :edit ~/Dropbox/Notes/posts.md<CR>
+nnoremap <Leader>es :Es<Space>
 nnoremap <Leader>f- mmvip:s/^/- /<CR>`m
 nnoremap <Leader>f= gqip
 nnoremap <Leader>fS mmvip:sort!<CR>`m
+nnoremap <Leader>fT :%s/\v(\S)\s{2,}(\S)/\1 \2/cg<CR>
 nnoremap <Leader>f_ mmvip:s/^- //<CR>`m
 nnoremap <Leader>fs mmvip:sort<CR>`m
-nnoremap <Leader>fT :%s/\v(\S)\s{2,}(\S)/\1 \2/cg<CR>
 nnoremap <Leader>ft :call Trim()<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gc :Gcommit<CR>i
@@ -220,6 +220,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap n nzz
 vmap <C-v> <Plug>(expand_region_shrink)
+vmap <silent> <expr> p <sid>Replace()
 vmap v <Plug>(expand_region_expand)
 vnoremap < <gv
 vnoremap <Leader>fS mmvip:sort!<CR>`m
@@ -228,6 +229,16 @@ vnoremap <Leader>n "nd:new<CR>"nP
 vnoremap <silent> p p`]
 vnoremap <silent> y y`]
 vnoremap > >gv
+
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+
+function! s:Replace()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<CR>"
+endfunction
 
 function! Multiple_cursors_before()
   if exists(':NeoCompleteLock')==2
@@ -387,8 +398,7 @@ augroup END
 
 augroup Prose
   autocmd!
-  autocmd BufNewFile,BufRead,BufWrite *.md,*.markdown setlocal filetype=ghmarkdown
   autocmd BufWrite *.md,*.journal call Trim()
   autocmd FileType mail nnoremap <buffer> q ZZ
-  autocmd FileType ghmarkdown,markdown setlocal omnifunc=htmlcomplete#CompleteTags spell formatoptions+=aw
+  autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags spell formatoptions+=aw
 augroup END
