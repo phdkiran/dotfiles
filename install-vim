@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 echo -e "You're about to replace \e[33m~/.vim\e[0m"
 echo 'Sure?'
 read
