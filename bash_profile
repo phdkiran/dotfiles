@@ -6,6 +6,8 @@ source "${HOME}/.aliases"
 source "${HOME}/.prompt"
 source "${HOME}/.completions"
 
+GPG_TTY=`tty`
+export GPG_TTY
 export HISTCONTROL=erasedups
 export HISTSIZE=10000
 shopt -s histappend

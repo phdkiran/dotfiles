@@ -25,7 +25,7 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'jamessan/vim-gnupg'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundle 'justinmk/vim-dirvish'
+NeoBundle 'jamessan/vim-gnupg'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'sheerun/vim-polyglot'
 NeoBundle 'shougo/neocomplete'
@@ -80,6 +80,7 @@ if !empty(glob('~/.vim/bundle/unite.vim/autoload/unite.vim'))
   endtry
 endif
 
+let g:GPGDefaultRecipients=["hi@romanzolotarev.com"]
 let g:gitgutter_enabled=1
 let g:gitgutter_map_keys=0
 let g:grep_cmd_opts='--line-numbers --noheading'
@@ -114,7 +115,7 @@ set autoread nobackup noswapfile nowritebackup
 set backspace=start,indent,eol
 set clipboard=unnamed
 set cmdheight=2
-set cryptmethod=blowfish
+" set cryptmethod=blowfish
 set cursorline "relativenumber number
 set encoding=utf-8
 set foldlevel=99
