@@ -16,7 +16,6 @@ done
 echo -e "Linking dotfiles to \e[33m${HOME}...\e[0m"
 for source in \
   'aliases' \
-  'archiveignore' \
   'bash_profile' \
   'completions' \
   'ctags' \

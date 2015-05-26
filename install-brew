@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 cd "$(dirname "${BASH_SOURCE}")"
 
 if brew --version &> /dev/null; then
@@ -15,7 +15,6 @@ brew install \
   bash \
   bash-completion \
   ctags \
-  cloc \
   gpg \
   git \
   hub \
