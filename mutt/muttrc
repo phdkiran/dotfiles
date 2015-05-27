@@ -41,7 +41,7 @@ set index_format = '%[%Y-%m-%d %H:%M] %Z  %35L %3M %s'
 set mail_check = 0 # Minimum time between email checks
 set mark_old = no # Only move read emails when they're actually looked at
 set pager_format = "$index_format %> %P"
-set pager_index_lines = 4 # Show index in pager
+set pager_index_lines = 10 # Show index in pager
 set postponed = "=$my_drafts"
 set query_command = "pc_query -m '%s'"
 set read_inc = 1000 # Don't update read counts very frequently when loading large mailboxes

@@ -22,9 +22,9 @@ NeoBundle 'romanzolotarev/vim-snippets'
 " NeoBundle 'shougo/vimfiler'
 " NeoBundle 'wavded/vim-stylus'
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'jamessan/vim-gnupg'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
+NeoBundle 'jamessan/vim-gnupg'
 NeoBundle 'jamessan/vim-gnupg'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'sheerun/vim-polyglot'
@@ -150,6 +150,7 @@ command! Wq wq
 
 nmap <Space> <Leader>
 
+" vnoremap <silent> p p`]
 imap <C-K> <Plug>(neosnippet_expand_or_jump)
 imap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 inoremap jj <Esc>
@@ -228,7 +229,6 @@ vnoremap < <gv
 vnoremap <Leader>fS mmvip:sort!<CR>`m
 vnoremap <Leader>fs mmvip:sort<CR>`m
 vnoremap <Leader>n "nd:new<CR>"nP
-vnoremap <silent> p p`]
 vnoremap <silent> y y`]
 vnoremap > >gv
 
@@ -247,6 +247,7 @@ function! Multiple_cursors_before()
     execute 'NeoCompleteLock'
   endif
 endfunction
+
 function! Multiple_cursors_after()
   if exists(':NeoCompleteUnlock')==2
     execute 'NeoCompleteUnlock'
