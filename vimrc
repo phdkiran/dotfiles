@@ -177,7 +177,7 @@ nnoremap <Leader>c :Ec<Space>
 nnoremap <Leader>d :Unite -no-empty directory<CR>
 nnoremap <Leader>eb :Eb<Space>
 nnoremap <Leader>ec :Ec<Space>
-nnoremap <Leader>ed :edit ~/Dropbox/Notes/diary.journal<CR>
+nnoremap <Leader>ed :edit ~/Dropbox/Notes/diary.journal.gpg<CR>
 nnoremap <Leader>ep :edit ~/Dropbox/Notes/posts.md<CR>
 nnoremap <Leader>es :Es<Space>
 nnoremap <Leader>f- mmvip:s/^/- /<CR>`m
