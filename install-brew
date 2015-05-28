@@ -15,13 +15,25 @@ brew install \
   bash \
   bash-completion \
   ctags \
-  gpg \
   git \
+  gnupg \
   hub \
+  irssi \
+  isync \
+  jq \
+  msmtp \
+  mutt \
+  node \
+  notmuch \
+  python \
   reattach-to-user-namespace \
+  ripmime \
+  ruby \
   the_silver_searcher \
   tmux \
+  w3m \ 
   wget \
+  youtube-dl \
   && \
 brew install macvim --override-system-vim --with-lua && \
 brew linkapps macvim && \
