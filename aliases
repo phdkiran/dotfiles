@@ -26,6 +26,7 @@ alias dn='cd ~/Dropbox/Notes'
 alias rr='cd ~/Repositories'
 alias dot='cd ~/Repositories/romanzolotarev/dotfiles'
 
+alias yt='dl && youtube-dl'
 alias gss='git-statuses'
 alias gpp='git-pulls'
 alias gpo='g po'
