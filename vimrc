@@ -10,23 +10,12 @@ NeoBundle 'shougo/vimproc.vim', {'build': {'mac': 'make -f make_mac.mak', 'linux
 NeoBundle 'romanzolotarev/vim-journal'
 NeoBundle 'romanzolotarev/vim-snippets'
 
-" NeoBundle 'claco/jasmine.vim'
-" NeoBundle 'digitaltoad/vim-jade'
-" NeoBundle 'elzr/vim-json'
-" NeoBundle 'gorodinskiy/vim-coloresque'
-" NeoBundle 'jeetsukumaran/vim-indentwise'
-" NeoBundle 'jelera/vim-javascript-syntax'
-" NeoBundle 'jtratner/vim-flavored-markdown'
-" NeoBundle 'kchmck/vim-coffee-script'
-" NeoBundle 'reedes/vim-pencil'
-" NeoBundle 'shougo/vimfiler'
-" NeoBundle 'wavded/vim-stylus'
-NeoBundle 'reedes/vim-wordy'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'jamessan/vim-gnupg'
 NeoBundle 'jamessan/vim-gnupg'
+NeoBundle 'junegunn/goyo.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'sheerun/vim-polyglot'
 NeoBundle 'shougo/neocomplete'
@@ -90,11 +79,11 @@ let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_auto_select=0
 let g:neosnippet#data_directory='~/.vim/cache/neosnippet'
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-" let g:netrw_banner=0
-" let g:netrw_liststyle=3
-" let g:netrw_localrmdir='rm -r'
-" let g:netrw_menu=0
-" let g:netrw_preview=1
+let g:netrw_banner=0
+let g:netrw_liststyle=3
+let g:netrw_localrmdir='rm -r'
+let g:netrw_menu=0
+let g:netrw_preview=1
 let g:sh_noisk=1
 let g:sneak#streak=1
 let g:syntastic_always_populate_loc_list=1
@@ -197,7 +186,6 @@ nnoremap <Leader>gp :Gpull<CR>
 nnoremap <Leader>gpo :Gpush<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>l "lyiwoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j^"lyiW`ma, '<C-R>l'<Esc>
-nnoremap <Leader>n :new<CR>
 nnoremap <Leader>nn :new<CR>
 nnoremap <Leader>nt :tabnew<CR>
 nnoremap <Leader>pc :read !pbpaste <BAR> js2coffee<CR>
@@ -212,6 +200,7 @@ nnoremap <Leader>tt :call ToggleTest('it')<CR>
 nnoremap <Leader>v :edit ~/.vimrc<CR>
 nnoremap <Leader>w :write<CR>
 nnoremap <Leader>y :Unite -no-empty history/yank<CR>
+nnoremap <Leader>z :call Present()<CR>
 nnoremap <silent> p p`]
 nnoremap K i<CR><Esc>
 nnoremap N Nzz
@@ -234,13 +223,13 @@ vnoremap <silent> y y`]
 vnoremap > >gv
 
 function! RestoreRegister()
-  let @" = s:restore_reg
+  let @" = s:restoreReg
   return ''
 endfunction
 
 function! s:Replace()
-  let s:restore_reg = @"
-  return "p@=RestoreRegister()\<CR>"
+  let s:restoreReg = @"
+  return 'p@=RestoreRegister()\<CR>'
 endfunction
 
 function! Multiple_cursors_before()
@@ -250,7 +239,7 @@ function! Multiple_cursors_before()
 endfunction
 
 function! Multiple_cursors_after()
-  if exists(':NeoCompleteUnlock')==2
+  if exists(':NeoCompleteUnlock') == 2
     execute 'NeoCompleteUnlock'
   endif
 endfunction
@@ -308,8 +297,8 @@ if !exists('*Save')
 endif
 
 function! FileModified()
-  let file=expand('%:p')
-  let date=getftime(file)
+  let file = expand('%:p')
+  let date = getftime(file)
   return GetTime(date)
 endfunction
 
@@ -360,14 +349,30 @@ endfunction
 
 function! OpenHelp()
   if &filetype == 'help'
-    execute "normal \<C-W>T"
+    execute 'normal \<C-W>T'
   endif
 endfunction
 
-function! OpenTags ()
+function! OpenTags()
   if empty(&buftype)
     nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -no-empty -immediately tag<CR>
   endif
+endfunction
+
+function! Present()
+  " StartPresenting
+  let g:goyo_width = 60 
+  let g:goyo_height = 16
+  let g:goyo_linenr = 0
+  noremap <silent> <buffer> n /^# <CR>zt
+  noremap <silent> <buffer> N ?^# <CR>zt
+  noremap <silent> <buffer> q :q<CR>:silent !tmux set status on<CR>
+  setlocal noshowmode noshowcmd nospell nocursorline nowrapscan
+  setlocal scrolloff=0 sidescrolloff=0 sidescroll=0
+  highlight ErrorMsg ctermfg=black guifg=black
+  highlight WarningMsg ctermfg=black guifg=black
+  silent !tmux set status
+  Goyo
 endfunction
 
 call SetStatusLine()
