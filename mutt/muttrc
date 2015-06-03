@@ -39,6 +39,7 @@ set pgp_timeout = 3600
 set pgp_use_gpg_agent = yes
 set pgp_verify_command = "gpg --no-verbose --batch --output - --verify %s %f"
 set pgp_verify_key_command = "gpg --no-verbose --batch --fingerprint --check-sigs %r"
+set pgp_show_unusable = no
 
 set reply_self = no
 set fcc_attach = yes
@@ -62,7 +63,7 @@ set index_format = '%[%Y-%m-%d %H:%M] %Z  %35L %3M %s'
 set mail_check = 0 # Minimum time between email checks
 set mark_old = no # Only move read emails when they're actually looked at
 set pager_format = "$index_format %> %P"
-set pager_index_lines = 10 # Show index in pager
+# set pager_index_lines = 10 # Show index in pager
 set postponed = "=$my_drafts"
 set query_command = "pc_query -m '%s'"
 set read_inc = 1000 # Don't update read counts very frequently when loading large mailboxes
@@ -84,7 +85,7 @@ set wait_key = no # Don't wait after running external command
 # macro index,pager,attach go '<sync-mailbox><shell-escape>~/.mutt/single-offlineimap &<enter>' 'Sync offlineimap'
 macro index L "<enter-command>unset wait_key<enter><shell-escape>notmuch new; read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" 'show only messages matching a notmuch pattern'
 macro index a '<limit>all<enter>' 'Show all messages (undo limit)'
-macro index gr ':source ~/.mutt/muttrc<enter>' 'Source muttrc'
+macro index gR ':source ~/.mutt/muttrc<enter>' 'Source muttrc'
 macro index,pager A '<pipe-message>pycard-import<enter>' 'add sender address to pycardsyncer'
 macro index,pager R <group-reply>
 macro index,pager S "<save-message>=$my_junk<enter>"
@@ -97,10 +98,11 @@ macro index,pager gi "<change-folder>=$my_inbox<enter>" 'Go to Inbox'
 macro index,pager gj "<change-folder>=$my_junk<enter>" 'Go to Junk'
 macro index,pager gl '<change-folder>?'
 macro index,pager gn "<change-folder>=$my_notes<enter>" 'Go to Notes'
+macro index,pager gr "<change-folder>=$my_archive.romanzolotarev<enter>" 'Go to Archive/romanzolotarev'
 macro index,pager gs "<change-folder>=$my_sent<enter>" 'Go to Sent'
 macro index,pager gt "<change-folder>=$my_trash<enter>" 'Go to Trash'
 macro index,pager s '<save-message><tab>'
-macro pager H <view-attachments>/html<enter><view-mailcap><exit>
+macro index,pager H <view-attachments>/html<enter><view-mailcap><exit>
 
 bind editor <tab> complete-query
 bind editor ^T complete
@@ -121,9 +123,12 @@ bind pager j next-line
 bind pager k previous-line
 bind compose p pgp-menu
 
-folder-hook . 'exec collapse-all'
+message-hook . 'exec toggle-quoted'
+# folder-hook . 'exec collapse-all'
 save-hook '~t hi@romanzolotarev\.com$' "=$my_archive.romanzolotarev"
 save-hook '~f hi@romanzolotarev\.com$' "=$my_archive.romanzolotarev"
+save-hook '~t @cinarra\.com$' "=$my_archive.cinarra"
+save-hook '~f @cinarra\.com$' "=$my_archive.cinarra"
 save-hook '^' "=$my_archive."
 
 # Headers
