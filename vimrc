@@ -91,6 +91,9 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=1
 let g:syntastic_coffee_coffeelint_args="--file ~/.lints/coffeescript.json"
+" let g:syntastic_javascript_checkers=['jsxhint']
+" let g:syntastic_javascript_jsxhint_exec='jsx-jshint-wrapper'
+let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_loc_list_height=5
 let g:syntastic_stl_format='%E{ %fe #%e }%B{ }%W{%fw #%w }'
 let g:unite_data_directory='~/.vim/cache/unite'
@@ -229,7 +232,7 @@ endfunction
 
 function! s:Replace()
   let s:restoreReg = @"
-  return 'p@=RestoreRegister()\<CR>'
+  return "p@=RestoreRegister()\<CR>"
 endfunction
 
 function! Multiple_cursors_before()
