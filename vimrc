@@ -412,5 +412,5 @@ augroup Prose
   autocmd!
   autocmd BufWrite *.md,*.journal call Trim()
   autocmd FileType mail nnoremap <buffer> q ZZ
-  autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags spell formatoptions+=aw
+  autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags spell 
 augroup END
