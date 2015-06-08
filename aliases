@@ -17,6 +17,7 @@ alias r='./run'
 alias s='./styling'
 alias x='mux x'
 
+alias ss='ssh Mars.local'
 alias -- -='cd -'
 alias ....='cd ../../..'
 alias ...='cd ../..'
@@ -45,6 +46,7 @@ alias du='du -h -d 1'
 
 alias cp='cp -i'
 alias mv='mv -i'
+alias srm='srm -i'
 alias rm='rm -i'
 
 if ls --color > /dev/null 2>&1; then # GNU `ls`
