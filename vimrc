@@ -16,6 +16,7 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'jamessan/vim-gnupg'
 NeoBundle 'jamessan/vim-gnupg'
 NeoBundle 'junegunn/goyo.vim'
+NeoBundle 'lambdalisue/vim-gista'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'sheerun/vim-polyglot'
 NeoBundle 'shougo/neocomplete'
@@ -70,7 +71,11 @@ if !empty(glob('~/.vim/bundle/unite.vim/autoload/unite.vim'))
   endtry
 endif
 
+" let g:syntastic_javascript_checkers=['jsxhint']
+" let g:syntastic_javascript_jsxhint_exec='jsx-jshint-wrapper'
 let g:GPGDefaultRecipients=["hi@romanzolotarev.com"]
+let g:gista#github_user='romanzolotarev'
+let g:gista#update_on_write=1
 let g:gitgutter_enabled=1
 let g:gitgutter_map_keys=0
 let g:grep_cmd_opts='--line-numbers --noheading'
@@ -91,8 +96,6 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=1
 let g:syntastic_coffee_coffeelint_args="--file ~/.lints/coffeescript.json"
-" let g:syntastic_javascript_checkers=['jsxhint']
-" let g:syntastic_javascript_jsxhint_exec='jsx-jshint-wrapper'
 let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_loc_list_height=5
 let g:syntastic_stl_format='%E{ %fe #%e }%B{ }%W{%fw #%w }'
@@ -163,6 +166,7 @@ nmap <Space><Space> <C-^>
 nnoremap <Leader>/ :Unite -no-empty grep:.<CR>
 nnoremap <Leader>9 mmF(r f)r `m
 nnoremap <Leader>A :UniteWithBufferDir -no-empty -start-insert file_rec/async<CR>
+nnoremap <Leader>G :Unite gista<CR>
 nnoremap <Leader>L "lyiWoconsole.log <C-R>l, '<C-R>l'<Esc>mm{j"lyiW`ma, '<C-R>l'<Esc>
 nnoremap <Leader>\ :lcd %:p:h<CR>:pwd<CR>
 nnoremap <Leader>a :UniteWithProjectDir -no-empty -start-insert file_rec/async<CR>
@@ -412,5 +416,5 @@ augroup Prose
   autocmd!
   autocmd BufWrite *.md,*.journal call Trim()
   autocmd FileType mail nnoremap <buffer> q ZZ
-  autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags spell formatoptions+=aw
+  autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags spell 
 augroup END

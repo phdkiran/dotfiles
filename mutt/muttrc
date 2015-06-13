@@ -102,7 +102,7 @@ macro index,pager gr "<change-folder>=$my_archive.romanzolotarev<enter>" 'Go to 
 macro index,pager gs "<change-folder>=$my_sent<enter>" 'Go to Sent'
 macro index,pager gt "<change-folder>=$my_trash<enter>" 'Go to Trash'
 macro index,pager s '<save-message><tab>'
-macro index,pager H <view-attachments>/html<enter><view-mailcap><exit>
+macro index,pager H '<view-attachments>/html<enter><view-mailcap><exit>'
 
 bind editor <tab> complete-query
 bind editor ^T complete
